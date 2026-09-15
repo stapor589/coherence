@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Coherence — Akademia System Engineera</title>
+  <meta name="description" content="Centrum szkoleniowe inżynierii systemów nagłośnieniowych: ścieżka nauki, kursy, quizy, biblioteka i kalkulatory.">
+  <meta name="theme-color" content="#080b11">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Coherence">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <a class="brand" href="#/">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 12c1.7-5 3.3-5 5 0s3.3 5 5 0 3.3-5 5 0 3.3 5 5 0"/></svg></span>
+        <span class="brand-txt"><b>Coherence</b><small>Akademia System Engineera</small></span>
+      </a>
+      <nav id="sidenav" class="sidenav" aria-label="Nawigacja"></nav>
+      <div class="side-foot" id="side-level"></div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <a class="brand mobile-only" href="#/">
+          <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M2 12c1.7-5 3.3-5 5 0s3.3 5 5 0 3.3-5 5 0 3.3 5 5 0"/></svg></span>
+          <b>Coherence</b>
+        </a>
+        <div class="hud" id="hud"></div>
+      </header>
+      <main id="view" class="view"></main>
+    </div>
+  </div>
+  <nav id="tabbar" class="tabbar" aria-label="Nawigacja mobilna"></nav>
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+  <noscript>Ta aplikacja wymaga JavaScript.</noscript>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
