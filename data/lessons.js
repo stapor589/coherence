@@ -2,6 +2,110 @@
 // Opcjonalne pole `goals` — cele lekcji wyświetlane na ekranie startowym.
 
 export const LESSONS = {
+  gain: {
+    goals: ['Ustawić poziomy w całym torze świadomie', 'Wiedzieć, gdzie system ma ograniczać'],
+    steps: [
+      {
+        t: 'Wyobraź sobie sztafetę, w której każdy zawodnik przekazuje wiadro wody. Każdy ma wiadro innej wielkości: jeśli któryś dostanie więcej, niż mieści, reszta się rozleje — to jest przesterowanie. Jeśli dostanie za mało, następni będą przelewać ledwie kilka kropli i w tle zacznie być słychać szum. Struktura wzmocnienia to właśnie dobranie poziomów tak, żeby na każdym etapie sygnał był wyraźnie powyżej szumu i wyraźnie poniżej granicy przesterowania.',
+      },
+      {
+        t: 'W świecie analogowym pracujesz wokół poziomu nominalnego, którym w sprzęcie profesjonalnym jest +4 dBu, czyli około 1,23 wolta. Maksymalny poziom wyjściowy konsolet i procesorów to zwykle +20 do +28 dBu, więc ponad poziomem roboczym zostaje kilkanaście do dwudziestu kilku decybeli zapasu. Ten zapas nie jest luksusem: muzyka ma szczyty znacznie wyższe od wartości średniej i to one decydują, czy sygnał się zmieści.',
+        eq: '<math display="block"><msub><mi>L</mi><mi>dBu</mi></msub><mo>=</mo><mn>20</mn><mo>&#8202;</mo><mi>log</mi><mfrac><mi>U</mi><mn>0,775</mn></mfrac></math>',
+        where: 'L — poziom [dBu]; U — napięcie skuteczne [V]; 0,775 V to napięcie odniesienia dla dBu',
+      },
+      {
+        t: 'W świecie cyfrowym jest inaczej: zero jest na samej górze skali i nazywa się pełną skalą, a wszystko poniżej ma wartości ujemne. Powyżej zera nie ma nic — konwerter nie ma już żadnego zapasu, więc przesterowanie oznacza po prostu ścięcie szczytów. Żeby połączyć oba światy, musisz wiedzieć, ile dBu odpowiada pełnej skali w Twoim urządzeniu. Typowo jest to +18, +24 albo +26 dBu i ta jedna liczba decyduje, czy Twoje poziomy w cyfrze i analogu mówią o tym samym.',
+      },
+      {
+        t: 'Połączenie zbalansowane działa jak dwóch świadków opowiadających tę samą historię: jeden mówi wprost, drugi dokładnie odwrotnie. Odbiornik słucha różnicy między nimi. Zakłócenie, które wskoczy po drodze w oba przewody tak samo, mówi „to samo” obu świadkom — a skoro liczy się różnica, zakłócenie się kasuje. Dlatego zbalansowany kabel przenosi sygnał przez scenę bez brumu, a niezbalansowany łapie wszystko po drodze.',
+      },
+      {
+        t: 'Dynamika całego systemu jest ograniczona przez najsłabsze ogniwo — dokładnie jak w sztafecie z wiadrami. Jeśli w połowie toru ktoś pracuje na bardzo niskim poziomie, a dalej wszystko jest mocno podbijane, to w efekcie podbijasz też szum tego etapu. Odwrotnie: jeśli na wejściu wpychasz za dużo, sygnał zostanie ścięty, zanim dojdzie do limiterów, które miały go chronić.',
+      },
+      {
+        t: 'Stąd zasada, do której warto wracać: system powinien ograniczać w jednym, zaplanowanym miejscu — w limiterach dopasowanych do wzmacniacza i głośnika, zwykle zaprojektowanych przez producenta. Wszystkie wcześniejsze etapy mają mieć zapas, żeby nigdy nie przesterować przed tym punktem. Dzięki temu wiesz, co się dzieje, gdy system dochodzi do granicy — zamiast zgadywać, które z pięciu urządzeń właśnie ścina szczyty.',
+      },
+    ],
+  },
+
+  wzmacniacze: {
+    goals: ['Liczyć napięcia, obciążenia i straty', 'Rozumieć realne granice mocy systemu'],
+    steps: [
+      {
+        t: 'Najprościej myśleć o wzmacniaczu jak o źródle napięcia: podaje na wyjście napięcie proporcjonalne do sygnału wejściowego, a prąd pobiera taki, jakiego zażąda głośnik. Moc jest więc wynikiem, a nie ustawieniem — wynika z napięcia i impedancji obciążenia. Ten sam wzmacniacz odda inną moc do 8 omów i inną do 4 omów, o ile wydoli prądowo.',
+        eq: '<math display="block"><mi>P</mi><mo>=</mo><mfrac><msup><mi>U</mi><mn>2</mn></msup><mi>R</mi></mfrac><mspace width="1.6em"/><mi>U</mi><mo>=</mo><msqrt><mrow><mi>P</mi><mo>&#8202;</mo><mi>R</mi></mrow></msqrt></math>',
+        where: 'P — moc [W]; U — napięcie skuteczne [V]; R — impedancja obciążenia [Ω]',
+      },
+      {
+        t: 'Gdy łączysz głośniki równolegle, impedancja spada: dwie skrzynie ośmioomowe dają cztery omy, cztery skrzynie dwa omy. Dla wzmacniacza oznacza to większy pobór prądu, a każdy model ma określoną minimalną impedancję, poniżej której przechodzi w tryb ochrony albo się przegrzewa. Impedancja nominalna to zresztą uproszczenie — rzeczywista zmienia się z częstotliwością i w minimum bywa niższa niż liczba na tabliczce.',
+      },
+      {
+        t: 'Katalogowa czułość mówi, ile decybeli wyprodukuje skrzynia przy jednym wacie z odległości metra. Wydaje się, że wystarczy dołożyć mocy, żeby dostać dowolny poziom — ale cewka drgawki nagrzewa się i jej rezystancja rośnie, więc przy dużych mocach skrzynia oddaje mniej, niż wynika z rachunku. To zjawisko nazywa się kompresją mocy i potrafi zabrać kilka decybeli właśnie wtedy, gdy najbardziej ich potrzebujesz — pod koniec głośnego koncertu.',
+      },
+      {
+        t: 'Kabel głośnikowy też ma swoją rezystancję i tworzy z głośnikiem dzielnik napięcia. Liczy się długość całej pętli, czyli dwa razy odległość, oraz przekrój żyły. Przy niskiej impedancji obciążenia i długiej trasie straty robią się realne: pół oma szeregowo przy czterech omach obciążenia to już ponad decybel, który znika po drodze, plus utrata kontroli nad membraną w basie.',
+        eq: '<math display="block"><mi>R</mi><mo>=</mo><mfrac><mrow><mi>&#961;</mi><mo>&#8202;</mo><mn>2</mn><mi>L</mi></mrow><mi>A</mi></mfrac><mspace width="1.4em"/><mi>&#916;</mi><mi>L</mi><mo>=</mo><mn>20</mn><mo>&#8202;</mo><mi>log</mi><mfrac><msub><mi>Z</mi><mi>gł</mi></msub><mrow><msub><mi>Z</mi><mi>gł</mi></msub><mo>+</mo><mi>R</mi></mrow></mfrac></math>',
+        where: 'R — rezystancja pętli kabla [Ω]; ρ — rezystywność miedzi ≈ 0,0175 Ω·mm²/m; L — długość w jedną stronę [m]; A — przekrój żyły [mm²]; Z — impedancja głośnika [Ω]',
+      },
+      {
+        t: 'W systemach koncertowych preset producenta nie jest „ustawieniem brzmienia”, tylko częścią konstrukcji głośnika. Zawiera podział pasma, korekcję, wyrównanie fazy między przetwornikami oraz limitery dopasowane do ich wytrzymałości termicznej i mechanicznej. Samodzielne budowanie zwrotnicy dla takiej skrzyni prawie zawsze pogarsza wynik i realnie grozi zniszczeniem przetworników, bo zabezpieczenia przestają pasować.',
+      },
+      {
+        t: 'Na koniec praktyczna uwaga o zapasie mocy. Muzyka ma szczyty kilkanaście decybeli powyżej wartości średniej, więc wzmacniacz musi umieć oddać chwilowo znacznie więcej, niż wynosi jego obciążenie średnie. Dlatego dobiera się go z zapasem względem mocy znamionowej głośnika, a bezpieczeństwo zapewniają limitery — a nie „mniejszy wzmacniacz, żeby nie uszkodzić”. Zbyt mały wzmacniacz pracujący w ciągłym ograniczaniu jest dla przetwornika groźniejszy niż duży z poprawnie ustawioną ochroną.',
+      },
+    ],
+  },
+
+  filtry: {
+    goals: ['Czytać filtr jednocześnie jako amplitudę i czas', 'Rozumieć zwrotnice i ich sumę'],
+    steps: [
+      {
+        t: 'Filtr to nie jest ostra granica, tylko zbocze. Filtr pierwszego rzędu tłumi 6 decybeli na oktawę, drugiego 12, czwartego 24. Wyobraź sobie zjeżdżalnię: im wyższy rząd, tym bardziej stroma. Strome zbocze lepiej rozdziela pasma między przetworniki, ale nic nie jest za darmo — każdy rząd filtru przesuwa też sygnał w czasie w okolicy częstotliwości granicznej.',
+      },
+      {
+        t: 'W zwrotnicach spotkasz dwie rodziny. Filtr Butterwortha ma w punkcie granicznym poziom −3 dB, a Linkwitza-Rileya −6 dB. Różnica wydaje się kosmetyczna, ale jest kluczowa: dwa sygnały o poziomie −6 dB, zgodne w fazie, sumują się dokładnie do poziomu wyjściowego. Dlatego zwrotnica Linkwitza-Rileya daje płaską sumę, a Butterwortha w punkcie przejścia lekki garb.',
+      },
+      {
+        t: 'O fazie warto myśleć jak o opóźnieniu zależnym od częstotliwości. Filtr czwartego rzędu obraca fazę o pełny cykl w okolicy punktu granicznego — dlatego oba wyjścia zwrotnicy sumują się poprawnie, ale cała suma zachowuje się tak, jakby przepuścić ją przez dodatkowy układ opóźniający. To nie jest wada, tylko cena kontroli: nie da się stromo rozdzielić pasma bez ingerencji w czas.',
+      },
+      {
+        t: 'Korektor parametryczny opisują trzy liczby: częstotliwość, wzmocnienie i dobroć Q, czyli szerokość działania. Duże Q to wąska szpilka, małe — szeroki, łagodny garb. W korekcji systemowej niemal zawsze pracujesz szeroko i płasko, bo poprawiasz ogólny charakter, a nie pojedynczy punkt. Filtry półkowe podnoszą lub obniżają całą górę albo cały dół pasma i świetnie nadają się do kształtowania krzywej docelowej.',
+        eq: '<math display="block"><mi>Q</mi><mo>=</mo><mfrac><msub><mi>f</mi><mn>0</mn></msub><mrow><mi>&#916;</mi><mi>f</mi></mrow></mfrac></math>',
+        where: 'Q — dobroć filtru; f₀ — częstotliwość środkowa [Hz]; Δf — szerokość pasma mierzona przy spadku 3 dB [Hz]',
+      },
+      {
+        t: 'Filtry cyfrowe dzielą się na dwie rodziny. Te odwzorowujące świat analogowy mają fazę na stałe powiązaną z amplitudą — jak podnosisz, tak przesuwasz czas. Filtry o skończonej odpowiedzi impulsowej mogą mieć fazę liniową, czyli takie samo opóźnienie dla wszystkich częstotliwości, co pozwala korygować amplitudę bez zmiany relacji czasowych. Cena to opóźnienie całego toru, rosnące, gdy chcesz działać nisko — a w systemie z odsłuchem dousznym każda milisekunda jest zauważalna.',
+      },
+      {
+        t: 'Jest jeszcze filtr, który nic nie zmienia w amplitudzie i istnieje wyłącznie po to, żeby przesuwać fazę. Nazywa się wszechprzepustowym i przydaje się dokładnie tam, gdzie dwa systemy mają w pasmie przejścia różne nachylenia fazy — na przykład suby i tablica. Zamiast zmuszać jeden z nich do kompromisu, dopasowujesz kształt fazy i suma robi się lepsza na większym obszarze widowni.',
+      },
+    ],
+  },
+
+  dsp: {
+    goals: ['Wiedzieć, co naprawdę robi każdy parametr procesora', 'Świadomie zarządzać latencją i ochroną'],
+    steps: [
+      {
+        t: 'Każdy element cyfrowego toru dokłada trochę opóźnienia: konwertery, procesor, sieć. Pojedynczo są to ułamki milisekundy, ale suma potrafi urosnąć do kilku milisekund — a to już wartość, która ma znaczenie przy wyrównywaniu systemów i przy odsłuchu dousznym. Dlatego opóźnienie własne systemu traktuje się jak parametr do zmierzenia, a nie do założenia.',
+      },
+      {
+        t: 'Opóźnienie jest też Twoim głównym narzędziem. Dodajesz je do źródeł bliższych słuchaczowi, żeby „poczekały” na dźwięk z tych dalszych. Zasada jest jednokierunkowa: nie możesz przyspieszyć dźwięku, więc punktem odniesienia zawsze jest najdalsze źródło w danej relacji. Stąd w praktyce delaye i fille mają opóźnienie, a system główny zwykle zero.',
+      },
+      {
+        t: 'Limitery pracują w dwóch rolach i warto je rozróżniać. Limiter o długim czasie reakcji pilnuje energii średniej, czyli tego, jak bardzo grzeje się cewka — chroni przed przepaleniem. Limiter szybki łapie pojedyncze szczyty i chroni membranę przed nadmiernym wychyleniem oraz wzmacniacz przed ścinaniem. Producenci ustawiają oba na podstawie pomiarów wytrzymałości konkretnego przetwornika, dlatego samodzielne „poluzowanie” ich to najprostsza droga do serwisu.',
+      },
+      {
+        t: 'Procesory systemów liniowych mają jeszcze dwa użyteczne narzędzia. Kompensacja absorpcji powietrza podbija górę pasma w skrzyniach rzucających najdalej, bo to one tracą jej najwięcej po drodze. Korekcja strefowa pozwala traktować grupy skrzyń osobno, żeby wyrównać bilans tonalny od pierwszego do ostatniego rzędu. Zwykle wartości pochodzą wprost z programu do predykcji — warto sprawdzić, co już zostało policzone, zanim dołożysz swoje.',
+      },
+      {
+        t: 'Praca w procesorze wymaga porządku. Grupy pozwalają zmieniać parametry wielu kanałów naraz, a zapisane stany pozwalają wrócić do znanego punktu. Nawyk jest prosty: zapisz stan wyjściowy, zanim cokolwiek zmienisz, i zapisz stan końcowy, gdy skończysz stroić. Bez tego po kilku godzinach nie odróżnisz, co poprawiło brzmienie, a co tylko wydawało się dobrym pomysłem.',
+      },
+      {
+        t: 'Na koniec dwie liczby, które warto znać. Przy próbkowaniu 48 kHz jedna próbka trwa około 21 mikrosekund, więc rozdzielczość ustawiania opóźnienia jest znacznie drobniejsza, niż wymaga jakiekolwiek wyrównanie systemu. A latencja przetwarzania rośnie, gdy używasz filtrów o liniowej fazie — dlatego w systemach z odsłuchem dousznym stosuje się je oszczędnie i zawsze sprawdza całkowite opóźnienie toru.',
+      },
+    ],
+  },
+
   fft: {
     goals: ['Rozumieć, co analizator naprawdę pokazuje', 'Dobierać sygnał i parametry do sytuacji'],
     steps: [
@@ -315,7 +419,9 @@ export const LESSONS = {
         where: 'DI — indeks kierunkowości [dB]; Q — współczynnik kierunkowości (bezwymiarowy)',
       },
       {
-        t: 'Falowód albo tuba to nic innego jak ścianki, które nadają fali kształt, zanim ta wyjdzie w świat. Konstrukcje „o stałej kierunkowości” starają się utrzymać podobny kąt w szerokim paśmie, bo inaczej brzmienie zmieniałoby się w zależności od tego, gdzie stoisz. Ale nawet najlepsza tuba przestaje działać poniżej częstotliwości, dla której jest za mała. Poniżej tej granicy kąt zaczyna się rozszerzać, aż w basie skrzynia gra dookoła. Znajomość tej granicy dla własnych skrzyń to praktyczna wiedza — mówi, od którego momentu w dół musisz kontrolować energię inaczej.',
+        t: 'Falowód albo tuba to ścianki, które nadają fali kształt, zanim wyjdzie w świat. Konstrukcje o stałej kierunkowości starają się utrzymać podobny kąt w szerokim paśmie, bo inaczej brzmienie zmieniałoby się w zależności od tego, gdzie stoisz. Ale każda tuba ma częstotliwość graniczną wynikającą z tempa rozwierania: poniżej niej przestaje obciążać przetwornik i traci kontrolę nad wiązką, więc kąt zaczyna się rozszerzać, aż w basie skrzynia gra dookoła. Znajomość tej granicy dla własnych skrzyń mówi, od którego momentu w dół musisz kontrolować energię inaczej — układem wielu źródeł zamiast kształtem obudowy.',
+        eq: '<math display="block"><msub><mi>f</mi><mi>c</mi></msub><mo>=</mo><mfrac><mrow><mi>m</mi><mo>&#8202;</mo><mi>c</mi></mrow><mrow><mn>4</mn><mi>&#960;</mi></mrow></mfrac></math>',
+        where: 'f_c — częstotliwość graniczna tuby [Hz]; m — stała rozwierania tuby wykładniczej [1/m]; c — prędkość dźwięku [m/s]',
       },
       {
         t: 'Na koniec o danych. Producenci publikują pełne charakterystyki kierunkowości, tzw. dane balonowe, w formatach, które wczytuje oprogramowanie do predykcji. To setki pomiarów w różnych kierunkach i pasmach — dopiero one opisują skrzynię uczciwie. Jedna liczba z ulotki („90 na 40”) jest jak podanie średniej temperatury w kraju: technicznie prawdziwa, praktycznie bezużyteczna do planowania. Jeśli masz wybierać system do trudnego obiektu, sprawdź w predykcji wykres szerokości wiązki w funkcji częstotliwości. To jeden z niewielu wykresów, które mówią prawdę o tym, jak system zachowa się na widowni.',
@@ -504,51 +610,6 @@ export const LESSONS = {
       'Ucho nie analizuje widma w sposób ciągły, tylko zestawem nakładających się filtrów — pasm krytycznych. Ich szerokość rośnie z częstotliwością; w okolicy 1 kHz to rząd 160 Hz. Wszystko, co dzieje się wewnątrz jednego pasma krytycznego, zlewa się w jedno wrażenie barwy — dlatego gęste wycięcia filtru grzebieniowego w HF słyszymy jako zmianę brzmienia, a nie jako oddzielne dziury.',
       'Ucho jest układem nieliniowym. Przy wysokich poziomach generuje własne harmoniczne oraz tony sumacyjne i różnicowe, których w sygnale nie ma. To zjawisko fizjologiczne, niemierzalne mikrofonem — dlatego dwie osoby mogą inaczej opisywać bardzo głośny materiał, a pomiar niczego takiego nie pokaże.',
       'Przewód słuchowy jest rurą zamkniętą błoną bębenkową i zachowuje się jak rezonator ćwierćfalowy, dając podbicie rzędu kilkunastu decybeli w okolicy 2–4 kHz. Mózg traktuje tę stałą charakterystykę jako neutralną, ale to jeden z powodów, dla których jesteśmy tak wrażliwi na korekcje w tym właśnie zakresie.',
-    ],
-  },
-
-  gain: {
-    goals: ['Zaprojektować strukturę wzmocnienia bez wąskich gardeł', 'Ustawić jeden kontrolowany punkt ograniczania'],
-    steps: [
-      'Poziom mikrofonowy to od kilku mV do dziesiątek mV, liniowy profesjonalny to nominalnie +4 dBu (1,23 V). Maksymalny poziom wyjściowy konsolet i procesorów to zwykle +20 do +28 dBu. Różnica między nominalnym a maksymalnym to headroom analogowy.',
-      'Wejście zbalansowane mierzy różnicę napięć między żyłą „gorącą” i „zimną”. Zakłócenia indukujące się jednakowo w obu żyłach są odejmowane. CMRR (Common Mode Rejection Ratio) opisuje, jak skutecznie — zależy od symetrii impedancji źródła i odbiornika, nie tylko od kabla.',
-      'Konwertery A/D i D/A mają określone napięcie odpowiadające 0 dBFS, np. +18, +24 lub +26 dBu. W systemach z sieciami audio trzeba to znać na każdym styku analog/cyfra, inaczej poziomy się „rozjeżdżają”, a przesterowania pojawiają się w nieoczekiwanych miejscach.',
-      'Czułość wzmacniacza to napięcie wejściowe, przy którym osiąga pełną moc wyjściową (lub wzmocnienie w dB). Jeżeli procesor może podać o 20 dB więcej, niż wzmacniacz potrzebuje, cała górna część zakresu procesora prowadzi do clipu wzmacniacza. W nowoczesnych systemach często jest to rozwiązane przez zintegrowane DSP w końcówce.',
-      'Każdy etap ma szum własny i maksymalny poziom. Dynamika systemu jest ograniczona przez etap o najmniejszym zakresie. Zbyt niski poziom na początku toru i duże wzmocnienie na końcu to szum; zbyt wysoki na początku — clip przed limiterem.',
-      'Najlepiej, gdy system ogranicza w jednym miejscu, zaprojektowanym przez producenta — w limiterach procesora dopasowanych do wzmacniacza i głośnika. Wszystkie etapy wcześniej powinny mieć zapas, żeby nigdy nie przesterować przed tym punktem.',
-    ],
-  },
-  wzmacniacze: {
-    goals: ['Liczyć napięcia, obciążenia i straty', 'Rozumieć rolę presetów i kompresji mocy'],
-    steps: [
-      'Impedancja nominalna (np. 8 Ω) to uproszczenie — rzeczywista krzywa impedancji zmienia się z częstotliwością, a minimum może być niższe. Połączenie równoległe n identycznych kolumn daje Z/n. Wzmacniacze mają minimalną dopuszczalną impedancję; praca poniżej grozi przegrzaniem i zabezpieczeniem.',
-      'W praktyce myśl napięciem: wzmacniacz oddaje określone napięcie maksymalne, a moc wynika z obciążenia (P = U²/R). Ten sam wzmacniacz daje na 4 Ω dwa razy więcej mocy niż na 8 Ω tylko wtedy, gdy wydoli prądowo.',
-      'Czułość (dB SPL przy 1 W lub 2,83 V na 1 m) i maksymalny SPL pozwalają oszacować potrzebną moc. Kompresja mocy to utrata poziomu przy wysokich mocach, bo cewka nagrzewa się i rośnie jej rezystancja — realny SPL jest niższy niż wynika z prostego rachunku.',
-      'Rezystancja kabla to R = ρ·L/S, gdzie L to długość całej pętli (tam i z powrotem), ρ miedzi ≈ 0,0175 Ω·mm²/m. Kabel tworzy dzielnik napięcia z obciążeniem: im niższa impedancja głośnika, tym większe straty. Przy niskich impedancjach i długich trasach warto przenieść wzmacniacze bliżej.',
-      'Współczynnik tłumienia to stosunek impedancji obciążenia do impedancji wyjściowej wzmacniacza z kablem. Wzmacniacz z DF 1000 i długim kablem daje w praktyce DF rzędu kilku–kilkunastu — to kabel dominuje. Wpływ na kontrolę membrany w LF jest realny, ale często przeceniany w marketingu.',
-      'W profesjonalnych systemach koncertowych preset producenta (zwrotnica, EQ, faza, limitery) jest częścią konstrukcji głośnika. Samodzielne „budowanie” zwrotnic dla takich systemów zwykle pogarsza wynik i może uszkodzić przetworniki. System engineer pracuje na warstwie powyżej presetów.',
-    ],
-  },
-  filtry: {
-    goals: ['Czytać amplitudę i fazę filtrów', 'Rozumieć różnicę IIR/FIR w praktyce'],
-    steps: [
-      'Każdy rząd filtru dodaje 6 dB/okt nachylenia i do 90° przesunięcia fazy w pełnym zakresie. Filtr 2. rzędu: 12 dB/okt i 180° obrotu, 4. rzędu: 24 dB/okt i 360°. Strome filtry nie są „za darmo” — kosztują obrót fazy.',
-      'Butterworth ma maksymalnie płaską charakterystykę w pasmie przepustowym i −3 dB w fc. Linkwitz-Riley to kaskada dwóch Butterworthów, więc w fc ma −6 dB. Dwa sygnały −6 dB w fazie sumują się do 0 dB, dlatego LR daje płaską sumę amplitudy.',
-      'W LR4 wyjścia LP i HP są w fazie w całym zakresie przejścia (różnica 360° to w praktyce zgodność), a suma zachowuje się jak filtr all-pass 2. rzędu. W LR2 (12 dB/okt) wyjścia trzeba odwrócić polaryzacją, by się poprawnie sumowały.',
-      'EQ parametryczny ma trzy parametry: częstotliwość, wzmocnienie i dobroć Q (lub szerokość pasma w oktawach). Filtry półkowe zmieniają poziom powyżej lub poniżej częstotliwości. W EQ systemowym stosuje się zwykle szerokie, łagodne korekcje.',
-      'Filtry IIR (analogowe i ich cyfrowe odpowiedniki) są minimalnofazowe — amplituda i faza są ze sobą powiązane. Filtry FIR mogą mieć fazę liniową lub dowolną, niezależną od amplitudy, ale wymagają latencji, która rośnie przy kontroli niskich częstotliwości.',
-      'Opóźnienie grupowe opisuje, jak długo „opóźniana” jest energia w danym pasmie. Filtr all-pass nie zmienia amplitudy, tylko obraca fazę — przydaje się do dopasowania nachylenia fazy np. subów do tablicy w strefie przejścia.',
-    ],
-  },
-  dsp: {
-    goals: ['Znać źródła latencji i ich wpływ', 'Rozróżniać typy limiterów'],
-    steps: [
-      'Każdy konwerter, blok DSP i sieć wnoszą latencję — zwykle od ułamka ms do kilku ms. Suma latencji ma znaczenie przy wyrównaniu systemów z różnymi torami (np. sub przez inny procesor), przy odsłuchach dousznych i przy nagłośnieniu mowy.',
-      'Opóźnienie w procesorze służy do wyrównania czasowego głośników w różnych odległościach od słuchacza. Dodaje się je do elementów bliższych, by „poczekały” na dalsze. Nie da się opóźnić ujemnie — referencją jest najdalsze źródło w danej relacji.',
-      'Limiter RMS (z długimi czasami) chroni przed przegrzaniem cewek, bo śledzi energię średnią. Limiter peak (szybki) chroni przed nadmiernym wychyleniem membrany i przesterowaniem wzmacniacza. Nowoczesne systemy łączą oba, często z modelem termicznym przetwornika.',
-      'Przy 48 kHz jedna próbka to ok. 20,8 µs, przy 96 kHz — 10,4 µs. Aliasing powstaje, gdy sygnał zawiera składowe powyżej połowy fs — zapobiegają mu filtry antyaliasingowe w konwerterach. Rozdzielczość opóźnienia w procesorach jest zwykle wystarczająca do wyrównania na poziomie ułamka ms.',
-      'Procesory systemów liniowych oferują kompensację absorpcji powietrza (podbicie HF dla elementów grających daleko) i korekcje strefowe (array EQ). Ich ustawienia najczęściej przychodzą z software predykcji — trzeba wiedzieć, co zostało policzone, zanim zacznie się korygować „ręcznie”.',
-      'Grupy pozwalają zmieniać parametry wielu kanałów jednocześnie, snapshoty — wrócić do znanego stanu. Zanim zaczniesz strojenie, zapisz stan wyjściowy. Po strojeniu zapisz stan końcowy i opisz zmiany — to Twoja dokumentacja i zabezpieczenie.',
     ],
   },
 
