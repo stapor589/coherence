@@ -1,5 +1,5 @@
 // Service worker: aplikacja działa offline, a online zawsze pobiera najnowszą wersję.
-const CACHE = 'coherence-v1';
+const CACHE = 'coherence-v2';
 const SHELL = [
   './', './index.html', './manifest.webmanifest', './css/app.css',
   './js/app.js', './js/store.js', './js/ui.js', './js/db.js',
@@ -28,7 +28,11 @@ self.addEventListener('fetch', (e) => {
     caches.open(CACHE).then(async (cache) => {
       const fromCache = () => cache.match(request, { ignoreSearch: true })
         .then((r) => r || (request.mode === 'navigate' ? cache.match('./index.html') : Response.error()));
-      const network = fetch(request).then((res) => { if (res.ok) cache.put(request, res.clone()); return res; });
+      // Omijamy cache HTTP (GitHub Pages trzyma pliki 10 min), żeby aktualizacje treści były widoczne od razu.
+      const fresh = new URL(request.url);
+      fresh.searchParams.set('_sw', Date.now());
+      const network = fetch(fresh, { credentials: 'same-origin' })
+        .then((res) => { if (res.ok) cache.put(request, res.clone()); return res; });
       const timeout = new Promise((resolve) => setTimeout(resolve, 3000)).then(async () => (await cache.match(request, { ignoreSearch: true })) || network);
       return Promise.race([network, timeout]).catch(fromCache);
     }),
