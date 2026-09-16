@@ -326,40 +326,37 @@ export const VISUALS = {
     title: 'Podwieszona tablica: góra rzuca daleko, dół blisko',
     caption: 'Elementy u góry stoją niemal płasko i wspólnie obsługują najdalsze rzędy — dlatego jest ich więcej i mają małe kąty między sobą. Im niżej, tym kąty większe, bo publiczność jest coraz bliżej i jedna skrzynia w zupełności wystarcza. Dzięki tej narastającej krzywiźnie poziom na ostatnim rzędzie jest zbliżony do tego w środku widowni.',
     svg: (() => {
-      const bw = 62, bh = 13, n = 11;
-      const splays = [0.8, 0.8, 1.2, 1.6, 2, 2.6, 3.2, 4, 4.8, 5.6];
-      let x = 96, y = 44, ang = 3;
+      const bw = 56, bh = 11.5, n = 12, rearX = 104, topY = 40;
+      // kąt każdej skrzyni: u góry prawie płasko, na dole coraz mocniej w dół
+      const angles = [1, 2, 3, 4.5, 6, 8, 10.5, 13.5, 17, 21, 25.5, 30];
       const boxes = [];
       const rays = [];
-      const floorY = 214, floorX0 = 150, floorX1 = 604;
       for (let i = 0; i < n; i++) {
-        const rad = (ang * Math.PI) / 180;
-        boxes.push(`<rect x="${(x - bw / 2).toFixed(1)}" y="${y.toFixed(1)}" width="${bw}" height="${bh - 1.5}" rx="2.5"
-          class="v-fill-accent" opacity="${(0.95 - i * 0.045).toFixed(2)}"
-          transform="rotate(${ang.toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`);
-        const cx = x + (bw / 2) * Math.cos(rad), cy = y + (bw / 2) * Math.sin(rad);
-        const t = Math.min(1, (floorY - cy) / Math.max(0.2, Math.sin(rad)) / 620);
-        const len = 120 + (1 - i / n) * 420;
-        rays.push(`<path d="M${cx.toFixed(1)} ${cy.toFixed(1)} L${(cx + len * Math.cos(rad)).toFixed(1)} ${(cy + len * Math.sin(rad)).toFixed(1)}"
-          class="v-stroke-accent v-ray" fill="none" stroke-width="1.4" opacity="${(0.5 - i * 0.02).toFixed(2)}" style="animation-delay:${(i * 0.12).toFixed(2)}s"/>`);
-        void t;
-        const s = splays[i] || 8;
-        x += bh * Math.sin(rad);
-        y += bh * Math.cos(rad);
-        ang += s;
+        const a = angles[i];
+        const rad = (a * Math.PI) / 180;
+        const y = topY + i * (bh + 1.2);
+        boxes.push(`<rect x="${rearX}" y="${y.toFixed(1)}" width="${bw}" height="${bh}" rx="2"
+          class="v-fill-accent" opacity="${(0.95 - i * 0.04).toFixed(2)}"
+          transform="rotate(${a} ${rearX} ${(y + bh / 2).toFixed(1)})"/>`);
+        const fx = rearX + bw * Math.cos(rad);
+        const fy = y + bh / 2 + bw * Math.sin(rad);
+        const len = 430 - i * 26;
+        rays.push(`<path d="M${fx.toFixed(1)} ${fy.toFixed(1)} L${(fx + len * Math.cos(rad)).toFixed(1)} ${(fy + len * Math.sin(rad)).toFixed(1)}"
+          class="v-stroke-accent v-ray" fill="none" stroke-width="1.3" opacity="${(0.45 - i * 0.015).toFixed(2)}" style="animation-delay:${(i * 0.1).toFixed(2)}s"/>`);
       }
-      return `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Uproszczona tablica liniowa z narastającą krzywizną">
-        <rect x="60" y="24" width="76" height="9" rx="3" class="v-fill-dim"/>
-        <line x1="98" y1="10" x2="98" y2="24" class="v-stroke-dim" stroke-width="3"/>
-        <text x="98" y="18" class="v-label" text-anchor="end">rama</text>
+      return `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Uproszczona tablica liniowa: skrzynie jedna pod drugą z rosnącym kątem pochylenia">
+        <line x1="${rearX}" y1="22" x2="${rearX}" y2="34" class="v-stroke-dim" stroke-width="3"/>
+        <rect x="${rearX - 10}" y="26" width="64" height="8" rx="3" class="v-fill-dim"/>
+        <text x="${rearX + 62}" y="33" class="v-label">rama</text>
         ${rays.join('')}
         ${boxes.join('')}
-        <line x1="${floorX0}" y1="${floorY}" x2="${floorX1}" y2="${floorY - 8}" class="v-stroke-dim" stroke-width="2"/>
-        <text x="200" y="236" class="v-label">pierwsze rzędy</text>
-        <text x="596" y="236" class="v-label" text-anchor="end">ostatni rząd</text>
-        <text x="300" y="56" class="v-label-gold">małe kąty u góry — wspólny rzut na daleko</text>
-        <text x="20" y="188" class="v-label-gold">duże kąty na dole</text>
-        <text x="20" y="206" class="v-label" >— bliskie rzędy</text>
+        <path d="M${rearX} ${topY} L${rearX} ${(topY + n * (bh + 1.2)).toFixed(1)}" class="v-stroke-gold" stroke-width="1.5" stroke-dasharray="4 4" opacity=".7" fill="none"/>
+        <text x="${rearX - 8}" y="120" class="v-label-gold" text-anchor="end" transform="rotate(-90 ${rearX - 8} 120)">tył tablicy w linii</text>
+        <line x1="240" y1="222" x2="604" y2="206" class="v-stroke-dim" stroke-width="2"/>
+        <text x="250" y="240" class="v-label">pierwsze rzędy</text>
+        <text x="598" y="240" class="v-label" text-anchor="end">ostatni rząd</text>
+        <text x="330" y="52" class="v-label-gold">1–2° u góry: kilka skrzyń rzuca razem na koniec widowni</text>
+        <text x="300" y="196" class="v-label-gold">25–30° na dole: jedna skrzynia na pierwsze rzędy</text>
       </svg>`;
     })(),
   },
