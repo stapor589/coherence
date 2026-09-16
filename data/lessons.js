@@ -2,6 +2,106 @@
 // Opcjonalne pole `goals` — cele lekcji wyświetlane na ekranie startowym.
 
 export const LESSONS = {
+  fft: {
+    goals: ['Rozumieć, co analizator naprawdę pokazuje', 'Dobierać sygnał i parametry do sytuacji'],
+    steps: [
+      {
+        t: 'Analizator FFT działa jak aparat fotograficzny z ustawianym czasem naświetlania. Bierze fragment dźwięku o określonej długości i rozkłada go na częstotliwości. Im dłuższy fragment, tym dokładniej widać szczegóły w dole pasma, ale tym wolniej obraz reaguje na zmiany. Im krótszy — tym szybsza reakcja, ale bas rozmywa się w grube plamy. Nie da się mieć jednocześnie idealnej rozdzielczości w czasie i w częstotliwości; to nie ograniczenie programu, tylko fizyki.',
+        eq: '<math display="block"><mi>&#916;</mi><mi>f</mi><mo>=</mo><mfrac><msub><mi>f</mi><mi>s</mi></msub><mi>N</mi></mfrac><mspace width="1.6em"/><mi>T</mi><mo>=</mo><mfrac><mi>N</mi><msub><mi>f</mi><mi>s</mi></msub></mfrac></math>',
+        where: 'Δf — rozdzielczość częstotliwościowa [Hz]; T — długość okna czasowego [s]; f_s — częstotliwość próbkowania [Hz]; N — liczba próbek',
+      },
+      {
+        t: 'Policzmy, żeby to poczuć. Przy próbkowaniu 48 kHz i oknie 4096 próbek rozdzielczość wynosi około 12 Hz, a okno trwa około 85 milisekund. Dwanaście herców to dużo w okolicy 40 Hz, gdzie cała oktawa ma 40 Hz szerokości, i zupełnie nieistotnie mało przy 5 kHz. Dlatego programy pomiarowe składają obraz z kilku okien naraz: długich dla basu i krótkich dla góry pasma. Dzięki temu widzisz stałą rozdzielczość „na oktawę”, zbliżoną do tego, jak słyszy ucho.',
+      },
+      {
+        t: 'Teraz sygnał testowy. Szum różowy ma równo rozłożoną energię w każdej oktawie — brzmi jak szum wodospadu i jest bezpieczny dla przetworników. Sweep, czyli przestrajany ton, daje najlepszy stosunek sygnału do szumu i świetnie sprawdza się w cichym obiekcie. Możesz też mierzyć na muzyce, o ile w interesującym Cię paśmie jest wystarczająco dużo energii — analizator sam pokaże, czy dane są wiarygodne.',
+      },
+      {
+        t: 'Kluczowa różnica, którą trzeba rozumieć: analizator w trybie widma (RTA) pokazuje po prostu to, co słyszy mikrofon — a więc zależy od tego, co gra zespół. Funkcja przejścia porównuje sygnał z mikrofonu z sygnałem wysłanym do systemu, więc pokazuje zachowanie samego systemu, niezależnie od materiału. Do strojenia używasz funkcji przejścia; widmo przydaje się do obserwowania koncertu i poziomu tła.',
+      },
+      {
+        t: 'Uśrednianie to Twój regulator zaufania do obrazu. Więcej uśrednień oznacza spokojniejszy, stabilniejszy wykres, ale wolniejszą reakcję na zmiany. W hałaśliwym otoczeniu, na wietrze albo przy muzyce jako sygnale potrzebujesz więcej uśrednień, żeby odsiać przypadkowość. Przy szybkiej pracy na szumie — mniej, żeby od razu widzieć skutek zmiany.',
+      },
+      {
+        t: 'Na koniec o wygładzaniu obrazu. Analizator potrafi pokazać każdą, najdrobniejszą dziurę w charakterystyce, ale większość z nich to lokalne zjawiska interferencyjne, których korektor i tak nie naprawi. Wygładzanie rzędu jednej trzeciej oktawy pokazuje to, co realnie słyszalne i wspólne dla obszaru. Surowe, niewygładzone dane zostaw do diagnozy szczegółów, a nie do podejmowania decyzji o barwie.',
+      },
+    ],
+  },
+
+  tf: {
+    goals: ['Czytać amplitudę, fazę i koherencję razem', 'Ustawić pomiar, któremu można ufać'],
+    steps: [
+      {
+        t: 'Pomiar dwukanałowy polega na porównaniu dwóch sygnałów: tego, który wysłałeś do systemu (referencja), i tego, który wrócił do mikrofonu (pomiar). Analizator pokazuje różnicę między nimi — czyli dokładnie to, co system i pomieszczenie zrobiły z dźwiękiem po drodze. To jak porównanie zdjęcia przed retuszem i po: interesuje Cię nie samo zdjęcie, tylko co się z nim stało.',
+      },
+      {
+        t: 'Żeby to porównanie miało sens, trzeba uwzględnić czas przelotu. Dźwięk potrzebuje kilkudziesięciu milisekund, żeby dolecieć do mikrofonu, więc analizator musi opóźnić referencję o tyle samo. Służy do tego funkcja szukania opóźnienia: program liczy odpowiedź impulsową i znajduje moment, w którym dźwięk dotarł. Bez tej kompensacji wykres fazy będzie zawijał się jak szalony i nie powie Ci nic.',
+      },
+      {
+        t: 'Amplituda mówi „ile” — jak głośno system gra w poszczególnych pasmach. Faza mówi „kiedy” — czy dane pasmo przychodzi wcześniej, czy później. Trzeci wykres, koherencja, mówi najważniejszą rzecz: czy w ogóle można wierzyć dwóm pozostałym. Koherencja bliska jedności oznacza, że to, co słyszy mikrofon, jest wyraźnie związane z tym, co wysłałeś. Koherencja niska — że w danym paśmie dominuje szum, pogłos albo warunki się zmieniają.',
+      },
+      {
+        t: 'Praktyczny odruch brzmi: najpierw spójrz na koherencję, potem na resztę. Jeśli w okolicy 4 kHz koherencja leży na podłodze, to widoczna tam dziura może być całkowicie fikcyjna — wystarczy, że wiatr albo gwar publiczności zagłuszył sygnał. Podejmowanie decyzji o korekcji w takim paśmie to strzelanie na ślepo. Rozwiązania: głośniejszy sygnał, więcej uśrednień, bliższa pozycja mikrofonu.',
+      },
+      {
+        t: 'Nachylenie wykresu fazy to ukryty miernik czasu. Stałe opóźnienie objawia się jako faza opadająca coraz szybciej wraz z częstotliwością. Gdy dwa systemy mają w pasmie przejścia równoległe wykresy fazy, sumują się dobrze; gdy wykresy się rozjeżdżają, suma będzie słabsza, niezależnie od tego, jak ładnie wyglądają amplitudy. To dlatego wyrównanie robi się na fazie, a nie „na oko po amplitudzie”.',
+      },
+      {
+        t: 'Została jeszcze pozycja mikrofonu. Statyw na wysokości uszu daje obraz zbliżony do tego, co słyszy publiczność, ale łapie odbicie od podłogi, które robi charakterystyczne wcięcie w okolicy niskiej średnicy. Mikrofon położony na posadzce eliminuje to odbicie i daje czytelniejsze dane do decyzji czasowych, ale barwa mierzona przy ziemi nie odpowiada temu, co słychać na wysokości głowy. Stąd zasada: przy podłodze mierz czas, na statywie oceniaj barwę — albo uśrednij kilka pozycji.',
+      },
+    ],
+  },
+
+  ir: {
+    goals: ['Wyciągać z jednego pomiaru całą historię obiektu', 'Rozpoznać echo, zanim zrobi to publiczność'],
+    steps: [
+      {
+        t: 'Odpowiedź impulsowa to zapis tego, co obiekt zrobi z jednym krótkim trzaśnięciem. Najpierw dociera dźwięk bezpośredni, potem kolejne odbicia — od podłogi, ścian, dachu — a na końcu gęsty ogon pogłosu. To jak rzucenie kamienia do stawu i obserwowanie, które fale wracają i kiedy. Z jednego takiego pomiaru wyciągniesz niemal wszystko: barwę, czas, echa i pogłos.',
+      },
+      {
+        t: 'Najbardziej praktyczny widok to energia w czasie. Każdy wyraźny pik to jedno odbicie, a jego położenie mówi, ile metrów nadłożyła droga. Wystarczy pomnożyć opóźnienie przez prędkość dźwięku: odbicie 40 milisekund po froncie pokonało dodatkowe 13–14 metrów. Znając geometrię obiektu, zwykle od razu wiesz, która powierzchnia je odesłała.',
+        eq: '<math display="block"><mi>&#916;</mi><mi>d</mi><mo>=</mo><mi>c</mi><mo>&#8202;</mo><mi>&#916;</mi><mi>t</mi></math>',
+        where: 'Δd — dodatkowa droga odbicia [m]; c — prędkość dźwięku [m/s]; Δt — opóźnienie odbicia względem dźwięku bezpośredniego [s]',
+      },
+      {
+        t: 'Czas pogłosu opisuje, jak długo dźwięk zanika po wyłączeniu źródła. Umownie jest to czas spadku o 60 dB, ale w praktyce rzadko masz tyle czystej dynamiki, więc mierzy się spadek o 20 lub 30 dB i przelicza. W hali sportowej typowo wyjdzie kilka sekund, w teatrze około sekundy, a w studiu ułamek sekundy. Im dłuższy pogłos, tym mocniej musisz walczyć kierunkowością o zrozumiałość.',
+      },
+      {
+        t: 'Dwie liczby pochodne bywają wygodniejsze niż sam czas pogłosu. Klarowność porównuje energię, która dotarła wcześnie, z tą, która dotarła późno — im wyższa, tym wyraźniejszy przekaz. Zrozumiałość mowy opisuje wskaźnik przyjmujący wartości od zera do jedynki, liczony z tej samej odpowiedzi impulsowej. Dla mowy i systemów bezpieczeństwa to on, a nie czas pogłosu, jest wymogiem projektowym.',
+      },
+      {
+        t: 'Bramkowanie to sztuczka, która pozwala oglądać system „bez pomieszczenia”. Wycinasz z odpowiedzi impulsowej tylko początek, przed pierwszym odbiciem, i analizujesz sam dźwięk bezpośredni. Cena jest taka, że krótkie okno ogranicza rozdzielczość: przy oknie 5 milisekund wiarygodne dane masz dopiero od jakichś 200 Hz w górę. To świetne narzędzie do oceny samego głośnika w niedoskonałym obiekcie.',
+      },
+      {
+        t: 'Na koniec zastosowanie praktyczne dla wielkiego formatu. Odpowiedź impulsowa zmierzona w kilku punktach widowni pokazuje, gdzie czają się echa od tylnej ściany i dachu, zanim usłyszy je publiczność. Kilkanaście minut z mikrofonem przed próbą oszczędza godzinę tłumaczenia realizatorowi, dlaczego werbel wraca echem w sektorze na wprost. To najtańsza forma diagnostyki, jaką masz.',
+      },
+    ],
+  },
+
+  narzedzia: {
+    goals: ['Zbudować powtarzalny zestaw pomiarowy', 'Ufać własnym danym'],
+    steps: [
+      {
+        t: 'Programy pomiarowe różnią się filozofią, ale liczą to samo. Smaart jest branżowym standardem przy strojeniu na żywo i wygodnie obsługuje wiele mikrofonów. Open Sound Meter robi to samo w podstawowym zakresie i jest darmowy — idealny na start. REW króluje przy pomiarach sweepem, akustyce pomieszczeń i odpowiedziach impulsowych. Warto znać dwa: jeden do pracy na żywo, jeden do analizy.',
+      },
+      {
+        t: 'Mikrofon pomiarowy powinien mieć charakterystykę możliwie płaską i dookólną, a do tego plik korekcyjny od producenta, który poprawia jego drobne odchyłki. Nie musi być drogi, żeby był użyteczny, ale musi być sprawdzony. Traktuj go jak przyrząd, nie jak mikrofon estradowy: własny futerał, własny kabel, brak wypożyczania na wokal.',
+      },
+      {
+        t: 'Kalibracja toru to moment, w którym Twoje decybele zaczynają coś znaczyć. Kalibrator akustyczny generuje znany poziom, zwykle 94 dB przy 1 kHz, a Ty ustawiasz w programie odczyt tak, by się zgadzał. Od tej chwili analizator pokazuje bezwzględne wartości, którymi możesz raportować głośność koncertu. Kalibrację powtarzasz po każdej zmianie mikrofonu, kabla lub wzmocnienia wejścia.',
+      },
+      {
+        t: 'Pętla zwrotna referencji to prosty trik o dużym znaczeniu. Sygnał wysyłany do systemu wraca jednym kablem na wejście interfejsu, dzięki czemu analizator porównuje pomiar z tym, co naprawdę wyszło, a nie z tym, co teoretycznie powinno wyjść. Automatycznie znika też problem opóźnienia samego interfejsu i sterowników.',
+      },
+      {
+        t: 'Przy pracy z wieloma mikrofonami obowiązuje jedna zasada przed wszystkim innym: najpierw zweryfikuj mikrofony. Ustaw je razem w jednym miejscu, puść sygnał i sprawdź, czy pokazują to samo. Jeśli któryś odstaje, wyrównaj wzmocnienie albo znajdź przyczynę. Dopiero wtedy ich rozstawienie po widowni da porównywalne dane — inaczej porównujesz mikrofony, a nie system.',
+      },
+      {
+        t: 'Na koniec sprawa, o której się nie mówi: to praca głośna i długa. Kilkadziesiąt minut szumu różowego przy poziomach koncertowych to realne obciążenie dla Twojego słuchu, a słuch jest Twoim narzędziem pracy na całe życie. Mierz na rozsądnym poziomie, noś ochronniki, informuj ekipę, kiedy puszczasz szum, i rób przerwy. Zmęczony słuch podejmuje złe decyzje tonalne.',
+      },
+    ],
+  },
+
   workflow: {
     goals: ['Prowadzić projekt w powtarzalnej kolejności', 'Nie dać się nabrać widokowi 2D'],
     steps: [
@@ -449,51 +549,6 @@ export const LESSONS = {
       'Przy 48 kHz jedna próbka to ok. 20,8 µs, przy 96 kHz — 10,4 µs. Aliasing powstaje, gdy sygnał zawiera składowe powyżej połowy fs — zapobiegają mu filtry antyaliasingowe w konwerterach. Rozdzielczość opóźnienia w procesorach jest zwykle wystarczająca do wyrównania na poziomie ułamka ms.',
       'Procesory systemów liniowych oferują kompensację absorpcji powietrza (podbicie HF dla elementów grających daleko) i korekcje strefowe (array EQ). Ich ustawienia najczęściej przychodzą z software predykcji — trzeba wiedzieć, co zostało policzone, zanim zacznie się korygować „ręcznie”.',
       'Grupy pozwalają zmieniać parametry wielu kanałów jednocześnie, snapshoty — wrócić do znanego stanu. Zanim zaczniesz strojenie, zapisz stan wyjściowy. Po strojeniu zapisz stan końcowy i opisz zmiany — to Twoja dokumentacja i zabezpieczenie.',
-    ],
-  },
-
-  fft: {
-    goals: ['Dobierać parametry FFT', 'Rozróżniać RTA i funkcję przejścia'],
-    steps: [
-      'FFT dzieli sygnał na N próbek i zamienia na widmo z rozdzielczością fs/N. Większe N to lepsza rozdzielczość w częstotliwości, ale dłuższe okno czasowe — i wolniejsza reakcja. Przy 48 kHz: 16k próbek ≈ 3 Hz i 340 ms, 1k próbek ≈ 47 Hz i 21 ms.',
-      'Wycięcie fragmentu sygnału powoduje przeciek widma. Okna czasowe (Hann, Blackman-Harris) łagodzą krawędzie fragmentu, zmniejszając przeciek kosztem szerokości prążka. Do pomiarów systemowych stosuje się okna domyślne analizatora, chyba że wiesz, dlaczego chcesz inne.',
-      'Multi-time window (MTW) łączy wiele FFT o różnych długościach: długie dla LF, krótkie dla HF. Daje w przybliżeniu stałą rozdzielczość względną (np. 1/24 oktawy) i ogranicza wpływ późnego pogłosu w HF.',
-      'RTA pokazuje widmo jednego sygnału — zależy od tego, co grasz. Funkcja przejścia porównuje wyjście (mikrofon) z wejściem (referencja), więc pokazuje zachowanie systemu niezależnie od sygnału. Do strojenia używa się TF; RTA do obserwacji programu i szumu.',
-      'Szum różowy ma równą energię w każdej oktawie — na RTA oktawowym jest płaski, na wąskopasmowym opada 3 dB/okt. Sweep daje bardzo dobry stosunek sygnału do szumu. Muzyka też działa w TF, jeśli ma energię w danym pasmie — koherencja to pokaże.',
-      'Średniowanie stabilizuje odczyt. Więcej średnich = mniej fluktuacji, ale wolniejsza reakcja na zmiany. W głośnym otoczeniu i przy muzyce jako sygnale potrzebne jest dłuższe uśrednianie.',
-    ],
-  },
-  tf: {
-    goals: ['Czytać fazę i koherencję', 'Ustawiać poprawny pomiar dwukanałowy'],
-    steps: [
-      'Referencja to sygnał elektryczny tuż przed systemem (najlepiej z pętli zwrotnej interfejsu), pomiar to sygnał z mikrofonu. TF = pomiar/referencja. Analizator musi skompensować opóźnienie między nimi, inaczej widzisz przede wszystkim czas przelotu.',
-      'Delay finder liczy odpowiedź impulsową i szuka jej szczytu. To czas od referencji do mikrofonu: latencja systemu + przelot. Po wprowadzeniu kompensacji faza przestaje się gwałtownie zawijać.',
-      'Koherencja (0–1 lub %) mówi, jaka część sygnału mierzonego jest liniowo związana z referencją. Spada przez szum tła, pogłos, niestabilność czasu i zbyt mały poziom. W pasmach o niskiej koherencji nie podejmuj decyzji EQ.',
-      'Nachylenie fazy = opóźnienie. Faza jest wyświetlana w zakresie ±180°, więc przy dużym opóźnieniu „zawija się”. Faza rosnąca w górę z częstotliwością oznacza, że sygnał przychodzi wcześniej niż kompensacja; opadająca — później.',
-      'Uśrednianie wektorowe (complex) uwzględnia fazę, więc szum i odbicia niezwiązane czasowo z sygnałem się wygaszają. Uśrednianie mocy (RMS) jest stabilniejsze przy ruchu i wietrze, ale zawiera więcej energii pogłosu. Wybierz świadomie w zależności od sytuacji.',
-      'Mikrofon na statywie na wysokości uszu łapie odbicie od podłogi (filtr grzebieniowy). Mikrofon na podłodze (ground plane) je eliminuje, ale daje +6 dB i nieco inny obraz niż u słuchacza. Konsekwencja w wyborze jest ważniejsza niż sama metoda.',
-    ],
-  },
-  ir: {
-    goals: ['Wyciągać z IR informacje o sali', 'Liczyć i interpretować RT'],
-    steps: [
-      'Odpowiedź impulsowa to reakcja systemu i sali na idealny impuls. ETC (Energy Time Curve) pokazuje ją w dB w funkcji czasu — widać bezpośredni front, pojedyncze odbicia (czas → różnica dróg) i zanik pogłosu.',
-      'RT60 to czas spadku poziomu o 60 dB po wyłączeniu źródła. W praktyce mierzy się T20 lub T30 (z mniejszego zakresu i ekstrapolacji), bo rzadko jest 60 dB dynamiki. EDT (z pierwszych 10 dB) lepiej koreluje z subiektywnym odczuciem pogłosu.',
-      'Sabine: RT60 = 0,161·V/A, gdzie A to suma powierzchni × współczynniki pochłaniania. Wzór dobrze działa dla sal o umiarkowanym pochłanianiu. Daje intuicję: dwa razy większa chłonność → dwa razy krótszy pogłos.',
-      'C50 i C80 to stosunek energii wczesnej (do 50/80 ms) do późnej w dB. Wyższe wartości = większa klarowność. C50 stosuje się dla mowy, C80 dla muzyki.',
-      'Bramkowanie IR (np. wycięcie przed pierwszym odbiciem) daje odpowiedź „bez sali”, ale rozdzielczość częstotliwościowa jest ograniczona do ok. 1/długość okna. Okno 5 ms → wiarygodne dane od ok. 200 Hz.',
-      'STI można wyznaczyć z IR (metoda pośrednia), uwzględniając szum tła. To wygodne, ale wymaga poprawnego poziomu i warunków pomiaru. Dla systemów bezpieczeństwa stosuje się też metody bezpośrednie (np. STIPA).',
-    ],
-  },
-  narzedzia: {
-    goals: ['Zbudować powtarzalny rig pomiarowy', 'Wiedzieć, jak kalibrować tor pomiarowy'],
-    steps: [
-      'Smaart to branżowy standard z bogatym workflow (wiele pomiarów, średnie, SPL). Open Sound Meter jest darmowy i świetny do TF. REW specjalizuje się w sweepach, IR i akustyce sal. SysTune oferuje zaawansowaną analizę w czasie rzeczywistym. Warto znać przynajmniej dwa.',
-      'Mikrofony pomiarowe powinny mieć płaską charakterystykę (lub plik korekcyjny), małą membranę i dookólność. Klasa 1/2 dotyczy mierników poziomu (IEC 61672) — do pomiarów SPL z raportowaniem liczy się klasa całego toru.',
-      'Kalibrator akustyczny generuje znany poziom (zwykle 94 dB = 1 Pa lub 114 dB = 10 Pa przy 1 kHz). Kalibracja toru pozwala odczytywać bezwzględne dB SPL. Kalibruj po każdej zmianie interfejsu, gainu lub mikrofonu.',
-      'Pętla zwrotna: sygnał wyjściowy interfejsu wraca na jego wejście jako referencja. Dzięki temu referencja i pomiar przechodzą przez te same konwertery, a analizator mierzy dokładnie to, co wysłano — niezależnie od latencji interfejsu i sterownika.',
-      'Pomiar wieloma mikrofonami przyspiesza strojenie: zbierasz dane z kilku pozycji bez chodzenia. Średnia przestrzenna z kilku mikrofonów pokazuje trend strefy. Pamiętaj o jednakowej kalibracji i kompensacji opóźnień każdego z nich.',
-      'Pomiary szumem przy wysokich poziomach przez długi czas to realne obciążenie słuchu — Twojego i ekipy. Używaj ochronników, mierz na rozsądnych poziomach (dla TF wystarczy dobry stosunek S/N) i komunikuj, kiedy gra szum.',
     ],
   },
 
