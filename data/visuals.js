@@ -45,6 +45,126 @@ export const VISUALS = {
     })(),
   },
 
+  harmoniczne: {
+    title: 'Barwa to ton podstawowy plus harmoniczne',
+    caption: 'Gitara i fortepian grające to samo „a” wysyłają tę samą częstotliwość podstawową, ale inne proporcje składowych leżących dwa, trzy i cztery razy wyżej. Suma tych sinusów daje przebieg o charakterystycznym kształcie — i to właśnie rozpoznajemy jako brzmienie instrumentu.',
+    svg: (() => {
+      const w = 600, base = 110, amp = 22;
+      const wave = (mult, a, y) => {
+        let d = `M20 ${y}`;
+        for (let x = 0; x <= 560; x += 4) {
+          d += ` L${20 + x} ${(y - a * Math.sin((2 * Math.PI * mult * x) / 220)).toFixed(1)}`;
+        }
+        return d;
+      };
+      let sum = 'M20 214';
+      for (let x = 0; x <= 560; x += 3) {
+        const v = Math.sin((2 * Math.PI * x) / 220) + 0.5 * Math.sin((4 * Math.PI * x) / 220) + 0.28 * Math.sin((6 * Math.PI * x) / 220);
+        sum += ` L${20 + x} ${(214 - v * 16).toFixed(1)}`;
+      }
+      void base;
+      return `<svg viewBox="0 0 ${w} 250" class="v-svg" role="img" aria-label="Ton podstawowy, harmoniczne i ich suma">
+        <path d="${wave(1, amp, 40)}" class="v-stroke-accent" fill="none" stroke-width="2"/>
+        <text x="584" y="44" class="v-label" text-anchor="end">ton podstawowy (f)</text>
+        <path d="${wave(2, amp * 0.5, 96)}" class="v-stroke-gold" fill="none" stroke-width="2"/>
+        <text x="584" y="100" class="v-label-gold" text-anchor="end">2. harmoniczna (2f)</text>
+        <path d="${wave(3, amp * 0.28, 152)}" class="v-stroke-gold" fill="none" stroke-width="2" opacity=".7"/>
+        <text x="584" y="156" class="v-label-gold" text-anchor="end">3. harmoniczna (3f)</text>
+        <line x1="20" y1="184" x2="580" y2="184" class="v-stroke-dim" stroke-dasharray="4 6"/>
+        <path d="${sum}" class="v-stroke-white" fill="none" stroke-width="2.5"/>
+        <text x="20" y="242" class="v-label-white">suma: przebieg, który słyszymy jako barwę instrumentu</text>
+      </svg>`;
+    })(),
+  },
+
+  'oktawy-pasma': {
+    title: 'Oktawy: ucho liczy proporcje, nie herce',
+    caption: 'Każda oktawa to podwojenie częstotliwości. Dla ucha skok ze 100 na 200 Hz brzmi tak samo „daleko” jak z 1000 na 2000 Hz, choć w hercach różnica jest dziesięciokrotna. Dlatego analizatory i korektory używają skali logarytmicznej, a całe pasmo słyszalne to zaledwie około dziesięciu takich podwojeń.',
+    svg: (() => {
+      const bands = [31.5, 63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
+      const x0 = 30, wBand = 55;
+      return `<svg viewBox="0 0 620 220" class="v-svg" role="img" aria-label="Pasma oktawowe od 31,5 Hz do 16 kHz">
+        <line x1="${x0}" y1="140" x2="592" y2="140" class="v-stroke-dim" stroke-width="2"/>
+        ${bands.map((b, i) => {
+          const x = x0 + i * wBand;
+          const label = b >= 1000 ? `${b / 1000}k` : String(b);
+          return `<g>
+            <rect x="${x + 3}" y="${96 - i * 2}" width="${wBand - 6}" height="${44 + i * 2}" rx="3" class="v-fill-accent" opacity="${(0.2 + i * 0.07).toFixed(2)}"/>
+            <text x="${x + wBand / 2}" y="160" class="v-label" text-anchor="middle">${label}</text>
+          </g>`;
+        }).join('')}
+        <text x="${x0}" y="80" class="v-label-gold">każdy słupek to oktawa — podwojenie częstotliwości</text>
+        <text x="${x0}" y="188" class="v-label" >bas</text>
+        <text x="592" y="188" class="v-label" text-anchor="end">góra pasma</text>
+        <text x="310" y="210" class="v-label" text-anchor="middle">całe pasmo słyszalne to około dziesięciu oktaw</text>
+      </svg>`;
+    })(),
+  },
+
+  'krzywe-glosnosci': {
+    title: 'Czułość ucha zależy od poziomu',
+    caption: 'Każda krzywa pokazuje, ile decybeli musi mieć dźwięk o danej częstotliwości, żeby brzmiał tak samo głośno jak wzorzec. Przy cichym odsłuchu krzywa unosi się mocno w basie — ucho po prostu go gubi. Przy poziomach koncertowych krzywe są znacznie bardziej płaskie, dlatego ten sam miks ściszony brzmi chudo.',
+    svg: (() => {
+      const pts = (lift, base) => {
+        const xs = [30, 90, 160, 240, 320, 400, 470, 540, 590];
+        const shape = [1, 0.62, 0.32, 0.12, 0, 0.04, -0.06, 0.16, 0.5];
+        return xs.map((x, i) => `${x},${(base - shape[i] * lift).toFixed(1)}`).join(' ');
+      };
+      return `<svg viewBox="0 0 620 230" class="v-svg" role="img" aria-label="Krzywe jednakowej głośności">
+        <line x1="24" y1="196" x2="600" y2="196" class="v-stroke-dim"/>
+        <line x1="24" y1="20" x2="24" y2="196" class="v-stroke-dim"/>
+        <polyline points="${pts(66, 176)}" class="v-stroke-accent" fill="none" stroke-width="2.5"/>
+        <polyline points="${pts(40, 120)}" class="v-stroke-gold" fill="none" stroke-width="2.5"/>
+        <polyline points="${pts(18, 64)}" class="v-stroke-white" fill="none" stroke-width="2.5"/>
+        <text x="330" y="184" class="v-label-accent">cicho — bas trzeba mocno podbić</text>
+        <text x="330" y="128" class="v-label-gold">średnio głośno</text>
+        <text x="330" y="56" class="v-label-white">głośno — krzywa prawie płaska</text>
+        <text x="30" y="216" class="v-label">20 Hz</text>
+        <text x="596" y="216" class="v-label" text-anchor="end">20 kHz</text>
+        <text x="14" y="30" class="v-label" transform="rotate(-90 14 30)">poziom</text>
+      </svg>`;
+    })(),
+  },
+
+  maskowanie: {
+    title: 'Maskowanie: głośny sąsiad zagłusza cichego',
+    caption: 'Silny dźwięk podnosi próg słyszenia w swoim sąsiedztwie — wszystko, co znajdzie się pod tym „parasolem”, staje się niesłyszalne. Efekt działa mocniej w stronę wyższych częstotliwości, dlatego przeładowany bas potrafi zabrać zrozumiałość wokalowi, choć pomiar pokazuje, że wokal jest obecny.',
+    svg: `<svg viewBox="0 0 620 220" class="v-svg" role="img" aria-label="Zjawisko maskowania w dziedzinie częstotliwości">
+      <line x1="30" y1="180" x2="596" y2="180" class="v-stroke-dim" stroke-width="2"/>
+      <path d="M150 180 C 190 60, 250 40, 300 44 C 380 50, 470 140, 560 176" class="v-fill-gold" opacity=".16" stroke="none"/>
+      <path d="M150 180 C 190 60, 250 40, 300 44 C 380 50, 470 140, 560 176" class="v-stroke-gold" fill="none" stroke-width="2" stroke-dasharray="6 4"/>
+      <rect x="236" y="44" width="10" height="136" rx="3" class="v-fill-accent"/>
+      <text x="241" y="34" class="v-label-accent" text-anchor="middle">dźwięk maskujący</text>
+      <rect x="360" y="120" width="8" height="60" rx="3" class="v-fill-red" opacity=".85"/>
+      <text x="392" y="112" class="v-label-red">ten zniknie</text>
+      <rect x="520" y="140" width="8" height="40" rx="3" class="v-fill-white" opacity=".9"/>
+      <text x="548" y="132" class="v-label-white" text-anchor="middle">ten przetrwa</text>
+      <text x="300" y="206" class="v-label" text-anchor="middle">częstotliwość →</text>
+      <text x="126" y="72" class="v-label-gold" text-anchor="end">próg</text>
+      <text x="126" y="88" class="v-label-gold" text-anchor="end">słyszenia</text>
+    </svg>`,
+  },
+
+  'lokalizacja-itd-ild': {
+    title: 'Dwoje uszu: czas i poziom zdradzają kierunek',
+    caption: 'Dźwięk z prawej dociera do prawego ucha wcześniej — to różnica czasu. W górze pasma głowa tworzy dodatkowo cień akustyczny, więc lewe ucho słyszy ciszej — to różnica poziomu. Bas ma fale dłuższe niż głowa, więc cienia nie tworzy; dlatego niskich częstotliwości nie lokalizujemy precyzyjnie.',
+    svg: `<svg viewBox="0 0 620 230" class="v-svg" role="img" aria-label="Różnica czasu i poziomu między uszami">
+      <circle cx="300" cy="120" r="52" class="v-fill-dim"/>
+      <circle cx="248" cy="120" r="9" class="v-stroke" fill="none" stroke-width="3"/>
+      <circle cx="352" cy="120" r="9" class="v-stroke" fill="none" stroke-width="3"/>
+      <text x="230" y="150" class="v-label" text-anchor="end">lewe</text>
+      <text x="372" y="150" class="v-label">prawe</text>
+      <circle cx="560" cy="66" r="12" class="v-fill-accent"/>
+      <text x="560" y="42" class="v-label-accent" text-anchor="middle">źródło</text>
+      <path d="M548 74 L364 112" class="v-stroke-accent v-dash-flow" stroke-width="2.5" stroke-dasharray="8 8" fill="none"/>
+      <path d="M548 78 C 430 150, 330 196, 240 134" class="v-stroke-gold v-dash-flow-slow" stroke-width="2" stroke-dasharray="8 8" fill="none" opacity=".8"/>
+      <text x="430" y="96" class="v-label-accent" text-anchor="middle">krócej i głośniej</text>
+      <text x="330" y="208" class="v-label-gold" text-anchor="middle">dłuższa droga wokół głowy: później i ciszej</text>
+      <text x="24" y="60" class="v-label">bas: liczy się czas</text>
+      <text x="24" y="80" class="v-label">góra pasma: liczy się poziom</text>
+    </svg>`,
+  },
+
   'dlugosc-fali': {
     title: 'Długość fali: bas jest „długi”, sopran „krótki”',
     caption: 'Ta sama prędkość, inna częstotliwość. Fala 50 Hz ma blisko 7 metrów długości — jest dłuższa niż samochód. Fala 5 kHz ma 7 centymetrów — mieści się na dłoni. Dlatego bas omija przeszkody, a góra pasma daje się celować jak światło latarki.',

@@ -2,6 +2,314 @@
 // Opcjonalne pole `goals` — cele lekcji wyświetlane na ekranie startowym.
 
 export const LESSONS = {
+  fale: {
+    goals: ['Wiedzieć, czym fizycznie jest dźwięk', 'Rozumieć, dlaczego temperatura zmienia wszystko'],
+    steps: [
+      {
+        t: 'Wyobraź sobie długi sznur korali leżący na stole. Popychasz pierwszy koralik — uderza w drugi, ten w trzeci i tak dalej. Zaburzenie przebiega przez cały sznur, ale żaden koralik nie przewędrował na drugi koniec stołu; każdy tylko szturchnął sąsiada i wrócił na miejsce. Dokładnie tak działa dźwięk. Membrana głośnika popycha cząsteczki powietrza tuż przed sobą, te napierają na kolejne i zaburzenie ciśnienia biegnie dalej. Powietrze nie „leci” od sceny do publiczności — gdyby leciało, na koncercie wiałby huragan. Wędruje wyłącznie informacja: naprzemienne zagęszczenia i rozrzedzenia.',
+        viz: 'fala-w-powietrzu',
+      },
+      {
+        t: 'Skoro dźwięk polega na szturchaniu sąsiadów, to musi mieć kogo szturchać. W próżni nie ma cząsteczek, więc nie ma dźwięku — filmowe eksplozje w kosmosie są efektowne, ale fizycznie niemożliwe. Ta sama zasada tłumaczy, dlaczego dźwięk rozchodzi się szybciej w wodzie i jeszcze szybciej w stali: im ciaśniej upakowane i mocniej ze sobą związane cząsteczki, tym sprawniej przekazują sobie zaburzenie. W powietrzu to około 343 metry na sekundę, w wodzie około 1500, w stali ponad 5000.',
+      },
+      {
+        t: 'Warto uzmysłowić sobie skalę zjawiska. Ciśnienie atmosferyczne to około 101 000 paskali. Najgłośniejszy koncert, przy którym stoisz na barierce, to około 63 paskale ciśnienia akustycznego — czyli mniej niż tysięczna część ciśnienia, które i tak na Ciebie napiera. A próg słyszenia to zaledwie 0,00002 paskala. Dźwięk jest więc drobniutkim marszczeniem na powierzchni ogromnego, stałego ciśnienia, a nasze ucho potrafi wykryć zmiany rzędu miliardowych części otaczającego nas ciśnienia.',
+      },
+      {
+        t: 'Prędkość dźwięku w powietrzu zależy przede wszystkim od temperatury — nie od głośności, nie od ciśnienia atmosferycznego i nie od tego, jak mocno pracuje wzmacniacz. Cieplejsze powietrze to szybciej poruszające się cząsteczki, więc szturchnięcie przekazuje się sprawniej. Praktyczna reguła brzmi: przy 20°C to 343 m/s, a każdy stopień w górę dokłada około 0,6 m/s. Wilgotność ma znaczenie pomijalne dla prędkości, ale — jak zobaczysz w module o plenerze — bardzo duże dla tłumienia wysokich częstotliwości.',
+        eq: '<math display="block"><mi>c</mi><mo>≈</mo><mn>331,3</mn><mo>+</mo><mn>0,606</mn><mo>&#8202;</mo><mi>T</mi></math>',
+        where: 'c — prędkość dźwięku [m/s]; T — temperatura powietrza [°C]',
+      },
+      {
+        t: 'Fala na wodzie porusza cząsteczki w górę i w dół, a sama biegnie w bok — to fala poprzeczna. Dźwięk w powietrzu zachowuje się inaczej: cząsteczki drgają wzdłuż tego samego kierunku, w którym biegnie fala, czyli do przodu i do tyłu. To fala podłużna. Konsekwencja jest praktyczna: w powietrzu nie istnieje coś takiego jak „polaryzacja” dźwięku, więc nie da się go filtrować czy odbijać tak, jak robi się to ze światłem przez okulary przeciwsłoneczne.',
+      },
+      {
+        t: 'Gdy źródło promieniuje we wszystkie strony, energia rozkłada się na powierzchnię kuli, która rośnie z kwadratem odległości. To jak malowanie coraz większego balonu tą samą ilością farby — warstwa staje się coraz cieńsza, choć farby nie ubywa. Stąd bierze się spadek poziomu o 6 decybeli przy każdym podwojeniu odległości. Nic się nie „gubi po drodze”; energia po prostu rozkłada się szerzej. Dopiero na bardzo dużych dystansach dochodzi dodatkowo tłumienie w powietrzu, dotyczące głównie wysokich częstotliwości.',
+      },
+      {
+        t: 'Co z tego wynika dla Twojej pracy? Po pierwsze: skoro wędruje wzór ciśnienia, a nie materia, to dwie fale mogą przejść przez siebie i się dodać albo odjąć — na tym opiera się cała inżynieria systemów. Po drugie: skoro prędkość zależy od temperatury, to Twoje wyrównania czasowe zmieniają się wraz z pogodą. Po trzecie: skoro energia rozkłada się geometrycznie, to różnicę poziomów między pierwszym a ostatnim rzędem pokonuje się rozkładem energii, a nie mocą. Każdy z tych trzech wniosków rozwiniemy w kolejnych lekcjach.',
+      },
+    ],
+  },
+
+  czestotliwosc: {
+    goals: ['Przeliczać częstotliwość, okres i długość fali w pamięci', 'Widzieć system w kategoriach geometrii'],
+    steps: [
+      {
+        t: 'Częstotliwość mówi, ile pełnych cykli drgania mieści się w jednej sekundzie. Jednostką jest herc, czyli po prostu „razy na sekundę”. Struna basu drgająca czterdzieści razy na sekundę daje 40 Hz, a talerz perkusyjny wysyła składowe drgające dziesięć tysięcy razy na sekundę. Zakres, który słyszy zdrowe, młode ucho, to mniej więcej od 20 do 20 000 razy na sekundę — i właśnie w tym przedziale pracujesz.',
+      },
+      {
+        t: 'Okres to ta sama informacja odwrócona: ile czasu trwa jeden cykl. Jeśli coś powtarza się sto razy na sekundę, jeden cykl trwa setną część sekundy, czyli 10 milisekund. Warto mieć w głowie kilka takich par, bo wracają nieustannie: 1000 Hz to 1 ms, 500 Hz to 2 ms, 250 Hz to 4 ms, 100 Hz to 10 ms, 50 Hz to 20 ms. Kiedy ktoś mówi „przesunąłem sub o 5 milisekund”, od razu wiesz, że dla 100 Hz to pół cyklu, czyli całkowita zmiana relacji, a dla 1 kHz aż pięć pełnych cykli.',
+        eq: '<math display="block"><mi>T</mi><mo>=</mo><mfrac><mn>1</mn><mi>f</mi></mfrac><mspace width="1.6em"/><mi>f</mi><mo>=</mo><mfrac><mn>1</mn><mi>T</mi></mfrac></math>',
+        where: 'T — okres, czyli czas jednego cyklu [s]; f — częstotliwość [Hz]',
+      },
+      {
+        t: 'Skoro fala biegnie ze stałą prędkością i jednocześnie faluje, to jeden pełny cykl zajmuje określony odcinek przestrzeni. Ten odcinek nazywamy długością fali. Analogia: jedziesz samochodem ze stałą prędkością i co sekundę mrugasz światłami — ślady zostaną co kilkadziesiąt metrów. Mrugaj dziesięć razy szybciej, a ślady będą dziesięć razy gęściej. Tak samo z dźwiękiem: im wyższa częstotliwość, tym krótsza fala.',
+        eq: '<math display="block"><mi>&#955;</mi><mo>=</mo><mfrac><mi>c</mi><mi>f</mi></mfrac></math>',
+        where: 'λ — długość fali [m]; c — prędkość dźwięku [m/s]; f — częstotliwość [Hz]',
+        viz: 'dlugosc-fali',
+      },
+      {
+        t: 'Rozpiętość jest ogromna i to ona odpowiada za większość Twoich problemów. Fala 20 Hz ma ponad siedemnaście metrów — jest dłuższa niż niejedna scena. Fala 20 kHz ma siedemnaście milimetrów — mieści się na paznokciu. Trzy rzędy wielkości różnicy w jednym systemie oznaczają, że każdy element zachowuje się inaczej w dole i w górze pasma. To dlatego nie istnieje jedno ustawienie, które „załatwia wszystko”.',
+      },
+      {
+        t: 'Najważniejsza konsekwencja praktyczna: żeby cokolwiek skierować albo zasłonić falę, przeszkoda musi być duża w porównaniu z jej długością. Dłoń zatrzyma strumień wody z kranu, ale nie zatrzyma fali na jeziorze. Tuba o wylocie pół metra jest ogromna dla fali siedmiocentymetrowej i świetnie ją prowadzi — dla fali trzymetrowej jest praktycznie niewidzialna. Stąd bierze się cała asymetria Twojej pracy: górę pasma celujesz jak światłem latarki, a bas wymaga układów wielu źródeł.',
+      },
+      {
+        t: 'Zbuduj sobie zestaw skrótów, które będziesz pamiętać bez liczenia. Dla 30 Hz to około 11 metrów, dla 60 Hz około 5,7 metra, dla 125 Hz około 2,7 metra, dla 250 Hz około 1,4 metra, dla 500 Hz około 70 centymetrów, a dla 1 kHz około 34 centymetrów. Warto też pamiętać połówki i ćwiartki tych wartości, bo to właśnie one decydują o rozstawie subwooferów i o tym, gdzie powstaną wycięcia.',
+      },
+      {
+        t: 'Na koniec rzecz, o której łatwo zapomnieć: skoro długość fali zależy od prędkości dźwięku, a prędkość od temperatury, to długość fali też zmienia się z pogodą. Przy spadku temperatury o 15 stopni fala skraca się o mniej więcej dwa i pół procent. Dla pojedynczej skrzyni to nieistotne, ale dla układu subwooferów rozstawionych na kilkanaście metrów albo dla wieży delay oddalonej o sto metrów — jak najbardziej.',
+      },
+    ],
+  },
+
+  faza: {
+    goals: ['Rozumieć fazę jako czas w stopniach', 'Czytać wykres fazy w analizatorze'],
+    steps: [
+      {
+        t: 'Faza to odpowiedź na pytanie „w którym miejscu cyklu właśnie jesteśmy”. Wyobraź sobie wskazówkę na tarczy zegara: pełny obrót to 360 stopni, połowa obrotu to 180 stopni, ćwierć to 90. Dźwięk sinusoidalny robi dokładnie to samo — krąży w kółko, a faza mówi, gdzie w tym kółku się znajduje. Sama w sobie faza jednego sygnału nic nie znaczy; sens pojawia się dopiero wtedy, gdy porównujesz dwa sygnały.',
+      },
+      {
+        t: 'I tu dochodzimy do sedna, które odróżnia rozumienie od wkuwania. Opóźnienie mierzymy w milisekundach, ale skutek tego opóźnienia zależy od częstotliwości. Wyobraź sobie dwie karuzele, dużą i małą, kręcące się z różną prędkością. Zatrzymujesz obie na dwie sekundy: mała zdąży wykonać kilka obrotów, duża ledwie drgnie. Tak samo działa dźwięk — to samo opóźnienie oznacza zupełnie inną fazę dla basu i dla góry pasma.',
+        viz: 'faza-opoznienie',
+      },
+      {
+        t: 'Policzmy to konkretnie. Opóźnienie jednej milisekundy przy 1000 Hz to pełny obrót, czyli 360 stopni. Przy 500 Hz to pół obrotu — 180 stopni, czyli dokładna przeciwfaza. Przy 250 Hz to ćwierć obrotu, a przy 50 Hz zaledwie osiemnaście stopni, czyli praktycznie nic. Jeden wzór opisuje to wszystko i warto go po prostu zapamiętać.',
+        eq: '<math display="block"><mi>&#966;</mi><mo>=</mo><mn>360</mn><mo>&#8202;</mo><mi>f</mi><mo>&#8202;</mo><mi>&#916;</mi><mi>t</mi></math>',
+        where: 'φ — przesunięcie fazy [°]; f — częstotliwość [Hz]; Δt — opóźnienie [s]',
+      },
+      {
+        t: 'W praktyce częściej niż milisekundy masz przed sobą metry: jeden głośnik stoi bliżej, drugi dalej. Zamiana jest prosta — dzielisz różnicę drogi przez prędkość dźwięku i dostajesz opóźnienie. Jeszcze wygodniej myśleć od razu w długościach fali: różnica drogi równa połowie długości fali to zawsze przeciwfaza, a równa jednej długości fali to znów zgodność. Dlatego przy 100 Hz różnica 1,7 metra daje pełne wygaszenie, a przy 1 kHz wystarczy 17 centymetrów.',
+      },
+      {
+        t: 'Bardzo ważne rozróżnienie, które bywa mylone nawet przez doświadczonych: odwrócenie polaryzacji to nie to samo co przesunięcie fazy. Odwrócenie polaryzacji zamienia górę na dół w całym paśmie jednocześnie — to zwykła zamiana znaku sygnału. Przesunięcie fazy wynika z opóźnienia i działa inaczej na każdą częstotliwość. Przycisk z symbolem Ø w konsolecie odwraca polaryzację, choć nazywany bywa „fazą” — stąd pół wieku nieporozumień.',
+      },
+      {
+        t: 'Na wykresie fazy w analizatorze stałe opóźnienie objawia się jako nachylenie. Im wyższa częstotliwość, tym więcej stopni przypada na to samo opóźnienie, więc linia opada coraz szybciej. Kiedy widzisz taki równomiernie opadający wykres, wiesz, że między porównywanymi sygnałami jest po prostu różnica czasu — i że możesz ją skasować opóźnieniem. Płaska linia fazy oznacza, że oba sygnały są zgodne w całym pokazanym zakresie.',
+      },
+      {
+        t: 'Wykres fazy mieści się w zakresie od minus do plus 180 stopni, więc przy większych przesunięciach „zawija się” — linia dobiega do góry wykresu i wyskakuje z dołu. To nie jest błąd pomiaru ani nagła zmiana zachowania systemu, tylko sposób rysowania. Im gęstsze zawijanie, tym większe opóźnienie. Z czasem nauczysz się czytać to tak naturalnie, jak czyta się godziny na zegarze.',
+      },
+      {
+        t: 'Na koniec liczba, którą warto zapamiętać: dopóki różnica faz między dwoma źródłami mieści się mniej więcej w jednej trzeciej cyklu, ich suma jest korzystna — dostajesz wzmocnienie. Powyżej tej granicy zaczyna się odejmowanie, a przy połowie cyklu pełne wygaszenie. Ta jedna reguła stoi za projektowaniem kątów między skrzyniami, rozstawem subwooferów i wyrównywaniem systemów w strefach przejścia.',
+      },
+    ],
+  },
+
+  widmo: {
+    goals: ['Rozumieć, dlaczego każdy dźwięk to suma sinusów', 'Czytać widmo i wybierać sygnał pomiarowy'],
+    steps: [
+      {
+        t: 'Sinus to najprostszy możliwy dźwięk — jedna, czysta częstotliwość, bez żadnych dodatków. Brzmi jak sygnał testowy w telewizji albo jak gwizdek. W naturze prawie nie występuje: nawet flet, uważany za najbardziej „czysty” instrument, wysyła coś więcej. Sinus jest jednak klockiem, z którego da się zbudować dowolny inny dźwięk — i na tym opiera się cała analiza, którą będziesz robić w pomiarach.',
+      },
+      {
+        t: 'Dlaczego gitara i fortepian grające to samo „a” brzmią zupełnie inaczej? Bo oprócz tonu podstawowego wysyłają całą rodzinę składowych o częstotliwościach będących jego wielokrotnościami: dwa razy, trzy razy, cztery razy wyższych. Nazywamy je harmonicznymi. To ich wzajemne proporcje tworzą barwę instrumentu. Ton podstawowy mówi, jaki to dźwięk; harmoniczne mówią, co go wydaje.',
+        viz: 'harmoniczne',
+      },
+      {
+        t: 'Skoro dźwięki złożone są sumą sinusów, to musi istnieć sposób, żeby tę sumę rozłożyć z powrotem na składniki. Właśnie to robi analizator widma: bierze fragment sygnału i pokazuje, ile energii przypada na każdą częstotliwość. To jak pryzmat rozszczepiający światło na kolory — nic nie dodaje ani nie ujmuje, tylko pokazuje skład. Wszystkie Twoje narzędzia pomiarowe opierają się na tej jednej operacji.',
+      },
+      {
+        t: 'Do pomiarów potrzebujesz sygnału, który ma energię w całym pasmie. Szum biały ma jednakową energię na każdy herc, przez co brzmi bardzo jasno — w oktawie od 10 do 20 kHz mieści się dziesięć tysięcy herców, a w oktawie od 100 do 200 Hz tylko sto. Szum różowy koryguje tę nierównowagę: ma jednakową energię w każdej oktawie i dlatego brzmi bardziej jak szum wodospadu, a na analizatorze oktawowym rysuje płaską linię. W praktyce pomiarowej pracujesz najczęściej właśnie na różowym.',
+      },
+      {
+        t: 'Skala oktawowa jest naturalna dla ucha, ale nieintuicyjna dla oka. Oktawa to podwojenie częstotliwości: od 100 do 200 Hz, od 200 do 400, od 400 do 800. Dla ucha każdy taki krok brzmi jak ta sama odległość muzyczna, choć w hercach jest coraz większy. Całe pasmo słyszalne to około dziesięciu takich podwojeń. Analizatory dzielą je dodatkowo na tercje, czyli trzy pasma na oktawę, bo to mniej więcej odpowiada rozdzielczości naszego słuchu.',
+        viz: 'oktawy-pasma',
+      },
+      {
+        t: 'Istnieje ciekawa zależność między czasem trwania dźwięku a jego widmem: im krótsze zdarzenie, tym szersze widmo. Trzask, klaśnięcie czy stuknięcie w mikrofon trwają ułamek milisekundy i zawierają energię w całym pasmie naraz. To dlatego przypadkowe przełączenie w torze potrafi wystrzelić pełnym pasmem w drivery wysokotonowe, a także dlatego krótki impuls nadaje się do badania odpowiedzi pomieszczenia.',
+      },
+      {
+        t: 'Na koniec praktyczna uwaga o muzyce. Jej widmo zmienia się nieustannie, więc pomiar na materiale muzycznym wymaga dłuższego uśredniania, a w pasmach, w których akurat nic nie gra, nie da żadnej sensownej informacji. Dlatego do strojenia używa się sygnałów o znanym, stabilnym widmie, a muzykę traktuje jako kontrolę końcową — sprawdzenie, czy to, co wyszło z pomiarów, faktycznie brzmi dobrze.',
+      },
+    ],
+  },
+
+  db: {
+    goals: ['Swobodnie posługiwać się skalą decybelową', 'Nie mylić punktów odniesienia'],
+    steps: [
+      {
+        t: 'Decybel nie jest jednostką głośności w takim sensie, w jakim metr jest jednostką długości. Decybel to porównanie dwóch wielkości — zawsze czegoś do czegoś. To jak powiedzenie „dwa razy więcej”: bez informacji, więcej od czego, zdanie nie ma sensu. Dlatego sam zapis „30 dB” znaczy tyle co „trzydzieści decybeli różnicy”, a dopiero dopisek w rodzaju dB SPL, dBu czy dBFS mówi, względem czego mierzymy.',
+      },
+      {
+        t: 'Dlaczego w ogóle skala logarytmiczna? Bo zakres, z jakim pracujemy, jest absurdalnie szeroki. Od progu słyszenia do progu bólu ciśnienie akustyczne zmienia się milion razy. Zapisywanie tego w paskalach oznaczałoby liczby od 0,00002 do 60 — nieporęczne i nieczytelne. Logarytm zamienia mnożenie na dodawanie: zamiast mówić „tysiąc razy więcej”, mówisz „o 60 decybeli więcej”. Cała skala mieści się wtedy w wygodnym zakresie od zera do stu kilkudziesięciu.',
+        viz: 'skala-db',
+      },
+      {
+        t: 'Są dwa wzory i ich mylenie to klasyczny błąd. Dla wielkości takich jak ciśnienie akustyczne czy napięcie stosujemy mnożnik dwadzieścia, a dla mocy mnożnik dziesięć. Nie ma w tym magii: moc jest proporcjonalna do kwadratu ciśnienia, a kwadrat pod logarytmem zamienia się w mnożnik dwa. Oba wzory opisują więc to samo zjawisko, tylko wyrażone w innych wielkościach fizycznych.',
+        eq: '<math display="block"><mi>L</mi><mo>=</mo><mn>20</mn><mo>&#8202;</mo><mi>log</mi><mfrac><msub><mi>p</mi><mn>1</mn></msub><msub><mi>p</mi><mn>0</mn></msub></mfrac><mspace width="1.8em"/><mi>L</mi><mo>=</mo><mn>10</mn><mo>&#8202;</mo><mi>log</mi><mfrac><msub><mi>P</mi><mn>1</mn></msub><msub><mi>P</mi><mn>0</mn></msub></mfrac></math>',
+        where: 'p — ciśnienie lub napięcie; P — moc; indeks 0 oznacza wartość odniesienia',
+      },
+      {
+        t: 'Trzy liczby warto mieć w odruchu. Podwojenie ciśnienia albo napięcia to plus sześć decybeli. Podwojenie mocy to plus trzy. A subiektywne wrażenie „dwa razy głośniej” to mniej więcej plus dziesięć, czyli dziesięciokrotny wzrost mocy. Stąd bierze się rozczarowanie inwestorów: dołożenie drugiego takiego samego wzmacniacza daje trzy decybele, czyli ledwie zauważalną zmianę. Żeby publiczność usłyszała podwojenie głośności, trzeba dziesięć razy więcej mocy — albo, znacznie taniej, lepszej kierunkowości.',
+      },
+      {
+        t: 'Teraz punkty odniesienia, bo tu rodzi się najwięcej pomyłek między działami. Skala dB SPL opisuje ciśnienie w powietrzu i odnosi się do progu słyszenia. Skale dBu i dBV opisują napięcie w kablu. Skala dBFS opisuje sygnał cyfrowy, gdzie zero jest na samej górze, a wszystko poniżej ma wartość ujemną. Te trzy światy łączą się w konkretnych urządzeniach, ale nie wolno ich mieszać w jednym zdaniu — „mamy sto decybeli na wyjściu konsolety” nie znaczy nic.',
+      },
+      {
+        t: 'Decybeli nie wolno dodawać jak zwykłych liczb. Dwa źródła po 90 decybeli nie dają 180, tylko około 93 — sumują się energie, a nie odczyty. Gdy jedno źródło jest o dziesięć decybeli głośniejsze od drugiego, cichsze dokłada mniej niż pół decybela, czyli praktycznie nic. Ta prosta zasada oszczędza mnóstwo błędnych szacunków przy planowaniu mocy systemu.',
+      },
+      {
+        t: 'Warto mieć w głowie mapę typowych poziomów. Cichy pokój to około 30 decybeli, normalna rozmowa 60, ruchliwa ulica 80. Stanowisko realizatora na koncercie rockowym to zwykle 100–105, a przy barierce bywa o kilka więcej. Próg bólu leży w okolicy 130. Warto pamiętać, że każde dziesięć decybeli w górę to dziesięciokrotny wzrost mocy i dwukrotny wzrost wrażenia głośności — a także dziesięciokrotnie krótszy bezpieczny czas ekspozycji.',
+      },
+      {
+        t: 'Na koniec trzy zdania, które najczęściej wprowadzają zamęt w rozmowie z produkcją. „Podgłośnij o dziesięć procent” — decybele nie są procentami i nie da się tego sensownie przeliczyć. „Damy dwa razy więcej mocy, będzie dwa razy głośniej” — nie będzie, będzie o trzy decybele. „Mamy limit 100 decybeli” — bez podania wagi, czasu uśredniania i miejsca pomiaru to zdanie nie określa niczego. Warto umieć spokojnie wytłumaczyć każdą z tych trzech rzeczy.',
+      },
+    ],
+  },
+
+  'pomiar-poziomu': {
+    goals: ['Wiedzieć, którą liczbę podajesz i dlaczego', 'Zrobić raport, który się obroni'],
+    steps: [
+      {
+        t: 'Miernik poziomu dźwięku nie mierzy „głośności” — mierzy ciśnienie, a potem przelicza je zgodnie z wybranymi ustawieniami. Te ustawienia zmieniają wynik bardziej, niż większość ludzi przypuszcza. Ta sama sytuacja opisana dwoma sposobami potrafi dać wyniki różniące się o kilkanaście decybeli, przy czym obie liczby są poprawne. Dlatego zawsze podajesz nie samą wartość, ale też sposób jej uzyskania.',
+      },
+      {
+        t: 'Pierwszym ustawieniem jest waga częstotliwościowa. Waga A silnie tłumi niskie częstotliwości, naśladując mniejszą czułość ucha przy cichych dźwiękach — i to ona występuje w przepisach o hałasie. Waga C jest niemal płaska, więc uczciwie pokazuje energię subwooferów. Waga Z to brak jakiegokolwiek filtrowania. Na koncercie różnica między wagą A a C sięga kilkunastu decybeli, bo to właśnie bas jest tym, co waga A wycina.',
+      },
+      {
+        t: 'Stąd bierze się bardzo użyteczny trik warsztatowy: odejmij wartość z wagą A od wartości z wagą C. Jeśli różnica jest mała, materiał jest ubogi w bas. Jeśli sięga kilkunastu decybeli, w miksie jest bardzo dużo energii w dole pasma — nawet jeśli pomiar w wadze A wygląda niewinnie. Ta jedna liczba potrafi wyjaśnić, dlaczego sąsiedzi dzwonią ze skargą, choć formalnie limit nie jest przekroczony.',
+      },
+      {
+        t: 'Drugim ustawieniem jest uśrednianie w czasie. Poziom równoważny to energia uśredniona przez określony czas, tak jakby cały ten okres brzmiał równo. Zapis z indeksem piętnastu minut oznacza więc średnią energetyczną z kwadransa. To nie jest średnia z odczytów na wyświetlaczu — głośne fragmenty ważą znacznie więcej niż ciche, bo liczy się energia, a ta rośnie logarytmicznie.',
+      },
+      {
+        t: 'Trzecia sprawa to szczyty. Wartość skuteczna opisuje energię, a wartość szczytowa najwyższy chwilowy wierzchołek fali. Ich różnica w decybelach to współczynnik szczytu: dla czystego sinusa trzy decybele, dla szumu różowego około dwunastu, dla żywej muzyki nierzadko kilkanaście i więcej. Dlatego system, który „wyrabia” przy sinusie, potrafi zabraknąć przy perkusji — wzmacniacz musi mieć zapas napięcia na chwilowe szczyty.',
+      },
+      {
+        t: 'Mierniki mają też ustawienia czasu reakcji: szybki, wolny i impulsowy. Szybki pokazuje więcej chwilowych zmian, wolny uśrednia je w czytelniejszą wartość, impulsowy reaguje na krótkie zdarzenia. W monitoringu koncertowym najczęściej pracujesz na poziomie równoważnym w oknie kilkunastominutowym, a ustawienia czasu reakcji dotyczą raczej szybkiego podglądu niż raportowania.',
+      },
+      {
+        t: 'I rzecz najważniejsza, a najczęściej pomijana: miejsce pomiaru wpływa na wynik bardziej niż wszystkie ustawienia razem wzięte. Różnica między stanowiskiem realizatora a barierką to często pięć do dziesięciu decybeli. Dlatego w raporcie musi znaleźć się wszystko naraz: wartość, waga, czas uśredniania, dokładna pozycja mikrofonu i czas trwania pomiaru. Dopiero taki komplet jest dokumentem, a nie luźną liczbą.',
+      },
+    ],
+  },
+
+  sumowanie: {
+    goals: ['Przewidzieć wynik spotkania dwóch źródeł', 'Rozumieć, dlaczego korektor tu nie pomoże'],
+    steps: [
+      {
+        t: 'Wyobraź sobie dwie osoby popychające huśtawkę. Jeśli popychają równo w rytm, huśtawka rozbuja się dwa razy mocniej. Jeśli jedna popycha, gdy druga ciągnie, huśtawka stanie w miejscu — mimo że obie ciężko pracują. Dwa głośniki grające ten sam sygnał zachowują się identycznie. Gdy ich fale docierają do słuchacza zgodnie, ciśnienie się sumuje i robi się o sześć decybeli głośniej. Gdy docierają w przeciwfazie, znoszą się do ciszy.',
+        viz: 'sumowanie-fal',
+      },
+      {
+        t: 'Nie wszystkie sygnały zachowują się tak dramatycznie. Kluczowe jest, czy to ten sam sygnał. Dwa głośniki grające tę samą stopę mogą dodać się do plus sześciu decybeli albo wyciąć do zera. Ale gitara z jednej strony sceny i wokal z drugiej to sygnały niezależne — sumują się spokojnie, energetycznie, dając plus trzy decybele bez żadnych dziur. Tak samo zachowuje się pogłos hali i gwar publiczności.',
+        eq: '<math display="block"><msub><mi>L</mi><mi>suma</mi></msub><mo>=</mo><mn>10</mn><mo>&#8202;</mo><mi>log</mi><mo>(</mo><msup><mn>10</mn><mfrac><msub><mi>L</mi><mn>1</mn></msub><mn>10</mn></mfrac></msup><mo>+</mo><msup><mn>10</mn><mfrac><msub><mi>L</mi><mn>2</mn></msub><mn>10</mn></mfrac></msup><mo>)</mo></math>',
+        where: 'wzór dla sygnałów nieskorelowanych; dla skorelowanych i zgodnych w fazie sumują się ciśnienia, co daje +6 dB',
+      },
+      {
+        t: 'O tym, który wariant zobaczysz, decyduje wyłącznie różnica drogi, jaką pokonały obie fale. A ta zmienia się z każdym krokiem po widowni: stojąc w osi symetrii, jesteś równo oddalony od obu źródeł, ale krok w bok sprawia, że jedno jest bliżej. Dlatego to samo ustawienie brzmi inaczej dwa metry dalej — i dlatego nie istnieje „dobre ustawienie dla wszystkich miejsc naraz”.',
+      },
+      {
+        t: 'Skoro interferencji nie da się wyłączyć, trzeba ją osłabić — i tu przychodzi z pomocą różnica poziomów. Wróćmy do huśtawki: jeśli jedna osoba popycha z całej siły, a druga tylko muska palcem, to niezależnie od rytmu wynik będzie prawie taki sam. Podobnie z głośnikami: im większa różnica poziomów między nimi, tym mniejsze wahania sumy.',
+      },
+      {
+        t: 'Warto zapamiętać tę tabelę, bo wraca w projektowaniu nieustannie. Przy równych poziomach wahania sięgają od plus sześciu decybeli do całkowitego wygaszenia. Przy trzech decybelach różnicy to około plus trzy i pół do minus sześciu. Przy sześciu decybelach około plus dwa i pół do minus czterech. Przy dziesięciu decybelach już tylko plus dwa i pół do minus trzech. A przy dwudziestu wahania spadają poniżej jednego decybela — cichsze źródło praktycznie przestaje się liczyć.',
+      },
+      {
+        t: 'Z tego rodzi się prosty sposób patrzenia na widownię. Są miejsca, gdzie wyraźnie dominuje jedno źródło — tam jest spokojnie i przewidywalnie. Są miejsca, gdzie dwa źródła grają po równo i trwa przeciąganie liny — tam zobaczysz największe wahania w paśmie. I są miejsca, gdzie różnice czasu są znikome, więc sumowanie jest czystym zyskiem. Dobry projekt polega na tym, żeby strefy przeciągania liny były wąskie i wypadały tam, gdzie mniej przeszkadzają.',
+      },
+      {
+        t: 'Nakładanie źródeł nie jest więc złem samym w sobie — to narzędzie. Tablica liniowa to świadomie kontrolowane nakładanie: elementy sumują się w ściśle policzony sposób, żeby dorzucić poziomu na daleko. Front fille to przykład przeciwny: każdy obsługuje swój wycinek pierwszego rzędu i prawie nie wchodzi sąsiadowi w drogę. Wybór między mocą a jednorodnością robisz przy każdym projekcie.',
+      },
+      {
+        t: 'Na koniec wniosek, który oszczędzi Ci wielu straconych godzin: korektor nie naprawia problemów sumowania. Jeśli w konkretnym miejscu powstała dziura wynikająca z interferencji, podbicie tego pasma zadziała w całej strefie pokrycia — w miejscu dziury nadal będzie jej brakować, a wszędzie indziej pojawi się nadmiar. Problemy czasowo-przestrzenne rozwiązuje się geometrią, opóźnieniem i poziomem, nie filtrem.',
+      },
+    ],
+  },
+
+  grzebien: {
+    goals: ['Rozpoznawać filtr grzebieniowy w pomiarze i uchem', 'Wiedzieć, co z nim zrobić, a czego nie'],
+    steps: [
+      {
+        t: 'Skoro dla jednej częstotliwości dwie fale trafiają zgodnie, a dla innej w przeciwfazie, to w całym paśmie musi powstać regularny wzór wzmocnień i wycięć. Nazywamy go filtrem grzebieniowym, bo na wykresie wygląda jak grzebień. To nie jest usterka sprzętu ani wada konstrukcji — to nieuchronna konsekwencja tego, że ten sam dźwięk dociera do słuchacza dwiema drogami.',
+        viz: 'filtr-grzebieniowy',
+      },
+      {
+        t: 'Położenie zębów grzebienia da się policzyć. Pierwsze wycięcie pojawia się tam, gdzie różnica drogi odpowiada połowie cyklu, a kolejne w równych odstępach wyżej. Przy różnicy jednej milisekundy pierwsze wycięcie wypada przy 500 Hz, a kolejne co tysiąc herców. Wzmocnienia leżą dokładnie pomiędzy nimi.',
+        eq: '<math display="block"><msub><mi>f</mi><mn>1</mn></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mo>&#8202;</mo><mi>&#916;</mi><mi>t</mi></mrow></mfrac><mspace width="1.6em"/><mi>odstęp</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mi>&#916;</mi><mi>t</mi></mrow></mfrac></math>',
+        where: 'f₁ — pierwsze wycięcie [Hz]; Δt — różnica czasu dotarcia obu sygnałów [s]',
+      },
+      {
+        t: 'Im większe opóźnienie, tym gęstszy grzebień. Przy pół milisekundy wycięcia są rzadkie i leżą wysoko — pierwsze przy kilobercu. Przy dziesięciu milisekundach mamy ich dziesiątki w całym paśmie, co daje charakterystyczne „metaliczne” zabarwienie. Przy bardzo dużych opóźnieniach zęby robią się tak gęste, że ucho przestaje je rozróżniać i zaczyna słyszeć oddzielne echo zamiast zmiany barwy.',
+      },
+      {
+        t: 'W terenie źródła są zawsze te same i warto je znać na pamięć. Odbicie od podłogi przy pomiarze mikrofonem na statywie. Dwa front fille oświetlające ten sam fragment barierki. System główny i wieża delay w strefie przejścia. Odbicie od szklanej ściany albo ekranu LED. Suby lewe i prawe rozstawione po bokach sceny. Za każdym razem mechanizm jest identyczny: jeden dźwięk, dwie drogi.',
+      },
+      {
+        t: 'Jak go rozpoznać? W analizatorze widać regularne, równo rozstawione wycięcia — regularność jest kluczowa, bo zwykłe problemy z głośnikiem czy pomieszczeniem nie układają się w tak równy wzór. Uchem słyszysz to jako charakterystyczne zabarwienie, jakby dźwięk przechodził przez rurę, oraz jako wyraźną zmianę barwy przy przemieszczaniu się. Jeśli barwa zmienia się dramatycznie po kroku w bok, masz do czynienia z interferencją, a nie z ustawieniem korektora.',
+      },
+      {
+        t: 'Ciekawostka, która tłumaczy sporo nieporozumień: w górze pasma gęste wycięcia mieszczą się w jednym paśmie krytycznym ucha, więc nie słyszymy ich jako osobnych dziur, tylko jako zmianę barwy. Dlatego pomiar potrafi pokazać dramatyczny grzebień w okolicy kilku kiloherców, a wrażenie słuchowe jest znacznie łagodniejsze. To jeden z powodów, dla których nie należy gonić za idealnie gładkim wykresem w górze pasma.',
+      },
+      {
+        t: 'Co można z tym zrobić? Zmienić geometrię, żeby różnica drogi zmalała — na przykład przesunąć fill albo zmienić jego kąt. Zwiększyć izolację poziomów, żeby jedno źródło wyraźnie dominowało. Wyrównać czas w miejscu, gdzie poziomy są równe, żeby wycięcie zamieniło się we wzmocnienie. A czego nie da się zrobić: wyciąć dziury korektorem ani udawać, że problemu nie ma. To zawsze problem przestrzenny, więc rozwiązanie też musi być przestrzenne.',
+      },
+    ],
+  },
+
+  sluch: {
+    goals: ['Rozumieć, dlaczego pomiar i wrażenie czasem się rozjeżdżają', 'Chronić własne narzędzie pracy'],
+    steps: [
+      {
+        t: 'Droga dźwięku do mózgu ma kilka etapów i każdy coś zmienia. Małżowina zbiera falę i nadaje jej zabarwienie zależne od kierunku. Przewód słuchowy prowadzi ją do błony bębenkowej. Trzy najmniejsze kości w ciele przekazują drgania do ślimaka, który działa jak analizator widma: różne miejsca reagują na różne częstotliwości. Dopiero stamtąd sygnał idzie nerwem do mózgu, który składa z tego wrażenie.',
+      },
+      {
+        t: 'Przewód słuchowy ma około dwóch i pół centymetra i jest zamknięty z jednej strony — zachowuje się więc jak rura organowa. Powstaje w nim rezonans dający podbicie rzędu kilkunastu decybeli w okolicy trzech kiloherców. Mózg traktuje to jako stan normalny i „odejmuje” w tle, ale konsekwencja jest praktyczna: właśnie w tym paśmie jesteśmy najbardziej wrażliwi i najszybciej nas ono męczy.',
+      },
+      {
+        t: 'Czułość ucha zależy od poziomu — i to bardzo. Krzywe jednakowej głośności pokazują, ile decybeli musi mieć dźwięk o danej częstotliwości, żeby brzmiał tak samo głośno jak wzorzec. Przy niskich poziomach bas musi być znacznie głośniejszy, żeby dorównać średnicy. Przy wysokich poziomach różnice się spłaszczają. To nie jest wada ucha, tylko jego konstrukcja.',
+        viz: 'krzywe-glosnosci',
+      },
+      {
+        t: 'Stąd zjawisko, które znasz z pracy: ten sam miks brzmi pełnie na koncercie i chudo przy cichym odsłuchu. Nie dlatego, że coś się zepsuło — po prostu przy niższym poziomie ucho gubi bas. To także powód, dla którego decyzje o barwie podjęte przy bardzo cichym odsłuchu nie przekładają się na poziom koncertowy i odwrotnie. Stroisz na tym poziomie, na którym system będzie pracował.',
+      },
+      {
+        t: 'Ucho nie analizuje widma w sposób ciągły, tylko zestawem nakładających się filtrów zwanych pasmami krytycznymi. Ich szerokość rośnie z częstotliwością: przy jednym kiloherzu to około stu sześćdziesięciu herców. Wszystko, co dzieje się wewnątrz jednego takiego pasma, zlewa się w jedno wrażenie. To wyjaśnia, dlaczego gęste wycięcia słyszymy jako barwę, a nie jako osobne dziury, i dlaczego wąskie korekcje bywają niesłyszalne.',
+      },
+      {
+        t: 'Głośny dźwięk potrafi całkowicie ukryć cichszy, jeśli leżą blisko siebie w paśmie — nazywamy to maskowaniem. Działa silniej w górę niż w dół częstotliwości, więc mocny bas maskuje średnicę bardziej niż odwrotnie. Maskowanie ma też wymiar czasowy: przez chwilę po głośnym zdarzeniu jesteśmy mniej wrażliwi. Na tym zjawisku opiera się kompresja stratna dźwięku, a w praktyce koncertowej tłumaczy ono, czemu przeładowany bas zabiera zrozumiałość wokalu.',
+        viz: 'maskowanie',
+      },
+      {
+        t: 'Przy wysokich poziomach ucho przestaje być liniowe i zaczyna generować własne składowe, których nie ma w sygnale — harmoniczne oraz tony różnicowe. To zjawisko fizjologiczne, niemierzalne mikrofonem. Częściowo tłumaczy, dlaczego bardzo głośny materiał bywa opisywany jako „agresywny” mimo poprawnego pomiaru, i dlaczego dwie osoby mogą inaczej odbierać ten sam poziom.',
+      },
+      {
+        t: 'Na koniec sprawa najważniejsza dla Twojej kariery. Po godzinach w hałasie próg słyszenia tymczasowo się podnosi, zwłaszcza w okolicy trzech do sześciu kiloherców. Zmęczony słuch podpowiada, że brakuje góry pasma, więc naturalnym odruchem jest jej podbijanie — i tak powstają miksy, które nazajutrz brzmią ostro. Regularne przerwy, ochronniki filtrujące i coroczne badanie słuchu to nie przesada, tylko dbanie o narzędzie, którego nie da się wymienić.',
+      },
+    ],
+  },
+
+  lokalizacja: {
+    goals: ['Rozumieć, skąd mózg wie, gdzie jest źródło', 'Wykorzystywać efekt pierwszeństwa w projekcie'],
+    steps: [
+      {
+        t: 'Mamy dwoje uszu i na tym opiera się cała nasza zdolność określania kierunku. Mózg porównuje dwie rzeczy: kiedy dźwięk dotarł do każdego ucha i jak głośny był w każdym z nich. Źródło po prawej stronie dociera do prawego ucha wcześniej i głośniej — z tej pary różnic mózg odtwarza kierunek z dokładnością rzędu kilku stopni.',
+        viz: 'lokalizacja-itd-ild',
+      },
+      {
+        t: 'Obie wskazówki działają w różnych zakresach pasma i to ma konkretne konsekwencje. Niskie częstotliwości mają fale dłuższe niż głowa, więc opływają ją bez przeszkód i nie powstaje różnica poziomu — zostaje różnica czasu. Wysokie częstotliwości są krótsze niż głowa, więc powstaje wyraźny cień akustyczny i różnica poziomu staje się główną wskazówką. Dlatego basu nie da się zlokalizować tak precyzyjnie jak talerza.',
+      },
+      {
+        t: 'Teraz zjawisko, które jest fundamentem projektowania systemów rozproszonych. Gdy ten sam dźwięk dociera do nas dwiema drogami z niewielkim opóźnieniem, nie słyszymy dwóch źródeł — mózg skleja je w jedno i przypisuje kierunek temu, które dotarło pierwsze. Nazywamy to efektem pierwszeństwa. Co więcej, drugie źródło może być nawet nieco głośniejsze, a kierunek i tak wyznaczy pierwsze.',
+        viz: 'efekt-haasa',
+      },
+      {
+        t: 'Efekt działa w określonym oknie czasowym. Przy bardzo małych opóźnieniach, rzędu ułamków milisekundy, mózg nie rozdziela źródeł w ogóle i dostajemy zmianę barwy. W zakresie od kilku do kilkudziesięciu milisekund działa efekt pierwszeństwa: jedno zdarzenie, kierunek od pierwszego frontu. Powyżej tego zakresu pojawia się echo — dwa oddzielne zdarzenia. Dokładna granica zależy od rodzaju materiału: perkusja zdradza echo wcześniej niż legato smyczków.',
+      },
+      {
+        t: 'W praktyce wykorzystujesz to przy każdej wieży delay. Ustawiasz opóźnienie tak, żeby dźwięk z systemu głównego docierał pierwszy, a wieża dokładała poziom i świeżość ułamek chwili później. Publiczność sto metrów od sceny nadal „widzi uszami” scenę, mimo że większość energii dostaje z konstrukcji stojącej dziesięć metrów obok. To samo dotyczy front fillów: kilka milisekund zapasu trzyma wokal na scenie zamiast na barierce.',
+      },
+      {
+        t: 'Jest granica, za którą ta sztuczka przestaje działać. Jeśli bliższe źródło jest znacznie głośniejsze od pierwszego, mózg w końcu uzna je za główne, mimo że dotarło później. Dlatego fille i delaye ustawia się z umiarem: mają uzupełniać, a nie przejmować. W praktyce trzymamy różnicę poziomów w rozsądnych granicach i sprawdzamy uchem, czy obraz nie przeskakuje.',
+      },
+      {
+        t: 'Na koniec rzecz, o której warto pamiętać w dużych produkcjach: mózg porównuje to, co słyszy, z tym, co widzi. Gdy wokalista stoi na scenie, a głos wyraźnie dobiega z boku albo z góry, odbiorca odczuwa dyskomfort, nawet jeśli nie potrafi go nazwać. Dlatego dbałość o spójność obrazu dźwiękowego z wizualnym nie jest fanaberią, tylko elementem jakości realizacji — i jednym z powodów, dla których systemy immersyjne zyskują popularność.',
+      },
+    ],
+  },
+
   ip: {
     goals: ['Zbudować sieć audio, która nie zawiedzie w show', 'Diagnozować problemy zamiast zgadywać'],
     steps: [
@@ -641,113 +949,6 @@ export const LESSONS = {
       {
         t: 'Na koniec dwie rzeczy, które decydują o powodzeniu w terenie. Po pierwsze, w obliczeniach liczy się odległość między źródłami dźwięku, a nie między obudowami — mierzysz od membrany do membrany albo od frontu do frontu, konsekwentnie. Po drugie, rzeczywiste opóźnienie w układzie gradientowym bywa większe, niż wynika z geometrii, bo fala z przodu musi opłynąć obudowę, zanim pojawi się z tyłu. Dlatego układy kardioidalne zawsze weryfikuje się pomiarem, a fabryczne presety producenta — jeśli istnieją — są dobrym punktem startu, bo mają tę korektę już policzoną.',
       },
-    ],
-  },
-
-  fale: {
-    goals: ['Rozumieć, czym fizycznie jest dźwięk', 'Liczyć długość fali, okres i fazę bez kalkulatora w głowie'],
-    steps: [
-      {
-        t: 'Wyobraź sobie długi sznur korali leżący na stole. Popychasz pierwszy koralik — uderza w drugi, ten w trzeci i tak dalej. Zaburzenie przebiega przez cały sznur, ale żaden koralik nie przewędrował na drugi koniec stołu; każdy tylko szturchnął sąsiada i wrócił na miejsce. Dokładnie tak działa dźwięk w powietrzu. Membrana głośnika popycha cząsteczki powietrza tuż przed sobą, te napierają na kolejne i zaburzenie ciśnienia biegnie dalej z prędkością ok. 343 m/s. Powietrze nie „leci” od sceny do publiczności — gdyby leciało, na koncercie wiałby huragan. Wędruje wyłącznie informacja: naprzemienne zagęszczenia i rozrzedzenia. To dlatego dźwięk potrzebuje ośrodka: w próżni nie ma czego szturchać.',
-        viz: 'fala-w-powietrzu',
-      },
-      {
-        t: 'Prędkość, z jaką biegnie to zaburzenie, zależy przede wszystkim od temperatury powietrza — a nie, wbrew intuicji, od głośności czy od tego, jak mocno napierasz na głośnik. Cieplejsze powietrze to szybciej poruszające się cząsteczki, więc szturchnięcie przekazuje się sprawniej. Praktyczna reguła: przy 20°C dźwięk pokonuje 343 metry w sekundę, a każdy stopień w górę dokłada ok. 0,6 m/s. Wilgotność ma wpływ pomijalny dla prędkości, choć — co zobaczysz przy plenerze — spory dla tłumienia wysokich częstotliwości. Ten jeden wzór przewija się potem przez cały Twój dzień pracy: liczysz z niego opóźnienia, długości fal i rozstawy subwooferów.',
-        eq: '<math display="block"><mi>c</mi><mo>≈</mo><mn>331,3</mn><mo>+</mo><mn>0,606</mn><mo>&#8202;</mo><mi>T</mi></math>',
-        where: 'c — prędkość dźwięku [m/s]; T — temperatura powietrza [°C]',
-      },
-      {
-        t: 'Skoro fala biegnie ze stałą prędkością i jednocześnie faluje w górę i w dół, to jedno pełne „huśtnięcie” zajmuje pewien odcinek przestrzeni. Ten odcinek to długość fali. Analogia: jedziesz samochodem ze stałą prędkością i co sekundę mrugasz światłami — mrugnięcia zostawią ślady co kilkadziesiąt metrów. Mrugaj dziesięć razy szybciej, a ślady będą dziesięć razy gęściej. Tak samo z dźwiękiem: 50 Hz daje falę długą na blisko siedem metrów, a 5 kHz — na siedem centymetrów. Ta różnica wyjaśnia niemal wszystko, co robisz z systemem. Bas obchodzi przeszkody i wchodzi wszędzie, bo przeszkoda wielkości człowieka jest dla siedmiometrowej fali niewidoczna. Górę pasma da się natomiast celować jak światłem latarki, bo tuba o rozmiarze pół metra jest dla siedmiocentymetrowej fali wielką ścianą.',
-        eq: '<math display="block"><mi>&#955;</mi><mo>=</mo><mfrac><mi>c</mi><mi>f</mi></mfrac></math>',
-        where: 'λ — długość fali [m]; c — prędkość dźwięku [m/s]; f — częstotliwość [Hz]',
-        viz: 'dlugosc-fali',
-      },
-      {
-        t: 'Częstotliwość mówi, ile razy w ciągu sekundy fala wykona pełny cykl — stąd herce, czyli „razy na sekundę”. Okres to ta sama informacja odwrócona: ile czasu trwa jeden cykl. Jeśli coś powtarza się sto razy na sekundę, jeden cykl trwa setną część sekundy, czyli 10 ms. Warto mieć w głowie kilka takich par, bo wracają nieustannie: 1000 Hz to 1 ms, 100 Hz to 10 ms, 50 Hz to 20 ms. Kiedy ktoś mówi „przesunąłem sub o 5 milisekund”, od razu wiesz, że dla 100 Hz to pół cyklu, czyli odwrócenie fazy, a dla 1 kHz aż pięć pełnych cykli. Ta zamiana czasu na cykle jest odruchem, który odróżnia osobę rozumiejącą system od osoby przesuwającej suwaki na wyczucie.',
-        eq: '<math display="block"><mi>T</mi><mo>=</mo><mfrac><mn>1</mn><mi>f</mi></mfrac></math>',
-        where: 'T — okres, czyli czas jednego cyklu [s]; f — częstotliwość [Hz]',
-      },
-      {
-        t: 'Faza to sposób opisania, w którym miejscu cyklu aktualnie jesteśmy — jak wskazówka na tarczy zegara, gdzie pełny obrót to 360 stopni. Teraz najważniejsza konsekwencja: stałe opóźnienie w milisekundach oznacza zupełnie różne przesunięcie fazy dla różnych częstotliwości. Wyobraź sobie dwie karuzele, dużą i małą, kręcące się z różną prędkością. Zatrzymujesz obie na dwie sekundy: mała zdąży wykonać kilka obrotów, duża ledwie drgnie. Opóźnienie 1 ms to dla 1 kHz pełny obrót (360°), dla 250 Hz ćwierć obrotu (90°), a dla 50 Hz ledwie 18°. Dlatego wyrównanie systemu „na oko po pikach” działa dla góry pasma i zawodzi w basie — i dlatego mierzy się fazę, a nie tylko amplitudę.',
-        eq: '<math display="block"><mi>&#966;</mi><mo>=</mo><mn>360</mn><mo>&#8202;</mo><mi>f</mi><mo>&#8202;</mo><mi>&#916;</mi><mi>t</mi></math>',
-        where: 'φ — przesunięcie fazy [°]; f — częstotliwość [Hz]; Δt — opóźnienie [s]',
-        viz: 'faza-opoznienie',
-      },
-      {
-        t: 'Na koniec rzecz, która zaskakuje wielu początkujących: system wyrównany w południe może być rozstrojony wieczorem, choć nikt niczego nie dotknął. Powód jest prozaiczny — spadła temperatura, więc dźwięk zwolnił, a wszystkie czasy przelotu się wydłużyły. Przy wieży delay stojącej 100 metrów od sceny ochłodzenie o 10 stopni wydłuża czas przelotu o ok. 5 ms. Dla 100 Hz to połowa cyklu, czyli różnica między „dodaje się” a „znosi się”. Dlatego na dużych plenerach notuje się temperaturę przy strojeniu, a przed koncertem sprawdza się ją ponownie. To samo dotyczy hal, w których klimatyzacja pracuje inaczej przy pustej i pełnej widowni.',
-      },
-    ],
-  },
-
-  db: {
-    goals: ['Czytać decybele bez wkuwania tabelek', 'Nie mylić skal: SPL, dBu, dBFS'],
-    steps: [
-      {
-        t: 'Decybel nie jest „ilością dźwięku”, tylko porównaniem dwóch wielkości — zawsze czegoś do czegoś. To jak powiedzenie „dwa razy więcej”: bez informacji, więcej od czego, zdanie nie ma sensu. Dlatego sam zapis „30 dB” znaczy tyle co „trzydzieści decybeli różnicy”, a dopiero dopisek w rodzaju dB SPL, dBu czy dBFS mówi, względem czego mierzymy. Skala jest logarytmiczna, bo ucho i cała przyroda reagują na stosunki, nie na różnice. Dwa razy większe ciśnienie to zawsze te same +6 dB, niezależnie od tego, czy zaczynamy od szeptu, czy od ściany dźwięku na festiwalu.',
-      },
-      {
-        t: 'Skąd biorą się magiczne liczby, które co chwilę słyszysz w branży? Podwojenie napięcia albo ciśnienia to +6 dB. Podwojenie mocy to +3 dB, bo moc rośnie z kwadratem napięcia. A subiektywne „dwa razy głośniej” to mniej więcej +10 dB, czyli dziesięciokrotny wzrost mocy. Stąd bierze się rozczarowanie inwestorów: dołożenie drugiego takiego samego wzmacniacza daje +3 dB, czyli zmianę ledwie zauważalną, a nie „dwa razy głośniejszy koncert”. Żeby publiczność faktycznie usłyszała podwojenie głośności, potrzeba dziesięciokrotnie większej mocy albo — znacznie taniej — lepszej kierunkowości i celniejszego pokrycia.',
-        eq: '<math display="block"><mi>L</mi><mo>=</mo><mn>20</mn><mo>&#8202;</mo><mi>log</mi><mfrac><msub><mi>p</mi><mn>1</mn></msub><msub><mi>p</mi><mn>0</mn></msub></mfrac><mspace width="1.4em"/><mi>L</mi><mo>=</mo><mn>10</mn><mo>&#8202;</mo><mi>log</mi><mfrac><msub><mi>P</mi><mn>1</mn></msub><msub><mi>P</mi><mn>0</mn></msub></mfrac></math>',
-        where: 'p — ciśnienie lub napięcie (wielkości „polowe”, mnożnik 20); P — moc (mnożnik 10); indeks 0 oznacza wartość odniesienia',
-        viz: 'skala-db',
-      },
-      {
-        t: 'Teraz punkty odniesienia, bo tu rodzi się najwięcej pomyłek. dB SPL odnosi się do ciśnienia 20 mikropaskali, czyli mniej więcej najcichszego dźwięku, jaki słyszy zdrowe ucho — to skala „ile dźwięku jest w powietrzu”. dBu i dBV to świat elektryczny: napięcie w kablu, odpowiednio względem 0,775 V i 1 V. dBFS to świat cyfrowy, gdzie zero jest na samej górze skali i wszystko poniżej ma wartość ujemną, bo powyżej zera konwerter nie ma już zapasu. Te trzy światy łączą się w konkretnych urządzeniach: konwerter może mieć 0 dBFS odpowiadające +24 dBu, a głośnik przy określonym napięciu wytwarza określone SPL. Mylenie skal to najczęstsza przyczyna sytuacji „limiter pracuje, a system gra cicho”.',
-      },
-      {
-        t: 'Mikrofon mierzy uczciwie całe pasmo, ale ucho tak nie działa — na niskie częstotliwości jest dużo mniej czułe, szczególnie przy cichych dźwiękach. Żeby miernik lepiej odwzorowywał wrażenie, stosuje się filtry ważące. Waga A mocno obcina bas i jest podstawą przepisów o hałasie. Waga C jest prawie płaska i dlatego lepiej opisuje energię subów na koncercie. Prosty trik warsztatowy: odejmij LAeq od LCeq. Jeśli różnica sięga kilkunastu decybeli, wiesz, że w miksie jest bardzo dużo basu — nawet jeśli pomiar „w wadze A” wygląda niewinnie. Ta jedna liczba potrafi wyjaśnić, dlaczego mieszkańcy dzwonią ze skargą, choć formalnie limit nie jest przekroczony.',
-      },
-      {
-        t: 'Poziom zmienia się w czasie, więc trzeba umówić się, jak go uśredniamy. Leq to poziom równoważny: energia uśredniona po określonym czasie, tak jakby cały koncert grał równo. LAeq,15min oznacza więc „średnia energetyczna z piętnastu minut, z wagą A”. LCpeak to zupełnie co innego — najwyższa chwilowa wartość szczytowa, istotna dla ryzyka urazu słuchu od pojedynczego huku. Rozumienie różnicy jest praktyczne: limit określony jako średnia pozwala na chwilowe głośne momenty, o ile reszta jest cichsza. Dlatego monitoring SPL na festiwalu to nie jedna liczba na wyświetlaczu, tylko okno czasowe, waga i miejsce pomiaru — i to wszystko musi być zapisane w raporcie.',
-      },
-      {
-        t: 'Ostatnia para pojęć: wartość szczytowa i skuteczna. Szczyt to najwyższy wierzchołek fali, RMS to wartość odpowiadająca realnej energii — coś jak różnica między najwyższą falą na morzu a średnim poziomem wody. Ich różnica w decybelach to współczynnik szczytu. Czysty sinus ma 3 dB, szum różowy ok. 12 dB, a żywa muzyka nierzadko kilkanaście i więcej. To wyjaśnia, dlaczego system, który „wyrabia” przy sinusie, potrafi się zapchać przy perkusji: wzmacniacz musi mieć zapas napięcia na chwilowe szczyty, choć średnia moc jest niewielka. Stąd bierze się cała filozofia headroomu i limiterów ustawianych osobno na energię i na szczyty.',
-      },
-    ],
-  },
-
-  sumowanie: {
-    goals: ['Przewidzieć, co zrobią dwa głośniki grające to samo', 'Rozumieć, skąd biorą się dziury w paśmie'],
-    steps: [
-      {
-        t: 'Wyobraź sobie dwie osoby popychające huśtawkę. Jeśli popychają równo w rytm, huśtawka rozbuja się dwa razy mocniej. Jeśli jedna popycha, gdy druga ciągnie, huśtawka stanie w miejscu — mimo że obie ciężko pracują. Dwa głośniki grające ten sam sygnał zachowują się identycznie. Gdy ich fale docierają do słuchacza „w nogę”, ciśnienie się sumuje i robi się o 6 dB głośniej. Gdy docierają w przeciwfazie, znoszą się do ciszy. I tu sedno: o tym, który wariant zobaczysz, decyduje wyłącznie różnica drogi, jaką fale pokonały. Przesunięcie słuchacza o metr w bok potrafi zamienić sumowanie w odejmowanie.',
-        viz: 'sumowanie-fal',
-      },
-      {
-        t: 'Nie wszystkie sygnały zachowują się tak dramatycznie. Kluczowe jest to, czy są skorelowane, czyli czy to ten sam sygnał. Dwa głośniki grające tę samą stopę są skorelowane i mogą się dodać do +6 dB albo wyciąć do zera. Ale gitara z jednej strony sceny i wokal z drugiej to sygnały niezależne — sumują się energetycznie, spokojnie, dając +3 dB, bez żadnych dziur. Tak samo zachowuje się pogłos w hali i gwar publiczności. Dlatego to samo pytanie „ile będzie głośniej, gdy dołożę drugi głośnik?” ma dwie różne odpowiedzi i zawsze trzeba zacząć od ustalenia, czy oba grają dokładnie to samo.',
-        eq: '<math display="block"><msub><mi>L</mi><mi>suma</mi></msub><mo>=</mo><mn>10</mn><mo>&#8202;</mo><mi>log</mi><mo>(</mo><msup><mn>10</mn><mfrac><msub><mi>L</mi><mn>1</mn></msub><mn>10</mn></mfrac></msup><mo>+</mo><msup><mn>10</mn><mfrac><msub><mi>L</mi><mn>2</mn></msub><mn>10</mn></mfrac></msup><mo>)</mo></math>',
-        where: 'wzór dla sygnałów nieskorelowanych: dwa równe źródła dają +3 dB; dla sygnałów skorelowanych w fazie sumują się ciśnienia, co daje +6 dB',
-      },
-      {
-        t: 'Skoro dla jednej częstotliwości fale trafiają „w nogę”, a dla innej w przeciwfazę, to w całym paśmie powstaje regularny wzór wzmocnień i wycięć. Nazywamy go filtrem grzebieniowym, bo na wykresie wygląda jak grzebień. Pierwsza dziura pojawia się tam, gdzie różnica drogi odpowiada połowie cyklu, a kolejne w równych odstępach. Im większe opóźnienie między dwiema drogami dźwięku, tym gęstsze zęby grzebienia. To nie jest usterka sprzętu — tak zachowuje się fizyka zawsze, gdy ten sam dźwięk dociera dwiema drogami: z głośnika i z odbicia od podłogi, z dwóch kolumn front fill, z main i z delaya.',
-        eq: '<math display="block"><msub><mi>f</mi><mn>1</mn></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mo>&#8202;</mo><mi>&#916;</mi><mi>t</mi></mrow></mfrac><mspace width="1.2em"/><mi>odstęp</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mi>&#916;</mi><mi>t</mi></mrow></mfrac></math>',
-        where: 'f₁ — pierwsze wycięcie [Hz]; Δt — różnica czasu dotarcia obu sygnałów [s]',
-        viz: 'filtr-grzebieniowy',
-      },
-      {
-        t: 'Skoro interferencji nie da się wyłączyć, trzeba ją osłabić — i tu przychodzi z pomocą różnica poziomów. Wróćmy do huśtawki: jeśli jedna osoba popycha z całej siły, a druga tylko muska palcem, to niezależnie od rytmu wynik będzie prawie taki sam. Podobnie z głośnikami: gdy jeden jest o 10 dB głośniejszy od drugiego, wahania wynoszą już tylko ok. +2,4 / −3,3 dB zamiast dramatycznych dziur. Przy 20 dB różnicy efekt jest praktycznie niesłyszalny. Dlatego w projekcie dąży się do tego, żeby w każdym miejscu widowni jeden subsystem wyraźnie dominował, a strefy, w których dwa grają po równo, były jak najwęższe.',
-      },
-      {
-        t: 'Z tego rodzi się prosty sposób patrzenia na widownię. Są miejsca, gdzie dominuje jedno źródło — tam jest spokojnie i przewidywalnie; nazwijmy je strefą izolacji. Są miejsca, gdzie dwa źródła grają po równo i trwa przeciąganie liny — to strefa przejścia, w której zobaczysz największe wahania w paśmie. I są miejsca, gdzie różnice czasu są znikome, więc sumowanie jest czystym zyskiem. Dobry projekt polega na tym, żeby strefy przejścia były wąskie i wypadały tam, gdzie mniej przeszkadzają, a nie na próbie usunięcia ich EQ — korektor działa tak samo w całej strefie, a dziura jest tylko w jej części.',
-      },
-      {
-        t: 'Na końcu zostaje wybór, który będziesz podejmował przy każdym projekcie: moc czy jednorodność. Mocne nakładanie kilku elementów daje więcej decybeli, ale też szerokie strefy interferencji i „dziurawe” brzmienie w ruchu. Duża izolacja daje równe, spokojne pokrycie, ale wymaga więcej elementów i precyzji w kątach. Line array to świadomie kontrolowana interferencja: elementy nakładają się w ściśle policzony sposób. Dobrze zaprojektowane front fille to z kolei przykład izolacji — każdy obsługuje swój wycinek pierwszego rzędu i prawie nie wchodzi sąsiadowi w drogę.',
-      },
-    ],
-  },
-
-  sluch: {
-    goals: ['Stosować efekt pierwszeństwa przy fills i delay', 'Uwzględniać percepcję przy decyzjach tonalnych'],
-    steps: [
-      'Krzywe jednakowej głośności (ISO 226) pokazują, jaki poziom SPL w funkcji częstotliwości odbierany jest jako jednakowo głośny. Przy niskich poziomach ucho jest bardzo nieczułe na LF i trochę na skrajne HF; przy wysokich poziomach krzywe się spłaszczają. Dlatego ten sam miks brzmi „chudo” po ściszeniu.',
-      'Efekt pierwszeństwa: gdy ten sam dźwięk dociera z dwóch kierunków z opóźnieniem kilku–kilkudziesięciu ms, lokalizujemy go w kierunku pierwszego frontu, nawet jeśli późniejszy jest nieco głośniejszy (w pewnym zakresie). To fundament działania delay i fillów z zachowaniem obrazu na scenie.',
-      'Powyżej pewnego opóźnienia (zależnie od sygnału — dla perkusyjnych krócej, dla mowy i muzyki legato dłużej, orientacyjnie kilkadziesiąt ms) dwa fronty przestają się zlewać i słyszymy echo. Im głośniejszy późniejszy sygnał, tym wcześniej echo staje się słyszalne.',
-      'ITD (różnica czasu międzyusznego) dominuje w lokalizacji LF, bo długie fale obchodzą głowę bez cienia. ILD (różnica poziomu) dominuje w HF, gdzie głowa tworzy cień akustyczny. Małżowina dodaje wskazówki spektralne dla elewacji i przód/tył.',
-      'Maskowanie częstotliwościowe: głośny dźwięk ukrywa cichsze składowe w pobliskich pasmach, szczególnie powyżej swojej częstotliwości. Maskowanie czasowe działa krótko przed i dłużej po głośnym zdarzeniu. Ma to wpływ na zrozumiałość i na to, co naprawdę słyszysz, porównując warianty strojenia.',
-      'Po długiej ekspozycji na wysoki SPL próg słyszenia tymczasowo rośnie (TTS), zwłaszcza w okolicy 3–6 kHz. Decyzje tonalne podejmowane pod koniec głośnego dnia mają tendencję do nadmiernego podbijania HF. Strojenie najlepiej robić wypoczętym słuchem, przy umiarkowanych poziomach i z przerwami.',
-      'Ucho nie analizuje widma w sposób ciągły, tylko zestawem nakładających się filtrów — pasm krytycznych. Ich szerokość rośnie z częstotliwością; w okolicy 1 kHz to rząd 160 Hz. Wszystko, co dzieje się wewnątrz jednego pasma krytycznego, zlewa się w jedno wrażenie barwy — dlatego gęste wycięcia filtru grzebieniowego w HF słyszymy jako zmianę brzmienia, a nie jako oddzielne dziury.',
-      'Ucho jest układem nieliniowym. Przy wysokich poziomach generuje własne harmoniczne oraz tony sumacyjne i różnicowe, których w sygnale nie ma. To zjawisko fizjologiczne, niemierzalne mikrofonem — dlatego dwie osoby mogą inaczej opisywać bardzo głośny materiał, a pomiar niczego takiego nie pokaże.',
-      'Przewód słuchowy jest rurą zamkniętą błoną bębenkową i zachowuje się jak rezonator ćwierćfalowy, dając podbicie rzędu kilkunastu decybeli w okolicy 2–4 kHz. Mózg traktuje tę stałą charakterystykę jako neutralną, ale to jeden z powodów, dla których jesteśmy tak wrażliwi na korekcje w tym właśnie zakresie.',
     ],
   },
 
