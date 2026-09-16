@@ -234,6 +234,50 @@ export const VISUALS = {
     </svg>`,
   },
 
+  'celowanie-tablicy': {
+    title: 'Osie skrzyń trafiają w widownię w równych odstępach',
+    caption: 'Kąty dobiera się tak, żeby punkty trafienia osi kolejnych skrzyń były równomiernie rozłożone od ostatniego do pierwszego rzędu. Górne skrzynie muszą „przestrzelić” ostatni rząd o mniej więcej dwie sztuki — inaczej najdalsze miejsca wypadają na skraju wiązki i tracą górę pasma.',
+    svg: `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Rozkład osi skrzyń tablicy na widowni">
+      <line x1="60" y1="206" x2="600" y2="188" class="v-stroke-dim" stroke-width="2"/>
+      <text x="330" y="232" class="v-label" text-anchor="middle">widownia: ostatni rząd po prawej</text>
+      ${Array.from({ length: 8 }, (_, i) => {
+        const y = 30 + i * 13;
+        const targets = [640, 560, 470, 390, 320, 250, 185, 125];
+        const tx = targets[i];
+        const over = i < 2;
+        return `<rect x="66" y="${y}" width="44" height="10" rx="2" class="${over ? 'v-fill-gold' : 'v-fill-accent'}" opacity=".9" transform="rotate(${1 + i * 2.4} 88 ${y + 5})"/>
+          <path d="M112 ${y + 5} L ${tx} ${196 - (tx - 125) * 0.033}" class="${over ? 'v-stroke-gold' : 'v-stroke-accent'}" stroke-width="1.2" opacity=".55" fill="none"/>
+          ${tx <= 600 ? `<circle cx="${tx}" cy="${196 - (tx - 125) * 0.033}" r="3.5" class="v-fill-accent"/>` : ''}`;
+      }).join('')}
+      <text x="120" y="24" class="v-label-gold">2 skrzynie „przestrzału” ponad ostatni rząd</text>
+    </svg>`,
+  },
+
+  'fill-geometria': {
+    title: 'Gdzie postawić fill, żeby czas się trzymał',
+    caption: 'Fill na tylnej ścianie gra słuchaczom w plecy: idąc w głąb sali, oddalasz się od systemu głównego i jednocześnie zbliżasz do fillu, więc różnica czasu zmienia się błyskawicznie i wyrównanie działa tylko w jednym punkcie. Fill zawieszony z przodu, celujący w tył, zmienia tę różnicę powoli — wyrównanie trzyma się na całym obszarze.',
+    svg: `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Porównanie ustawienia fillu z tyłu i z przodu strefy">
+      <text x="12" y="20" class="v-label-red">źle: fill za plecami</text>
+      <rect x="14" y="44" width="20" height="40" rx="4" class="v-fill-dim"/>
+      <line x1="34" y1="64" x2="250" y2="64" class="v-stroke-accent" stroke-width="2" stroke-dasharray="7 6"/>
+      <rect x="256" y="44" width="16" height="40" rx="4" class="v-fill-red"/>
+      <line x1="256" y1="84" x2="120" y2="96" class="v-stroke-red" stroke-width="2" stroke-dasharray="7 6"/>
+      ${[110, 150, 190, 226].map((x) => `<circle cx="${x}" cy="100" r="7" class="v-stroke" fill="none" stroke-width="2"/>`).join('')}
+      <text x="168" y="126" class="v-label-red" text-anchor="middle">różnica czasu zmienia się gwałtownie</text>
+
+      <text x="332" y="20" class="v-label-accent">dobrze: fill z przodu strefy</text>
+      <rect x="334" y="44" width="20" height="40" rx="4" class="v-fill-dim"/>
+      <line x1="354" y1="64" x2="470" y2="64" class="v-stroke-accent" stroke-width="2" stroke-dasharray="7 6"/>
+      <rect x="474" y="34" width="16" height="30" rx="4" class="v-fill-accent"/>
+      <line x1="482" y1="64" x2="580" y2="94" class="v-stroke-accent" stroke-width="2" stroke-dasharray="7 6"/>
+      ${[506, 538, 570].map((x) => `<circle cx="${x}" cy="100" r="7" class="v-stroke" fill="none" stroke-width="2"/>`).join('')}
+      <text x="500" y="126" class="v-label-accent" text-anchor="middle">oba źródła oddalają się razem</text>
+
+      <text x="310" y="176" class="v-label" text-anchor="middle">im wolniej zmienia się różnica czasu między źródłami,</text>
+      <text x="310" y="196" class="v-label" text-anchor="middle">tym większy obszar obsłuży jedna decyzja o opóźnieniu</text>
+    </svg>`,
+  },
+
   'strefy-odpowiedzialnosci': {
     title: 'Każdy subsystem ma swój rewir',
     caption: 'Front fill obsługuje pierwsze rzędy, tablica główna środek widowni, wieża delay tyły. W swoim rewirze ustawiasz poziom i barwę. Na styku dwóch rewirów — tam, gdzie oba grają równie głośno — ustawiasz czas. Poza stykiem jeden system dominuje i sumowanie przestaje być groźne.',

@@ -2,6 +2,105 @@
 // Opcjonalne pole `goals` — cele lekcji wyświetlane na ekranie startowym.
 
 export const LESSONS = {
+  workflow: {
+    goals: ['Prowadzić projekt w powtarzalnej kolejności', 'Nie dać się nabrać widokowi 2D'],
+    steps: [
+      {
+        t: 'Projekt prowadzi się dokładnie w tej samej kolejności, w jakiej później stroisz system: od największego kawałka widowni do najmniejszego. Najpierw ustalasz, kto ma być obsłużony przez system główny, doprowadzasz go do porządnego pokrycia w tym obszarze, a potem patrzysz, co zostało nieobsłużone. Ta reszta dostaje własny subsystem — fill albo delay — i procedurę powtarzasz. Dzięki temu każdy element ma jasno przypisane zadanie, zamiast być „dosypany na wszelki wypadek”.',
+      },
+      {
+        t: 'Model obiektu jest podstawą, a jego jakość decyduje o tym, czy predykcja cokolwiek znaczy. Potrzebujesz rzutu i przekroju z wymiarami, wysokości punktów rigowych z ich nośnością oraz realnego układu widowni. Płaszczyzny słuchania ustawia się na wysokości uszu: około 1,6–1,7 m dla stojących i około 1,2 m dla siedzących, a na trybunach osobno dla każdej sekcji. Brakujące dane uzupełnia się na wizji lokalnej: dalmierz, inklinometr, zdjęcia.',
+      },
+      {
+        t: 'Pamiętaj, czego programy producentów nie liczą. Pokazują przede wszystkim dźwięk bezpośredni — to, gdzie trafia energia ze skrzyń. Nie pokazują pogłosu hali ani większości odbić. W suchej hali przewidywanie będzie bliskie rzeczywistości, w pogłosowej rzeczywistość będzie gorsza niż mapa. Traktuj więc mapę jako rozkład energii, a nie obietnicę brzmienia.',
+      },
+      {
+        t: 'Największa pułapka to widok przekroju. Linie osi skrzyń wyglądają jak cienkie laserowe promienie, więc łatwo uwierzyć, że da się „przeskoczyć” czoło balkonu albo wąską przeszkodę, prowadząc oś nad nią i pod nią. W rzeczywistości między osiami też jest energia, a skrzynia to nie działko laserowe, tylko wachlarz. Widok trójwymiarowy pokazuje to uczciwie: przeskoczony balkon w 2D bywa oświetlony w 3D, a przy okazji powstaje zimne miejsce gdzieś z boku widowni.',
+      },
+      {
+        t: 'Dodatkowo, gdy tablica świeci na powierzchnię nie pod kątem prostym, jej pokrycie wygina się w łuk — raz w „uśmiech”, raz w „grymas”. Dlatego kształt, który w przekroju wygląda równo, na płaskiej widowni potrafi zostawić cichszy pas przy krawędziach. Jeśli świadomie planujesz dziurę w pokryciu, musisz wiedzieć dokładnie, gdzie ona wyląduje — a to widać dopiero w modelu przestrzennym.',
+      },
+      {
+        t: 'Projekt kończy się weryfikacją na obiekcie i dokumentacją. Po podwieszeniu sprawdzasz dalmierzem i inklinometrem, czy wysokości i kąty zgadzają się z projektem — kilka stopni różnicy potrafi przesunąć pokrycie o kilka rzędów. Pliki projektu wersjonujesz i opisujesz, bo w dniu montażu wszyscy muszą pracować na tej samej wersji: rigger, technik i Ty.',
+      },
+    ],
+  },
+
+  cele: {
+    goals: ['Określić mierzalne cele przed projektem', 'Rozumieć, ile zmienności jest pożądane'],
+    steps: [
+      {
+        t: 'Celem systemu nie jest, żeby brzmiał identycznie na każdym miejscu — to niemożliwe bez rozdania publiczności słuchawek. Celem jest, żeby decyzje realizatora przekładały się na wszystkie miejsca: jeśli podbije wokal o 2 dB, to każdy ma usłyszeć wokal głośniej, a nie tylko środek parteru. Dobra analogia to ustawienie kolorów w telewizorze: reżyser obrazu podejmuje decyzje, ale widz zobaczy je poprawnie tylko wtedy, gdy odbiornik ich nie zniekształca.',
+      },
+      {
+        t: 'Postęp w tej pracy opisują dwie mierzalne wielkości. Zmienność poziomu mówi, o ile głośniej jest w jednym miejscu niż w drugim — potocznie „o ile głośniej jest z przodu”. Zmienność widmowa mówi, jak bardzo zmienia się barwa między miejscami. Obie widać w analizatorze i obie słychać uchem, więc można o nich rozmawiać konkretnie, zamiast powtarzać, że „na balkonie jakoś inaczej gra”.',
+      },
+      {
+        t: 'Punktem wyjścia jest arytmetyka odległości. Jeśli najbliższe miejsca są 8 metrów od systemu, a najdalsze 80, to sam dystans daje 20 dB różnicy. Jeżeli chcesz zejść do 6 dB, wiesz, że projekt musi nadrobić 14 dB — kątami, krzywizną, dodatkowymi subsystemami. Ta jedna liczba, policzona na samym początku, mówi, jak trudne będzie zadanie i ile sprzętu naprawdę potrzebujesz.',
+      },
+      {
+        t: 'Ale uwaga: zerowa zmienność nie jest celem. Ludzie wybierają sobie miejsce także ze względu na głośność — pod sceną chcą wrażenia fizycznego, na tyłach spokojniejszego odbioru. Mózg ocenia odległość źródła po trzech wskazówkach: poziomie, proporcji dźwięku bezpośredniego do pogłosu i ubytku wysokich częstotliwości. Jeśli wyzerujesz wszystkie trzy, ostatni rząd usłyszy scenę tuż przy uchu, choć widzi ją dwieście metrów dalej — i to jest nieprzyjemne. Dlatego ubytek góry pasma na dużych dystansach kompensuje się częściowo, a nie do zera.',
+      },
+      {
+        t: 'Druga strona jednorodności to kształt pokrycia w funkcji częstotliwości. Pojedyncza skrzynia świeci wąsko w górze pasma i szeroko w dole, więc idąc w bok, tracisz najpierw wysokie — barwa zmienia się z pozycją. Żeby system brzmiał podobnie wszędzie, trzeba albo poszerzyć pokrycie w górze pasma, albo zwęzić je w dole, a w praktyce robi się jedno i drugie: kierunkowością elementów i długością tablicy.',
+      },
+      {
+        t: 'Na koniec zapisz cele liczbowo, zanim otworzysz program do predykcji: docelowy poziom na stanowisku realizatora z zapasem na szczyty, dopuszczalną zmienność poziomu na widowni, wymaganą zrozumiałość mowy, ograniczenia hałasu na granicy terenu. Bez tego projekt jest kwestią gustu i nie da się go obronić ani przed sobą, ani przed klientem.',
+      },
+    ],
+  },
+
+  fills: {
+    goals: ['Dobierać pozycje fillów pod stabilny czas', 'Traktować fille jako przedłużenie systemu głównego'],
+    steps: [
+      {
+        t: 'Fill przejmuje widownię tam, gdzie system główny się kończy. To nie jest „dodatkowy głośnik na wszelki wypadek”, tylko element z przypisanym rewirem: pierwsze rzędy dla front fillu, sektory boczne dla out fillu, miejsca pod balkonem dla under-balcony. Jego zadaniem jest przywrócić w swoim obszarze ten sam poziom i tę samą barwę, jaką system główny zapewnia w swoim.',
+        viz: 'strefy-odpowiedzialnosci',
+      },
+      {
+        t: 'Najważniejsze kryterium przy wyborze pozycji to stabilność relacji czasowej. Chodzi o to, żeby idąc przez strefę styku, różnica czasu między fillem a systemem głównym zmieniała się jak najwolniej. Wtedy jedna decyzja o opóźnieniu obsłuży cały obszar, a nie jedno krzesło. Jeśli ta różnica zmienia się szybko, dostajesz filtr grzebieniowy wędrujący po widowni i żadne ustawienie nie będzie dobre wszędzie.',
+      },
+      {
+        t: 'Klasyczny zły przykład to fill zawieszony na tylnej ścianie, grający ludziom w plecy. Idąc w głąb sali, oddalasz się od systemu głównego i jednocześnie zbliżasz do fillu — różnica czasu zmienia się wtedy najszybciej, jak to możliwe. Znacznie lepiej powiesić fill z przodu strefy, na czole balkonu, celując w tył: wtedy oddalasz się od obu źródeł naraz i różnica rośnie powoli.',
+        viz: 'fill-geometria',
+      },
+      {
+        t: 'Pomocne jest myślenie o fillach jak o przedłużeniu systemu głównego — w bok albo promieniście. Boczne tablice w arenie rozszerzają pokrycie w łuku, a szereg front fillów przedłuża je w linii wzdłuż sceny. Przy takim ustawieniu przejścia są naturalne, bo geometria obu systemów jest spójna, a nie przypadkowa.',
+      },
+      {
+        t: 'Front fill ma jeszcze jedno zadanie poza poziomem: ratuje obraz dźwiękowy. W pierwszych rzędach tablica główna jest wysoko nad głowami, więc bez fillu dźwięk zdaje się dobiegać z góry. Kilka małych skrzyń na krawędzi sceny sprawia, że pierwszy dociera dźwięk „z poziomu sceny” i lokalizacja wraca tam, gdzie stoi wokalista. Rozstaw dobiera się tak, by krawędzie pokrycia sąsiadów spotykały się mniej więcej na linii pierwszego rzędu.',
+      },
+      {
+        t: 'Wieża delay to ten sam pomysł w większej skali: dokłada poziom i świeżą energię bezpośrednią tam, gdzie system główny jest już daleko, cichy i pozbawiony góry pasma. Poziom fillu i delaya zwykle różni się o kilka decybeli od systemu głównego — front fille bywają ciut głośniejsze, wieże delay ciut cichsze — ale punktem wyjścia zawsze jest jednorodność, a nie „ile się da”.',
+      },
+    ],
+  },
+
+  rigging: {
+    goals: ['Dobierać kąty i wysokość podwieszenia', 'Rozumieć konsekwencje mechaniczne swoich decyzji'],
+    steps: [
+      {
+        t: 'Kąty między skrzyniami ustawia się tak, żeby osie kolejnych elementów trafiały w widownię w mniej więcej równych odstępach, od ostatniego rzędu do pierwszego. Taki rozkład sam z siebie wyrównuje energię w górze pasma i zmniejsza późniejszą potrzebę korekcji strefowej. W praktyce oznacza to małe kąty u góry tablicy i coraz większe w dół.',
+        viz: 'celowanie-tablicy',
+      },
+      {
+        t: 'Unikaj dużych skoków między sąsiednimi kątami. Przejście z jednego stopnia od razu na pięć tworzy zaburzenie w górze pasma — energia sąsiednich skrzyń przestaje się gładko łączyć i pojawia się nierówność w pokryciu. Lepiej wstawić stopień pośredni i rozłożyć zmianę łagodnie, nawet jeśli geometria widowni kusi, żeby „przeskoczyć”.',
+      },
+      {
+        t: 'Górne skrzynie muszą przestrzelić ostatni rząd. Jeśli wycelujesz najwyższą skrzynię dokładnie w najdalsze miejsce, to miejsce wyląduje na samej krawędzi wiązki, gdzie góra pasma już opada. Praktyczna reguła mówi o mniej więcej dwóch skrzyniach zapasu ponad ostatni rząd. Test w terenie jest prosty: jeśli z ostatniego rzędu patrzysz prosto w grill górnej skrzyni albo, co gorsza, w ramę rigową, część widowni nie dostaje pełnego pasma.',
+      },
+      {
+        t: 'Wysokość podwieszenia to kompromis. Wyżej oznacza mniejszą różnicę odległości między pierwszym a ostatnim rzędem, większą jednorodność i więcej miejsca na sensowną progresję kątów. Niżej oznacza lepszy obraz dźwiękowy związany ze sceną, bo źródło jest bliżej wysokości artysty. Zbyt nisko zaś tablica ma tak mały kąt pionowy do pokrycia, że wszystkie kąty schodzą do zera i przestajesz mieć narzędzie do wyrównywania poziomu.',
+      },
+      {
+        t: 'Wysokość ma też konsekwencje mechaniczne, o których łatwo zapomnieć przy komputerze. Im wyżej wisi tablica, tym mocniej musi być pochylona w dół, a pochylenie przesuwa środek ciężkości do tyłu. Gdy środek ciężkości wyjdzie poza ramę, potrzebny jest punkt odciągający. Niższe podwieszenie oznacza więcej pochylenia ku górze, co przesuwa środek ciężkości do przodu i pozwala uzyskać większą krzywiznę na dole bez dodatkowego punktu. Rozkład obciążeń zawsze sprawdzasz w programie producenta, a decyzję o wykonalności podejmuje rigger.',
+      },
+      {
+        t: 'Ostatnia rzecz to myślenie o całej przestrzeni, nie tylko o przedzie. Tablica promieniuje również do tyłu, zwłaszcza w dolnej średnicy. Podwieszona wysoko i pochylona w dół kieruje tę energię ponad scenę, a zawieszona nisko i płasko wysyła ją wprost na scenę i tylną ścianę. To, co wychodzi bokiem i tyłem systemu, bywa równie ważne jak to, co leci do publiczności — decyduje o czystości odsłuchu na scenie i o tym, co wróci z sali jako echo.',
+      },
+    ],
+  },
+
   strategia: {
     goals: ['Mieć gotowy schemat myślenia zamiast wyuczonej listy kroków', 'Wiedzieć, gdzie postawić mikrofon i po co'],
     steps: [
@@ -350,51 +449,6 @@ export const LESSONS = {
       'Przy 48 kHz jedna próbka to ok. 20,8 µs, przy 96 kHz — 10,4 µs. Aliasing powstaje, gdy sygnał zawiera składowe powyżej połowy fs — zapobiegają mu filtry antyaliasingowe w konwerterach. Rozdzielczość opóźnienia w procesorach jest zwykle wystarczająca do wyrównania na poziomie ułamka ms.',
       'Procesory systemów liniowych oferują kompensację absorpcji powietrza (podbicie HF dla elementów grających daleko) i korekcje strefowe (array EQ). Ich ustawienia najczęściej przychodzą z software predykcji — trzeba wiedzieć, co zostało policzone, zanim zacznie się korygować „ręcznie”.',
       'Grupy pozwalają zmieniać parametry wielu kanałów jednocześnie, snapshoty — wrócić do znanego stanu. Zanim zaczniesz strojenie, zapisz stan wyjściowy. Po strojeniu zapisz stan końcowy i opisz zmiany — to Twoja dokumentacja i zabezpieczenie.',
-    ],
-  },
-
-  workflow: {
-    goals: ['Budować wiarygodny model sali', 'Znać ograniczenia software predykcji'],
-    steps: [
-      'Najlepsze źródła to rysunki CAD sali z rzutem i przekrojem, lista punktów rigu z nośnościami i aktualny układ widowni. Jeśli masz tylko PDF — skaluj wg znanych wymiarów. Brak danych uzupełnij site survey: dalmierz laserowy, inklinometr, zdjęcia.',
-      'Płaszczyzny słuchania ustawia się na wysokości uszu: dla stojących ok. 1,6–1,7 m, dla siedzących ok. 1,1–1,2 m nad podłogą lub stopniem. Na trybunach każda sekcja powinna mieć własną płaszczyznę odpowiadającą nachyleniu.',
-      'Soundvision, ArrayCalc, MAPP 3D i EASE Focus liczą przede wszystkim dźwięk bezpośredni — pokazują, gdzie trafia energia z głośników, ale nie pogłos sali. W salach o dużym pogłosie należy to uwzględnić, choćby jakościowo.',
-      'Do analizy akustycznej (pogłos, STI w salach, odbicia) potrzebne są narzędzia typu EASE z modelem materiałów i ray tracingiem. W produkcji koncertowej zwykle wystarczy predykcja bezpośrednia plus wiedza o sali; w instalacjach — pełna symulacja.',
-      'Model powinien być tak prosty, jak to możliwe, ale nie prostszy. Kluczowe są: obszary publiczności, wysokości, pozycje głośników i przeszkody. Szczegóły architektoniczne mają znaczenie, gdy wpływają na zasłanianie lub gdy kierujesz energię w ich pobliże.',
-      'Po montażu zweryfikuj wysokości i kąty (dalmierz, inklinometr) względem predykcji, a po strojeniu porównaj pomiary w kilku punktach z mapą. Rozbieżności to najlepsza lekcja na następny projekt.',
-    ],
-  },
-  cele: {
-    goals: ['Formułować mierzalne cele projektu', 'Oceniać mapy predykcji w pasmach'],
-    steps: [
-      'Cel jednorodności poziomu to np. ±3 dB w strefie publiczności w pasmie 1–4 kHz. Bez takiego celu optymalizacja kątów jest subiektywna. Wyznacz osobne cele dla różnych stref (parter, balkon), jeśli mają inną funkcję.',
-      'Nawet przy równym poziomie szerokopasmowym widmo może się zmieniać z pozycją (np. mniej HF daleko, więcej LF blisko subów). Oceniaj mapy w pasmach oktawowych i dąż do podobnego kształtu widma w całej strefie.',
-      'Docelowy SPL na FOH wynika z gatunku i riderów, ale system powinien mieć dodatkowy zapas (kilka–kilkanaście dB) względem średniego poziomu programu, żeby szczyty nie trafiały w limitery.',
-      'Energia skierowana na ściany, sufit i puste przestrzenie wraca jako odbicia i pogłos, pogarszając zrozumiałość i wywołując echa. Kierunkowość systemu i precyzyjne kąty to podstawowa „akustyka”, jaką kontroluje system engineer.',
-      'STI (0–1) opisuje, jak dobrze zachowana jest modulacja sygnału mowy po przejściu przez system i salę. W systemach mowy i ewakuacyjnych jako minimalne wymaganie przyjmuje się zwykle STI ok. 0,50, a wartości powyżej 0,6 oznaczają dobrą zrozumiałość.',
-      'Mapa szerokopasmowa uśrednia zjawiska z różnych pasm i może ukrywać problemy. Sprawdzaj 125 Hz (kontrola LF), 1 kHz (średnica), 4–8 kHz (zasięg i jednorodność HF).',
-    ],
-  },
-  fills: {
-    goals: ['Projektować subsystemy uzupełniające', 'Utrzymać spójny obraz sceny'],
-    steps: [
-      'L/R to standard koncertowy, ale jednorodność miksu jest dobra tylko w centrum. Mono (np. centralny klaster) daje spójny odbiór wszędzie. LCR pozwala oddzielić wokal do centrum, zachowując szerokość instrumentów.',
-      'Front fill pokrywa pierwsze rzędy poniżej pokrycia tablic głównych. Kolumny rozstawia się tak, by ich krawędzie pokrycia spotykały się na linii pierwszego rzędu (lub nieco za nią). Mniejsze, gęściej rozstawione kolumny dają lepszy obraz niż kilka dużych.',
-      'Out fill i side hang pokrywają boczne sektory, do których główna tablica nie sięga kątowo. Wymagają osobnego strojenia i wyrównania z systemem głównym w strefie przejścia.',
-      'Delay jest uzasadniony, gdy daleko od sceny poziom spada zbyt mocno, HF zanika, a stosunek dźwięku bezpośredniego do pogłosu i hałasu tła pogarsza zrozumiałość. Delay powinien grać tylko na swój obszar, z możliwie małym nakładaniem z przodu.',
-      'Przestrzenny punkt przejścia to miejsce, gdzie poziomy dwóch subsystemów są równe. Tam ustala się relację czasową. Przed nim dominuje jeden system, za nim drugi — celem jest wąska strefa przejścia i dobrze wyrównany czas.',
-      'Utrzymanie obrazu na scenie wymaga, by pierwsze docierało źródło „od sceny” lub by różnica była na tyle mała, że efekt pierwszeństwa nadal działa. Front fille i delay ustawia się tak, by wzmacniały poziom, a nie „przyciągały” lokalizację.',
-    ],
-  },
-  rigging: {
-    goals: ['Rozumieć obciążenia w systemach podwieszanych', 'Współpracować z riggerami na wspólnym języku'],
-    steps: [
-      'WLL to maksymalne obciążenie, jakie element może przenosić w normalnej pracy. Obciążenie niszczące jest wielokrotnie wyższe — stosunek to współczynnik bezpieczeństwa. Nigdy nie planuj pracy powyżej WLL, a w ocenie uwzględniaj obciążenia dynamiczne.',
-      'Masa podwieszenia to nie tylko głośniki: rama, łączniki, kable głośnikowe i sygnałowe, wyciągarki (jeśli podwieszone), dodatkowe elementy (np. suby, laser). Software producentów liczy rozkład sił w punktach — korzystaj z tego.',
-      'W bridle siła w każdej nodze rośnie wraz z kątem między nimi. Przy 120° każda noga przenosi obciążenie równe całemu ciężarowi. Dlatego szerokie bridle wymagają przemyślenia, nie tylko sprawdzenia masy.',
-      'Wyciągarki D8 służą do podnoszenia, a ładunek nad ludźmi wymaga dodatkowego zabezpieczenia (np. stalówki). D8+ spełniają wyższe wymagania (m.in. podwójny hamulec) i mogą w określonych warunkach utrzymywać ładunek nad ludźmi. Zawsze obowiązują lokalne przepisy i procedury obiektu.',
-      'Pullback (odciągnięcie tyłu tablicy) i duże kąty site przesuwają środek ciężkości i obciążenia między punktami. Software producenta pokazuje dopuszczalne konfiguracje i ostrzeżenia — nie ignoruj ich.',
-      'W plenerze obciążenie wiatrem i dopuszczalne prędkości wiatru dla konstrukcji muszą być znane i monitorowane. Procedury zakładają progi, przy których ogranicza się ekspozycję lub opuszcza systemy.',
     ],
   },
 
