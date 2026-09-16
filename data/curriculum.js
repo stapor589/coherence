@@ -27,7 +27,7 @@ export const CHAPTERS = [
           { q: 'Ciśnienie akustyczne najgłośniejszego koncertu w porównaniu z ciśnieniem atmosferycznym jest:', a: ['Porównywalne', 'Około tysiąc razy mniejsze', 'Wielokrotnie większe', 'Dziesiątki tysięcy razy mniejsze'], c: 3, e: 'Nawet 130 dB SPL to ok. 63 Pa wobec ok. 101 000 Pa ciśnienia atmosferycznego.' },
         ],
         tasks: [
-          'Policz czas przelotu dźwięku do stanowiska realizatora w obiekcie, w którym ostatnio pracowałeś. Porównaj wynik z wartością opóźnienia, jaką widziałeś w analizatorze.',
+          'Policz czas dotarcia dźwięku do stanowiska realizatora w obiekcie, w którym ostatnio pracowałeś. Porównaj wynik z wartością opóźnienia, jaką widziałeś w analizatorze.',
           'Zmierz temperaturę na scenie i na widowni podczas próby oraz podczas koncertu. Zanotuj różnicę i przelicz ją na zmianę prędkości dźwięku.',
           'Stań za pracującą kolumną i opisz w notatkach, co słyszysz, a czego nie — to samo zrobisz później w lekcji o kierunkowości.',
         ],
@@ -377,7 +377,7 @@ export const CHAPTERS = [
 
   {
     id: 'ch3', short: 'Kierunkowość', title: 'Kierunkowość i konfiguracje źródeł', color: '#b58cff', icon: 'speaker',
-    subtitle: 'Od pojedynczej skrzyni po tablicę i układy subwooferów — osiem lekcji o tym, dokąd trafia energia.',
+    subtitle: 'Od pojedynczej skrzyni po liniówkę i układy subwooferów — osiem lekcji o tym, dokąd trafia energia.',
     topics: [
       {
         id: 'kierunkowosc', title: 'Kierunkowość: dokąd trafia energia', level: 'podstawy',
@@ -386,9 +386,9 @@ export const CHAPTERS = [
           'Kąt pokrycia to umowna granica −6 dB, a nie ostra ściana',
           'Ten sam głośnik jest wąski w górze pasma i szeroki w basie',
           'Żeby kierować falę, źródło musi być duże względem długości fali',
+          'Q i DI — liczby opisujące, jak bardzo źródło skupia energię',
           'Tuby i falowody działają tylko powyżej swojej granicy rozmiaru',
-          'Promieniowanie do tyłu i na boki — energia, o której się zapomina',
-          'Dlaczego „wycelowanie skrzyni” rozwiązuje tylko część problemu',
+          'Dane katalogowe kontra pełna charakterystyka kierunkowości',
         ],
         quiz: [
           { q: 'Kąt pokrycia głośnika definiuje się zwykle w punktach:', a: ['−3 dB', '−6 dB', '−10 dB', '−20 dB'], c: 1, e: 'To umowa branżowa: krawędź pokrycia leży tam, gdzie poziom spadł o 6 dB względem osi.' },
@@ -437,17 +437,17 @@ export const CHAPTERS = [
         concepts: [
           'Każde podwojenie odległości to −6 dB dla źródła punktowego',
           'Zakres odległości: stosunek najdalszego miejsca do najbliższego',
-          'Przeliczanie zakresu odległości na decybele różnicy',
-          'Dlaczego mocy nie da się użyć do wyrównania tej różnicy',
-          'Tłumienie w powietrzu — dodatkowy ubytek, głównie w górze pasma',
-          'Pole bliskie i dalekie: kiedy reguła −6 dB przestaje obowiązywać',
+          'Mocą nie wyrównasz tej różnicy — podnosi wszystko naraz',
+          'Tłumienie w powietrzu: dodatkowy ubytek, głównie w górze pasma',
+          'Pole bliskie liniówki: spadek −3 dB zamiast −6 dB na podwojenie',
+          'Ruchoma granica pola bliskiego i jej wpływ na bilans tonalny',
         ],
         quiz: [
           { q: 'Ze 4 m do 32 m poziom źródła punktowego spada o:', a: ['−9 dB', '−12 dB', '−18 dB', '−24 dB'], c: 2, e: 'Trzy podwojenia odległości, każde po −6 dB.' },
           { q: 'Pierwszy rząd 6 m, ostatni 60 m. Różnica z samej geometrii to:', a: ['10 dB', '20 dB', '30 dB', '60 dB'], c: 1, e: '20·log(10) = 20 dB.' },
           { q: 'Podniesienie poziomu systemu o 6 dB zmienia różnicę między pierwszym a ostatnim rzędem:', a: ['Zmniejsza ją o 6 dB', 'Nie zmienia jej wcale', 'Zwiększa ją', 'Zależy od pogody'], c: 1, e: 'Poziom rośnie wszędzie tak samo — różnica pozostaje.' },
           { q: 'Tłumienie w powietrzu najmocniej dotyka:', a: ['Basu', 'Dolnej średnicy', 'Górnych oktaw', 'Całego pasma równo'], c: 2, e: 'Rośnie z częstotliwością i zależy od wilgotności.' },
-          { q: 'W polu bliskim długiej tablicy spadek poziomu na podwojenie odległości wynosi około:', a: ['−3 dB', '−6 dB', '−9 dB', '−12 dB'], c: 0, e: 'Fala zachowuje się bardziej cylindrycznie niż kulisto.' },
+          { q: 'W polu bliskim długiej liniówki spadek poziomu na podwojenie odległości wynosi około:', a: ['−3 dB', '−6 dB', '−9 dB', '−12 dB'], c: 0, e: 'Fala zachowuje się bardziej cylindrycznie niż kulisto.' },
           { q: 'Najskuteczniejszy sposób zmniejszenia różnicy poziomów front-tył to:', a: ['Większa moc', 'Rozkład energii: kąty, krzywizna, dodatkowe subsystemy', 'Korekcja tonalna', 'Wyższy poziom na wejściu'], c: 1, e: 'Różnicę poziomów pokonuje się geometrią, nie mocą.' },
         ],
         tasks: [
@@ -485,26 +485,26 @@ export const CHAPTERS = [
       },
       {
         id: 'linearray', title: 'Line array: dwa mechanizmy naraz', level: 'średni',
-        summary: 'W górze pasma tablica celuje poziomem, w basie kształtuje wiązkę czasem. Zrozumienie tej dwoistości to klucz do całego modułu.',
+        summary: 'W górze pasma liniówka celuje poziomem, w basie kształtuje wiązkę czasem. Zrozumienie tej dwoistości to klucz do całego modułu.',
         concepts: [
           'W górze pasma każda skrzynia obsługuje swój wycinek widowni',
           'W basie wszystkie skrzynie grają wszędzie i sumują się ze sobą',
           'Szereg źródeł zawęża wiązkę, bo z boków dotarcia rozjeżdżają się w czasie',
-          'O kierunkowości w basie decyduje długość tablicy, nie liczba skrzyń',
-          'Dlaczego fabryczna tablica nie „grzebieniuje”, a domowy stack tak',
-          'Konsekwencje dla korekcji: co można poprawić w pojedynczych skrzyniach',
+          'Małe kąty u góry, duże na dole — rozkład mocy w przestrzeni',
+          'W górze pasma słyszysz kilka skrzyń, w basie całą liniówkę',
+          'Dlaczego fabryczna liniówka nie „grzebieniuje”, a domowy stack tak',
         ],
         quiz: [
-          { q: 'W górze pasma słuchacz na widowni słyszy:', a: ['Wszystkie skrzynie tablicy', 'Kilka skrzyń, których wiązki go obejmują', 'Tylko najwyższą skrzynię', 'Tylko subwoofery'], c: 1, e: 'Wąskie wiązki pionowe dzielą widownię między elementy.' },
-          { q: 'W basie tablica zachowuje się tak, że:', a: ['Każda skrzynia obsługuje swój obszar', 'Wszystkie skrzynie grają wszędzie i sumują się', 'Bas nie dociera na widownię', 'Działa tylko dolna skrzynia'], c: 1, e: 'Elementy są tam dookólne, więc nakładają się w stu procentach.' },
-          { q: 'Dołożenie skrzyń przy zachowaniu tej samej długości tablicy daje:', a: ['Węższą wiązkę w basie', 'Więcej poziomu przy tym samym kącie', 'Szerszą wiązkę', 'Brak zmian'], c: 1, e: 'O kącie decyduje długość szeregu, nie liczba elementów.' },
-          { q: 'Nadmiar basu w pierwszych rzędach naprawisz:', a: ['Ściszając bas w dolnych skrzyniach', 'Raczej nie korekcją — bas dociera tam z całej tablicy', 'Podbijając górę pasma', 'Zmieniając preset'], c: 1, e: 'Dlatego problemy w basie rozwiązuje się układem, a nie korektorem pojedynczych skrzyń.' },
-          { q: 'Nadmiar góry pasma w pierwszych rzędach można natomiast:', a: ['Skorygować w dolnych skrzyniach', 'Naprawić tylko przesuwając tablicę', 'Zignorować', 'Usunąć zmieniając zwrotnicę'], c: 0, e: 'W górze pasma dolne skrzynie obsługują właśnie ten obszar.' },
-          { q: 'Domowa „tablica” ze zwykłych szerokopasmowych skrzyń brzmi źle, bo:', a: ['Ma za mało mocy', 'Szerokie wiązki pozwalają zebrać dużą różnicę czasu z kilku skrzyń naraz', 'Nie da się jej podwiesić', 'Ma złe presety'], c: 1, e: 'Elementy tablicy mają wąskie wiązki właśnie po to, żeby tego uniknąć.' },
+          { q: 'W górze pasma słuchacz na widowni słyszy:', a: ['Wszystkie skrzynie liniówki', 'Kilka skrzyń, których wiązki go obejmują', 'Tylko najwyższą skrzynię', 'Tylko subwoofery'], c: 1, e: 'Wąskie wiązki pionowe dzielą widownię między elementy.' },
+          { q: 'W basie liniówka zachowuje się tak, że:', a: ['Każda skrzynia obsługuje swój obszar', 'Wszystkie skrzynie grają wszędzie i sumują się', 'Bas nie dociera na widownię', 'Działa tylko dolna skrzynia'], c: 1, e: 'Elementy są tam dookólne, więc nakładają się w stu procentach.' },
+          { q: 'Dołożenie skrzyń przy zachowaniu tej samej długości liniówki daje:', a: ['Węższą wiązkę w basie', 'Więcej poziomu przy tym samym kącie', 'Szerszą wiązkę', 'Brak zmian'], c: 1, e: 'O kącie decyduje długość szeregu, nie liczba elementów.' },
+          { q: 'Nadmiar basu w pierwszych rzędach naprawisz:', a: ['Ściszając bas w dolnych skrzyniach', 'Raczej nie korekcją — bas dociera tam z całej liniówki', 'Podbijając górę pasma', 'Zmieniając preset'], c: 1, e: 'Dlatego problemy w basie rozwiązuje się układem, a nie korektorem pojedynczych skrzyń.' },
+          { q: 'Nadmiar góry pasma w pierwszych rzędach można natomiast:', a: ['Skorygować w dolnych skrzyniach', 'Naprawić tylko przesuwając liniówkę', 'Zignorować', 'Usunąć zmieniając zwrotnicę'], c: 0, e: 'W górze pasma dolne skrzynie obsługują właśnie ten obszar.' },
+          { q: 'Domowa „liniówka” ze zwykłych szerokopasmowych skrzyń brzmi źle, bo:', a: ['Ma za mało mocy', 'Szerokie wiązki pozwalają zebrać dużą różnicę czasu z kilku skrzyń naraz', 'Nie da się jej podwiesić', 'Ma złe presety'], c: 1, e: 'Elementy liniówki mają wąskie wiązki właśnie po to, żeby tego uniknąć.' },
         ],
         tasks: [
-          'W programie predykcyjnym porównaj mapy pokrycia tej samej tablicy przy 125 Hz i 4 kHz. Opisz różnicę własnymi słowami.',
-          'Zmierz odpowiedź tablicy w pierwszym i ostatnim rzędzie. Zanotuj, jak zmienia się bilans basu do góry pasma.',
+          'W programie predykcyjnym porównaj mapy pokrycia tej samej liniówki przy 125 Hz i 4 kHz. Opisz różnicę własnymi słowami.',
+          'Zmierz odpowiedź liniówki w pierwszym i ostatnim rzędzie. Zanotuj, jak zmienia się bilans basu do góry pasma.',
           'Sprawdź w dokumentacji swojego systemu, jaką wiązkę pionową ma pojedyncza skrzynia w górze pasma.',
         ],
         res: ['w-linearray', 'b-mccarthy', 't-arraycalc'],
@@ -513,25 +513,25 @@ export const CHAPTERS = [
         id: 'krzywizna', title: 'Długość, krzywizna i pole bliskie', level: 'zaawansowany',
         summary: 'Ile skrzyń, jak długo, z jaką krzywizną. Trzy decyzje, które przesądzają o jednorodności zanim system w ogóle zagra.',
         concepts: [
-          'Długość tablicy jako główny parametr kontroli w dole pasma',
+          'Długość liniówki jako główny parametr kontroli w dole pasma',
           'Pole bliskie i dalekie: spadek −3 dB kontra −6 dB na podwojenie',
-          'Granica pola bliskiego rośnie z częstotliwością i długością tablicy',
-          'Krzywizna progresywna kontra stały łuk',
-          'Rozkład kątów a rozkład poziomu front-tył',
+          'Krzywizna progresywna: ciasno u góry, coraz szerzej w dół',
+          'Stały łuk i widownie, na których ma sens',
+          'Test kątów: gdzie trafiają osie kolejnych skrzyń',
           'Ile skrzyń naprawdę potrzeba: kiedy „mało rigu na gig”',
         ],
         quiz: [
           { q: 'Ta sama liczba skrzyń rozciągnięta na dłuższym odcinku daje wiązkę:', a: ['Szerszą', 'Węższą', 'Niezmienioną', 'Zależy od mocy'], c: 1, e: 'Dłuższy szereg to większe różnice czasu na bokach, czyli silniejsze zawężenie.' },
-          { q: 'W polu bliskim tablicy poziom spada na podwojenie odległości o około:', a: ['−3 dB', '−6 dB', '−9 dB', '−12 dB'], c: 0, e: 'Dlatego długa tablica „niesie” dalej niż pojedyncze źródło.' },
-          { q: 'Granica pola bliskiego dla wyższych częstotliwości leży:', a: ['Bliżej niż dla niskich', 'Dalej niż dla niskich', 'W tym samym miejscu', 'Nie istnieje'], c: 1, e: 'Jest proporcjonalna do częstotliwości i kwadratu długości tablicy.' },
+          { q: 'W polu bliskim liniówki poziom spada na podwojenie odległości o około:', a: ['−3 dB', '−6 dB', '−9 dB', '−12 dB'], c: 0, e: 'Dlatego długa liniówka „niesie” dalej niż pojedyncze źródło.' },
+          { q: 'Granica pola bliskiego dla wyższych częstotliwości leży:', a: ['Bliżej niż dla niskich', 'Dalej niż dla niskich', 'W tym samym miejscu', 'Nie istnieje'], c: 1, e: 'Jest proporcjonalna do częstotliwości i kwadratu długości liniówki.' },
           { q: 'Krzywizna progresywna oznacza kąty:', a: ['Równe na całej długości', 'Małe u góry i rosnące ku dołowi', 'Duże u góry i malejące', 'Losowe'], c: 1, e: 'Odpowiada temu, jak zmienia się odległość do kolejnych rzędów.' },
-          { q: 'Tablica o stałym, dużym kącie między wszystkimi skrzyniami:', a: ['Najlepiej wyrównuje poziom front-tył', 'Rozprasza energię równomiernie kątowo, ale słabo rzuca na daleko', 'Jest zawsze najlepszym wyborem', 'Nie nadaje się do niczego'], c: 1, e: 'Stały łuk sprawdza się przy szerokich, płytkich widowniach.' },
+          { q: 'Liniówka o stałym, dużym kącie między wszystkimi skrzyniami:', a: ['Najlepiej wyrównuje poziom front-tył', 'Rozprasza energię równomiernie kątowo, ale słabo rzuca na daleko', 'Jest zawsze najlepszym wyborem', 'Nie nadaje się do niczego'], c: 1, e: 'Stały łuk sprawdza się przy szerokich, płytkich widowniach.' },
           { q: 'Zbyt mała liczba skrzyń przy dużym kącie pionowym do pokrycia skutkuje:', a: ['Lepszą jednorodnością', 'Dziurami w pokryciu lub nadmierną zmiennością poziomu', 'Mniejszym zużyciem mocy', 'Brakiem konsekwencji'], c: 1, e: 'To klasyczna sytuacja „za mało rigu na ten gig”.' },
         ],
         tasks: [
-          'Zaprojektuj tę samą salę dwiema tablicami: 8 i 12 skrzyń. Porównaj zmienność poziomu front-tył w predykcji.',
+          'Zaprojektuj tę samą salę dwiema liniówkami: 8 i 12 skrzyń. Porównaj zmienność poziomu front-tył w predykcji.',
           'Sprawdź, jak zmienia się mapa pokrycia, gdy zwiększysz kąty dolnych skrzyń o 2° każdy.',
-          'Oszacuj granicę pola bliskiego dla swojej typowej tablicy przy 125 Hz i 4 kHz. Porównaj z rozmiarem obiektu.',
+          'Oszacuj granicę pola bliskiego dla swojej typowej liniówki przy 125 Hz i 4 kHz. Porównaj z rozmiarem obiektu.',
         ],
         res: ['w-linearray', 'l-aes', 't-soundvision'],
       },
@@ -552,7 +552,7 @@ export const CHAPTERS = [
           { q: 'Rozstaw środków subów w szeregu dla 100 Hz nie powinien przekraczać około:', a: ['0,4 m', '1,7 m', '3,4 m', '6,8 m'], c: 1, e: 'To połowa długości fali dla 100 Hz.' },
           { q: 'Ustawienie subów w jednym ciągłym szeregu wzdłuż sceny:', a: ['Pogarsza pokrycie', 'Rozbija power alley i wyrównuje bas na widowni', 'Zwiększa energię na scenie', 'Nie ma wpływu'], c: 1, e: 'Znika wtedy wyraźna oś symetrii dwóch odległych źródeł.' },
           { q: 'Łuk elektroniczny polega na:', a: ['Fizycznym ustawieniu subów na łuku', 'Opóźnieniach imitujących ustawienie na łuku', 'Zmianie polaryzacji co drugiej skrzyni', 'Filtrowaniu pasma'], c: 1, e: 'Daje szersze pokrycie bez zmiany fizycznego ustawienia.' },
-          { q: 'Suby podwieszone w porównaniu z naziemnymi:', a: ['Zawsze grają głośniej', 'Dają lepszą jednorodność front-tył, ale tracą zysk od gruntu', 'Nie wymagają wyrównania z tablicą', 'Są kierunkowe z natury'], c: 1, e: 'To klasyczny kompromis przy dużych systemach.' },
+          { q: 'Suby podwieszone w porównaniu z naziemnymi:', a: ['Zawsze grają głośniej', 'Dają lepszą jednorodność front-tył, ale tracą zysk od gruntu', 'Nie wymagają wyrównania z liniówką', 'Są kierunkowe z natury'], c: 1, e: 'To klasyczny kompromis przy dużych systemach.' },
         ],
         tasks: [
           'Zasymuluj w predykcji dwa warianty: suby w dwóch stosach po bokach i w ciągłym szeregu. Porównaj mapy przy 63 Hz.',
@@ -567,13 +567,13 @@ export const CHAPTERS = [
         concepts: [
           'Po co ograniczać bas na scenie: czystość odsłuchu, mikrofony, sąsiedzi',
           'End-fire: sztafeta skrzyń, rozstaw około ćwierci długości fali',
+          'Ile to w metrach i milisekundach: przykład dla 63 Hz',
           'Gradient in-line: ten sam układ strojony od tyłu plus odwrócona polaryzacja',
-          'Stack gradientowy: jedna skrzynia odwrócona, mniejsza zajętość miejsca',
-          'Dlaczego odwrócenie skrzyni samo w sobie nic nie kieruje',
+          'Stack gradientowy i dlaczego samo odwrócenie skrzyni nic nie kieruje',
           'Weryfikacja pomiarem i rola fabrycznych presetów',
         ],
         quiz: [
-          { q: 'W układzie end-fire opóźniamy:', a: ['Skrzynię tylną', 'Skrzynię przednią o czas przelotu między nimi', 'Obie o tę samą wartość', 'Żadnej'], c: 1, e: 'Przednia czeka, aż dotrze do niej fala z tylnej.' },
+          { q: 'W układzie end-fire opóźniamy:', a: ['Skrzynię tylną', 'Skrzynię przednią o czas dotarcia fali z tylnej', 'Obie o tę samą wartość', 'Żadnej'], c: 1, e: 'Przednia czeka, aż dotrze do niej fala z tylnej.' },
           { q: 'Rozstaw skrzyń w układzie end-fire dobiera się jako około:', a: ['Pełną długość fali', 'Połowę długości fali', 'Ćwierć długości fali', 'Dowolny'], c: 2, e: 'Dla 63 Hz to mniej więcej 1,3–1,4 m.' },
           { q: 'Układ gradientowy stroi się:', a: ['Od przodu, jak end-fire', 'Od tyłu, dodając odwrócenie polaryzacji', 'Tylko poziomem', 'Bez pomiaru'], c: 1, e: 'Najpierw doprowadzasz fale do zgodności z tyłu, potem odwracasz polaryzację, by się wygasiły.' },
           { q: 'Odwrócenie skrzyni tyłem do publiczności samo w sobie:', a: ['Tworzy kierunkowość', 'Prawie nic nie zmienia — liczy się przesunięcie źródła w głąb', 'Podwaja poziom', 'Zmienia częstotliwość'], c: 1, e: 'Sub jest dookólny, więc kierunek obudowy nie ma większego znaczenia.' },
@@ -661,7 +661,7 @@ export const CHAPTERS = [
       },
       {
         id: 'rigging', title: 'Kąty, wysokość podwieszenia i rigging', level: 'średni',
-        summary: 'Krzywizna tablicy, trim i środek ciężkości to jedna decyzja widziana z trzech stron: akustycznej, obrazowej i mechanicznej.',
+        summary: 'Krzywizna liniówki, trim i środek ciężkości to jedna decyzja widziana z trzech stron: akustycznej, obrazowej i mechanicznej.',
         concepts: [
           'Osie kolejnych skrzyń mają trafiać w widownię w równych odstępach',
           'Bez dużych skoków między sąsiednimi kątami — łagodna progresja',
@@ -671,9 +671,9 @@ export const CHAPTERS = [
           'Promieniowanie do tyłu: co leci na scenę i w tylną ścianę',
         ],
         quiz: [
-          { q: 'Górną skrzynię tablicy celujesz dokładnie w ostatni rząd. Co się dzieje?', a: ['To optymalne ustawienie', 'Najdalsze miejsca lądują na krawędzi wiązki i tracą górę pasma', 'Ostatni rząd dostaje za dużo poziomu', 'Nic, kąt nie ma znaczenia'], c: 1, e: 'Dlatego stosuje się przestrzał rzędu dwóch skrzyń ponad ostatni rząd.' },
-          { q: 'Wyższe podwieszenie tablicy przy tej samej widowni:', a: ['Zwiększa różnicę poziomów front-tył', 'Zmniejsza różnicę poziomów i daje miejsce na progresję kątów', 'Nie wpływa na jednorodność', 'Zawsze poprawia obraz sceny'], c: 1, e: 'Kosztem jest gorsze powiązanie obrazu dźwiękowego ze sceną.' },
-          { q: 'Mocne pochylenie tablicy w dół przesuwa środek ciężkości:', a: ['Do przodu', 'Do tyłu, co może wymagać punktu odciągającego', 'W dół, bez znaczenia dla rigu', 'Nie zmienia go'], c: 1, e: 'Rozkład obciążeń zawsze sprawdza się w programie producenta, a decyzję podejmuje rigger.' },
+          { q: 'Górną skrzynię liniówki celujesz dokładnie w ostatni rząd. Co się dzieje?', a: ['To optymalne ustawienie', 'Najdalsze miejsca lądują na krawędzi wiązki i tracą górę pasma', 'Ostatni rząd dostaje za dużo poziomu', 'Nic, kąt nie ma znaczenia'], c: 1, e: 'Dlatego stosuje się przestrzał rzędu dwóch skrzyń ponad ostatni rząd.' },
+          { q: 'Wyższe podwieszenie liniówki przy tej samej widowni:', a: ['Zwiększa różnicę poziomów front-tył', 'Zmniejsza różnicę poziomów i daje miejsce na progresję kątów', 'Nie wpływa na jednorodność', 'Zawsze poprawia obraz sceny'], c: 1, e: 'Kosztem jest gorsze powiązanie obrazu dźwiękowego ze sceną.' },
+          { q: 'Mocne pochylenie liniówki w dół przesuwa środek ciężkości:', a: ['Do przodu', 'Do tyłu, co może wymagać punktu odciągającego', 'W dół, bez znaczenia dla rigu', 'Nie zmienia go'], c: 1, e: 'Rozkład obciążeń zawsze sprawdza się w programie producenta, a decyzję podejmuje rigger.' },
         ],
         tasks: [
           'Dla ostatniego projektu sprawdź w predykcji, gdzie trafiają osie kolejnych skrzyń. Popraw kąty tak, by odstępy między punktami trafienia były równe.',
@@ -714,7 +714,7 @@ export const CHAPTERS = [
         summary: 'Amplituda mówi „ile”, faza „kiedy”, koherencja „czy można temu wierzyć”. Bez czytania fazy nie ma wyrównania.',
         concepts: [
           'Pomiar to porównanie sygnału wysłanego z tym, co wrócił do mikrofonu',
-          'Kompensacja czasu przelotu — bez niej faza jest nieczytelna',
+          'Kompensacja czasu dotarcia — bez niej faza jest nieczytelna',
           'Trzy wykresy: amplituda mówi „ile”, faza „kiedy”, koherencja „czy wierzyć”',
           'Najpierw patrz na koherencję, potem na resztę',
           'Nachylenie fazy jako ukryty miernik czasu',
@@ -809,7 +809,7 @@ export const CHAPTERS = [
           'Zasada 1: każdy subsystem ma swój rewir — tam ustawiasz poziom i barwę',
           'Zasada 2: czas ustawiasz na szwie, gdzie oba systemy grają równie głośno',
           'Zasada 3: od największego rewiru w dół — main i suby jako pierwsze',
-          'Zasada 4: tablicę najpierw ujednolicasz, potem traktujesz jak jedno źródło',
+          'Zasada 4: liniówkę najpierw ujednolicasz, potem traktujesz jak jedno źródło',
           'Pozycja mikrofonu wynika z pytania; dane zbierasz, aż przestaną zmieniać decyzje',
         ],
         quiz: [
@@ -830,12 +830,12 @@ export const CHAPTERS = [
           'Najpierw znajdź miejsce, w którym oba systemy grają równie głośno',
           'Kryterium to zgodność fazy w pasmie przejścia, a nie pik odpowiedzi impulsowej',
           'Trzy narzędzia: opóźnienie, polaryzacja i filtr all-pass',
-          'Suby na ziemi, tablica w górze — idealne wyrównanie tylko wzdłuż jednej linii',
+          'Suby na ziemi, liniówka w górze — idealne wyrównanie tylko wzdłuż jednej linii',
           'Weryfikacja w kilku punktach; mikrofon przy podłodze tylko do czasu, nie do barwy',
         ],
         quiz: [
           { q: 'Wyrównanie sub–top powinno opierać się na:', a: ['Wyłącznie piku IR', 'Fazie w pasmie przejścia', 'Poziomie SPL na FOH', 'Wadze A'], c: 1, e: 'Pik IR jest zdominowany przez HF; w przejściu liczy się faza.' },
-          { q: 'Suby na ziemi, tablica podwieszona — idealne wyrównanie jest możliwe:', a: ['Wszędzie', 'Tylko wzdłuż linii o stałej różnicy dróg', 'Tylko przy scenie', 'Nigdzie'], c: 1, e: 'Poza tą linią różnica czasów rośnie.' },
+          { q: 'Suby na ziemi, liniówka podwieszona — idealne wyrównanie jest możliwe:', a: ['Wszędzie', 'Tylko wzdłuż linii o stałej różnicy dróg', 'Tylko przy scenie', 'Nigdzie'], c: 1, e: 'Poza tą linią różnica czasów rośnie.' },
           { q: 'Różnica dróg 1,07 m przy 80 Hz odpowiada przesunięciu fazy około:', a: ['22,5°', '45°', '90°', '180°'], c: 2, e: 'λ(80 Hz) ≈ 4,29 m; 1,07/4,29 ≈ 1/4 → 90°.' },
         ],
         tasks: [
@@ -870,9 +870,9 @@ export const CHAPTERS = [
           'Korektor działa wszędzie tak samo — koryguj tylko wspólne trendy',
           'Decyzje tonalne z kilku pomiarów, uśrednionych i wygładzonych',
           'Krzywa docelowa to Twoja decyzja, nie prawo fizyki',
-          'Cieniowanie góry pasma strefami tablicy i wygładzanie przejść',
+          'Cieniowanie góry pasma strefami liniówki i wygładzanie przejść',
           'Cieniowanie poziomem: działa na całe pasmo i kosztuje zapas w basie',
-          'Granica skuteczności cieniowania dolnych skrzyń („rozmycie” z góry tablicy)',
+          'Granica skuteczności cieniowania dolnych skrzyń („rozmycie” z góry liniówki)',
         ],
         quiz: [
           { q: 'Dlaczego nie „wypełnia się” wąskiego wycięcia interferencyjnego podbiciem EQ?', a: ['Bo EQ nie działa w tym pasmie', 'Bo wycięcie zależy od pozycji — podbicie tylko podniesie poziom gdzie indziej', 'Bo to zwiększa latencję', 'Można i warto'], c: 1, e: 'Interferencja to problem czasowy/przestrzenny, nie amplitudowy.' },
@@ -940,7 +940,7 @@ export const CHAPTERS = [
           'Objawy problemów z zegarem: trzaski i przerwy w całym systemie naraz',
           'Łącze cyfrowe punkt-punkt wymaga kabla o właściwej impedancji',
           'Konwersja przy różnych zegarach i częstotliwościach próbkowania',
-          'Latencja każdej gałęzi sumuje się z czasem przelotu — zmierz ją',
+          'Latencja każdej gałęzi sumuje się z czasem dotarcia dźwięku — zmierz ją',
         ],
         quiz: [
           { q: 'Impedancja łącza AES3 (zbalansowanego) to:', a: ['75 Ω', '110 Ω', '600 Ω', '50 Ω'], c: 1, e: 'AES3 na skrętce/XLR: 110 Ω; wersja koncentryczna AES-3id: 75 Ω.' },
@@ -1109,8 +1109,8 @@ export const CHAPTERS = [
           'Plan B: zapasowe elementy, snapshoty, alternatywna ścieżka sygnału',
         ],
         quiz: [
-          { q: 'Po podwieszeniu tablicy przed strojeniem sprawdzasz:', a: ['Tylko EQ', 'Kąty i trim inklinometrem i dalmierzem względem predykcji', 'Kolor kabli', 'Nic — ufam riggerom'], c: 1, e: 'Rozbieżność kilku stopni zmienia pokrycie dalekich rzędów.' },
-          { q: 'Temperatura spadła z 20°C do 10°C. Czas przelotu do wieży delay na 100 m wzrośnie o około:', a: ['0,5 ms', '5 ms', '15 ms', '30 ms'], c: 1, e: '100/337,4 − 100/343,4 ≈ 5,2 ms.' },
+          { q: 'Po podwieszeniu liniówki przed strojeniem sprawdzasz:', a: ['Tylko EQ', 'Kąty i trim inklinometrem i dalmierzem względem predykcji', 'Kolor kabli', 'Nic — ufam riggerom'], c: 1, e: 'Rozbieżność kilku stopni zmienia pokrycie dalekich rzędów.' },
+          { q: 'Temperatura spadła z 20°C do 10°C. Czas dotarcia do wieży delay na 100 m wzrośnie o około:', a: ['0,5 ms', '5 ms', '15 ms', '30 ms'], c: 1, e: '100/337,4 − 100/343,4 ≈ 5,2 ms.' },
           { q: 'Weryfikacja w przeciwieństwie do line checku sprawdza:', a: ['Tylko czy jest sygnał', 'Poprawność parametrów: polaryzację, poziom, EQ i opóźnienie każdego elementu', 'Tylko wokale', 'Tylko sieć'], c: 1, e: 'Line check mówi „działa”, weryfikacja — „działa poprawnie”.' },
         ],
         tasks: [
@@ -1130,7 +1130,7 @@ export const CHAPTERS = [
         ],
         quiz: [
           { q: 'Metoda half-split polega na:', a: ['Wymianie połowy sprzętu', 'Dzieleniu toru sygnału na pół, by szybko zlokalizować usterkę', 'Wyłączaniu połowy systemu', 'Pracy w dwie osoby'], c: 1, e: 'Każdy test eliminuje połowę możliwych miejsc usterki.' },
-          { q: 'Jeden element tablicy nie gra HF. Pierwszy krok:', a: ['Podbić HF na całej tablicy', 'Solo/mute i zamiana kanałów, by oddzielić przetwornik, kabel i wzmacniacz', 'Zdjąć tablicę', 'Zignorować'], c: 1, e: 'Szybka izolacja przyczyny pozwala na obejście problemu.' },
+          { q: 'Jeden element liniówki nie gra HF. Pierwszy krok:', a: ['Podbić HF na całej liniówki', 'Solo/mute i zamiana kanałów, by oddzielić przetwornik, kabel i wzmacniacz', 'Zdjąć liniówkę', 'Zignorować'], c: 1, e: 'Szybka izolacja przyczyny pozwala na obejście problemu.' },
           { q: 'Po evencie z awarią warto:', a: ['Zapomnieć', 'Zrobić raport/post-mortem z wnioskami', 'Wymienić cały system', 'Obwinić kogoś'], c: 1, e: 'Wnioski zapobiegają powtórce.' },
         ],
         tasks: [
@@ -1167,22 +1167,22 @@ export const CHAPTERS = [
         res: ['t-lisa', 't-soundscape', 'w-wfs'],
       },
       {
-        id: 'beam', title: 'Sterowanie wiązką i tablice optymalizowane', level: 'zaawansowany',
+        id: 'beam', title: 'Sterowanie wiązką i liniówki optymalizowane', level: 'zaawansowany',
         summary: 'DSP na każdy przetwornik lub element pozwala kształtować pokrycie niezależnie od mechaniki. To przyszłość i teraźniejszość dużych systemów.',
         concepts: [
           'Filtry i opóźnienia per przetwornik/element',
           'Kolumny sterowane cyfrowo — montaż płasko, wiązka pod kątem',
           'Optymalizacja numeryczna rozkładu SPL (np. Martin Audio MLA, procesory array producentów)',
-          'Ograniczenia: długość tablicy a kontrola LF, koszt w headroomie',
+          'Ograniczenia: długość liniówki a kontrola LF, koszt w headroomie',
           'Strefy ciszy (np. scena, obszary poza publicznością)',
         ],
         quiz: [
           { q: 'Cyfrowe sterowanie kolumną polega na:', a: ['Mechanicznym pochylaniu', 'Indywidualnych filtrach i opóźnieniach dla przetworników', 'Zwiększeniu mocy', 'Zmianie impedancji'], c: 1, e: 'Zmiana relacji czasowych między źródłami kształtuje wiązkę.' },
-          { q: 'Pionowa kontrola kierunkowości w LF jest ograniczona głównie przez:', a: ['Moc wzmacniacza', 'Długość fizyczną tablicy', 'Typ kabla', 'Sample rate'], c: 1, e: 'Kierunkowość wymaga wymiaru porównywalnego z λ.' },
+          { q: 'Pionowa kontrola kierunkowości w LF jest ograniczona głównie przez:', a: ['Moc wzmacniacza', 'Długość fizyczną liniówki', 'Typ kabla', 'Sample rate'], c: 1, e: 'Kierunkowość wymaga wymiaru porównywalnego z λ.' },
           { q: 'Elektroniczne pochylenie wiązki pozwala:', a: ['Zamontować kolumnę płasko przy ścianie i skierować wiązkę w dół', 'Zmniejszyć masę', 'Wyeliminować pogłos', 'Zrezygnować z predykcji'], c: 0, e: 'Estetyka i akustyka bez kompromisów montażowych.' },
         ],
         tasks: [
-          'Porównaj w predykcji tablicę z optymalizacją strefową producenta i bez niej. Zapisz różnice jednorodności i poziomu na scenie.',
+          'Porównaj w predykcji liniówkę z optymalizacją strefową producenta i bez niej. Zapisz różnice jednorodności i poziomu na scenie.',
         ],
         res: ['t-mla', 't-arraycalc', 'l-aes'],
       },
@@ -1482,14 +1482,14 @@ export const CHAPTERS = [
           'Echo powstaje, gdy silne pojedyncze odbicie dociera kilkadziesiąt ms po froncie — typowo od tylnej ściany lub dachu',
           'Powierzchnie wklęsłe (łukowe dachy, kopuły) skupiają energię w ogniskach; wypukłe rozpraszają',
           'Energia skierowana powyżej ostatniego rzędu to czysta strata, która wraca jako pogłos i echo',
-          'Metoda lustra w predykcji: sprawdzaj, gdzie trafia energia z krawędzi pokrycia tablicy',
+          'Metoda lustra w predykcji: sprawdzaj, gdzie trafia energia z krawędzi pokrycia liniówki',
           'Ekrany LED, szkło i blacha to twarde reflektory — także za sceną i na bokach',
-          'Narzędzia zaradcze: kąty i krzywizna tablicy, zmiana trim, kurtyny i banery, a w ostateczności delay dla stref cienia',
+          'Narzędzia zaradcze: kąty i krzywizna liniówki, zmiana trim, kurtyny i banery, a w ostateczności delay dla stref cienia',
         ],
         quiz: [
           { q: 'Silne odbicie od tylnej ściany docierające 80 ms po froncie będzie odbierane jako:', a: ['Wzmocnienie basu', 'Wyraźne echo', 'Zakolorowanie barwy', 'Poszerzenie obrazu'], c: 1, e: 'Powyżej strefy fuzji mózg traktuje je jako osobne zdarzenie.' },
           { q: 'Łukowy dach hali jest problematyczny, bo:', a: ['Pochłania bas', 'Skupia energię w ogniskach', 'Rozprasza wysokie częstotliwości', 'Zmienia prędkość dźwięku'], c: 1, e: 'Powierzchnia wklęsła działa jak zwierciadło skupiające — stąd „gorące punkty” i echa.' },
-          { q: 'Najtańszy sposób ograniczenia echa od tylnej ściany w hali to:', a: ['EQ na systemie', 'Korekta kątów i krzywizny tablicy, by nie oświetlać ściany powyżej publiczności', 'Zwiększenie poziomu', 'Dodanie subów'], c: 1, e: 'Energia, która tam nie trafi, nie wróci jako echo — EQ tego nie naprawi.' },
+          { q: 'Najtańszy sposób ograniczenia echa od tylnej ściany w hali to:', a: ['EQ na systemie', 'Korekta kątów i krzywizny liniówki, by nie oświetlać ściany powyżej publiczności', 'Zwiększenie poziomu', 'Dodanie subów'], c: 1, e: 'Energia, która tam nie trafi, nie wróci jako echo — EQ tego nie naprawi.' },
         ],
         tasks: [
           'W predykcji ostatniego projektu sprawdź, ile energii trafia powyżej ostatniego rzędu. Popraw kąty i porównaj mapy.',
@@ -1511,7 +1511,7 @@ export const CHAPTERS = [
         quiz: [
           { q: 'Sub postawiony na gruncie względem tego samego suba wysoko w powietrzu daje w LF około:', a: ['−3 dB', 'bez zmian', '+3 dB', '+9 dB'], c: 2, e: 'Promieniowanie w pół przestrzeni zamiast pełnej sfery to ok. 3 dB zysku.' },
           { q: 'Filtr grzebieniowy od odbicia od gruntu zależy przede wszystkim od:', a: ['Mocy wzmacniacza', 'Wysokości źródła i odbiornika oraz odległości', 'Typu presetu', 'Wilgotności'], c: 1, e: 'To geometria wyznacza różnicę dróg, a więc częstotliwości wycięć.' },
-          { q: 'Suby podwieszone w porównaniu z naziemnymi:', a: ['Zawsze grają głośniej', 'Tracą zysk od gruntu, ale dają lepszą jednorodność front-back', 'Nie wymagają wyrównania z tablicą', 'Mają większą kierunkowość w HF'], c: 1, e: 'To klasyczny kompromis przy projektowaniu dużych systemów.' },
+          { q: 'Suby podwieszone w porównaniu z naziemnymi:', a: ['Zawsze grają głośniej', 'Tracą zysk od gruntu, ale dają lepszą jednorodność front-back', 'Nie wymagają wyrównania z liniówką', 'Mają większą kierunkowość w HF'], c: 1, e: 'To klasyczny kompromis przy projektowaniu dużych systemów.' },
         ],
         tasks: [
           'Zmierz ten sam sub na gruncie i podniesiony o 1 m (np. na wybiegu). Porównaj poziom i kształt charakterystyki w pasmie 40–120 Hz.',

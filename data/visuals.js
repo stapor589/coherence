@@ -382,10 +382,10 @@ export const VISUALS = {
     </svg>`,
   },
 
-  'celowanie-tablicy': {
+  'celowanie-liniówki': {
     title: 'Osie skrzyń trafiają w widownię w równych odstępach',
     caption: 'Kąty dobiera się tak, żeby punkty trafienia osi kolejnych skrzyń były równomiernie rozłożone od ostatniego do pierwszego rzędu. Górne skrzynie muszą „przestrzelić” ostatni rząd o mniej więcej dwie sztuki — inaczej najdalsze miejsca wypadają na skraju wiązki i tracą górę pasma.',
-    svg: `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Rozkład osi skrzyń tablicy na widowni">
+    svg: `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Rozkład osi skrzyń liniówki na widowni">
       <line x1="60" y1="206" x2="600" y2="188" class="v-stroke-dim" stroke-width="2"/>
       <text x="330" y="232" class="v-label" text-anchor="middle">widownia: ostatni rząd po prawej</text>
       ${Array.from({ length: 8 }, (_, i) => {
@@ -428,7 +428,7 @@ export const VISUALS = {
 
   'strefy-odpowiedzialnosci': {
     title: 'Każdy subsystem ma swój rewir',
-    caption: 'Front fill obsługuje pierwsze rzędy, tablica główna środek widowni, wieża delay tyły. W swoim rewirze ustawiasz poziom i barwę. Na styku dwóch rewirów — tam, gdzie oba grają równie głośno — ustawiasz czas. Poza stykiem jeden system dominuje i sumowanie przestaje być groźne.',
+    caption: 'Front fill obsługuje pierwsze rzędy, system główny środek widowni, wieża delay tyły. W swoim rewirze ustawiasz poziom i barwę. Na styku dwóch rewirów — tam, gdzie oba grają równie głośno — ustawiasz czas. Poza stykiem jeden system dominuje i sumowanie przestaje być groźne.',
     svg: `<svg viewBox="0 0 620 230" class="v-svg" role="img" aria-label="Strefy odpowiedzialności subsystemów i szwy między nimi">
       <line x1="20" y1="170" x2="600" y2="170" class="v-stroke-dim" stroke-width="2"/>
       <rect x="24" y="96" width="26" height="60" rx="5" class="v-fill-dim"/>
@@ -437,7 +437,7 @@ export const VISUALS = {
       <rect x="186" y="60" width="222" height="100" rx="8" class="v-fill-accent" opacity=".26"/>
       <rect x="416" y="60" width="176" height="100" rx="8" class="v-fill-gold" opacity=".2"/>
       <text x="119" y="115" class="v-label-white" text-anchor="middle">front fill</text>
-      <text x="297" y="115" class="v-label-white" text-anchor="middle">tablica główna</text>
+      <text x="297" y="115" class="v-label-white" text-anchor="middle">system główny</text>
       <text x="504" y="115" class="v-label-white" text-anchor="middle">wieża delay</text>
       <line x1="182" y1="46" x2="182" y2="176" class="v-stroke-gold" stroke-dasharray="5 5" stroke-width="2"/>
       <line x1="412" y1="46" x2="412" y2="176" class="v-stroke-gold" stroke-dasharray="5 5" stroke-width="2"/>
@@ -447,10 +447,10 @@ export const VISUALS = {
     </svg>`,
   },
 
-  'zonowanie-tablicy': {
-    title: 'Zonowanie tablicy i cieniowanie góry pasma',
+  'zonowanie-liniówki': {
+    title: 'Zonowanie liniówki i cieniowanie góry pasma',
     caption: 'Skrzynie grupuje się według tego, w jaki fragment widowni celują. Górne rzucają najdalej, więc tracą najwięcej wysokich na absorpcji powietrza — dostają podbicie. Dolne grają blisko i są za jasne — dostają obniżenie. Skoki między strefami wygładza się, rozkładając korektę na sąsiednie skrzynie.',
-    svg: `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Podział tablicy na strefy z cieniowaniem wysokich częstotliwości">
+    svg: `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Podział liniówki na strefy z cieniowaniem wysokich częstotliwości">
       ${[['A', 4, '+3 dB', '#2de2c0'], ['B', 4, '+2 dB', '#5aa9ff'], ['C', 3, '−1 dB', '#ffc857'], ['D', 4, '−4 dB', '#ff8a3d']]
         .reduce((acc, [z, n, v, col]) => {
           const start = acc.i;
@@ -470,8 +470,8 @@ export const VISUALS = {
     </svg>`,
   },
 
-  'pokrycie-tablicy': {
-    title: 'Podwieszona tablica: góra rzuca daleko, dół blisko',
+  'pokrycie-liniówki': {
+    title: 'Podwieszona liniówka: góra rzuca daleko, dół blisko',
     caption: 'Elementy u góry stoją niemal płasko i wspólnie obsługują najdalsze rzędy — dlatego jest ich więcej i mają małe kąty między sobą. Im niżej, tym kąty większe, bo publiczność jest coraz bliżej i jedna skrzynia w zupełności wystarcza. Dzięki tej narastającej krzywiźnie poziom na ostatnim rzędzie jest zbliżony do tego w środku widowni.',
     svg: (() => {
       const bw = 58, bh = 12, n = 12;
@@ -498,7 +498,7 @@ export const VISUALS = {
         py += bh * Math.cos(rad);
       }
       const rearX = 118, topY = 34;
-      return `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Uproszczona tablica liniowa: skrzynie jedna pod drugą z rosnącym kątem pochylenia">
+      return `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Uproszczona liniówka: skrzynie jedna pod drugą z rosnącym kątem pochylenia">
         <line x1="${rearX}" y1="22" x2="${rearX}" y2="34" class="v-stroke-dim" stroke-width="3"/>
         <rect x="${rearX - 10}" y="26" width="64" height="8" rx="3" class="v-fill-dim"/>
         <text x="${rearX + 62}" y="33" class="v-label">rama</text>

@@ -212,7 +212,7 @@ export const LESSONS = {
         t: 'Z tego rodzi się prosty sposób patrzenia na widownię. Są miejsca, gdzie wyraźnie dominuje jedno źródło — tam jest spokojnie i przewidywalnie. Są miejsca, gdzie dwa źródła grają po równo i trwa przeciąganie liny — tam zobaczysz największe wahania w paśmie. I są miejsca, gdzie różnice czasu są znikome, więc sumowanie jest czystym zyskiem. Dobry projekt polega na tym, żeby strefy przeciągania liny były wąskie i wypadały tam, gdzie mniej przeszkadzają.',
       },
       {
-        t: 'Nakładanie źródeł nie jest więc złem samym w sobie — to narzędzie. Tablica liniowa to świadomie kontrolowane nakładanie: elementy sumują się w ściśle policzony sposób, żeby dorzucić poziomu na daleko. Front fille to przykład przeciwny: każdy obsługuje swój wycinek pierwszego rzędu i prawie nie wchodzi sąsiadowi w drogę. Wybór między mocą a jednorodnością robisz przy każdym projekcie.',
+        t: 'Nakładanie źródeł nie jest więc złem samym w sobie — to narzędzie. Liniówka to świadomie kontrolowane nakładanie: elementy sumują się w ściśle policzony sposób, żeby dorzucić poziomu na daleko. Front fille to przykład przeciwny: każdy obsługuje swój wycinek pierwszego rzędu i prawie nie wchodzi sąsiadowi w drogę. Wybór między mocą a jednorodnością robisz przy każdym projekcie.',
       },
       {
         t: 'Na koniec wniosek, który oszczędzi Ci wielu straconych godzin: korektor nie naprawia problemów sumowania. Jeśli w konkretnym miejscu powstała dziura wynikająca z interferencji, podbicie tego pasma zadziała w całej strefie pokrycia — w miejscu dziury nadal będzie jej brakować, a wszędzie indziej pojawi się nadmiar. Problemy czasowo-przestrzenne rozwiązuje się geometrią, opóźnieniem i poziomem, nie filtrem.',
@@ -321,7 +321,7 @@ export const LESSONS = {
         t: 'Switch to skrzyżowanie. Prosty, niezarządzalny switch przepuszcza wszystko wszędzie, a zarządzalny pozwala ustawić reguły ruchu: podzielić sieć na osobne części, nadać priorytet danym audio i sygnałom zegara, wyłączyć oszczędzanie energii, podejrzeć obciążenie portów. W systemie, od którego zależy koncert, ta kontrola jest różnicą między „działa” a „wiem, że działa”.',
       },
       {
-        t: 'Rozróżnij dwa sposoby wysyłania danych. Transmisja pojedyncza to paczka adresowana do jednego odbiorcy — jak list. Transmisja grupowa to jedna paczka dla wielu odbiorców naraz — jak ogłoszenie na tablicy. Ogłoszenia są wydajne, ale nieprzefiltrowane zalewają wszystkie porty. Funkcja filtrowania w switchu sprawia, że ogłoszenie trafia tylko tam, gdzie ktoś je zaprenumerował.',
+        t: 'Rozróżnij dwa sposoby wysyłania danych. Transmisja pojedyncza to paczka adresowana do jednego odbiorcy — jak list. Transmisja grupowa to jedna paczka dla wielu odbiorców naraz — jak ogłoszenie na tablicy informacyjnej. Ogłoszenia są wydajne, ale nieprzefiltrowane zalewają wszystkie porty. Funkcja filtrowania w switchu sprawia, że ogłoszenie trafia tylko tam, gdzie ktoś je zaprenumerował.',
       },
       {
         t: 'Oszczędzanie energii w portach to cichy zabójca sieci audio. Mechanizm usypia port przy małym ruchu i budzi go, gdy ruch wraca — a takie przerwy kolidują z protokołami, które muszą działać punktualnie co do mikrosekundy. W switchu przeznaczonym do audio wyłącza się tę funkcję zawsze, bez dyskusji.',
@@ -372,7 +372,7 @@ export const LESSONS = {
         t: 'Gdy trzeba połączyć urządzenia pracujące z różnymi zegarami albo częstotliwościami próbkowania, używa się konwersji. Kosztuje ona odrobinę opóźnienia i przetwarzania, ale jest jedynym poprawnym rozwiązaniem — próba „dogadania się” dwóch niezależnych zegarów bez konwersji zawsze kończy się zakłóceniami.',
       },
       {
-        t: 'Na koniec rzecz istotna przy wyrównywaniu systemu: opóźnienie własne toru cyfrowego sumuje się z czasem przelotu dźwięku. Jeśli sub idzie przez inny procesor niż tablica albo delay jest podpięty przez dodatkowy konwerter, powstaje różnica, której nie widać w geometrii. Zmierz całkowitą latencję każdej gałęzi, zanim zaczniesz ustawiać opóźnienia akustyczne.',
+        t: 'Na koniec rzecz istotna przy wyrównywaniu systemu: opóźnienie własne toru cyfrowego sumuje się z czasem dotarcia dźwięku. Jeśli sub idzie przez inny procesor niż liniówka albo delay jest podpięty przez dodatkowy konwerter, powstaje różnica, której nie widać w geometrii. Zmierz całkowitą latencję każdej gałęzi, zanim zaczniesz ustawiać opóźnienia akustyczne.',
       },
     ],
   },
@@ -524,7 +524,7 @@ export const LESSONS = {
         t: 'Filtry cyfrowe dzielą się na dwie rodziny. Te odwzorowujące świat analogowy mają fazę na stałe powiązaną z amplitudą — jak podnosisz, tak przesuwasz czas. Filtry o skończonej odpowiedzi impulsowej mogą mieć fazę liniową, czyli takie samo opóźnienie dla wszystkich częstotliwości, co pozwala korygować amplitudę bez zmiany relacji czasowych. Cena to opóźnienie całego toru, rosnące, gdy chcesz działać nisko — a w systemie z odsłuchem dousznym każda milisekunda jest zauważalna.',
       },
       {
-        t: 'Jest jeszcze filtr, który nic nie zmienia w amplitudzie i istnieje wyłącznie po to, żeby przesuwać fazę. Nazywa się wszechprzepustowym i przydaje się dokładnie tam, gdzie dwa systemy mają w pasmie przejścia różne nachylenia fazy — na przykład suby i tablica. Zamiast zmuszać jeden z nich do kompromisu, dopasowujesz kształt fazy i suma robi się lepsza na większym obszarze widowni.',
+        t: 'Jest jeszcze filtr, który nic nie zmienia w amplitudzie i istnieje wyłącznie po to, żeby przesuwać fazę. Nazywa się wszechprzepustowym i przydaje się dokładnie tam, gdzie dwa systemy mają w pasmie przejścia różne nachylenia fazy — na przykład suby i liniówka. Zamiast zmuszać jeden z nich do kompromisu, dopasowujesz kształt fazy i suma robi się lepsza na większym obszarze widowni.',
       },
     ],
   },
@@ -586,7 +586,7 @@ export const LESSONS = {
         t: 'Pomiar dwukanałowy polega na porównaniu dwóch sygnałów: tego, który wysłałeś do systemu (referencja), i tego, który wrócił do mikrofonu (pomiar). Analizator pokazuje różnicę między nimi — czyli dokładnie to, co system i pomieszczenie zrobiły z dźwiękiem po drodze. To jak porównanie zdjęcia przed retuszem i po: interesuje Cię nie samo zdjęcie, tylko co się z nim stało.',
       },
       {
-        t: 'Żeby to porównanie miało sens, trzeba uwzględnić czas przelotu. Dźwięk potrzebuje kilkudziesięciu milisekund, żeby dolecieć do mikrofonu, więc analizator musi opóźnić referencję o tyle samo. Służy do tego funkcja szukania opóźnienia: program liczy odpowiedź impulsową i znajduje moment, w którym dźwięk dotarł. Bez tej kompensacji wykres fazy będzie zawijał się jak szalony i nie powie Ci nic.',
+        t: 'Żeby to porównanie miało sens, trzeba uwzględnić czas dotarcia. Dźwięk potrzebuje kilkudziesięciu milisekund, żeby dolecieć do mikrofonu, więc analizator musi opóźnić referencję o tyle samo. Służy do tego funkcja szukania opóźnienia: program liczy odpowiedź impulsową i znajduje moment, w którym dźwięk dotarł. Bez tej kompensacji wykres fazy będzie zawijał się jak szalony i nie powie Ci nic.',
       },
       {
         t: 'Amplituda mówi „ile” — jak głośno system gra w poszczególnych pasmach. Faza mówi „kiedy” — czy dane pasmo przychodzi wcześniej, czy później. Trzeci wykres, koherencja, mówi najważniejszą rzecz: czy w ogóle można wierzyć dwóm pozostałym. Koherencja bliska jedności oznacza, że to, co słyszy mikrofon, jest wyraźnie związane z tym, co wysłałeś. Koherencja niska — że w danym paśmie dominuje szum, pogłos albo warunki się zmieniają.',
@@ -669,7 +669,7 @@ export const LESSONS = {
         t: 'Największa pułapka to widok przekroju. Linie osi skrzyń wyglądają jak cienkie laserowe promienie, więc łatwo uwierzyć, że da się „przeskoczyć” czoło balkonu albo wąską przeszkodę, prowadząc oś nad nią i pod nią. W rzeczywistości między osiami też jest energia, a skrzynia to nie działko laserowe, tylko wachlarz. Widok trójwymiarowy pokazuje to uczciwie: przeskoczony balkon w 2D bywa oświetlony w 3D, a przy okazji powstaje zimne miejsce gdzieś z boku widowni.',
       },
       {
-        t: 'Dodatkowo, gdy tablica świeci na powierzchnię nie pod kątem prostym, jej pokrycie wygina się w łuk — raz w „uśmiech”, raz w „grymas”. Dlatego kształt, który w przekroju wygląda równo, na płaskiej widowni potrafi zostawić cichszy pas przy krawędziach. Jeśli świadomie planujesz dziurę w pokryciu, musisz wiedzieć dokładnie, gdzie ona wyląduje — a to widać dopiero w modelu przestrzennym.',
+        t: 'Dodatkowo, gdy liniówka świeci na powierzchnię nie pod kątem prostym, jej pokrycie wygina się w łuk — raz w „uśmiech”, raz w „grymas”. Dlatego kształt, który w przekroju wygląda równo, na płaskiej widowni potrafi zostawić cichszy pas przy krawędziach. Jeśli świadomie planujesz dziurę w pokryciu, musisz wiedzieć dokładnie, gdzie ona wyląduje — a to widać dopiero w modelu przestrzennym.',
       },
       {
         t: 'Projekt kończy się weryfikacją na obiekcie i dokumentacją. Po podwieszeniu sprawdzasz dalmierzem i inklinometrem, czy wysokości i kąty zgadzają się z projektem — kilka stopni różnicy potrafi przesunąć pokrycie o kilka rzędów. Pliki projektu wersjonujesz i opisujesz, bo w dniu montażu wszyscy muszą pracować na tej samej wersji: rigger, technik i Ty.',
@@ -693,7 +693,7 @@ export const LESSONS = {
         t: 'Ale uwaga: zerowa zmienność nie jest celem. Ludzie wybierają sobie miejsce także ze względu na głośność — pod sceną chcą wrażenia fizycznego, na tyłach spokojniejszego odbioru. Mózg ocenia odległość źródła po trzech wskazówkach: poziomie, proporcji dźwięku bezpośredniego do pogłosu i ubytku wysokich częstotliwości. Jeśli wyzerujesz wszystkie trzy, ostatni rząd usłyszy scenę tuż przy uchu, choć widzi ją dwieście metrów dalej — i to jest nieprzyjemne. Dlatego ubytek góry pasma na dużych dystansach kompensuje się częściowo, a nie do zera.',
       },
       {
-        t: 'Druga strona jednorodności to kształt pokrycia w funkcji częstotliwości. Pojedyncza skrzynia świeci wąsko w górze pasma i szeroko w dole, więc idąc w bok, tracisz najpierw wysokie — barwa zmienia się z pozycją. Żeby system brzmiał podobnie wszędzie, trzeba albo poszerzyć pokrycie w górze pasma, albo zwęzić je w dole, a w praktyce robi się jedno i drugie: kierunkowością elementów i długością tablicy.',
+        t: 'Druga strona jednorodności to kształt pokrycia w funkcji częstotliwości. Pojedyncza skrzynia świeci wąsko w górze pasma i szeroko w dole, więc idąc w bok, tracisz najpierw wysokie — barwa zmienia się z pozycją. Żeby system brzmiał podobnie wszędzie, trzeba albo poszerzyć pokrycie w górze pasma, albo zwęzić je w dole, a w praktyce robi się jedno i drugie: kierunkowością elementów i długością liniówki.',
       },
       {
         t: 'Na koniec zapisz cele liczbowo, zanim otworzysz program do predykcji: docelowy poziom na stanowisku realizatora z zapasem na szczyty, dopuszczalną zmienność poziomu na widowni, wymaganą zrozumiałość mowy, ograniczenia hałasu na granicy terenu. Bez tego projekt jest kwestią gustu i nie da się go obronić ani przed sobą, ani przed klientem.',
@@ -716,10 +716,10 @@ export const LESSONS = {
         viz: 'fill-geometria',
       },
       {
-        t: 'Pomocne jest myślenie o fillach jak o przedłużeniu systemu głównego — w bok albo promieniście. Boczne tablice w arenie rozszerzają pokrycie w łuku, a szereg front fillów przedłuża je w linii wzdłuż sceny. Przy takim ustawieniu przejścia są naturalne, bo geometria obu systemów jest spójna, a nie przypadkowa.',
+        t: 'Pomocne jest myślenie o fillach jak o przedłużeniu systemu głównego — w bok albo promieniście. Boczne grona w arenie rozszerzają pokrycie w łuku, a szereg front fillów przedłuża je w linii wzdłuż sceny. Przy takim ustawieniu przejścia są naturalne, bo geometria obu systemów jest spójna, a nie przypadkowa.',
       },
       {
-        t: 'Front fill ma jeszcze jedno zadanie poza poziomem: ratuje obraz dźwiękowy. W pierwszych rzędach tablica główna jest wysoko nad głowami, więc bez fillu dźwięk zdaje się dobiegać z góry. Kilka małych skrzyń na krawędzi sceny sprawia, że pierwszy dociera dźwięk „z poziomu sceny” i lokalizacja wraca tam, gdzie stoi wokalista. Rozstaw dobiera się tak, by krawędzie pokrycia sąsiadów spotykały się mniej więcej na linii pierwszego rzędu.',
+        t: 'Front fill ma jeszcze jedno zadanie poza poziomem: ratuje obraz dźwiękowy. W pierwszych rzędach system główny jest wysoko nad głowami, więc bez fillu dźwięk zdaje się dobiegać z góry. Kilka małych skrzyń na krawędzi sceny sprawia, że pierwszy dociera dźwięk „z poziomu sceny” i lokalizacja wraca tam, gdzie stoi wokalista. Rozstaw dobiera się tak, by krawędzie pokrycia sąsiadów spotykały się mniej więcej na linii pierwszego rzędu.',
       },
       {
         t: 'Wieża delay to ten sam pomysł w większej skali: dokłada poziom i świeżą energię bezpośrednią tam, gdzie system główny jest już daleko, cichy i pozbawiony góry pasma. Poziom fillu i delaya zwykle różni się o kilka decybeli od systemu głównego — front fille bywają ciut głośniejsze, wieże delay ciut cichsze — ale punktem wyjścia zawsze jest jednorodność, a nie „ile się da”.',
@@ -731,8 +731,8 @@ export const LESSONS = {
     goals: ['Dobierać kąty i wysokość podwieszenia', 'Rozumieć konsekwencje mechaniczne swoich decyzji'],
     steps: [
       {
-        t: 'Kąty między skrzyniami ustawia się tak, żeby osie kolejnych elementów trafiały w widownię w mniej więcej równych odstępach, od ostatniego rzędu do pierwszego. Taki rozkład sam z siebie wyrównuje energię w górze pasma i zmniejsza późniejszą potrzebę korekcji strefowej. W praktyce oznacza to małe kąty u góry tablicy i coraz większe w dół.',
-        viz: 'celowanie-tablicy',
+        t: 'Kąty między skrzyniami ustawia się tak, żeby osie kolejnych elementów trafiały w widownię w mniej więcej równych odstępach, od ostatniego rzędu do pierwszego. Taki rozkład sam z siebie wyrównuje energię w górze pasma i zmniejsza późniejszą potrzebę korekcji strefowej. W praktyce oznacza to małe kąty u góry liniówki i coraz większe w dół.',
+        viz: 'celowanie-liniówki',
       },
       {
         t: 'Unikaj dużych skoków między sąsiednimi kątami. Przejście z jednego stopnia od razu na pięć tworzy zaburzenie w górze pasma — energia sąsiednich skrzyń przestaje się gładko łączyć i pojawia się nierówność w pokryciu. Lepiej wstawić stopień pośredni i rozłożyć zmianę łagodnie, nawet jeśli geometria widowni kusi, żeby „przeskoczyć”.',
@@ -741,13 +741,13 @@ export const LESSONS = {
         t: 'Górne skrzynie muszą przestrzelić ostatni rząd. Jeśli wycelujesz najwyższą skrzynię dokładnie w najdalsze miejsce, to miejsce wyląduje na samej krawędzi wiązki, gdzie góra pasma już opada. Praktyczna reguła mówi o mniej więcej dwóch skrzyniach zapasu ponad ostatni rząd. Test w terenie jest prosty: jeśli z ostatniego rzędu patrzysz prosto w grill górnej skrzyni albo, co gorsza, w ramę rigową, część widowni nie dostaje pełnego pasma.',
       },
       {
-        t: 'Wysokość podwieszenia to kompromis. Wyżej oznacza mniejszą różnicę odległości między pierwszym a ostatnim rzędem, większą jednorodność i więcej miejsca na sensowną progresję kątów. Niżej oznacza lepszy obraz dźwiękowy związany ze sceną, bo źródło jest bliżej wysokości artysty. Zbyt nisko zaś tablica ma tak mały kąt pionowy do pokrycia, że wszystkie kąty schodzą do zera i przestajesz mieć narzędzie do wyrównywania poziomu.',
+        t: 'Wysokość podwieszenia to kompromis. Wyżej oznacza mniejszą różnicę odległości między pierwszym a ostatnim rzędem, większą jednorodność i więcej miejsca na sensowną progresję kątów. Niżej oznacza lepszy obraz dźwiękowy związany ze sceną, bo źródło jest bliżej wysokości artysty. Zbyt nisko zaś liniówka ma tak mały kąt pionowy do pokrycia, że wszystkie kąty schodzą do zera i przestajesz mieć narzędzie do wyrównywania poziomu.',
       },
       {
-        t: 'Wysokość ma też konsekwencje mechaniczne, o których łatwo zapomnieć przy komputerze. Im wyżej wisi tablica, tym mocniej musi być pochylona w dół, a pochylenie przesuwa środek ciężkości do tyłu. Gdy środek ciężkości wyjdzie poza ramę, potrzebny jest punkt odciągający. Niższe podwieszenie oznacza więcej pochylenia ku górze, co przesuwa środek ciężkości do przodu i pozwala uzyskać większą krzywiznę na dole bez dodatkowego punktu. Rozkład obciążeń zawsze sprawdzasz w programie producenta, a decyzję o wykonalności podejmuje rigger.',
+        t: 'Wysokość ma też konsekwencje mechaniczne, o których łatwo zapomnieć przy komputerze. Im wyżej wisi liniówka, tym mocniej musi być pochylona w dół, a pochylenie przesuwa środek ciężkości do tyłu. Gdy środek ciężkości wyjdzie poza ramę, potrzebny jest punkt odciągający. Niższe podwieszenie oznacza więcej pochylenia ku górze, co przesuwa środek ciężkości do przodu i pozwala uzyskać większą krzywiznę na dole bez dodatkowego punktu. Rozkład obciążeń zawsze sprawdzasz w programie producenta, a decyzję o wykonalności podejmuje rigger.',
       },
       {
-        t: 'Ostatnia rzecz to myślenie o całej przestrzeni, nie tylko o przedzie. Tablica promieniuje również do tyłu, zwłaszcza w dolnej średnicy. Podwieszona wysoko i pochylona w dół kieruje tę energię ponad scenę, a zawieszona nisko i płasko wysyła ją wprost na scenę i tylną ścianę. To, co wychodzi bokiem i tyłem systemu, bywa równie ważne jak to, co leci do publiczności — decyduje o czystości odsłuchu na scenie i o tym, co wróci z sali jako echo.',
+        t: 'Ostatnia rzecz to myślenie o całej przestrzeni, nie tylko o przedzie. Liniówka promieniuje również do tyłu, zwłaszcza w dolnej średnicy. Podwieszona wysoko i pochylona w dół kieruje tę energię ponad scenę, a zawieszona nisko i płasko wysyła ją wprost na scenę i tylną ścianę. To, co wychodzi bokiem i tyłem systemu, bywa równie ważne jak to, co leci do publiczności — decyduje o czystości odsłuchu na scenie i o tym, co wróci z sali jako echo.',
       },
     ],
   },
@@ -759,17 +759,17 @@ export const LESSONS = {
         t: 'Zanim zaczniesz cokolwiek stroić, sprawdź, czy system w ogóle jest zbudowany poprawnie. Puść sygnał kolejno do każdego podsystemu i posłuchaj: czy lewa strona brzmi tak samo jak prawa, czy nie są zamienione miejscami, czy wszystkie skrzynie grają, czy któraś nie jest cichsza albo ciemniejsza. To brzmi banalnie, a jest najczęstszym źródłem straconego dnia. Analogia: nie zaczynaj tapetowania, zanim nie załatasz dziury w ścianie. Korektor nie naprawi przerwanego kabla, uszkodzonego przetwornika ani zamienionych stron — tylko ukryje problem tak, że wróci w najgorszym momencie.',
       },
       {
-        t: 'Pierwsza zasada strojenia: każdy subsystem ma swój rewir. Front fill odpowiada za pierwsze rzędy, tablica główna za środek widowni, wieża delay za tyły. W swoim rewirze — i tylko tam — ustawiasz poziom i barwę. To upraszcza myślenie, bo zamiast pytania „jak brzmi cały system?” zadajesz pytanie „czy ten subsystem robi to, co do niego należy, w swoim obszarze?”. Podział rewirów powstał już na etapie projektu; strojenie tylko go realizuje.',
+        t: 'Pierwsza zasada strojenia: każdy subsystem ma swój rewir. Front fill odpowiada za pierwsze rzędy, system główny za środek widowni, wieża delay za tyły. W swoim rewirze — i tylko tam — ustawiasz poziom i barwę. To upraszcza myślenie, bo zamiast pytania „jak brzmi cały system?” zadajesz pytanie „czy ten subsystem robi to, co do niego należy, w swoim obszarze?”. Podział rewirów powstał już na etapie projektu; strojenie tylko go realizuje.',
         viz: 'strefy-odpowiedzialnosci',
       },
       {
         t: 'Druga zasada: czas ustawiasz na szwie, czyli tam, gdzie dwa sąsiednie systemy grają równie głośno. Dlaczego akurat tam? Bo właśnie przy równych poziomach sumowanie jest najbardziej wrażliwe na różnicę czasu — kilka milisekund decyduje o tym, czy dostaniesz wzmocnienie, czy dziurę. Krok w bok od szwu jeden system zaczyna dominować i wpływ tego drugiego szybko maleje. Ważna kolejność: najpierw poziomy, potem czas. Zmiana poziomu przesuwa położenie szwu, więc wyrównanie czasu zrobione wcześniej trzeba byłoby powtarzać.',
       },
       {
-        t: 'Trzecia zasada: zaczynasz od systemu o największym rewirze i schodzisz w dół. Najpierw tablice główne razem z subami, bo obsługują najwięcej ludzi i ustalają docelowy charakter brzmienia. Potem kolejno mniejsze subsystemy, które mają ten charakter przywrócić w swoich obszarach. Ta kolejność ma bardzo praktyczny sens: jeśli produkcja skróci Ci czas o połowę, zdążysz obsłużyć miejsca, w których siedzi najwięcej widzów, a nieobsłużone zostaną najmniejsze fragmenty widowni.',
+        t: 'Trzecia zasada: zaczynasz od systemu o największym rewirze i schodzisz w dół. Najpierw systemy główne razem z subami, bo obsługują najwięcej ludzi i ustalają docelowy charakter brzmienia. Potem kolejno mniejsze subsystemy, które mają ten charakter przywrócić w swoich obszarach. Ta kolejność ma bardzo praktyczny sens: jeśli produkcja skróci Ci czas o połowę, zdążysz obsłużyć miejsca, w których siedzi najwięcej widzów, a nieobsłużone zostaną najmniejsze fragmenty widowni.',
       },
       {
-        t: 'Czwarta zasada dotyczy źródeł złożonych, takich jak tablica liniowa. Traktujesz ją dwuetapowo. Najpierw zajmujesz się jednorodnością wewnątrz tablicy — wyrównujesz różnice między skrzyniami w górze pasma, gdzie każda ma swój kawałek widowni. Dopiero gdy tablica jest spójna od pierwszego do ostatniego rzędu, traktujesz ją jako jedno źródło i łączysz z kolejnym systemem, na przykład z subami. To po prostu ponowne zastosowanie zasad pierwszej i drugiej, tyle że wewnątrz jednego urządzenia.',
+        t: 'Czwarta zasada dotyczy źródeł złożonych, takich jak liniówka. Traktujesz ją dwuetapowo. Najpierw zajmujesz się jednorodnością wewnątrz liniówki — wyrównujesz różnice między skrzyniami w górze pasma, gdzie każda ma swój kawałek widowni. Dopiero gdy liniówka jest spójna od pierwszego do ostatniego rzędu, traktujesz ją jako jedno źródło i łączysz z kolejnym systemem, na przykład z subami. To po prostu ponowne zastosowanie zasad pierwszej i drugiej, tyle że wewnątrz jednego urządzenia.',
       },
       {
         t: 'Zostaje pytanie, gdzie stawiać mikrofon pomiarowy. Reguła jest prosta: zanim go postawisz, odpowiedz sobie, na jakie pytanie chcesz odpowiedzieć. Jeśli ustawiasz poziom i barwę subsystemu, mikrofon idzie w głąb jego rewiru — najlepiej kilka pozycji, żeby zobaczyć trend, a nie lokalny przypadek. Jeśli ustawiasz czas, mikrofon idzie dokładnie na szew. Ile pozycji wystarczy? Tyle, po ilu kolejny pomiar przestaje zmieniać Twoje decyzje. Od tego momentu zbieranie danych tylko zjada czas.',
@@ -778,10 +778,10 @@ export const LESSONS = {
   },
 
   mainsub: {
-    goals: ['Wyrównać suby z tablicą świadomie', 'Rozumieć, dlaczego idealne jest tylko w jednym miejscu'],
+    goals: ['Wyrównać suby z liniówką świadomie', 'Rozumieć, dlaczego idealne jest tylko w jednym miejscu'],
     steps: [
       {
-        t: 'Suby i tablica spotykają się w wąskim pasmie, zwykle gdzieś między 60 a 120 Hz. W tym pasmie oba systemy grają podobnie głośno, więc — zgodnie z zasadą szwu — jesteśmy w najbardziej wrażliwym punkcie: wystarczy kilka milisekund różnicy, żeby zamiast wzmocnienia dostać wycięcie dokładnie tam, gdzie siedzi stopa i bas. To dlatego wyrównanie main–sub jest pierwszą rzeczą, którą słychać, gdy jest zrobione dobrze, i pierwszą, którą słychać, gdy zrobione jest źle.',
+        t: 'Suby i liniówka spotykają się w wąskim pasmie, zwykle gdzieś między 60 a 120 Hz. W tym pasmie oba systemy grają podobnie głośno, więc — zgodnie z zasadą szwu — jesteśmy w najbardziej wrażliwym punkcie: wystarczy kilka milisekund różnicy, żeby zamiast wzmocnienia dostać wycięcie dokładnie tam, gdzie siedzi stopa i bas. To dlatego wyrównanie main–sub jest pierwszą rzeczą, którą słychać, gdy jest zrobione dobrze, i pierwszą, którą słychać, gdy zrobione jest źle.',
       },
       {
         t: 'Zacznij od znalezienia miejsca, w którym oba systemy grają równie głośno. Zmierz każdy osobno i porównaj poziomy w pasmie przejścia. Jeśli jeden jest wyraźnie mocniejszy, przesuń mikrofon w stronę tego cichszego i zmierz ponownie. Dopiero gdy poziomy są zbliżone, decyzja o czasie ma sens — i dopiero wtedy ma wpływ na to, co usłyszy publiczność.',
@@ -793,7 +793,7 @@ export const LESSONS = {
         t: 'Masz do dyspozycji trzy narzędzia. Opóźnienie przesuwa fazę tym mocniej, im wyższa częstotliwość. Odwrócenie polaryzacji obraca ją o pół cyklu na całym paśmie naraz. Filtr all-pass zmienia nachylenie fazy, nie ruszając poziomu. W praktyce zaczynasz od opóźnienia, sprawdzasz, czy odwrócenie polaryzacji nie daje lepszego dopasowania, a all-pass zostawiasz jako precyzyjne dostrojenie, gdy nachylenia faz obu systemów się rozjeżdżają.',
       },
       {
-        t: 'Teraz zła wiadomość, z którą trzeba się pogodzić: przy subach na ziemi i tablicy wysoko pod dachem idealne wyrównanie istnieje tylko wzdłuż jednej linii na widowni. Wynika to z geometrii — różnica dróg do obu źródeł zmienia się z każdym metrem w głąb i w bok. Twoim zadaniem nie jest więc „naprawienie wszystkiego”, tylko wybór miejsca, w którym kompromis obsłuży największą część publiczności, i sprawdzenie, jak bardzo psuje się poza nim.',
+        t: 'Teraz zła wiadomość, z którą trzeba się pogodzić: przy subach na ziemi i liniówki wysoko pod dachem idealne wyrównanie istnieje tylko wzdłuż jednej linii na widowni. Wynika to z geometrii — różnica dróg do obu źródeł zmienia się z każdym metrem w głąb i w bok. Twoim zadaniem nie jest więc „naprawienie wszystkiego”, tylko wybór miejsca, w którym kompromis obsłuży największą część publiczności, i sprawdzenie, jak bardzo psuje się poza nim.',
       },
       {
         t: 'Dlatego po ustawieniu zawsze weryfikujesz w kilku punktach: bliżej sceny, dalej, na bokach. Jeśli w dużej części widowni suma wychodzi gorzej niż same składniki, wróć i zmień punkt odniesienia albo częstotliwość zwrotnicy. Przy pomiarach czasu w pasmie basowym pomocna bywa pozycja mikrofonu na podłodze — eliminuje odbicie od gruntu, przez co wykresy są czytelniejsze w okolicy 200 Hz. Pamiętaj tylko, żeby nie podejmować w tej pozycji decyzji o barwie: nikt nie słucha koncertu z uchem przy posadzce.',
@@ -823,7 +823,7 @@ export const LESSONS = {
   },
 
   eq: {
-    goals: ['Używać korekcji tam, gdzie faktycznie działa', 'Wyrównywać tablicę strefami zamiast na ślepo'],
+    goals: ['Używać korekcji tam, gdzie faktycznie działa', 'Wyrównywać liniówkę strefami zamiast na ślepo'],
     steps: [
       {
         t: 'Korektor działa identycznie w każdym miejscu widowni — nie ma pojęcia, gdzie stoisz. Wynika z tego prosta zasada: korygujesz tylko to, co jest wspólne dla całej strefy. Jeśli pomiar w jednym miejscu pokazuje głęboką dziurę, a dwa metry dalej jej nie ma, to nie jest robota dla korektora, tylko skutek interferencji albo odbicia. Próba „zasypania” takiej dziury podbiciem kończy się tym, że w pozostałych miejscach robi się nadmiar.',
@@ -835,14 +835,14 @@ export const LESSONS = {
         t: 'Sama krzywa docelowa to decyzja, a nie prawo fizyki. Duże systemy koncertowe stroi się zwykle z podniesionym dołem i łagodnie opadającą górą pasma — takie brzmienie odbieramy jako naturalne przy wysokich poziomach. Konkretne nachylenie zależy od gatunku, obiektu i realizatora, dlatego warto mieć własną, zapisaną krzywą odniesienia i konsekwentnie do niej wracać, zamiast za każdym razem zaczynać od zera.',
       },
       {
-        t: 'W tablicy liniowej wyrównanie robi się strefami. Dzielisz skrzynie na grupy według tego, w jaki fragment widowni celują: górne rzucają najdalej, środkowe obsługują środek, dolne pierwsze rzędy. Każdą grupę mierzysz w jej obszarze i korygujesz górę pasma osobno — górne zwykle wymagają podbicia, bo powietrze zabrało im wysokie częstotliwości, dolne obniżenia, bo grają z bliska. Skoki między strefami warto wygładzić, rozkładając korektę na sąsiadujące skrzynie, żeby przejście było niesłyszalne.',
-        viz: 'zonowanie-tablicy',
+        t: 'W liniówce wyrównanie robi się strefami. Dzielisz skrzynie na grupy według tego, w jaki fragment widowni celują: górne rzucają najdalej, środkowe obsługują środek, dolne pierwsze rzędy. Każdą grupę mierzysz w jej obszarze i korygujesz górę pasma osobno — górne zwykle wymagają podbicia, bo powietrze zabrało im wysokie częstotliwości, dolne obniżenia, bo grają z bliska. Skoki między strefami warto wygładzić, rozkładając korektę na sąsiadujące skrzynie, żeby przejście było niesłyszalne.',
+        viz: 'zonowanie-liniówki',
       },
       {
-        t: 'Cieniować można też poziomem, ale to inne narzędzie. Zmiana poziomu działa na całe pasmo, więc ścisza również bas — a bas w tablicy powstaje ze współpracy wszystkich skrzyń, więc tracisz trochę zapasu w dole i skracasz efektywną długość tablicy. Strata jest mniejsza, niż się wydaje: przy typowym cieniowaniu kilku dolnych skrzyń mówimy o ułamkach decybela zapasu w basie. Uważaj natomiast w systemach z fabrycznym algorytmem kształtowania wiązki — tam zmiany poziomu potrafią zaburzyć obliczenia producenta.',
+        t: 'Cieniować można też poziomem, ale to inne narzędzie. Zmiana poziomu działa na całe pasmo, więc ścisza również bas — a bas w liniówce powstaje ze współpracy wszystkich skrzyń, więc tracisz trochę zapasu w dole i skracasz efektywną długość liniówki. Strata jest mniejsza, niż się wydaje: przy typowym cieniowaniu kilku dolnych skrzyń mówimy o ułamkach decybela zapasu w basie. Uważaj natomiast w systemach z fabrycznym algorytmem kształtowania wiązki — tam zmiany poziomu potrafią zaburzyć obliczenia producenta.',
       },
       {
-        t: 'Na koniec zjawisko, które zaskakuje przy dolnych skrzyniach. Stojąc pod tablicą, słyszysz w górze pasma nie tylko skrzynie wycelowane w Ciebie, ale też rozproszoną energię z elementów położonych wyżej. Dlatego ściszanie góry pasma w dolnych skrzyniach działa tylko do pewnego momentu — potem przestaje poprawiać barwę, a zaczyna sprawiać, że dźwięk brzmi odlegle i mniej wyraźnie. Znajdź granicę, przy której cieniowanie przestaje pomagać, cofnij się o decybel i zaakceptuj resztę: odrobina jasności w pierwszych rzędach jest mniejszym złem.',
+        t: 'Na koniec zjawisko, które zaskakuje przy dolnych skrzyniach. Stojąc pod liniówką, słyszysz w górze pasma nie tylko skrzynie wycelowane w Ciebie, ale też rozproszoną energię z elementów położonych wyżej. Dlatego ściszanie góry pasma w dolnych skrzyniach działa tylko do pewnego momentu — potem przestaje poprawiać barwę, a zaczyna sprawiać, że dźwięk brzmi odlegle i mniej wyraźnie. Znajdź granicę, przy której cieniowanie przestaje pomagać, cofnij się o decybel i zaakceptuj resztę: odrobina jasności w pierwszych rzędach jest mniejszym złem.',
       },
     ],
   },
@@ -863,7 +863,7 @@ export const LESSONS = {
         t: 'Charakterystyki biegunowe to wykresy w formie koła pokazujące, jak poziom zmienia się z kątem. Są czytelne, ale zawsze dotyczą jednej częstotliwości albo jednego pasma — dlatego producenci publikują ich całe serie. Sama charakterystyka nie mówi nic o fazie ani o tym, co dzieje się w trzech wymiarach, więc do projektowania wystarcza tylko w najprostszych sytuacjach.',
       },
       {
-        t: 'Do poważnej predykcji potrzebne są pełne dane przestrzenne, czyli tak zwane dane balonowe: pomiary we wszystkich kierunkach i we wszystkich pasmach, zapisane w formacie, który wczytuje oprogramowanie. Kluczowe jest, żeby zawierały również fazę. Bez niej program nie policzy poprawnie sumowania wielu skrzyń, a właśnie to sumowanie decyduje o zachowaniu tablicy.',
+        t: 'Do poważnej predykcji potrzebne są pełne dane przestrzenne, czyli tak zwane dane balonowe: pomiary we wszystkich kierunkach i we wszystkich pasmach, zapisane w formacie, który wczytuje oprogramowanie. Kluczowe jest, żeby zawierały również fazę. Bez niej program nie policzy poprawnie sumowania wielu skrzyń, a właśnie to sumowanie decyduje o zachowaniu liniówki.',
       },
       {
         t: 'Pomiary katalogowe wykonuje się w warunkach bezechowych — w komorze albo metodą bramkowania, która wycina odbicia. To słuszne, bo chodzi o opis samej skrzyni, a nie pomieszczenia. Trzeba jednak pamiętać, że w rzeczywistym obiekcie do tej charakterystyki dołoży się wszystko, co robi sala. Karta katalogowa opisuje więc punkt wyjścia, a nie efekt końcowy.',
@@ -893,34 +893,34 @@ export const LESSONS = {
         t: 'Do strat geometrycznych dochodzi tłumienie w powietrzu. Powietrze pochłania energię tym mocniej, im wyższa częstotliwość, a dodatkowo zależy to od wilgotności i temperatury. Na kilkudziesięciu metrach strata w górnych oktawach bywa wyraźna — kilka decybeli — podczas gdy w basie praktycznie nie występuje. Stąd odległe rzędy słyszą system ciemniejszy, a projekt musi to częściowo skompensować.',
       },
       {
-        t: 'Reguła sześciu decybeli obowiązuje dla źródła zachowującego się jak punkt. Długa tablica blisko siebie zachowuje się inaczej: jej energia rozkłada się bardziej cylindrycznie i spadek wynosi około trzech decybeli na podwojenie odległości. Dopiero po przekroczeniu pewnej granicy tablica zaczyna zachowywać się jak źródło punktowe i wraca reguła sześciu.',
+        t: 'Reguła sześciu decybeli obowiązuje dla źródła zachowującego się jak punkt. Długa liniówka blisko siebie zachowuje się inaczej: jej energia rozkłada się bardziej cylindrycznie i spadek wynosi około trzech decybeli na podwojenie odległości. Dopiero po przekroczeniu pewnej granicy liniówka zaczyna zachowywać się jak źródło punktowe i wraca reguła sześciu.',
       },
       {
-        t: 'Granica ta nie jest stała — zależy od częstotliwości i od długości tablicy. Dla wysokich częstotliwości sięga daleko, dla niskich blisko. Konsekwencja praktyczna jest taka, że bilans tonalny zmienia się z odległością nie tylko przez tłumienie w powietrzu, ale też przez samą fizykę tablicy. To jeden z powodów, dla których ostatnie rzędy wymagają osobnej korekcji strefowej.',
+        t: 'Granica ta nie jest stała — zależy od częstotliwości i od długości liniówki. Dla wysokich częstotliwości sięga daleko, dla niskich blisko. Konsekwencja praktyczna jest taka, że bilans tonalny zmienia się z odległością nie tylko przez tłumienie w powietrzu, ale też przez samą fizykę liniówki. To jeden z powodów, dla których ostatnie rzędy wymagają osobnej korekcji strefowej.',
       },
     ],
   },
 
   krzywizna: {
-    goals: ['Dobierać długość i krzywiznę tablicy', 'Rozpoznać sytuację „za mało rigu na gig”'],
+    goals: ['Dobierać długość i krzywiznę liniówki', 'Rozpoznać sytuację „za mało rigu na gig”'],
     steps: [
       {
-        t: 'W dole pasma tablica jest jednym wielkim źródłem, którego kierunkowość zależy od jego rozmiaru. Dlatego długość tablicy to nie kwestia logistyki, tylko podstawowy parametr projektowy. Dłuższa tablica trzyma bas i dolną średnicę w węższej wiązce, przez co mniej energii leci w sufit i na ściany, a więcej trafia do publiczności.',
+        t: 'W dole pasma liniówka jest jednym wielkim źródłem, którego kierunkowość zależy od jego rozmiaru. Dlatego długość liniówki to nie kwestia logistyki, tylko podstawowy parametr projektowy. Dłuższa liniówka trzyma bas i dolną średnicę w węższej wiązce, przez co mniej energii leci w sufit i na ściany, a więcej trafia do publiczności.',
         viz: 'dlugosc-linii',
       },
       {
-        t: 'Blisko tablicy fala zachowuje się inaczej niż daleko. W obszarze bliskim energia rozkłada się bardziej cylindrycznie i poziom spada wolniej — około trzech decybeli na podwojenie odległości. Daleko tablica zachowuje się jak źródło punktowe i spadek wraca do sześciu decybeli. Granica między tymi obszarami przesuwa się wraz z częstotliwością i długością tablicy.',
+        t: 'Blisko liniówki fala zachowuje się inaczej niż daleko. W obszarze bliskim energia rozkłada się bardziej cylindrycznie i poziom spada wolniej — około trzech decybeli na podwojenie odległości. Daleko liniówka zachowuje się jak źródło punktowe i spadek wraca do sześciu decybeli. Granica między tymi obszarami przesuwa się wraz z częstotliwością i długością liniówki.',
       },
       {
-        t: 'Krzywizna rozdziela energię między rzędy. U góry tablicy kąty są najmniejsze, bo kilka skrzyń ma wspólnie obsłużyć najdalsze miejsca — ich energia sumuje się i daje potrzebny poziom na dystansie. Im niżej, tym kąty większe, bo publiczność jest bliżej i jedna skrzynia w zupełności wystarcza. Taki rozkład nazywamy krzywizną progresywną i jest domyślnym wyborem dla typowej widowni.',
-        viz: 'pokrycie-tablicy',
+        t: 'Krzywizna rozdziela energię między rzędy. U góry liniówki kąty są najmniejsze, bo kilka skrzyń ma wspólnie obsłużyć najdalsze miejsca — ich energia sumuje się i daje potrzebny poziom na dystansie. Im niżej, tym kąty większe, bo publiczność jest bliżej i jedna skrzynia w zupełności wystarcza. Taki rozkład nazywamy krzywizną progresywną i jest domyślnym wyborem dla typowej widowni.',
+        viz: 'pokrycie-liniówki',
       },
       {
         t: 'Alternatywą jest łuk o stałym kącie. Rozkłada energię równomiernie kątowo, więc sprawdza się tam, gdzie widownia jest szeroka i płytka, a odległości do wszystkich miejsc podobne. Nie da jednak dalekiego rzutu, bo żadna grupa skrzyń nie pracuje wspólnie na ten sam odległy obszar. Wybór między progresją a stałym łukiem wynika więc wprost z kształtu widowni.',
       },
       {
         t: 'Praktyczna wskazówka przy dobieraniu kątów: patrz, gdzie trafiają osie kolejnych skrzyń. Powinny lądować na widowni w mniej więcej równych odstępach, od ostatniego rzędu do pierwszego. Jeśli dwie sąsiednie osie trafiają w to samo miejsce, masz nadmiar energii; jeśli między nimi zostaje duża przerwa, powstanie cichszy pas. To prosty test, który robi się w dwie minuty w programie predykcyjnym.',
-        viz: 'celowanie-tablicy',
+        viz: 'celowanie-liniówki',
       },
       {
         t: 'Bywa i tak, że liczba dostępnych skrzyń nie wystarcza na kąt pionowy, który trzeba pokryć. Objawia się to tym, że po rozłożeniu wszystkich kątów wciąż brakuje zasięgu do pierwszych rzędów albo pokrycie robi się nierównomierne. To sytuacja „za mało rigu na ten gig” i nie rozwiązuje się jej korekcją — trzeba albo dołożyć skrzyń, albo dostawić fille obsługujące bliskie obszary, albo uczciwie zakomunikować ograniczenie.',
@@ -948,7 +948,7 @@ export const LESSONS = {
         t: 'Rozwiązania są trzy. Fizycznie: rozłożyć suby w ciągły szereg wzdłuż sceny albo ustawić je centralnie, żeby zniknęła wyraźna oś symetrii. Elektronicznie: zbudować wirtualny łuk, opóźniając skrzynie w środku szeregu tak, jakby stały na okręgu, co rozszerza pokrycie i rozbija korytarz. Trzecia droga to kombinacja obu — najczęstsza w praktyce dużych produkcji.',
       },
       {
-        t: 'Na koniec wybór między subami na ziemi a podwieszonymi. Naziemne korzystają ze sprzężenia z gruntem i grają o kilka decybeli głośniej, ale różnica poziomu między pierwszym a ostatnim rzędem jest duża, a pierwsze rzędy dostają dawkę, która bywa niebezpieczna dla słuchu. Podwieszone tracą ten zysk, lecz dają znacznie równiejszy rozkład i łatwiej je wyrównać z tablicą. Wybór zależy od obiektu, budżetu i możliwości rigowych.',
+        t: 'Na koniec wybór między subami na ziemi a podwieszonymi. Naziemne korzystają ze sprzężenia z gruntem i grają o kilka decybeli głośniej, ale różnica poziomu między pierwszym a ostatnim rzędem jest duża, a pierwsze rzędy dostają dawkę, która bywa niebezpieczna dla słuchu. Podwieszone tracą ten zysk, lecz dają znacznie równiejszy rozkład i łatwiej je wyrównać z liniówką. Wybór zależy od obiektu, budżetu i możliwości rigowych.',
       },
     ],
   },
@@ -1022,7 +1022,7 @@ export const LESSONS = {
         t: 'A gdy kąt jest za duży? Między skrzyniami zostaje pas, do którego żadna z nich nie świeci pełną energią. Słychać tam spadek poziomu i wyraźne ubytki w górze pasma, bo to właśnie wysokie częstotliwości opadają najszybciej poza krawędzią wiązki. Taki cichszy korytarz bywa mniej dokuczliwy niż szeroka strefa interferencji, ale wciąż jest błędem projektowym.',
       },
       {
-        t: 'Pamiętaj, że kąty rozwiązują problem tylko w tej części pasma, w której skrzynie są kierunkowe. W basie obie grają dookoła, więc niezależnie od ustawienia nakładają się w stu procentach i sumują. Dlatego dwie skrzynie zawsze dadzą w dole pasma więcej energii niż jedna, a w górze pasma podzielą się widownią. To znowu ta sama dwoistość, którą widziałeś przy tablicach.',
+        t: 'Pamiętaj, że kąty rozwiązują problem tylko w tej części pasma, w której skrzynie są kierunkowe. W basie obie grają dookoła, więc niezależnie od ustawienia nakładają się w stu procentach i sumują. Dlatego dwie skrzynie zawsze dadzą w dole pasma więcej energii niż jedna, a w górze pasma podzielą się widownią. To znowu ta sama dwoistość, którą poznasz przy liniówkach.',
       },
       {
         t: 'Przy większych systemach wybór układu ma dodatkowe konsekwencje. Para lewa-prawa daje wrażenie stereofonii, ale tylko w wąskiej strefie wokół osi symetrii, a poza nią obraz zapada się w stronę bliższej strony. Klaster centralny daje spójny obraz dla wszystkich i mniej interferencji, ale traci szerokość. Układ trójkanałowy próbuje łączyć zalety obu, kosztem większej złożoności miksu i strojenia.',
@@ -1034,11 +1034,11 @@ export const LESSONS = {
   },
 
   linearray: {
-    goals: ['Zrozumieć, dlaczego tablica działa inaczej w basie i w górze pasma', 'Świadomie dobierać długość i kąty'],
+    goals: ['Zrozumieć, dlaczego liniówka działa inaczej w basie i w górze pasma', 'Świadomie dobierać długość i kąty'],
     steps: [
       {
-        t: 'Tablica liniowa wygląda jak jedna wielka kolumna, ale w rzeczywistości pracuje na dwa zupełnie różne sposoby jednocześnie. W górze pasma każda skrzynia ma bardzo wąską wiązkę pionową i obsługuje swój kawałek widowni — tu kierujesz energię tak, jak kierowałbyś reflektorem: po prostu celując. W basie skrzynie nie mają żadnej kierunkowości, więc wszystkie grają wszędzie i o kształcie pokrycia decyduje coś innego: sumowanie i wzajemne opóźnienia. Jedno urządzenie, dwa mechanizmy — w górze rządzi poziom, w dole rządzi czas.',
-        viz: 'pokrycie-tablicy',
+        t: 'Liniówka wygląda jak jedna wielka kolumna, ale w rzeczywistości pracuje na dwa zupełnie różne sposoby jednocześnie. W górze pasma każda skrzynia ma bardzo wąską wiązkę pionową i obsługuje swój kawałek widowni — tu kierujesz energię tak, jak kierowałbyś reflektorem: po prostu celując. W basie skrzynie nie mają żadnej kierunkowości, więc wszystkie grają wszędzie i o kształcie pokrycia decyduje coś innego: sumowanie i wzajemne opóźnienia. Jedno urządzenie, dwa mechanizmy — w górze rządzi poziom, w dole rządzi czas.',
+        viz: 'pokrycie-liniówki',
       },
       {
         t: 'Przyjrzyjmy się dolnemu mechanizmowi, bo jest mniej oczywisty. Ustaw sześć subwooferów w szereg. Na wprost szeregu fale ze wszystkich skrzyń docierają do słuchacza niemal równocześnie, więc pięknie się sumują. Ale idąc w bok, zaczynasz być bliżej jednych skrzyń, a dalej od innych: dotarcia rozjeżdżają się w czasie i sumowanie przestaje działać. Efekt jest taki, że energia koncentruje się na wprost, a z boków ubywa. Powstała kierunkowość nie wzięła się z kształtu obudowy, tylko z gry czasem między wieloma źródłami.',
@@ -1048,13 +1048,13 @@ export const LESSONS = {
         viz: 'dlugosc-linii',
       },
       {
-        t: 'Stąd bierze się sposób, w jaki układa się kąty w tablicy. Górne skrzynie mają najdalej do pokonania, więc ustawia się je prawie płasko i pod małymi kątami względem siebie. Małe kąty oznaczają, że kilka skrzyń oświetla ten sam daleki obszar i ich energia się sumuje — dokładnie tego potrzebujemy, żeby ostatni rząd usłyszał tyle samo co dziesiąty. Im niżej w tablicy, tym bliżej jest publiczność i tym większe kąty: energia jednej skrzyni w zupełności wystarcza, a rozwarcie zapobiega nadmiarowi poziomu pod sceną. Krzywizna tablicy to więc nie estetyka, tylko rozkład mocy w przestrzeni.',
+        t: 'Stąd bierze się sposób, w jaki układa się kąty w liniówce. Górne skrzynie mają najdalej do pokonania, więc ustawia się je prawie płasko i pod małymi kątami względem siebie. Małe kąty oznaczają, że kilka skrzyń oświetla ten sam daleki obszar i ich energia się sumuje — dokładnie tego potrzebujemy, żeby ostatni rząd usłyszał tyle samo co dziesiąty. Im niżej w liniówce, tym bliżej jest publiczność i tym większe kąty: energia jednej skrzyni w zupełności wystarcza, a rozwarcie zapobiega nadmiarowi poziomu pod sceną. Krzywizna liniówki to więc nie estetyka, tylko rozkład mocy w przestrzeni.',
       },
       {
-        t: 'To prowadzi do bardzo praktycznej konsekwencji przy strojeniu. Siedząc na widowni, słuchasz w górze pasma kilku skrzyń — tych, których wiązki Cię obejmują — ale w basie słuchasz całej tablicy naraz. Dlatego nadmiar wysokich częstotliwości w pierwszych rzędach możesz spokojnie skorygować, ściszając górę pasma w dolnych skrzyniach: reszta widowni tego nie zauważy, bo obsługują ją inne elementy. Natomiast nadmiaru basu pod sceną nie naprawisz, ściszając bas w dolnych skrzyniach — bas dociera tam z całej tablicy, więc korekta w kilku skrzyniach zmieni niewiele, a popsuje bilans gdzie indziej.',
+        t: 'To prowadzi do bardzo praktycznej konsekwencji przy strojeniu. Siedząc na widowni, słuchasz w górze pasma kilku skrzyń — tych, których wiązki Cię obejmują — ale w basie słuchasz całej liniówki naraz. Dlatego nadmiar wysokich częstotliwości w pierwszych rzędach możesz spokojnie skorygować, ściszając górę pasma w dolnych skrzyniach: reszta widowni tego nie zauważy, bo obsługują ją inne elementy. Natomiast nadmiaru basu pod sceną nie naprawisz, ściszając bas w dolnych skrzyniach — bas dociera tam z całej liniówki, więc korekta w kilku skrzyniach zmieni niewiele, a popsuje bilans gdzie indziej.',
       },
       {
-        t: 'Zostaje pytanie, dlaczego tablica, w której skrzynie celowo na siebie nachodzą, nie brzmi jak jedno wielkie pasmo interferencji. Odpowiadają za to dwie rzeczy. Po pierwsze, falowody są zaprojektowane tak, by źródła dźwięku sąsiednich skrzyń leżały jak najbliżej siebie — im mniejsze przesunięcie, tym mniejsza różnica czasu. Po drugie, wiązka pionowa pojedynczej skrzyni jest bardzo wąska: zanim odejdziesz w pionie na tyle daleko, żeby zebrać groźną różnicę czasu, wypadasz już z zasięgu sąsiedniej skrzyni. To dlatego tablica z fabrycznych elementów działa, a „domowa tablica” ze zwykłych szerokopasmowych skrzyń ustawionych jedna na drugiej brzmi źle — tam wiązki są szerokie, więc słuchacz zbiera energię z wielu skrzyń o dużych różnicach czasu.',
+        t: 'Zostaje pytanie, dlaczego liniówka, w której skrzynie celowo na siebie nachodzą, nie brzmi jak jedno wielkie pasmo interferencji. Odpowiadają za to dwie rzeczy. Po pierwsze, falowody są zaprojektowane tak, by źródła dźwięku sąsiednich skrzyń leżały jak najbliżej siebie — im mniejsze przesunięcie, tym mniejsza różnica czasu. Po drugie, wiązka pionowa pojedynczej skrzyni jest bardzo wąska: zanim odejdziesz w pionie na tyle daleko, żeby zebrać groźną różnicę czasu, wypadasz już z zasięgu sąsiedniej skrzyni. To dlatego liniówka z fabrycznych elementów działa, a „domowa liniówka” ze zwykłych szerokopasmowych skrzyń ustawionych jedna na drugiej brzmi źle — tam wiązki są szerokie, więc słuchacz zbiera energię z wielu skrzyń o dużych różnicach czasu.',
       },
     ],
   },
@@ -1076,7 +1076,7 @@ export const LESSONS = {
       'Absorpcja powietrza rośnie z częstotliwością i odległością, a zależy mocno od wilgotności i temperatury. Przy kilkuset metrach straty w 8–16 kHz mogą sięgać wielu dB. ISO 9613-1 podaje sposób obliczania tych współczynników.',
       'Dźwięk zagina się w stronę wolniejszego, chłodniejszego powietrza. W słoneczny dzień przy gruncie jest cieplej, więc fala zagina się w górę i zasięg spada. Wieczorem przy inwersji (chłodno przy gruncie) zagina się w dół — dźwięk niesie się daleko.',
       'Prędkość wiatru rośnie z wysokością. Z wiatrem fronty zaginają się ku ziemi (lepszy zasięg), pod wiatr — w górę (strefa cienia). Wiatr boczny przesuwa pokrycie. Porywisty wiatr powoduje fluktuacje poziomu i barwy.',
-      'Spadek temperatury wydłuża czas przelotu. Na dużym plenerze wyrównanie delay wykonane w dzień może wieczorem odbiegać o kilka ms. Warto mieć przygotowaną tabelę korekt wg temperatury.',
+      'Spadek temperatury wydłuża czas dotarcia dźwięku. Na dużym plenerze wyrównanie delay wykonane w dzień może wieczorem odbiegać o kilka ms. Warto mieć przygotowaną tabelę korekt wg temperatury.',
       'Grunt odbija LF i część MF; różne podłoża (beton, trawa, piasek) zachowują się inaczej. Konstrukcje, namioty i ekrany LED tworzą odbicia i cienie, które warto uwzględnić w projekcie.',
       'ISO 9613-2 opisuje prognozowanie tłumienia dźwięku w plenerze (geometria, powietrze, grunt, ekrany) i jest stosowane do oceny hałasu środowiskowego. Przydaje się przy uzgodnieniach z urzędami i sąsiadami.',
     ],
@@ -1117,7 +1117,7 @@ export const LESSONS = {
     goals: ['Rozumieć zasady systemów obiektowych', 'Znać różnice w projekcie pokrycia'],
     steps: [
       'Systemy obiektowe traktują każde źródło (wokal, instrument) jako obiekt z pozycją. Procesor wylicza poziomy i opóźnienia dla wielu głośników nad sceną i wokół publiczności, żeby lokalizacja odpowiadała pozycji na scenie.',
-      'Żeby obiekt był słyszany z właściwego kierunku w całej widowni, wiele głośników scenicznych musi pokrywać większość publiczności. To zmienia projekt: zamiast dwóch tablic L/R — kilka tablic o szerszym pokryciu i starannie dobranej kierunkowości.',
+      'Żeby obiekt był słyszany z właściwego kierunku w całej widowni, wiele głośników scenicznych musi pokrywać większość publiczności. To zmienia projekt: zamiast dwóch liniówek L/R — kilka liniówek o szerszym pokryciu i starannie dobranej kierunkowości.',
       'Panoramowanie oparte na różnicach czasu i poziomu wykorzystuje efekt pierwszeństwa, by utrzymać lokalizację w szerokiej strefie, a nie tylko w „sweet spocie”, jak w klasycznym stereo.',
       'Wave Field Synthesis rekonstruuje fizyczny front falowy wirtualnego źródła za pomocą wielu gęsto rozmieszczonych głośników, zgodnie z zasadą Huygensa. Wymaga dużej liczby kanałów i ma ograniczenia w HF (aliasing przestrzenny).',
       'Główne rozwiązania na rynku to m.in. L-ISA (L-Acoustics), Soundscape (d&b), Spacemap Go (Meyer Sound) i Holophonix. Różnią się podejściem, integracją z predykcją i workflow miksu.',
@@ -1129,8 +1129,8 @@ export const LESSONS = {
     steps: [
       'Każdy przetwornik lub element dostaje własny filtr i opóźnienie. Zmieniając relacje czasowe i poziomowe między nimi, kształtuje się kierunek i szerokość wiązki niezależnie od fizycznego ustawienia.',
       'Kolumna montowana płasko przy ścianie może kierować wiązkę w dół na publiczność, omijając sufit i odbicia. Idealne w kościołach, halach i instalacjach, gdzie estetyka ogranicza możliwość pochylenia.',
-      'W dużych systemach algorytmy optymalizują filtry dla każdego elementu, by osiągnąć zadany rozkład SPL i tonalny w obszarze publiczności oraz ograniczyć energię poza nim (np. Martin Audio MLA, procesory tablic innych producentów).',
-      'Fizyki nie da się oszukać: kontrola LF nadal zależy od długości tablicy, a kształtowanie wiązki pochłania część headroomu, bo elementy nie grają w pełni „razem”.',
+      'W dużych systemach algorytmy optymalizują filtry dla każdego elementu, by osiągnąć zadany rozkład SPL i tonalny w obszarze publiczności oraz ograniczyć energię poza nim (np. Martin Audio MLA, procesory liniówek innych producentów).',
+      'Fizyki nie da się oszukać: kontrola LF nadal zależy od długości liniówki, a kształtowanie wiązki pochłania część headroomu, bo elementy nie grają w pełni „razem”.',
       'Tworzenie stref o niższym poziomie (np. scena, obszary za publicznością, zabudowa) to jedno z największych zastosowań. Zawsze weryfikuj w predykcji i pomiarze, jak głęboka jest redukcja w praktyce.',
     ],
   },
@@ -1195,7 +1195,7 @@ export const LESSONS = {
       'Echo słyszymy wtedy, gdy pojedyncze, silne odbicie dociera na tyle późno, że mózg przestaje je łączyć z frontem. W dużych obiektach to zwykle kilkadziesiąt milisekund — czyli dodatkowa droga rzędu kilkunastu metrów i więcej.',
       'Najczęstsi winowajcy to tylna ściana za publicznością, dach i ekrany. Energia wysłana ponad ostatni rząd wraca do widowni z opóźnieniem, którego nie da się już naprawić żadnym filtrem.',
       'Powierzchnie wklęsłe — łukowe dachy, kopuły, zaokrąglone balkony — skupiają energię w ognisku, tworząc miejsca o wyraźnie wyższym poziomie i silnym echu. Powierzchnie wypukłe działają odwrotnie: rozpraszają energię i są akustycznie bezpieczniejsze.',
-      'W predykcji pracujesz metodą lustra: sprawdzasz, gdzie trafia energia z krawędzi pokrycia tablicy i co odbije ją z powrotem. To moment, w którym echo jest jeszcze tanie w usunięciu — wystarczy zmiana kąta, krzywizny lub wysokości podwieszenia.',
+      'W predykcji pracujesz metodą lustra: sprawdzasz, gdzie trafia energia z krawędzi pokrycia liniówki i co odbije ją z powrotem. To moment, w którym echo jest jeszcze tanie w usunięciu — wystarczy zmiana kąta, krzywizny lub wysokości podwieszenia.',
       'Na obiekcie diagnozujesz to pomiarem odpowiedzi impulsowej: silny, izolowany pik w ETC kilkadziesiąt milisekund po froncie wskazuje odbicie. Z różnicy czasu wyliczasz dodatkową drogę i wskazujesz powierzchnię.',
       'Kolejność działań jest zawsze ta sama: najpierw geometria (kąty, krzywizna, trim, pozycja), potem adaptacja obiektu (kurtyny, banery), a dopiero na końcu kompromisy elektroniczne. Odwrócenie tej kolejności kończy się systemem, który brzmi dobrze tylko na FOH.',
     ],
