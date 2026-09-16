@@ -18,7 +18,9 @@ export const VISUALS = {
       const cols = 44, rows = 9, x0 = 84, dx = 11.6, y0 = 52, dy = 17, perCycle = 8;
       const dots = [];
       for (let c = 0; c < cols; c++) {
-        const delay = (-(c % perCycle) * (2 / perCycle)).toFixed(3);
+        // Ujemne opóźnienie = faza wyprzedzona. Żeby fala biegła w prawo, kolejne kolumny
+        // muszą być opóźnione względem poprzedniej, stąd odliczanie od końca cyklu.
+        const delay = (-(((perCycle - (c % perCycle)) % perCycle) * (2 / perCycle))).toFixed(3);
         const inner = [];
         for (let r = 0; r < rows; r++) {
           const jitter = ((c * 7 + r * 13) % 5) - 2;
@@ -33,8 +35,8 @@ export const VISUALS = {
         <text x="42" y="204" class="v-label" text-anchor="middle">membrana</text>
         ${dots.join('')}
         <g class="v-wavefront">
-          <rect x="84" y="40" width="46" height="150" rx="10" class="v-stroke-gold" fill="none" stroke-width="2" stroke-dasharray="6 5"/>
-          <text x="107" y="32" class="v-label-gold" text-anchor="middle">zagęszczenie</text>
+          <rect x="136" y="40" width="40" height="150" rx="10" class="v-stroke-gold" fill="none" stroke-width="2" stroke-dasharray="6 5"/>
+          <text x="156" y="32" class="v-label-gold" text-anchor="middle">zagęszczenie</text>
         </g>
         <text x="245" y="228" class="v-label-red">czerwona cząsteczka tylko drga w miejscu</text>
         <path d="M556 96c16 0 22 10 22 24s-6 24-22 24" class="v-stroke" fill="none" stroke-width="4"/>
