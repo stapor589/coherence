@@ -234,6 +234,50 @@ export const VISUALS = {
     </svg>`,
   },
 
+  'strefy-odpowiedzialnosci': {
+    title: 'Każdy subsystem ma swój rewir',
+    caption: 'Front fill obsługuje pierwsze rzędy, tablica główna środek widowni, wieża delay tyły. W swoim rewirze ustawiasz poziom i barwę. Na styku dwóch rewirów — tam, gdzie oba grają równie głośno — ustawiasz czas. Poza stykiem jeden system dominuje i sumowanie przestaje być groźne.',
+    svg: `<svg viewBox="0 0 620 230" class="v-svg" role="img" aria-label="Strefy odpowiedzialności subsystemów i szwy między nimi">
+      <line x1="20" y1="170" x2="600" y2="170" class="v-stroke-dim" stroke-width="2"/>
+      <rect x="24" y="96" width="26" height="60" rx="5" class="v-fill-dim"/>
+      <text x="37" y="190" class="v-label" text-anchor="middle">scena</text>
+      <rect x="60" y="60" width="118" height="100" rx="8" class="v-fill-accent" opacity=".14"/>
+      <rect x="186" y="60" width="222" height="100" rx="8" class="v-fill-accent" opacity=".26"/>
+      <rect x="416" y="60" width="176" height="100" rx="8" class="v-fill-gold" opacity=".2"/>
+      <text x="119" y="115" class="v-label-white" text-anchor="middle">front fill</text>
+      <text x="297" y="115" class="v-label-white" text-anchor="middle">tablica główna</text>
+      <text x="504" y="115" class="v-label-white" text-anchor="middle">wieża delay</text>
+      <line x1="182" y1="46" x2="182" y2="176" class="v-stroke-gold" stroke-dasharray="5 5" stroke-width="2"/>
+      <line x1="412" y1="46" x2="412" y2="176" class="v-stroke-gold" stroke-dasharray="5 5" stroke-width="2"/>
+      <text x="182" y="38" class="v-label-gold" text-anchor="middle">szew</text>
+      <text x="412" y="38" class="v-label-gold" text-anchor="middle">szew</text>
+      <text x="310" y="212" class="v-label" text-anchor="middle">w rewirze: poziom i barwa · na szwie: czas</text>
+    </svg>`,
+  },
+
+  'zonowanie-tablicy': {
+    title: 'Zonowanie tablicy i cieniowanie góry pasma',
+    caption: 'Skrzynie grupuje się według tego, w jaki fragment widowni celują. Górne rzucają najdalej, więc tracą najwięcej wysokich na absorpcji powietrza — dostają podbicie. Dolne grają blisko i są za jasne — dostają obniżenie. Skoki między strefami wygładza się, rozkładając korektę na sąsiednie skrzynie.',
+    svg: `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Podział tablicy na strefy z cieniowaniem wysokich częstotliwości">
+      ${[['A', 4, '+3 dB', '#2de2c0'], ['B', 4, '+2 dB', '#5aa9ff'], ['C', 3, '−1 dB', '#ffc857'], ['D', 4, '−4 dB', '#ff8a3d']]
+        .reduce((acc, [z, n, v, col]) => {
+          const start = acc.i;
+          for (let k = 0; k < n; k++) {
+            const y = 20 + (start + k) * 14;
+            acc.out += `<rect x="70" y="${y}" width="52" height="11" rx="2" fill="${col}" opacity=".85" transform="rotate(${2 + (start + k) * 1.6} 96 ${y + 5})"/>`;
+          }
+          const midY = 20 + (start + n / 2) * 14;
+          acc.out += `<text x="180" y="${midY}" class="v-label-white">strefa ${z}</text><text x="250" y="${midY}" class="v-label">korekta HF ${v}</text>`;
+          acc.out += `<path d="M150 ${midY - 4} L 380 ${midY - 4 + (start - 5) * 9}" stroke="${col}" stroke-width="1.4" opacity=".35" fill="none"/>`;
+          acc.i = start + n;
+          return acc;
+        }, { out: '', i: 0 }).out}
+      <line x1="392" y1="46" x2="600" y2="206" class="v-stroke-dim" stroke-width="2"/>
+      <text x="520" y="130" class="v-label" text-anchor="middle">widownia</text>
+      <text x="330" y="238" class="v-label-gold" text-anchor="middle">skoki między strefami wygładzamy, rozkładając korektę na sąsiednie skrzynie</text>
+    </svg>`,
+  },
+
   'pokrycie-tablicy': {
     title: 'Line array to schody, nie reflektor',
     caption: 'Górne elementy tablicy są ustawione prawie płasko i celują w dalekie rzędy, dolne są mocno pochylone i obsługują bliskie. Każdy element dostaje swój kawałek widowni — dzięki temu ostatni rząd słyszy podobny poziom co dziesiąty.',

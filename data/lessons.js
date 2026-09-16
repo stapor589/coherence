@@ -2,6 +2,101 @@
 // Opcjonalne pole `goals` — cele lekcji wyświetlane na ekranie startowym.
 
 export const LESSONS = {
+  strategia: {
+    goals: ['Mieć gotowy schemat myślenia zamiast wyuczonej listy kroków', 'Wiedzieć, gdzie postawić mikrofon i po co'],
+    steps: [
+      {
+        t: 'Zanim zaczniesz cokolwiek stroić, sprawdź, czy system w ogóle jest zbudowany poprawnie. Puść sygnał kolejno do każdego podsystemu i posłuchaj: czy lewa strona brzmi tak samo jak prawa, czy nie są zamienione miejscami, czy wszystkie skrzynie grają, czy któraś nie jest cichsza albo ciemniejsza. To brzmi banalnie, a jest najczęstszym źródłem straconego dnia. Analogia: nie zaczynaj tapetowania, zanim nie załatasz dziury w ścianie. Korektor nie naprawi przerwanego kabla, uszkodzonego przetwornika ani zamienionych stron — tylko ukryje problem tak, że wróci w najgorszym momencie.',
+      },
+      {
+        t: 'Pierwsza zasada strojenia: każdy subsystem ma swój rewir. Front fill odpowiada za pierwsze rzędy, tablica główna za środek widowni, wieża delay za tyły. W swoim rewirze — i tylko tam — ustawiasz poziom i barwę. To upraszcza myślenie, bo zamiast pytania „jak brzmi cały system?” zadajesz pytanie „czy ten subsystem robi to, co do niego należy, w swoim obszarze?”. Podział rewirów powstał już na etapie projektu; strojenie tylko go realizuje.',
+        viz: 'strefy-odpowiedzialnosci',
+      },
+      {
+        t: 'Druga zasada: czas ustawiasz na szwie, czyli tam, gdzie dwa sąsiednie systemy grają równie głośno. Dlaczego akurat tam? Bo właśnie przy równych poziomach sumowanie jest najbardziej wrażliwe na różnicę czasu — kilka milisekund decyduje o tym, czy dostaniesz wzmocnienie, czy dziurę. Krok w bok od szwu jeden system zaczyna dominować i wpływ tego drugiego szybko maleje. Ważna kolejność: najpierw poziomy, potem czas. Zmiana poziomu przesuwa położenie szwu, więc wyrównanie czasu zrobione wcześniej trzeba byłoby powtarzać.',
+      },
+      {
+        t: 'Trzecia zasada: zaczynasz od systemu o największym rewirze i schodzisz w dół. Najpierw tablice główne razem z subami, bo obsługują najwięcej ludzi i ustalają docelowy charakter brzmienia. Potem kolejno mniejsze subsystemy, które mają ten charakter przywrócić w swoich obszarach. Ta kolejność ma bardzo praktyczny sens: jeśli produkcja skróci Ci czas o połowę, zdążysz obsłużyć miejsca, w których siedzi najwięcej widzów, a nieobsłużone zostaną najmniejsze fragmenty widowni.',
+      },
+      {
+        t: 'Czwarta zasada dotyczy źródeł złożonych, takich jak tablica liniowa. Traktujesz ją dwuetapowo. Najpierw zajmujesz się jednorodnością wewnątrz tablicy — wyrównujesz różnice między skrzyniami w górze pasma, gdzie każda ma swój kawałek widowni. Dopiero gdy tablica jest spójna od pierwszego do ostatniego rzędu, traktujesz ją jako jedno źródło i łączysz z kolejnym systemem, na przykład z subami. To po prostu ponowne zastosowanie zasad pierwszej i drugiej, tyle że wewnątrz jednego urządzenia.',
+      },
+      {
+        t: 'Zostaje pytanie, gdzie stawiać mikrofon pomiarowy. Reguła jest prosta: zanim go postawisz, odpowiedz sobie, na jakie pytanie chcesz odpowiedzieć. Jeśli ustawiasz poziom i barwę subsystemu, mikrofon idzie w głąb jego rewiru — najlepiej kilka pozycji, żeby zobaczyć trend, a nie lokalny przypadek. Jeśli ustawiasz czas, mikrofon idzie dokładnie na szew. Ile pozycji wystarczy? Tyle, po ilu kolejny pomiar przestaje zmieniać Twoje decyzje. Od tego momentu zbieranie danych tylko zjada czas.',
+      },
+    ],
+  },
+
+  mainsub: {
+    goals: ['Wyrównać suby z tablicą świadomie', 'Rozumieć, dlaczego idealne jest tylko w jednym miejscu'],
+    steps: [
+      {
+        t: 'Suby i tablica spotykają się w wąskim pasmie, zwykle gdzieś między 60 a 120 Hz. W tym pasmie oba systemy grają podobnie głośno, więc — zgodnie z zasadą szwu — jesteśmy w najbardziej wrażliwym punkcie: wystarczy kilka milisekund różnicy, żeby zamiast wzmocnienia dostać wycięcie dokładnie tam, gdzie siedzi stopa i bas. To dlatego wyrównanie main–sub jest pierwszą rzeczą, którą słychać, gdy jest zrobione dobrze, i pierwszą, którą słychać, gdy zrobione jest źle.',
+      },
+      {
+        t: 'Zacznij od znalezienia miejsca, w którym oba systemy grają równie głośno. Zmierz każdy osobno i porównaj poziomy w pasmie przejścia. Jeśli jeden jest wyraźnie mocniejszy, przesuń mikrofon w stronę tego cichszego i zmierz ponownie. Dopiero gdy poziomy są zbliżone, decyzja o czasie ma sens — i dopiero wtedy ma wpływ na to, co usłyszy publiczność.',
+      },
+      {
+        t: 'Teraz najważniejsza pułapka. Wielu ludzi wyrównuje suby „po piku” odpowiedzi impulsowej — szukają najwyższego szczytu i zrównują czasy. Problem w tym, że pik jest zdominowany przez wysokie częstotliwości, których sub w ogóle nie odtwarza. Właściwym kryterium jest zgodność fazy w pasmie przejścia: patrzysz na wykresy fazy obu systemów i dobierasz opóźnienie tak, żeby w okolicy zwrotnicy biegły równolegle. Wtedy suma jest maksymalna.',
+      },
+      {
+        t: 'Masz do dyspozycji trzy narzędzia. Opóźnienie przesuwa fazę tym mocniej, im wyższa częstotliwość. Odwrócenie polaryzacji obraca ją o pół cyklu na całym paśmie naraz. Filtr all-pass zmienia nachylenie fazy, nie ruszając poziomu. W praktyce zaczynasz od opóźnienia, sprawdzasz, czy odwrócenie polaryzacji nie daje lepszego dopasowania, a all-pass zostawiasz jako precyzyjne dostrojenie, gdy nachylenia faz obu systemów się rozjeżdżają.',
+      },
+      {
+        t: 'Teraz zła wiadomość, z którą trzeba się pogodzić: przy subach na ziemi i tablicy wysoko pod dachem idealne wyrównanie istnieje tylko wzdłuż jednej linii na widowni. Wynika to z geometrii — różnica dróg do obu źródeł zmienia się z każdym metrem w głąb i w bok. Twoim zadaniem nie jest więc „naprawienie wszystkiego”, tylko wybór miejsca, w którym kompromis obsłuży największą część publiczności, i sprawdzenie, jak bardzo psuje się poza nim.',
+      },
+      {
+        t: 'Dlatego po ustawieniu zawsze weryfikujesz w kilku punktach: bliżej sceny, dalej, na bokach. Jeśli w dużej części widowni suma wychodzi gorzej niż same składniki, wróć i zmień punkt odniesienia albo częstotliwość zwrotnicy. Przy pomiarach czasu w pasmie basowym pomocna bywa pozycja mikrofonu na podłodze — eliminuje odbicie od gruntu, przez co wykresy są czytelniejsze w okolicy 200 Hz. Pamiętaj tylko, żeby nie podejmować w tej pozycji decyzji o barwie: nikt nie słucha koncertu z uchem przy posadzce.',
+      },
+    ],
+  },
+
+  filldelay: {
+    goals: ['Wpiąć fille i delaye w system bez psucia obrazu', 'Świadomie wybierać punkt decyzji o czasie'],
+    steps: [
+      {
+        t: 'Fill zaczynasz tak samo jak każdy inny subsystem: ustawiasz go w jego własnym rewirze. Mikrofon idzie tam, gdzie fill ma realnie pracować — na przykład w drugim rzędzie dla front fillu — i dopiero tam ustawiasz poziom oraz barwę tak, żeby pasowały do celu, który ustaliłeś przy systemie głównym. Kolejność ma znaczenie: fill nie ma „brzmieć ładnie sam w sobie”, ma przywrócić w swoim obszarze to samo, co system główny robi w swoim.',
+      },
+      {
+        t: 'Potem szukasz szwu z systemem głównym, czyli miejsca, w którym oba grają równie głośno. Najprościej znaleźć je uchem, przechodząc się z mikrofonem, a potwierdzić pomiarem: mierzysz każdy system osobno i patrzysz, czy w górze pasma poziomy się pokrywają. Jeśli nie — przesuwasz mikrofon w stronę cichszego i próbujesz ponownie. To jest punkt, w którym podejmiesz decyzję o opóźnieniu.',
+      },
+      {
+        t: 'Przy ustawianiu opóźnienia wchodzi w grę psychoakustyka. Gdybyś wyrównał czasy idealnie, suma byłaby najlepsza, ale obraz dźwiękowy mógłby przeskoczyć na fill — a publiczność ma słyszeć scenę, nie kolumienkę pod barierką. Dlatego w praktyce dokłada się kilka milisekund ponad wynik geometryczny: dźwięk z systemu głównego dociera pierwszy i wyznacza kierunek, a fill już tylko dodaje poziomu i zrozumiałości.',
+      },
+      {
+        t: 'Zwróć uwagę na barwę w strefie przejścia. System główny dociera tam z dużej odległości, więc powietrze zabrało mu część wysokich częstotliwości. Fill gra z bliska i jest pełny w górze pasma. Jeśli oba zestawisz „na płasko”, przejście będzie słyszalne jako nagła zmiana jasności. Lekkie ściągnięcie góry pasma w fillu robi z przejścia rzecz niesłyszalną — a o to właśnie chodzi.',
+      },
+      {
+        t: 'W przypadku wieży delay szew nie jest linią, tylko szerokim pasem: oba systemy grają podobnie głośno na przestrzeni wielu metrów. Trzeba wtedy świadomie wybrać, w którym miejscu tego pasa podejmujesz decyzję o czasie, i uczciwie przyjąć, że poza nim wyrównanie będzie się psuć. Zwykle wybiera się punkt bliżej wieży, gdzie siedzi więcej ludzi, a resztę pasa kontroluje się poziomem i kierunkowością, żeby był jak najwęższy.',
+      },
+    ],
+  },
+
+  eq: {
+    goals: ['Używać korekcji tam, gdzie faktycznie działa', 'Wyrównywać tablicę strefami zamiast na ślepo'],
+    steps: [
+      {
+        t: 'Korektor działa identycznie w każdym miejscu widowni — nie ma pojęcia, gdzie stoisz. Wynika z tego prosta zasada: korygujesz tylko to, co jest wspólne dla całej strefy. Jeśli pomiar w jednym miejscu pokazuje głęboką dziurę, a dwa metry dalej jej nie ma, to nie jest robota dla korektora, tylko skutek interferencji albo odbicia. Próba „zasypania” takiej dziury podbiciem kończy się tym, że w pozostałych miejscach robi się nadmiar.',
+      },
+      {
+        t: 'Dlatego decyzje tonalne podejmuje się na podstawie kilku pomiarów w obrębie rewiru, uśrednionych i wygładzonych. Uśrednianie wycisza lokalne dziwactwa, a zostawia to, co powtarza się wszędzie — czyli rzeczywisty charakter systemu w tej strefie. Dopiero taki uśredniony obraz porównujesz z krzywą docelową.',
+      },
+      {
+        t: 'Sama krzywa docelowa to decyzja, a nie prawo fizyki. Duże systemy koncertowe stroi się zwykle z podniesionym dołem i łagodnie opadającą górą pasma — takie brzmienie odbieramy jako naturalne przy wysokich poziomach. Konkretne nachylenie zależy od gatunku, obiektu i realizatora, dlatego warto mieć własną, zapisaną krzywą odniesienia i konsekwentnie do niej wracać, zamiast za każdym razem zaczynać od zera.',
+      },
+      {
+        t: 'W tablicy liniowej wyrównanie robi się strefami. Dzielisz skrzynie na grupy według tego, w jaki fragment widowni celują: górne rzucają najdalej, środkowe obsługują środek, dolne pierwsze rzędy. Każdą grupę mierzysz w jej obszarze i korygujesz górę pasma osobno — górne zwykle wymagają podbicia, bo powietrze zabrało im wysokie częstotliwości, dolne obniżenia, bo grają z bliska. Skoki między strefami warto wygładzić, rozkładając korektę na sąsiadujące skrzynie, żeby przejście było niesłyszalne.',
+        viz: 'zonowanie-tablicy',
+      },
+      {
+        t: 'Cieniować można też poziomem, ale to inne narzędzie. Zmiana poziomu działa na całe pasmo, więc ścisza również bas — a bas w tablicy powstaje ze współpracy wszystkich skrzyń, więc tracisz trochę zapasu w dole i skracasz efektywną długość tablicy. Strata jest mniejsza, niż się wydaje: przy typowym cieniowaniu kilku dolnych skrzyń mówimy o ułamkach decybela zapasu w basie. Uważaj natomiast w systemach z fabrycznym algorytmem kształtowania wiązki — tam zmiany poziomu potrafią zaburzyć obliczenia producenta.',
+      },
+      {
+        t: 'Na koniec zjawisko, które zaskakuje przy dolnych skrzyniach. Stojąc pod tablicą, słyszysz w górze pasma nie tylko skrzynie wycelowane w Ciebie, ale też rozproszoną energię z elementów położonych wyżej. Dlatego ściszanie góry pasma w dolnych skrzyniach działa tylko do pewnego momentu — potem przestaje poprawiać barwę, a zaczyna sprawiać, że dźwięk brzmi odlegle i mniej wyraźnie. Znajdź granicę, przy której cieniowanie przestaje pomagać, cofnij się o decybel i zaakceptuj resztę: odrobina jasności w pierwszych rzędach jest mniejszym złem.',
+      },
+    ],
+  },
+
   kierunkowosc: {
     goals: ['Rozumieć, czym naprawdę jest „kąt pokrycia”', 'Przewidzieć, jak głośnik zachowa się w różnych pasmach'],
     steps: [
@@ -345,50 +440,6 @@ export const LESSONS = {
       'Pętla zwrotna: sygnał wyjściowy interfejsu wraca na jego wejście jako referencja. Dzięki temu referencja i pomiar przechodzą przez te same konwertery, a analizator mierzy dokładnie to, co wysłano — niezależnie od latencji interfejsu i sterownika.',
       'Pomiar wieloma mikrofonami przyspiesza strojenie: zbierasz dane z kilku pozycji bez chodzenia. Średnia przestrzenna z kilku mikrofonów pokazuje trend strefy. Pamiętaj o jednakowej kalibracji i kompensacji opóźnień każdego z nich.',
       'Pomiary szumem przy wysokich poziomach przez długi czas to realne obciążenie słuchu — Twojego i ekipy. Używaj ochronników, mierz na rozsądnych poziomach (dla TF wystarczy dobry stosunek S/N) i komunikuj, kiedy gra szum.',
-    ],
-  },
-
-  strategia: {
-    goals: ['Pracować według powtarzalnej procedury', 'Wiedzieć, gdzie stawiać mikrofony i po co'],
-    steps: [
-      'Weryfikacja to sprawdzenie, czy system jest poprawnie zbudowany: każdy element gra, ma właściwą polaryzację, routing, preset, poziom i nie ma uszkodzeń. Znaleziony tu błąd kosztuje minuty; ukryty pod EQ — cały koncert.',
-      'Strojenie zaczyna się od najmniejszej jednostki: pojedynczy element lub tablica, potem subsystem (np. main L), potem łączenie z innymi (L+R, main+sub, main+fill). Każde połączenie zmienia wynik, więc najpierw poprawiamy części, dopiero potem całość.',
-      'ONAX — na osi subsystemu, tu oceniamy jego odpowiedź i EQ. OFFAX — na krawędzi pokrycia, tu sprawdzamy jednorodność. XOVER — w strefie przejścia dwóch subsystemów, tu wyrównujemy czas. Te trzy typy pozycji to szkielet planu pomiarów.',
-      'Typowa sekwencja: main (każda strona), wyrównanie L/R, sub i jego relacja z main, front fill i out fill, delay. Kolejność może się zmieniać, ale zasada jest ta sama: od systemu dominującego do uzupełniających.',
-      'Strojenie jest skończone, gdy spełnione są cele: jednorodność, zgodność tonalna, poprawne przejścia. Dokumentuj wyniki (zrzuty ekranu, snapshoty, notatki), żeby móc wrócić do stanu i żeby kolejny event w tej sali był szybszy.',
-      'Czas na strojenie jest często krótszy niż planowany. Przygotuj wersję „minimum” procedury (weryfikacja + kluczowe wyrównania) i „pełną”. Priorytetyzuj rzeczy, które słychać w największej części publiczności.',
-    ],
-  },
-  mainsub: {
-    goals: ['Wyrównać sub i tablicę poprawnie', 'Rozumieć kompromis geometryczny'],
-    steps: [
-      'Częstotliwość zwrotnicy między subami a tablicą zależy od możliwości obu i od geometrii. Nachylenia filtrów wpływają na szerokość strefy, w której oba systemy grają razem. Presety producenta zwykle mają zdefiniowane warianty.',
-      'W pasmie przejścia oba systemy mają podobny poziom — tam liczy się zgodność fazy. Pik IR jest zdominowany przez HF tablicy, więc wyrównanie „pik do piku” zazwyczaj nie zapewnia zgodności fazy w LF. Porównuj wykresy fazy w pasmie przejścia.',
-      'Odwrócenie polaryzacji to 180° na wszystkich częstotliwościach, opóźnienie to faza rosnąca z częstotliwością. Czasem połączenie obu daje lepsze dopasowanie nachylenia fazy w pasmie przejścia. Sprawdź, czy wynik trzyma się w kilku pozycjach.',
-      'Gdy suby stoją na ziemi, a tablica wisi wysoko, różnica dróg zmienia się z odległością od sceny i wysokością słuchacza. Wyrównanie jest idealne na jednej linii, obok różnica rośnie. Wybierz punkt reprezentatywny dla największej części publiczności.',
-      'All-pass zmienia fazę bez zmiany amplitudy — pozwala dopasować nachylenie fazy subów do tablicy, poszerzając obszar dobrej sumy. Stosuj świadomie i weryfikuj pomiarem.',
-      'Po wyrównaniu zmierz sumę w kilku pozycjach: blisko, daleko, na bokach. Jeśli suma w pasmie przejścia jest wyraźnie gorsza niż składowe gdzieś w dużej części publiczności, rozważ inny punkt odniesienia lub częstotliwość zwrotnicy.',
-    ],
-  },
-  filldelay: {
-    goals: ['Łączyć subsystemy z głównym systemem', 'Kontrolować obraz i barwę w strefach przejścia'],
-    steps: [
-      'Mikrofon w ONAX fillu (na jego osi, w jego strefie). Fill gra solo — ustawiasz poziom i EQ tak, by jego odpowiedź była zgodna z celem tonalnym systemu w tej strefie.',
-      'Mikrofon w XOVER (gdzie poziom fillu i main są podobne). Mierzysz oba osobno i ustawiasz opóźnienie fillu tak, by fazy zgadzały się w istotnym pasmie. Potem sprawdzasz sumę.',
-      'W praktyce często dodaje się do delay kilka ms więcej niż wynika z wyrównania, żeby w całej strefie dźwięk z main docierał pierwszy. Kompromis: trochę słabsza suma w XOVER za lepszą lokalizację i brak „przeskakiwania” obrazu.',
-      'Main z daleka ma mniej HF przez absorpcję powietrza, delay z bliska — pełne HF. W strefie przejścia może to dawać zmianę barwy. Czasem delay wymaga łagodnego obniżenia HF, żeby przejście było niesłyszalne.',
-      'Każdy subsystem powinien pokrywać tylko swój obszar. Duże nakładanie fillów z main poszerza strefę interferencji. Kąty, pozycje i poziomy fillów ustala się tak, żeby przejścia były krótkie i łagodne.',
-    ],
-  },
-  eq: {
-    goals: ['Stosować EQ systemowe z sensem', 'Definiować krzywą docelową'],
-    steps: [
-      'EQ działa tak samo w każdym miejscu, więc koryguje tylko to, co jest wspólne dla całej strefy (np. trend tonalny, rezonans obudowy, efekt sprzężenia z podłogą). Zjawiska zależne od pozycji — interferencje, odbicia — naprawia się czasem, geometrią lub kierunkowością.',
-      'Średnia z kilku pozycji mikrofonu w strefie (np. 4–8 punktów) wygasza lokalne wycięcia i podkreśla wspólne trendy. Dopiero taka średnia jest dobrą podstawą do decyzji EQ.',
-      'Duże systemy koncertowe stroi się zwykle do krzywej z podniesionym LF i łagodnie opadającym HF. Konkretny kształt zależy od gatunku, sali, odległości i preferencji realizatora — dlatego warto mieć swoją, zapisaną i sprawdzoną krzywą odniesienia.',
-      'Procesory systemów liniowych pozwalają korygować strefy tablicy (np. dół/góra) niezależnie. To narzędzie do wyrównania bilansu tonalnego front-back, zanim sięgniesz po EQ całości.',
-      'Po strojeniu pomiarem posłuchaj znanej muzyki w kilku miejscach. Pomiar mówi, co jest; ucho mówi, czy to działa. Rozbieżności często wynikają z tego, że mikrofon nie słyszy jak człowiek (kierunkowość, czas integracji, odbicia).',
-      'Publiczność absorbuje HF i zmienia odbicia od podłogi, a zmiana temperatury i wilgotności wpływa na HF daleko. W trakcie show obserwuj pomiar (np. na muzyce) i koryguj trendy, a nie chwilowe fluktuacje.',
     ],
   },
 
