@@ -45,7 +45,7 @@ export const LESSONS = {
         where: 'T — okres, czyli czas jednego cyklu [s]; f — częstotliwość [Hz]',
       },
       {
-        t: 'Skoro fala biegnie ze stałą prędkością i jednocześnie faluje, to jeden pełny cykl zajmuje określony odcinek przestrzeni. Ten odcinek nazywamy długością fali. Analogia: jedziesz samochodem ze stałą prędkością i co sekundę mrugasz światłami — ślady zostaną co kilkadziesiąt metrów. Mrugaj dziesięć razy szybciej, a ślady będą dziesięć razy gęściej. Tak samo z dźwiękiem: im wyższa częstotliwość, tym krótsza fala.',
+        t: 'Zaburzenie biegnie ze stałą prędkością, a ciśnienie w nim rośnie i opada cyklicznie. Z połączenia tych dwóch rzeczy wynika, że jeden pełny cykl zajmuje w przestrzeni określony odcinek — i ten odcinek nazywamy długością fali. Analogia: jedziesz samochodem ze stałą prędkością i co sekundę mrugasz światłami. Ślady zostaną co kilkadziesiąt metrów. Mrugaj dziesięć razy szybciej, a ślady będą dziesięć razy gęściej, choć prędkość się nie zmieniła. Tak samo z dźwiękiem: im wyższa częstotliwość, tym krótsza fala.',
         eq: '<math display="block"><mi>&#955;</mi><mo>=</mo><mfrac><mi>c</mi><mi>f</mi></mfrac></math>',
         where: 'λ — długość fali [m]; c — prędkość dźwięku [m/s]; f — częstotliwość [Hz]',
         viz: 'dlugosc-fali',
