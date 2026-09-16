@@ -186,7 +186,11 @@ export function lessonSteps(topic) {
   const lesson = LESSONS[topic.id] || { steps: [] };
   return [
     { type: 'intro', label: 'Wprowadzenie' },
-    ...topic.concepts.map((c, i) => ({ type: 'concept', i, label: c, text: lesson.steps[i] || '' })),
+    ...topic.concepts.map((c, i) => {
+      const raw = lesson.steps[i];
+      const body = typeof raw === 'string' ? { t: raw } : (raw || { t: '' });
+      return { type: 'concept', i, label: c, text: body.t || '', eq: body.eq, where: body.where, viz: body.viz };
+    }),
     { type: 'materials', label: 'Materiały' },
     { type: 'quiz', label: 'Quiz' },
     { type: 'task', label: 'Zadanie praktyczne' },

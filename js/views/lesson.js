@@ -1,6 +1,7 @@
 import { LEVEL_LABEL } from '../../data/curriculum.js';
 import { LESSONS } from '../../data/lessons.js';
 import { RESOURCES, RESOURCE_TYPES } from '../../data/resources.js';
+import { VISUALS } from '../../data/visuals.js';
 import * as S from '../store.js';
 import { icon, esc, bar, starsHTML, ring, mountQuiz, confetti } from '../ui.js';
 import { openResource } from './library.js';
@@ -95,6 +96,11 @@ export function lesson(el, id, stepStr = '0') {
       <span class="eyebrow">Zagadnienie ${step.i + 1} z ${n}</span>
       <h1 class="concept-title">${esc(step.label)}</h1>
       ${step.text ? `<div class="prose"><p>${esc(step.text)}</p></div>` : '<p class="muted">Opracuj to zagadnienie na podstawie materiałów lekcji i zapisz własne wnioski poniżej.</p>'}
+      ${(() => {
+        const v = step.viz && VISUALS[step.viz];
+        return v ? `<figure class="viz"><h4>${esc(v.title)}</h4>${v.svg}<figcaption>${esc(v.caption)}</figcaption></figure>` : '';
+      })()}
+      ${step.eq ? `<figure class="eq"><div class="eq-body">${step.eq}</div>${step.where ? `<figcaption><span>gdzie:</span> ${esc(step.where)}</figcaption>` : ''}</figure>` : ''}
       <div class="note card">
         <label for="stepnote" class="small muted">${icon('log')} Twoja notatka do zagadnienia</label>
         <textarea id="stepnote" rows="3" placeholder="Wzór, przykład z realizacji, pytanie do sprawdzenia…">${esc(s.stepNotes[step.i] || '')}</textarea>

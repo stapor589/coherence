@@ -3,38 +3,97 @@
 
 export const LESSONS = {
   fale: {
-    goals: ['Szybko liczyć λ, okres i fazę w głowie', 'Rozumieć, dlaczego temperatura zmienia wyrównanie'],
+    goals: ['Rozumieć, czym fizycznie jest dźwięk', 'Liczyć długość fali, okres i fazę bez kalkulatora w głowie'],
     steps: [
-      'Prędkość dźwięku w powietrzu zależy głównie od temperatury, a praktycznie nie od ciśnienia. Wzór przybliżony c ≈ 331,3 + 0,606·T wystarcza do pracy: przy 0°C ≈ 331 m/s, przy 20°C ≈ 343 m/s, przy 35°C ≈ 352 m/s. Wilgotność ma wpływ marginalny na prędkość, ale istotny na tłumienie HF.',
-      'Długość fali to odległość, na której faza sygnału powtarza się. W nagłośnieniu rozpiętość jest ogromna — trzy rzędy wielkości. To dlatego ten sam głośnik jest dookólny w LF i kierunkowy w HF, a te same rozstawy działają dla 1 kHz zupełnie inaczej niż dla 60 Hz.',
-      'Faza to czas wyrażony w ułamkach okresu. Opóźnienie 1 ms to 360° dla 1 kHz, 90° dla 250 Hz i tylko 36° dla 100 Hz. Ten jeden wzór tłumaczy, dlaczego wyrównanie „na HF” nie gwarantuje zgodności w LF.',
-      'Oktawa to podwojenie częstotliwości, tercja to 1/3 oktawy. Słuch działa logarytmicznie, dlatego analizatory i EQ używają skal oktawowych. Myśl o problemach w oktawach: 63 Hz i 125 Hz to „sąsiedzi”, a 5 kHz i 5,1 kHz to praktycznie to samo.',
-      'Jeśli dwa sygnały różnią się o stały czas, różnica fazy rośnie liniowo z częstotliwością. Na analizatorze z liniową osią f widać to jako równe nachylenie fazy, na osi logarytmicznej — jako coraz gęstsze „zawijanie” w HF. Rozpoznawanie tego obrazu to podstawa pracy z delay finderem.',
-      'Zmiana temperatury o 10°C zmienia prędkość o ok. 1,8%. Na 100 m to ok. 5 ms — dla 200 Hz już ponad 360°. Dlatego na plenerze wyrównanie delay wykonane w południe może wymagać korekty wieczorem, szczególnie gdy temperatura spada gwałtownie.',
+      {
+        t: 'Wyobraź sobie długi sznur korali leżący na stole. Popychasz pierwszy koralik — uderza w drugi, ten w trzeci i tak dalej. Zaburzenie przebiega przez cały sznur, ale żaden koralik nie przewędrował na drugi koniec stołu; każdy tylko szturchnął sąsiada i wrócił na miejsce. Dokładnie tak działa dźwięk w powietrzu. Membrana głośnika popycha cząsteczki powietrza tuż przed sobą, te napierają na kolejne i zaburzenie ciśnienia biegnie dalej z prędkością ok. 343 m/s. Powietrze nie „leci” od sceny do publiczności — gdyby leciało, na koncercie wiałby huragan. Wędruje wyłącznie informacja: naprzemienne zagęszczenia i rozrzedzenia. To dlatego dźwięk potrzebuje ośrodka: w próżni nie ma czego szturchać.',
+        viz: 'fala-w-powietrzu',
+      },
+      {
+        t: 'Prędkość, z jaką biegnie to zaburzenie, zależy przede wszystkim od temperatury powietrza — a nie, wbrew intuicji, od głośności czy od tego, jak mocno napierasz na głośnik. Cieplejsze powietrze to szybciej poruszające się cząsteczki, więc szturchnięcie przekazuje się sprawniej. Praktyczna reguła: przy 20°C dźwięk pokonuje 343 metry w sekundę, a każdy stopień w górę dokłada ok. 0,6 m/s. Wilgotność ma wpływ pomijalny dla prędkości, choć — co zobaczysz przy plenerze — spory dla tłumienia wysokich częstotliwości. Ten jeden wzór przewija się potem przez cały Twój dzień pracy: liczysz z niego opóźnienia, długości fal i rozstawy subwooferów.',
+        eq: '<math display="block"><mi>c</mi><mo>≈</mo><mn>331,3</mn><mo>+</mo><mn>0,606</mn><mo>&#8202;</mo><mi>T</mi></math>',
+        where: 'c — prędkość dźwięku [m/s]; T — temperatura powietrza [°C]',
+      },
+      {
+        t: 'Skoro fala biegnie ze stałą prędkością i jednocześnie faluje w górę i w dół, to jedno pełne „huśtnięcie” zajmuje pewien odcinek przestrzeni. Ten odcinek to długość fali. Analogia: jedziesz samochodem ze stałą prędkością i co sekundę mrugasz światłami — mrugnięcia zostawią ślady co kilkadziesiąt metrów. Mrugaj dziesięć razy szybciej, a ślady będą dziesięć razy gęściej. Tak samo z dźwiękiem: 50 Hz daje falę długą na blisko siedem metrów, a 5 kHz — na siedem centymetrów. Ta różnica wyjaśnia niemal wszystko, co robisz z systemem. Bas obchodzi przeszkody i wchodzi wszędzie, bo przeszkoda wielkości człowieka jest dla siedmiometrowej fali niewidoczna. Górę pasma da się natomiast celować jak światłem latarki, bo tuba o rozmiarze pół metra jest dla siedmiocentymetrowej fali wielką ścianą.',
+        eq: '<math display="block"><mi>&#955;</mi><mo>=</mo><mfrac><mi>c</mi><mi>f</mi></mfrac></math>',
+        where: 'λ — długość fali [m]; c — prędkość dźwięku [m/s]; f — częstotliwość [Hz]',
+        viz: 'dlugosc-fali',
+      },
+      {
+        t: 'Częstotliwość mówi, ile razy w ciągu sekundy fala wykona pełny cykl — stąd herce, czyli „razy na sekundę”. Okres to ta sama informacja odwrócona: ile czasu trwa jeden cykl. Jeśli coś powtarza się sto razy na sekundę, jeden cykl trwa setną część sekundy, czyli 10 ms. Warto mieć w głowie kilka takich par, bo wracają nieustannie: 1000 Hz to 1 ms, 100 Hz to 10 ms, 50 Hz to 20 ms. Kiedy ktoś mówi „przesunąłem sub o 5 milisekund”, od razu wiesz, że dla 100 Hz to pół cyklu, czyli odwrócenie fazy, a dla 1 kHz aż pięć pełnych cykli. Ta zamiana czasu na cykle jest odruchem, który odróżnia osobę rozumiejącą system od osoby przesuwającej suwaki na wyczucie.',
+        eq: '<math display="block"><mi>T</mi><mo>=</mo><mfrac><mn>1</mn><mi>f</mi></mfrac></math>',
+        where: 'T — okres, czyli czas jednego cyklu [s]; f — częstotliwość [Hz]',
+      },
+      {
+        t: 'Faza to sposób opisania, w którym miejscu cyklu aktualnie jesteśmy — jak wskazówka na tarczy zegara, gdzie pełny obrót to 360 stopni. Teraz najważniejsza konsekwencja: stałe opóźnienie w milisekundach oznacza zupełnie różne przesunięcie fazy dla różnych częstotliwości. Wyobraź sobie dwie karuzele, dużą i małą, kręcące się z różną prędkością. Zatrzymujesz obie na dwie sekundy: mała zdąży wykonać kilka obrotów, duża ledwie drgnie. Opóźnienie 1 ms to dla 1 kHz pełny obrót (360°), dla 250 Hz ćwierć obrotu (90°), a dla 50 Hz ledwie 18°. Dlatego wyrównanie systemu „na oko po pikach” działa dla góry pasma i zawodzi w basie — i dlatego mierzy się fazę, a nie tylko amplitudę.',
+        eq: '<math display="block"><mi>&#966;</mi><mo>=</mo><mn>360</mn><mo>&#8202;</mo><mi>f</mi><mo>&#8202;</mo><mi>&#916;</mi><mi>t</mi></math>',
+        where: 'φ — przesunięcie fazy [°]; f — częstotliwość [Hz]; Δt — opóźnienie [s]',
+        viz: 'faza-opoznienie',
+      },
+      {
+        t: 'Na koniec rzecz, która zaskakuje wielu początkujących: system wyrównany w południe może być rozstrojony wieczorem, choć nikt niczego nie dotknął. Powód jest prozaiczny — spadła temperatura, więc dźwięk zwolnił, a wszystkie czasy przelotu się wydłużyły. Przy wieży delay stojącej 100 metrów od sceny ochłodzenie o 10 stopni wydłuża czas przelotu o ok. 5 ms. Dla 100 Hz to połowa cyklu, czyli różnica między „dodaje się” a „znosi się”. Dlatego na dużych plenerach notuje się temperaturę przy strojeniu, a przed koncertem sprawdza się ją ponownie. To samo dotyczy hal, w których klimatyzacja pracuje inaczej przy pustej i pełnej widowni.',
+      },
     ],
   },
+
   db: {
-    goals: ['Swobodnie przechodzić między dBu, dBV, dBFS i V', 'Wiedzieć, jaką wagą i czasem mierzyć'],
+    goals: ['Czytać decybele bez wkuwania tabelek', 'Nie mylić skal: SPL, dBu, dBFS'],
     steps: [
-      'Decybel to logarytmiczny stosunek dwóch wielkości. Dla wielkości mocy używamy 10·log(P1/P2), dla wielkości „polowych” (napięcie, ciśnienie) 20·log(U1/U2), bo moc jest proporcjonalna do kwadratu napięcia/ciśnienia. W efekcie oba wzory dają ten sam wynik dla tego samego zjawiska.',
-      'dB bez odniesienia to tylko różnica. Odniesienia: dB SPL do 20 µPa (próg słyszenia), dBu do 0,775 V (1 mW na 600 Ω), dBV do 1 V, dBFS do pełnej skali konwertera. 0 dBV = +2,2 dBu. Wartość dBFS w dBu zależy od konkretnego urządzenia — sprawdzaj dokumentację.',
-      '+6 dB to podwojenie napięcia i ciśnienia, +3 dB to podwojenie mocy (np. dwa wzmacniacze albo dwa nieskorelowane źródła). Subiektywne „dwa razy głośniej” to około +10 dB, czyli 10× więcej mocy. Warto o tym pamiętać, gdy ktoś prosi o „trochę głośniej”.',
-      'Waga A odwzorowuje czułość ucha przy niskich poziomach i silnie tłumi LF — stosowana w przepisach ochrony słuchu. Waga C jest prawie płaska w pasmie użytecznym i dobrze opisuje energię subów. Z to pomiar bez ważenia. Różnica LCeq − LAeq to szybki wskaźnik „ile basu” jest w miksie.',
-      'Leq to równoważny poziom energetyczny uśredniony w określonym czasie — LAeq,15min to średnia z 15 minut z wagą A. LCpeak to maksymalna chwilowa wartość szczytowa z wagą C, istotna dla ryzyka uszkodzenia słuchu impulsami. Dla monitoringu publiczności liczy się Leq, dla ekipy także ekspozycja dzienna.',
-      'Szczyt to maksymalna chwilowa wartość, RMS — wartość skuteczna odpowiadająca energii. Crest factor to różnica szczytu i RMS w dB: sinus ma 3 dB, szum różowy ok. 12 dB, muzyka zwykle 12–20 dB. Od crest factora zależy, ile headroomu potrzebują wzmacniacze i jak pracują limitery.',
+      {
+        t: 'Decybel nie jest „ilością dźwięku”, tylko porównaniem dwóch wielkości — zawsze czegoś do czegoś. To jak powiedzenie „dwa razy więcej”: bez informacji, więcej od czego, zdanie nie ma sensu. Dlatego sam zapis „30 dB” znaczy tyle co „trzydzieści decybeli różnicy”, a dopiero dopisek w rodzaju dB SPL, dBu czy dBFS mówi, względem czego mierzymy. Skala jest logarytmiczna, bo ucho i cała przyroda reagują na stosunki, nie na różnice. Dwa razy większe ciśnienie to zawsze te same +6 dB, niezależnie od tego, czy zaczynamy od szeptu, czy od ściany dźwięku na festiwalu.',
+      },
+      {
+        t: 'Skąd biorą się magiczne liczby, które co chwilę słyszysz w branży? Podwojenie napięcia albo ciśnienia to +6 dB. Podwojenie mocy to +3 dB, bo moc rośnie z kwadratem napięcia. A subiektywne „dwa razy głośniej” to mniej więcej +10 dB, czyli dziesięciokrotny wzrost mocy. Stąd bierze się rozczarowanie inwestorów: dołożenie drugiego takiego samego wzmacniacza daje +3 dB, czyli zmianę ledwie zauważalną, a nie „dwa razy głośniejszy koncert”. Żeby publiczność faktycznie usłyszała podwojenie głośności, potrzeba dziesięciokrotnie większej mocy albo — znacznie taniej — lepszej kierunkowości i celniejszego pokrycia.',
+        eq: '<math display="block"><mi>L</mi><mo>=</mo><mn>20</mn><mo>&#8202;</mo><mi>log</mi><mfrac><msub><mi>p</mi><mn>1</mn></msub><msub><mi>p</mi><mn>0</mn></msub></mfrac><mspace width="1.4em"/><mi>L</mi><mo>=</mo><mn>10</mn><mo>&#8202;</mo><mi>log</mi><mfrac><msub><mi>P</mi><mn>1</mn></msub><msub><mi>P</mi><mn>0</mn></msub></mfrac></math>',
+        where: 'p — ciśnienie lub napięcie (wielkości „polowe”, mnożnik 20); P — moc (mnożnik 10); indeks 0 oznacza wartość odniesienia',
+        viz: 'skala-db',
+      },
+      {
+        t: 'Teraz punkty odniesienia, bo tu rodzi się najwięcej pomyłek. dB SPL odnosi się do ciśnienia 20 mikropaskali, czyli mniej więcej najcichszego dźwięku, jaki słyszy zdrowe ucho — to skala „ile dźwięku jest w powietrzu”. dBu i dBV to świat elektryczny: napięcie w kablu, odpowiednio względem 0,775 V i 1 V. dBFS to świat cyfrowy, gdzie zero jest na samej górze skali i wszystko poniżej ma wartość ujemną, bo powyżej zera konwerter nie ma już zapasu. Te trzy światy łączą się w konkretnych urządzeniach: konwerter może mieć 0 dBFS odpowiadające +24 dBu, a głośnik przy określonym napięciu wytwarza określone SPL. Mylenie skal to najczęstsza przyczyna sytuacji „limiter pracuje, a system gra cicho”.',
+      },
+      {
+        t: 'Mikrofon mierzy uczciwie całe pasmo, ale ucho tak nie działa — na niskie częstotliwości jest dużo mniej czułe, szczególnie przy cichych dźwiękach. Żeby miernik lepiej odwzorowywał wrażenie, stosuje się filtry ważące. Waga A mocno obcina bas i jest podstawą przepisów o hałasie. Waga C jest prawie płaska i dlatego lepiej opisuje energię subów na koncercie. Prosty trik warsztatowy: odejmij LAeq od LCeq. Jeśli różnica sięga kilkunastu decybeli, wiesz, że w miksie jest bardzo dużo basu — nawet jeśli pomiar „w wadze A” wygląda niewinnie. Ta jedna liczba potrafi wyjaśnić, dlaczego mieszkańcy dzwonią ze skargą, choć formalnie limit nie jest przekroczony.',
+      },
+      {
+        t: 'Poziom zmienia się w czasie, więc trzeba umówić się, jak go uśredniamy. Leq to poziom równoważny: energia uśredniona po określonym czasie, tak jakby cały koncert grał równo. LAeq,15min oznacza więc „średnia energetyczna z piętnastu minut, z wagą A”. LCpeak to zupełnie co innego — najwyższa chwilowa wartość szczytowa, istotna dla ryzyka urazu słuchu od pojedynczego huku. Rozumienie różnicy jest praktyczne: limit określony jako średnia pozwala na chwilowe głośne momenty, o ile reszta jest cichsza. Dlatego monitoring SPL na festiwalu to nie jedna liczba na wyświetlaczu, tylko okno czasowe, waga i miejsce pomiaru — i to wszystko musi być zapisane w raporcie.',
+      },
+      {
+        t: 'Ostatnia para pojęć: wartość szczytowa i skuteczna. Szczyt to najwyższy wierzchołek fali, RMS to wartość odpowiadająca realnej energii — coś jak różnica między najwyższą falą na morzu a średnim poziomem wody. Ich różnica w decybelach to współczynnik szczytu. Czysty sinus ma 3 dB, szum różowy ok. 12 dB, a żywa muzyka nierzadko kilkanaście i więcej. To wyjaśnia, dlaczego system, który „wyrabia” przy sinusie, potrafi się zapchać przy perkusji: wzmacniacz musi mieć zapas napięcia na chwilowe szczyty, choć średnia moc jest niewielka. Stąd bierze się cała filozofia headroomu i limiterów ustawianych osobno na energię i na szczyty.',
+      },
     ],
   },
+
   sumowanie: {
-    goals: ['Przewidywać wynik sumowania dwóch źródeł', 'Rozumieć strategię izolacji i nakładania'],
+    goals: ['Przewidzieć, co zrobią dwa głośniki grające to samo', 'Rozumieć, skąd biorą się dziury w paśmie'],
     steps: [
-      'Sygnały skorelowane (ten sam sygnał z dwóch głośników) sumują się amplitudowo: przy równym poziomie i zgodnej fazie wynik jest +6 dB. Ale ten sam mechanizm przy przeciwnej fazie daje głębokie wycięcie — sumowanie koherentne to zawsze gra o fazę.',
-      'Sygnały nieskorelowane (różne instrumenty, szum z różnych generatorów, pogłos) sumują się energetycznie: dwa równe dają +3 dB, niezależnie od fazy. Stąd różnica w zachowaniu subów grających ten sam sygnał a publiczności gadającej w tle.',
-      'Gdy dwa skorelowane sygnały są przesunięte w czasie, dla części częstotliwości są w fazie, a dla części w przeciwfazie. Powstaje filtr grzebieniowy: wycięcia w f = (2n+1)/(2·Δt). Im większe Δt, tym gęstsze i węższe wycięcia — w HF zlewają się w „brzmienie przestrzeni”, w LF i MF są słyszalne jako barwienie.',
-      'Głębokość wycięć zależy od różnicy poziomów. Przy 0 dB różnicy wycięcie jest teoretycznie nieskończone, przy 6 dB ripple to ok. +3,5/−6 dB, przy 10 dB ok. +2,4/−3,3 dB, przy 20 dB poniżej ±1 dB. Izolacja poziomów to podstawowe narzędzie ograniczania interferencji.',
-      'McCarthy dzieli obszar pokrycia na strefy według relacji poziom/czas: strefa sumowania (mała różnica czasu, zysk poziomu), przejścia (duże wahania), izolacji (jedno źródło dominuje). Projekt polega na tym, by strefy przejścia były wąskie, a strefy sumowania wykorzystywały zysk bez utraty jednorodności.',
-      'Duże nakładanie daje moc, ale też interferencje w szerokim obszarze. Duża izolacja daje jednorodność, ale wymaga więcej źródeł i precyzji. Line array to przykład kontrolowanego nakładania, a dobrze zaprojektowane front fille — izolacji z krótkimi strefami przejścia.',
+      {
+        t: 'Wyobraź sobie dwie osoby popychające huśtawkę. Jeśli popychają równo w rytm, huśtawka rozbuja się dwa razy mocniej. Jeśli jedna popycha, gdy druga ciągnie, huśtawka stanie w miejscu — mimo że obie ciężko pracują. Dwa głośniki grające ten sam sygnał zachowują się identycznie. Gdy ich fale docierają do słuchacza „w nogę”, ciśnienie się sumuje i robi się o 6 dB głośniej. Gdy docierają w przeciwfazie, znoszą się do ciszy. I tu sedno: o tym, który wariant zobaczysz, decyduje wyłącznie różnica drogi, jaką fale pokonały. Przesunięcie słuchacza o metr w bok potrafi zamienić sumowanie w odejmowanie.',
+        viz: 'sumowanie-fal',
+      },
+      {
+        t: 'Nie wszystkie sygnały zachowują się tak dramatycznie. Kluczowe jest to, czy są skorelowane, czyli czy to ten sam sygnał. Dwa głośniki grające tę samą stopę są skorelowane i mogą się dodać do +6 dB albo wyciąć do zera. Ale gitara z jednej strony sceny i wokal z drugiej to sygnały niezależne — sumują się energetycznie, spokojnie, dając +3 dB, bez żadnych dziur. Tak samo zachowuje się pogłos w hali i gwar publiczności. Dlatego to samo pytanie „ile będzie głośniej, gdy dołożę drugi głośnik?” ma dwie różne odpowiedzi i zawsze trzeba zacząć od ustalenia, czy oba grają dokładnie to samo.',
+        eq: '<math display="block"><msub><mi>L</mi><mi>suma</mi></msub><mo>=</mo><mn>10</mn><mo>&#8202;</mo><mi>log</mi><mo>(</mo><msup><mn>10</mn><mfrac><msub><mi>L</mi><mn>1</mn></msub><mn>10</mn></mfrac></msup><mo>+</mo><msup><mn>10</mn><mfrac><msub><mi>L</mi><mn>2</mn></msub><mn>10</mn></mfrac></msup><mo>)</mo></math>',
+        where: 'wzór dla sygnałów nieskorelowanych: dwa równe źródła dają +3 dB; dla sygnałów skorelowanych w fazie sumują się ciśnienia, co daje +6 dB',
+      },
+      {
+        t: 'Skoro dla jednej częstotliwości fale trafiają „w nogę”, a dla innej w przeciwfazę, to w całym paśmie powstaje regularny wzór wzmocnień i wycięć. Nazywamy go filtrem grzebieniowym, bo na wykresie wygląda jak grzebień. Pierwsza dziura pojawia się tam, gdzie różnica drogi odpowiada połowie cyklu, a kolejne w równych odstępach. Im większe opóźnienie między dwiema drogami dźwięku, tym gęstsze zęby grzebienia. To nie jest usterka sprzętu — tak zachowuje się fizyka zawsze, gdy ten sam dźwięk dociera dwiema drogami: z głośnika i z odbicia od podłogi, z dwóch kolumn front fill, z main i z delaya.',
+        eq: '<math display="block"><msub><mi>f</mi><mn>1</mn></msub><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mo>&#8202;</mo><mi>&#916;</mi><mi>t</mi></mrow></mfrac><mspace width="1.2em"/><mi>odstęp</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mi>&#916;</mi><mi>t</mi></mrow></mfrac></math>',
+        where: 'f₁ — pierwsze wycięcie [Hz]; Δt — różnica czasu dotarcia obu sygnałów [s]',
+        viz: 'filtr-grzebieniowy',
+      },
+      {
+        t: 'Skoro interferencji nie da się wyłączyć, trzeba ją osłabić — i tu przychodzi z pomocą różnica poziomów. Wróćmy do huśtawki: jeśli jedna osoba popycha z całej siły, a druga tylko muska palcem, to niezależnie od rytmu wynik będzie prawie taki sam. Podobnie z głośnikami: gdy jeden jest o 10 dB głośniejszy od drugiego, wahania wynoszą już tylko ok. +2,4 / −3,3 dB zamiast dramatycznych dziur. Przy 20 dB różnicy efekt jest praktycznie niesłyszalny. Dlatego w projekcie dąży się do tego, żeby w każdym miejscu widowni jeden subsystem wyraźnie dominował, a strefy, w których dwa grają po równo, były jak najwęższe.',
+      },
+      {
+        t: 'Z tego rodzi się prosty sposób patrzenia na widownię. Są miejsca, gdzie dominuje jedno źródło — tam jest spokojnie i przewidywalnie; nazwijmy je strefą izolacji. Są miejsca, gdzie dwa źródła grają po równo i trwa przeciąganie liny — to strefa przejścia, w której zobaczysz największe wahania w paśmie. I są miejsca, gdzie różnice czasu są znikome, więc sumowanie jest czystym zyskiem. Dobry projekt polega na tym, żeby strefy przejścia były wąskie i wypadały tam, gdzie mniej przeszkadzają, a nie na próbie usunięcia ich EQ — korektor działa tak samo w całej strefie, a dziura jest tylko w jej części.',
+      },
+      {
+        t: 'Na końcu zostaje wybór, który będziesz podejmował przy każdym projekcie: moc czy jednorodność. Mocne nakładanie kilku elementów daje więcej decybeli, ale też szerokie strefy interferencji i „dziurawe” brzmienie w ruchu. Duża izolacja daje równe, spokojne pokrycie, ale wymaga więcej elementów i precyzji w kątach. Line array to świadomie kontrolowana interferencja: elementy nakładają się w ściśle policzony sposób. Dobrze zaprojektowane front fille to z kolei przykład izolacji — każdy obsługuje swój wycinek pierwszego rzędu i prawie nie wchodzi sąsiadowi w drogę.',
+      },
     ],
   },
+
   sluch: {
     goals: ['Stosować efekt pierwszeństwa przy fills i delay', 'Uwzględniać percepcję przy decyzjach tonalnych'],
     steps: [
@@ -449,48 +508,65 @@ export const LESSONS = {
       'Dalsze narzędzia to tłumiki akustyczne w kanałach, wyciszone odcinki, rozdzielenie kanałów obsługujących różne pomieszczenia (żeby nie przenosiły dźwięku między nimi) oraz odsunięcie urządzeń od stref wrażliwych. Wszystko to zapada na etapie projektu instalacji.',
     ],
   },
-  proporcje: {
-    goals: ['Ocenić proporcje pomieszczenia liczbowo', 'Wiedzieć, czego nie da się już naprawić'],
+  kubatura: {
+    goals: ['Oszacować pogłos obiektu przed montażem', 'Przewidzieć wpływ publiczności'],
     steps: [
-      'W małym pomieszczeniu o brzmieniu decyduje rozkład drgań własnych, a ten wynika wprost z wymiarów. Dlatego pierwsza decyzja projektowa — kubatura i proporcje — waży więcej niż wszystkie późniejsze ustroje.',
-      'Bardzo małe pomieszczenia są kłopotliwe z natury: mają niewiele modów, rozstawionych w dużych odstępach. Przyjmuje się, że poniżej mniej więcej czterdziestu kilku metrów sześciennych trudno uniknąć słyszalnych zakolorowań.',
-      'Zestawy zalecanych proporcji, takie jak 1,00 : 1,28 : 1,54, powstały po to, by mody rozkładały się możliwie równomiernie. To dobry punkt wyjścia, ale nigdy nie zastępuje obliczenia dla konkretnych wymiarów.',
-      'Weryfikacja jest prosta: policz mody osiowe dla wszystkich trzech wymiarów, ustaw je w kolejności rosnącej i przyjrzyj się odstępom. Szukasz dwóch rzeczy — częstotliwości, w których mody się pokrywają, oraz modów odizolowanych od sąsiadów o ponad ok. 25 Hz.',
-      'Najgorsze wybory to sześcian i wymiary będące swoimi wielokrotnościami. Każdy mod osiowy pokrywa się wtedy z modami z pozostałych osi, dając kilka razy silniejsze wzmocnienie w wąskich pasmach.',
-      'W istniejącym pomieszczeniu wymiarów nie zmienisz. Zostają: ustawienie źródeł i słuchacza, ustroje niskotonowe dostrojone do konkretnych modów oraz świadoma akceptacja ograniczeń — czasem najuczciwszą decyzją jest zmiana pomieszczenia.',
+      {
+        t: 'Czas pogłosu dużego obiektu oszacujesz jeszcze na etapie advance, mając kubaturę i zgrubny bilans powierzchni. Wzór Sabine’a wystarcza do oceny skali problemu: hala o kubaturze kilkudziesięciu tysięcy metrów sześciennych i twardych wykończeniach potrafi mieć pogłos rzędu kilku sekund.',
+        eq: '<math display="block"><msub><mi>RT</mi><mn>60</mn></msub><mo>=</mo><mfrac><mrow><mn>0,161</mn><mo>&#8202;</mo><mi>V</mi></mrow><mi>A</mi></mfrac></math>',
+        where: 'RT₆₀ — czas pogłosu [s]; V — kubatura [m³]; A — chłonność [m² Sabine]',
+      },
+      {
+        t: 'Chłonność liczysz jako sumę iloczynów powierzchni i ich współczynników pochłaniania, osobno w każdym paśmie oktawowym. W hali największe powierzchnie to podłoga, dach i trybuny — i to one, a nie ściany boczne, decydują o wyniku.',
+        eq: '<math display="block"><mi>A</mi><mo>=</mo><munder><mo movablelimits="false">&#8721;</mo><mi>i</mi></munder><msub><mi>S</mi><mi>i</mi></msub><mo>&#8202;</mo><msub><mi>&#945;</mi><mi>i</mi></msub></math>',
+        where: 'S — pole powierzchni [m²]; α — współczynnik pochłaniania danej powierzchni w rozpatrywanym paśmie',
+      },
+      'Publiczność jest największym ustrojem pochłaniającym, jaki wjeżdża na obiekt. Pusta hala na próbie i pełna hala na koncercie to dwa różne pomieszczenia — pogłos skraca się głównie w średnich i wysokich pasmach, natomiast bas zostaje niemal nietknięty.',
+      'To tłumaczy typowe zjawisko: system strojony w pustej hali po wpuszczeniu ludzi robi się ciemniejszy i mniej pogłosowy w górze pasma, a proporcja basu do reszty rośnie. Dlatego weryfikacja pomiarem i uchem po otwarciu drzwi jest częścią procedury, a nie fanaberią.',
+      'Odległość krytyczna wyznacza granicę, za którą dominuje pole pogłosowe. Rośnie wraz z kierunkowością źródła i chłonnością obiektu — w hali to główny powód, dla którego walczymy o wąskie, precyzyjnie wycelowane pokrycie zamiast o kolejne decybele.',
+      'Przy dużych dystansach rzutu dochodzi tłumienie w powietrzu, rosnące z częstotliwością i zależne od wilgotności. Na stadionie strata w górnym paśmie na dystansie stu metrów jest na tyle duża, że projektowo kompensuje się ją korekcją stref dalekich.',
+      'Wniosek systemowy jest prosty: w dużym obiekcie liczy się, ile energii trafi w publiczność, a ile w puste powierzchnie. Każdy decybel wysłany w dach albo w pustą trybunę wraca jako pogłos i pogarsza zrozumiałość dla wszystkich.',
     ],
   },
-  rezyserka: {
-    goals: ['Zaprojektować strefę bez wczesnych odbić', 'Znaleźć rzeczywiste źródła odbić przy stanowisku'],
+  echa: {
+    goals: ['Znaleźć echa zanim zrobi to publiczność', 'Poprawiać geometrią, nie korekcją'],
     steps: [
-      'Badania sal koncertowych pokazały, że sale oceniane najwyżej mają wyraźny, powtarzalny odstęp między dźwiękiem bezpośrednim a pierwszym istotnym odbiciem — rzędu 20 milisekund. Ten parametr, nazywany ITDG, przeniesiono na projektowanie reżyserek.',
-      'Idea strefy pozbawionej odbić jest prosta: na drodze od monitorów do uszu realizatora nie powinno być silnych wczesnych odbić. Dopiero po tym „oknie czasowym” pomieszczenie może wrócić z energią, najlepiej rozproszoną.',
-      'Strefę uzyskuje się dwoma sposobami. Pierwszy to pochłanianie powierzchni odpowiedzialnych za wczesne odbicia. Drugi, elegantszy, to odchylenie tych powierzchni tak, żeby energia trafiała poza pozycję odsłuchową — bez wytłumiania pomieszczenia.',
-      'Za strefą bez odbić stosuje się rozpraszanie. Dzięki temu reżyserka nie robi się martwa, a realizator dostaje naturalne wrażenie przestrzeni, którego nie da się uzyskać samym pochłanianiem.',
-      'Symetria lewa–prawa jest warunkiem stabilnego obrazu stereofonicznego. Różnica w adaptacji obu stron przesuwa pozorne źródła i utrudnia ocenę panoramy — a tego nie naprawisz korekcją.',
-      'W praktyce najsilniejsze wczesne odbicie często nie pochodzi ze ściany, tylko z blatu konsolety, ekranów monitorów i sprzętu na biurku. Pomiar ETC szybko to pokazuje: pik kilka–kilkanaście ms po dźwięku bezpośrednim, którego nie da się wytłumaczyć geometrią ścian.',
+      'Echo słyszymy wtedy, gdy pojedyncze, silne odbicie dociera na tyle późno, że mózg przestaje je łączyć z frontem. W dużych obiektach to zwykle kilkadziesiąt milisekund — czyli dodatkowa droga rzędu kilkunastu metrów i więcej.',
+      'Najczęstsi winowajcy to tylna ściana za publicznością, dach i ekrany. Energia wysłana ponad ostatni rząd wraca do widowni z opóźnieniem, którego nie da się już naprawić żadnym filtrem.',
+      'Powierzchnie wklęsłe — łukowe dachy, kopuły, zaokrąglone balkony — skupiają energię w ognisku, tworząc miejsca o wyraźnie wyższym poziomie i silnym echu. Powierzchnie wypukłe działają odwrotnie: rozpraszają energię i są akustycznie bezpieczniejsze.',
+      'W predykcji pracujesz metodą lustra: sprawdzasz, gdzie trafia energia z krawędzi pokrycia tablicy i co odbije ją z powrotem. To moment, w którym echo jest jeszcze tanie w usunięciu — wystarczy zmiana kąta, krzywizny lub wysokości podwieszenia.',
+      'Na obiekcie diagnozujesz to pomiarem odpowiedzi impulsowej: silny, izolowany pik w ETC kilkadziesiąt milisekund po froncie wskazuje odbicie. Z różnicy czasu wyliczasz dodatkową drogę i wskazujesz powierzchnię.',
+      'Kolejność działań jest zawsze ta sama: najpierw geometria (kąty, krzywizna, trim, pozycja), potem adaptacja obiektu (kurtyny, banery), a dopiero na końcu kompromisy elektroniczne. Odwrócenie tej kolejności kończy się systemem, który brzmi dobrze tylko na FOH.',
     ],
   },
-  ustawienie: {
-    goals: ['Wykorzystać ustawienie zamiast korekcji', 'Zrozumieć wpływ powierzchni i modów'],
+  sprzezenie: {
+    goals: ['Przewidzieć wpływ powierzchni na LF', 'Policzyć wycięcia od odbicia od gruntu'],
     steps: [
-      'Głośnik umieszczony blisko dużej, twardej powierzchni promieniuje w mniejszy kąt bryłowy. Przy jednej powierzchni daje to ok. +3 dB w niskich częstotliwościach, przy dwóch (krawędź) ok. +6 dB, a w narożniku trzech powierzchni ok. +9 dB.',
-      'Ten zysk jest równomierny tylko wtedy, gdy głośnik jest naprawdę blisko powierzchni. Gdy odległość staje się porównywalna z długością fali, dźwięk bezpośredni i odbity interferują — zamiast wzmocnienia pojawiają się wycięcia w charakterystyce, zależne od tej odległości.',
-      'Drugim czynnikiem jest sprzężenie z modami. Rozkład ciśnienia w modzie ma węzły i strzałki: pierwszy mod osiowy ma węzeł dokładnie w połowie długości pomieszczenia, a drugi w tym samym miejscu maksimum. Zarówno źródło, jak i słuchacz „widzą” inny bas w zależności od pozycji.',
-      'Stąd praktyczna konsekwencja: pozycja odsłuchowa dokładnie w połowie długości pomieszczenia to najprostszy sposób na utratę części basu. Przesunięcie krzesła o kilkadziesiąt centymetrów potrafi zmienić charakterystykę bardziej niż kilka filtrów korekcyjnych.',
-      'Programy optymalizujące ustawienie przeszukują pozycje źródeł i słuchacza, minimalizując nierównomierność w zakresie mniej więcej 20–300 Hz. Wyżej o wyniku decydują odbicia i kierunkowość, a nie mody, więc ten zakres wystarcza.',
-      'Wynik numeryczny trzeba jednak skonfrontować z praktyką: algorytm chętnie wciska głośniki w powierzchnie, co bywa niewykonalne albo psuje obraz stereofoniczny. Najlepsze ustawienie to kompromis między basem, obrazem i ergonomią — zweryfikowany pomiarem i odsłuchem.',
+      'Ten sam głośnik promieniujący w pełną sferę i w pół przestrzeni to dwa różne poziomy. Przy jednej dużej powierzchni zyskujesz w niskich częstotliwościach ok. 3 dB, przy dwóch ok. 6 dB, a w narożniku trzech powierzchni ok. 9 dB — energia rozkłada się na coraz mniejszy kąt bryłowy.',
+      'Warunkiem jest bliskość: odległość od powierzchni musi być mała względem długości fali. Gdy staje się z nią porównywalna, fala bezpośrednia i odbita zaczynają interferować i zamiast równego wzmocnienia dostajesz grzebień wycięć.',
+      {
+        t: 'Częstotliwości wycięć wyliczysz wprost z różnicy dróg między falą bezpośrednią a odbitą. To ten sam mechanizm, który tworzy filtr grzebieniowy od odbicia od gruntu na pozycji pomiarowej czy na FOH.',
+        eq: '<math display="block"><msub><mi>f</mi><mi>n</mi></msub><mo>=</mo><mfrac><mrow><mo>(</mo><mn>2</mn><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>&#8202;</mo><mi>c</mi></mrow><mrow><mn>2</mn><mo>&#8202;</mo><mi>Δ</mi><mi>d</mi></mrow></mfrac><mo>,</mo><mspace width="0.6em"/><mi>n</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>…</mo></math>',
+        where: 'fₙ — kolejne wycięcia [Hz]; c — prędkość dźwięku [m/s]; Δd — różnica dróg fali bezpośredniej i odbitej [m]',
+      },
+      'W praktyce dużych systemów oznacza to konkretne decyzje. Suby stojące na gruncie korzystają ze sprzężenia i grają o kilka decybeli głośniej niż te same skrzynie podwieszone, ale podwieszenie daje lepszą jednorodność poziomu od pierwszego do ostatniego rzędu.',
+      'Scena, ściany boczne i dach sceny to kolejne powierzchnie sprzęgające. Wpływają nie tylko na system frontowy, ale też na monitory i na to, co słyszy zespół — a odbicie od podłogi sceny potrafi zmienić barwę odsłuchu bardziej niż korekcja.',
+      'W halach bas dodatkowo pobudza drgania własne obiektu. Energia niskich częstotliwości zostaje w przestrzeni znacznie dłużej niż średnica, dlatego kierunkowe układy subów mają w hali jeszcze większy sens niż w plenerze.',
     ],
   },
-  zmienna: {
-    goals: ['Dostosować pomieszczenie do materiału', 'Zachować powtarzalność konfiguracji'],
+  'adaptacja-obiektu': {
+    goals: ['Policzyć potrzebną chłonność', 'Rozmawiać z produkcją konkretami'],
     steps: [
-      'Jedno pomieszczenie rzadko obsługuje tylko jedno zadanie. Perkusja potrzebuje żywej przestrzeni, lektor martwej, a wokal czegoś pośredniego. Stąd idea akustyki zmiennej: kontrolowana zmiana warunków bez przebudowy.',
-      'Najprostszym rozwiązaniem jest podział na strefy o różnym charakterze — część pomieszczenia wykończona odbijająco i rozpraszająco, część mocno wytłumiona. Mikrofon stawia się tam, gdzie warunki pasują do instrumentu.',
-      'Elementy obrotowe i panele na zawiasach mają dwie różne strony: pochłaniającą i odbijającą lub rozpraszającą. Obrót kilku takich elementów zmienia bilans chłonności w pomieszczeniu w kilka minut.',
-      'Przenośne moduły — pułapki narożne, parawany, ekrany — pozwalają zmieniać warunki punktowo, wokół konkretnego stanowiska. To najtańsza forma akustyki zmiennej i zwykle pierwszy krok w małym studiu.',
-      'Zasłony i kotary działają jako regulowane pochłanianie, ale głównie w średnich i wysokich częstotliwościach. Bez dużej masy i odstępu od ściany nie kontrolują basu, więc nie zastąpią ustrojów niskotonowych.',
-      'Kluczowa jest powtarzalność: zapisuj konfiguracje, które sprawdziły się przy konkretnych nagraniach — zdjęcie, opis ustawień paneli, pomiar RT. Bez dokumentacji akustyka zmienna staje się loterią.',
+      'W obiekcie nie zmienisz wymiarów, ale możesz zmienić jego chłonność. Kurtyny, banery akustyczne i zabudowa to realne narzędzia, pod warunkiem że wiesz, ile metrów kwadratowych czego i w którym miejscu.',
+      'Materiały tekstylne pracują przede wszystkim w średnich i wysokich pasmach. Ich skuteczność rośnie z masą powierzchniową, stopniem zmarszczenia i odstępem od ściany — kotara powieszona płasko na murze jest znacznie mniej skuteczna niż ta sama tkanina odsunięta i marszczona.',
+      {
+        t: 'Potrzebną chłonność policzysz, odwracając wzór Sabine’a: z docelowego czasu pogłosu i znanej kubatury wychodzi wymagane A, a różnica względem stanu obecnego mówi, ile powierzchni pochłaniającej trzeba dowiesić.',
+        eq: '<math display="block"><mi>A</mi><mo>=</mo><mfrac><mrow><mn>0,161</mn><mo>&#8202;</mo><mi>V</mi></mrow><msub><mi>RT</mi><mn>60</mn></msub></mfrac><mspace width="1.2em"/><mo>⇒</mo><mspace width="1.2em"/><mi>Δ</mi><mi>S</mi><mo>=</mo><mfrac><mrow><msub><mi>A</mi><mi>cel</mi></msub><mo>−</mo><msub><mi>A</mi><mn>0</mn></msub></mrow><mi>&#945;</mi></mfrac></math>',
+        where: 'A_cel — chłonność wymagana dla docelowego RT; A₀ — chłonność obiektu bez adaptacji; α — współczynnik pochłaniania zastosowanego materiału; ΔS — powierzchnia do dowieszenia [m²]',
+      },
+      'Największy zysk daje zwykle zasłonięcie pustych trybun i tylnej ściany za publicznością — to powierzchnie odpowiedzialne za najsilniejsze późne odbicia. Zasłanianie ścian bocznych blisko sceny bywa mniej skuteczne, a droższe.',
+      'Bilans zmienia się w trakcie eventu: publiczność stojąca pochłania inaczej niż siedząca, a zabudowa sceny, kotary i ekrany dokładają swoje. Dlatego oszacowanie robi się dla stanu „pełny obiekt”, a nie dla pustej hali z montażu.',
+      'Adaptacja to zawsze negocjacja z produkcją: koszt materiału, dostępne punkty rigowania, estetyka transmisji i czas montażu. Im wcześniej pokażesz liczby — ile m², jaki efekt w sekundach pogłosu — tym większa szansa, że ktoś się na to zgodzi.',
     ],
   },
 
