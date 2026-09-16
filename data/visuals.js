@@ -45,6 +45,34 @@ export const VISUALS = {
     })(),
   },
 
+  'rozklad-energii': {
+    title: 'Ta sama energia na coraz większej powierzchni',
+    caption: 'Głośnik wypuszcza określoną porcję energii, która rozchodzi się po powierzchni kuli. Gdy oddalisz się dwukrotnie, promień kuli się podwaja, a jej powierzchnia rośnie czterokrotnie — więc na każdy metr kwadratowy przypada cztery razy mniej energii. To dokładnie sześć decybeli mniej. Nic nie ginie po drodze; energia po prostu rozkłada się cieniej, jak ta sama ilość farby na coraz większym balonie.',
+    svg: (() => {
+      const cx = 60, cy = 125;
+      const rings = [[110, '10 m', '100 dB', 1], [230, '20 m', '94 dB', 4], [350, '40 m', '88 dB', 16]];
+      const dots = (r, n, seed) => {
+        let out = '';
+        for (let i = 0; i < n; i++) {
+          const a = (-58 + (116 * ((i * 37 + seed * 13) % 100)) / 100) * (Math.PI / 180);
+          out += `<circle cx="${(cx + r * Math.cos(a)).toFixed(1)}" cy="${(cy + r * Math.sin(a)).toFixed(1)}" r="2.4" class="v-fill-accent" opacity=".85"/>`;
+        }
+        return out;
+      };
+      return `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Spadek poziomu wynikający z rozkładu energii na powierzchni kuli">
+        <rect x="26" y="103" width="26" height="44" rx="5" class="v-fill-dim"/>
+        <text x="39" y="168" class="v-label" text-anchor="middle">źródło</text>
+        ${rings.map(([r, d, lvl]) => `
+          <path d="M${(cx + r * Math.cos(-1.02)).toFixed(1)} ${(cy + r * Math.sin(-1.02)).toFixed(1)} A${r} ${r} 0 0 1 ${(cx + r * Math.cos(1.02)).toFixed(1)} ${(cy + r * Math.sin(1.02)).toFixed(1)}"
+            class="v-stroke-accent" fill="none" stroke-width="2" opacity=".55"/>
+          <text x="${cx + r + 6}" y="${cy - 6}" class="v-label-white">${d}</text>
+          <text x="${cx + r + 6}" y="${cy + 12}" class="v-label-gold">${lvl}</text>`).join('')}
+        ${dots(110, 9, 1)}${dots(230, 9, 2)}${dots(350, 9, 3)}
+        <text x="310" y="228" class="v-label" text-anchor="middle">dwa razy dalej → powierzchnia cztery razy większa → poziom niższy o 6 dB</text>
+      </svg>`;
+    })(),
+  },
+
   harmoniczne: {
     title: 'Barwa to ton podstawowy plus harmoniczne',
     caption: 'Gitara i fortepian grające to samo „a” wysyłają tę samą częstotliwość podstawową, ale inne proporcje składowych leżących dwa, trzy i cztery razy wyżej. Suma tych sinusów daje przebieg o charakterystycznym kształcie — i to właśnie rozpoznajemy jako brzmienie instrumentu.',

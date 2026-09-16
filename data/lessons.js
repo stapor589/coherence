@@ -6,7 +6,7 @@ export const LESSONS = {
     goals: ['Wiedzieć, czym fizycznie jest dźwięk', 'Rozumieć, dlaczego temperatura zmienia wszystko'],
     steps: [
       {
-        t: 'Wyobraź sobie długi sznur korali leżący na stole. Popychasz pierwszy koralik — uderza w drugi, ten w trzeci i tak dalej. Zaburzenie przebiega przez cały sznur, ale żaden koralik nie przewędrował na drugi koniec stołu; każdy tylko szturchnął sąsiada i wrócił na miejsce. Dokładnie tak działa dźwięk. Membrana głośnika popycha cząsteczki powietrza tuż przed sobą, te napierają na kolejne i zaburzenie ciśnienia biegnie dalej. Powietrze nie „leci” od sceny do publiczności — gdyby leciało, na koncercie wiałby huragan. Wędruje wyłącznie informacja: naprzemienne zagęszczenia i rozrzedzenia.',
+        t: 'Weź sprężynę z rodzaju tych, które same schodzą po schodach, rozciągnij ją między dwiema osobami i szarpnij jednym końcem do przodu. Zobaczysz, jak wzdłuż sprężyny biegnie zgrubienie — miejsce, w którym zwoje są ciaśniej upakowane. Zgrubienie dociera na drugi koniec, ale żaden zwój nie przewędrował tam razem z nim; każdy tylko przesunął się o centymetr i wrócił. Dokładnie tak działa dźwięk. Membrana głośnika ściska powietrze tuż przed sobą, to ściska kolejną warstwę i zagęszczenie biegnie dalej. Powietrze nie „leci” od sceny do publiczności — gdyby leciało, na koncercie wiałby huragan. Podróżuje wyłącznie wzór zagęszczeń, czyli informacja.',
         viz: 'fala-w-powietrzu',
       },
       {
@@ -21,10 +21,11 @@ export const LESSONS = {
         where: 'c — prędkość dźwięku [m/s]; T — temperatura powietrza [°C]',
       },
       {
-        t: 'Fala na wodzie porusza cząsteczki w górę i w dół, a sama biegnie w bok — to fala poprzeczna. Dźwięk w powietrzu zachowuje się inaczej: cząsteczki drgają wzdłuż tego samego kierunku, w którym biegnie fala, czyli do przodu i do tyłu. To fala podłużna. Konsekwencja jest praktyczna: w powietrzu nie istnieje coś takiego jak „polaryzacja” dźwięku, więc nie da się go filtrować czy odbijać tak, jak robi się to ze światłem przez okulary przeciwsłoneczne.',
+        t: 'Teraz coś, co zaskakuje każdego, kto pierwszy raz to policzy: dźwięk niesie absurdalnie mało energii. Głośny koncert to rząd kilku watów mocy akustycznej rozłożonych na całą widownię — mniej niż pobiera żarówka nocna. Skąd więc kilowaty na rozdzielni? Bo głośnik jest urządzeniem bardzo nieefektywnym: zamienia na dźwięk zwykle kilka procent doprowadzonej mocy, a resztę na ciepło. Dlatego wzmacniacze się grzeją, cewki się nagrzewają, a system potrzebuje solidnego zasilania, choć samego dźwięku „waży” tyle co nic.',
       },
       {
-        t: 'Gdy źródło promieniuje we wszystkie strony, energia rozkłada się na powierzchnię kuli, która rośnie z kwadratem odległości. To jak malowanie coraz większego balonu tą samą ilością farby — warstwa staje się coraz cieńsza, choć farby nie ubywa. Stąd bierze się spadek poziomu o 6 decybeli przy każdym podwojeniu odległości. Nic się nie „gubi po drodze”; energia po prostu rozkłada się szerzej. Dopiero na bardzo dużych dystansach dochodzi dodatkowo tłumienie w powietrzu, dotyczące głównie wysokich częstotliwości.',
+        t: 'Gdy źródło promieniuje we wszystkie strony, energia rozkłada się na powierzchnię kuli, która rośnie z kwadratem odległości. To jak malowanie coraz większego balonu tą samą ilością farby — warstwa staje się coraz cieńsza, choć farby nie ubywa. Stąd bierze się spadek poziomu o sześć decybeli przy każdym podwojeniu odległości: dwa razy dalej to cztery razy większa powierzchnia i cztery razy mniej energii na metr kwadratowy. Nic się nie „gubi po drodze”. Dopiero na bardzo dużych dystansach dochodzi dodatkowo tłumienie w powietrzu, dotyczące głównie wysokich częstotliwości.',
+        viz: 'rozklad-energii',
       },
       {
         t: 'Co z tego wynika dla Twojej pracy? Po pierwsze: skoro wędruje wzór ciśnienia, a nie materia, to dwie fale mogą przejść przez siebie i się dodać albo odjąć — na tym opiera się cała inżynieria systemów. Po drugie: skoro prędkość zależy od temperatury, to Twoje wyrównania czasowe zmieniają się wraz z pogodą. Po trzecie: skoro energia rozkłada się geometrycznie, to różnicę poziomów między pierwszym a ostatnim rzędem pokonuje się rozkładem energii, a nie mocą. Każdy z tych trzech wniosków rozwiniemy w kolejnych lekcjach.',
