@@ -41,6 +41,8 @@ const P = {
   network: '<rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-5h14v5"/>',
   room: '<path d="M3 21V8l9-5 9 5v13"/><path d="M7 21v-6h10v6"/>',
   clipboard: '<rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4V2h6v2M9 11h6M9 15h4"/>',
+  panel: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7.5 8v8M12 8v8M16.5 8v8"/>',
+  shield: '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12h6"/>',
   orbit: '<circle cx="12" cy="12" r="2.5"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="4" ry="10"/>',
 };
 

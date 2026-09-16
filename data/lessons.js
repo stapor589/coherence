@@ -44,6 +44,9 @@ export const LESSONS = {
       'ITD (różnica czasu międzyusznego) dominuje w lokalizacji LF, bo długie fale obchodzą głowę bez cienia. ILD (różnica poziomu) dominuje w HF, gdzie głowa tworzy cień akustyczny. Małżowina dodaje wskazówki spektralne dla elewacji i przód/tył.',
       'Maskowanie częstotliwościowe: głośny dźwięk ukrywa cichsze składowe w pobliskich pasmach, szczególnie powyżej swojej częstotliwości. Maskowanie czasowe działa krótko przed i dłużej po głośnym zdarzeniu. Ma to wpływ na zrozumiałość i na to, co naprawdę słyszysz, porównując warianty strojenia.',
       'Po długiej ekspozycji na wysoki SPL próg słyszenia tymczasowo rośnie (TTS), zwłaszcza w okolicy 3–6 kHz. Decyzje tonalne podejmowane pod koniec głośnego dnia mają tendencję do nadmiernego podbijania HF. Strojenie najlepiej robić wypoczętym słuchem, przy umiarkowanych poziomach i z przerwami.',
+      'Ucho nie analizuje widma w sposób ciągły, tylko zestawem nakładających się filtrów — pasm krytycznych. Ich szerokość rośnie z częstotliwością; w okolicy 1 kHz to rząd 160 Hz. Wszystko, co dzieje się wewnątrz jednego pasma krytycznego, zlewa się w jedno wrażenie barwy — dlatego gęste wycięcia filtru grzebieniowego w HF słyszymy jako zmianę brzmienia, a nie jako oddzielne dziury.',
+      'Ucho jest układem nieliniowym. Przy wysokich poziomach generuje własne harmoniczne oraz tony sumacyjne i różnicowe, których w sygnale nie ma. To zjawisko fizjologiczne, niemierzalne mikrofonem — dlatego dwie osoby mogą inaczej opisywać bardzo głośny materiał, a pomiar niczego takiego nie pokaże.',
+      'Przewód słuchowy jest rurą zamkniętą błoną bębenkową i zachowuje się jak rezonator ćwierćfalowy, dając podbicie rzędu kilkunastu decybeli w okolicy 2–4 kHz. Mózg traktuje tę stałą charakterystykę jako neutralną, ale to jeden z powodów, dla których jesteśmy tak wrażliwi na korekcje w tym właśnie zakresie.',
     ],
   },
 
@@ -411,6 +414,178 @@ export const LESSONS = {
       'Tworzenie stref o niższym poziomie (np. scena, obszary za publicznością, zabudowa) to jedno z największych zastosowań. Zawsze weryfikuj w predykcji i pomiarze, jak głęboka jest redukcja w praktyce.',
     ],
   },
+  techniki: {
+    goals: ['Dobrać metodę pomiaru do warunków', 'Wiedzieć, skąd biorą się dzisiejsze narzędzia'],
+    steps: [
+      'Zanim komputery udźwignęły dwukanałową analizę FFT w czasie rzeczywistym, akustycy potrzebowali sposobu na oddzielenie dźwięku bezpośredniego od odbić. Powstałe wtedy metody wciąż są używane, a ich logika tkwi w każdym współczesnym programie pomiarowym.',
+      'TDS, czyli spektrometria opóźnienia czasowego, wykorzystuje przestrajany sygnał sinusoidalny i wąski filtr podążający za nim z określonym opóźnieniem. Energia docierająca później — odbicia i szum — trafia poza okno filtru i jest odrzucana. To pomiar quasi-bezechowy w zwykłym pomieszczeniu.',
+      'Metoda MLS używa pseudolosowej sekwencji binarnej, która brzmi jak szum, ale jest dokładnie znana. Korelacja sygnału odebranego z wysłanym daje odpowiedź impulsową układu, a powtarzanie sekwencji poprawia stosunek sygnału do szumu.',
+      'MLS zakłada, że układ nie zmienia się w trakcie pomiaru. Ruch mikrofonu, podmuch wiatru czy zmiana temperatury rozmywają wynik — dlatego na plenerze i w obecności publiczności metoda bywa zawodna.',
+      'Sweep logarytmiczny z dekonwolucją rozwiązuje inny problem: produkty zniekształceń nieliniowych lądują w odpowiedzi czasowej przed właściwym impulsem, więc można je odciąć. Dostajesz czystą odpowiedź liniową plus osobną informację o zniekształceniach — stąd popularność sweepów w REW.',
+      'Z jednej dobrej odpowiedzi impulsowej wyciągasz właściwie wszystko: charakterystykę amplitudową i fazową, ETC z rozkładem odbić, czasy pogłosu, klarowność C50/C80 i wskaźnik STI. Wybór metody to kwestia hałasu tła i stabilności warunków, a nie mody na narzędzie.',
+    ],
+  },
+
+  izolacja: {
+    goals: ['Rozpoznać dominującą drogę przenoszenia', 'Nie marnować pieniędzy na pozorne rozwiązania'],
+    steps: [
+      'Hałas w pomieszczeniu wrażliwym można ograniczyć na cztery sposoby: wybrać cichszą lokalizację, obniżyć energię zakłóceń w samym pomieszczeniu, wyciszyć źródło albo postawić między nimi przegrodę. Kolejność nie jest przypadkowa — najtańsze decyzje zapadają najwcześniej, na etapie wyboru miejsca.',
+      'Podstawą izolacyjności pojedynczej przegrody jest jej masa: im cięższa, tym trudniej ją wprawić w drgania. Podwojenie masy daje jednak tylko kilka decybeli, więc sama masa szybko przestaje się opłacać.',
+      'Znacznie skuteczniejsze jest rozdzielenie konstrukcji: ściana podwójna albo słupki naprzemienne sprawiają, że drgania jednej strony nie przenoszą się bezpośrednio na drugą. Wypełnienie pustki materiałem porowatym dokłada kolejne kilkanaście decybeli.',
+      'Wskaźniki jednoliczbowe (STC w literaturze amerykańskiej, Rw w europejskiej) porządkują porównania, ale uśredniają zachowanie w paśmie mowy. Muzyka i bas leżą niżej, dlatego przegroda o dobrym wskaźniku wciąż może przepuszczać stopę i bas.',
+      'Izolacyjność całej przegrody wyznacza jej najsłabszy element. Drzwi, okno, przepust kablowy czy kratka wentylacyjna potrafią zniweczyć pracę całej ściany. Dobre okno podwójne z ciężkimi, różnej grubości szybami i starannym montażem dorównuje ścianie — byle rama nie łączyła obu konstrukcji sztywno.',
+      'Szczelność jest warunkiem koniecznym. Niewielka nieuszczelniona szczelina obniża izolacyjność drastycznie, bo dźwięk przechodzi przez nią bez żadnego oporu. Uszczelki, masy akustyczne i staranne wykonanie są tu ważniejsze od grubości materiału.',
+      'Ostatnia droga to przenoszenie konstrukcyjne i boczne: wibracje omijają przegrodę przez strop, ściany boczne czy instalacje. Rozwiązaniem są wibroizolatory, podłogi pływające i elastyczne łączenia — inaczej nawet najlepsza ściana nie da spodziewanego efektu.',
+    ],
+  },
+  tlo: {
+    goals: ['Postawić cel dla hałasu tła', 'Wiedzieć, gdzie szukać źródeł szumu'],
+    steps: [
+      'Hałas tła wyznacza dolną granicę dynamiki pomieszczenia. Nie ma sensu budować systemu o dynamice 100 dB w miejscu, gdzie wentylacja szumi na poziomie 40 dB — dlatego cel dla tła ustala się na początku projektu, nie na końcu.',
+      'Do opisu używa się rodzin krzywych kryterialnych — NCB, NC czy RC. Każda krzywa określa maksymalny dopuszczalny poziom ciśnienia w kolejnych pasmach oktawowych, więc pomiar sprowadza się do naniesienia wyników na wykres.',
+      'Krzywe opadają w stronę wysokich częstotliwości i dopuszczają więcej energii w basie. Wynika to z dwóch rzeczy naraz: ucho jest mniej czułe na niskie częstotliwości, a typowe szumy instalacji mają tam najwięcej energii.',
+      'Dla studiów i pomieszczeń odsłuchowych przyjmuje się zwykle NCB-20 jako najwyższą akceptowalną krzywą. Zaostrzanie wymagań do NCB-15 ma sens tylko wtedy, gdy inne źródła — ulica, sąsiedzi, sprzęt — są równie cicho.',
+      'Głównym źródłem tła jest wentylacja: hałas wentylatora przenoszony kanałem, szum przepływu powietrza oraz turbulencje na kratkach. Najprostszym lekarstwem jest zmniejszenie prędkości przepływu — większe przekroje kanałów zamiast szybszego powietrza.',
+      'Dalsze narzędzia to tłumiki akustyczne w kanałach, wyciszone odcinki, rozdzielenie kanałów obsługujących różne pomieszczenia (żeby nie przenosiły dźwięku między nimi) oraz odsunięcie urządzeń od stref wrażliwych. Wszystko to zapada na etapie projektu instalacji.',
+    ],
+  },
+  proporcje: {
+    goals: ['Ocenić proporcje pomieszczenia liczbowo', 'Wiedzieć, czego nie da się już naprawić'],
+    steps: [
+      'W małym pomieszczeniu o brzmieniu decyduje rozkład drgań własnych, a ten wynika wprost z wymiarów. Dlatego pierwsza decyzja projektowa — kubatura i proporcje — waży więcej niż wszystkie późniejsze ustroje.',
+      'Bardzo małe pomieszczenia są kłopotliwe z natury: mają niewiele modów, rozstawionych w dużych odstępach. Przyjmuje się, że poniżej mniej więcej czterdziestu kilku metrów sześciennych trudno uniknąć słyszalnych zakolorowań.',
+      'Zestawy zalecanych proporcji, takie jak 1,00 : 1,28 : 1,54, powstały po to, by mody rozkładały się możliwie równomiernie. To dobry punkt wyjścia, ale nigdy nie zastępuje obliczenia dla konkretnych wymiarów.',
+      'Weryfikacja jest prosta: policz mody osiowe dla wszystkich trzech wymiarów, ustaw je w kolejności rosnącej i przyjrzyj się odstępom. Szukasz dwóch rzeczy — częstotliwości, w których mody się pokrywają, oraz modów odizolowanych od sąsiadów o ponad ok. 25 Hz.',
+      'Najgorsze wybory to sześcian i wymiary będące swoimi wielokrotnościami. Każdy mod osiowy pokrywa się wtedy z modami z pozostałych osi, dając kilka razy silniejsze wzmocnienie w wąskich pasmach.',
+      'W istniejącym pomieszczeniu wymiarów nie zmienisz. Zostają: ustawienie źródeł i słuchacza, ustroje niskotonowe dostrojone do konkretnych modów oraz świadoma akceptacja ograniczeń — czasem najuczciwszą decyzją jest zmiana pomieszczenia.',
+    ],
+  },
+  rezyserka: {
+    goals: ['Zaprojektować strefę bez wczesnych odbić', 'Znaleźć rzeczywiste źródła odbić przy stanowisku'],
+    steps: [
+      'Badania sal koncertowych pokazały, że sale oceniane najwyżej mają wyraźny, powtarzalny odstęp między dźwiękiem bezpośrednim a pierwszym istotnym odbiciem — rzędu 20 milisekund. Ten parametr, nazywany ITDG, przeniesiono na projektowanie reżyserek.',
+      'Idea strefy pozbawionej odbić jest prosta: na drodze od monitorów do uszu realizatora nie powinno być silnych wczesnych odbić. Dopiero po tym „oknie czasowym” pomieszczenie może wrócić z energią, najlepiej rozproszoną.',
+      'Strefę uzyskuje się dwoma sposobami. Pierwszy to pochłanianie powierzchni odpowiedzialnych za wczesne odbicia. Drugi, elegantszy, to odchylenie tych powierzchni tak, żeby energia trafiała poza pozycję odsłuchową — bez wytłumiania pomieszczenia.',
+      'Za strefą bez odbić stosuje się rozpraszanie. Dzięki temu reżyserka nie robi się martwa, a realizator dostaje naturalne wrażenie przestrzeni, którego nie da się uzyskać samym pochłanianiem.',
+      'Symetria lewa–prawa jest warunkiem stabilnego obrazu stereofonicznego. Różnica w adaptacji obu stron przesuwa pozorne źródła i utrudnia ocenę panoramy — a tego nie naprawisz korekcją.',
+      'W praktyce najsilniejsze wczesne odbicie często nie pochodzi ze ściany, tylko z blatu konsolety, ekranów monitorów i sprzętu na biurku. Pomiar ETC szybko to pokazuje: pik kilka–kilkanaście ms po dźwięku bezpośrednim, którego nie da się wytłumaczyć geometrią ścian.',
+    ],
+  },
+  ustawienie: {
+    goals: ['Wykorzystać ustawienie zamiast korekcji', 'Zrozumieć wpływ powierzchni i modów'],
+    steps: [
+      'Głośnik umieszczony blisko dużej, twardej powierzchni promieniuje w mniejszy kąt bryłowy. Przy jednej powierzchni daje to ok. +3 dB w niskich częstotliwościach, przy dwóch (krawędź) ok. +6 dB, a w narożniku trzech powierzchni ok. +9 dB.',
+      'Ten zysk jest równomierny tylko wtedy, gdy głośnik jest naprawdę blisko powierzchni. Gdy odległość staje się porównywalna z długością fali, dźwięk bezpośredni i odbity interferują — zamiast wzmocnienia pojawiają się wycięcia w charakterystyce, zależne od tej odległości.',
+      'Drugim czynnikiem jest sprzężenie z modami. Rozkład ciśnienia w modzie ma węzły i strzałki: pierwszy mod osiowy ma węzeł dokładnie w połowie długości pomieszczenia, a drugi w tym samym miejscu maksimum. Zarówno źródło, jak i słuchacz „widzą” inny bas w zależności od pozycji.',
+      'Stąd praktyczna konsekwencja: pozycja odsłuchowa dokładnie w połowie długości pomieszczenia to najprostszy sposób na utratę części basu. Przesunięcie krzesła o kilkadziesiąt centymetrów potrafi zmienić charakterystykę bardziej niż kilka filtrów korekcyjnych.',
+      'Programy optymalizujące ustawienie przeszukują pozycje źródeł i słuchacza, minimalizując nierównomierność w zakresie mniej więcej 20–300 Hz. Wyżej o wyniku decydują odbicia i kierunkowość, a nie mody, więc ten zakres wystarcza.',
+      'Wynik numeryczny trzeba jednak skonfrontować z praktyką: algorytm chętnie wciska głośniki w powierzchnie, co bywa niewykonalne albo psuje obraz stereofoniczny. Najlepsze ustawienie to kompromis między basem, obrazem i ergonomią — zweryfikowany pomiarem i odsłuchem.',
+    ],
+  },
+  zmienna: {
+    goals: ['Dostosować pomieszczenie do materiału', 'Zachować powtarzalność konfiguracji'],
+    steps: [
+      'Jedno pomieszczenie rzadko obsługuje tylko jedno zadanie. Perkusja potrzebuje żywej przestrzeni, lektor martwej, a wokal czegoś pośredniego. Stąd idea akustyki zmiennej: kontrolowana zmiana warunków bez przebudowy.',
+      'Najprostszym rozwiązaniem jest podział na strefy o różnym charakterze — część pomieszczenia wykończona odbijająco i rozpraszająco, część mocno wytłumiona. Mikrofon stawia się tam, gdzie warunki pasują do instrumentu.',
+      'Elementy obrotowe i panele na zawiasach mają dwie różne strony: pochłaniającą i odbijającą lub rozpraszającą. Obrót kilku takich elementów zmienia bilans chłonności w pomieszczeniu w kilka minut.',
+      'Przenośne moduły — pułapki narożne, parawany, ekrany — pozwalają zmieniać warunki punktowo, wokół konkretnego stanowiska. To najtańsza forma akustyki zmiennej i zwykle pierwszy krok w małym studiu.',
+      'Zasłony i kotary działają jako regulowane pochłanianie, ale głównie w średnich i wysokich częstotliwościach. Bez dużej masy i odstępu od ściany nie kontrolują basu, więc nie zastąpią ustrojów niskotonowych.',
+      'Kluczowa jest powtarzalność: zapisuj konfiguracje, które sprawdziły się przy konkretnych nagraniach — zdjęcie, opis ustawień paneli, pomiar RT. Bez dokumentacji akustyka zmienna staje się loterią.',
+    ],
+  },
+
+  mody: {
+    goals: ['Policzyć i zinterpretować drgania własne', 'Wskazać, które mody realnie przeszkadzają'],
+    steps: [
+      'W pomieszczeniu prostopadłościennym częstotliwości drgań własnych opisuje jeden wzór: f = (c/2)·√((p/L)² + (q/W)² + (r/H)²), gdzie L, W, H to wymiary, a p, q, r liczby całkowite (również zero). Fala stojąca powstaje tylko dla całkowitych wielokrotności, stąd dyskretny zbiór częstotliwości.',
+      'Liczba zer wśród p, q, r mówi o typie rezonansu. Dwa zera to rezonans osiowy — fala biegnie między dwiema równoległymi ścianami i niesie najwięcej energii. Jedno zero to rezonans styczny, angażujący cztery ściany, o mniej więcej połowie energii osiowego. Brak zer to rezonans skośny, najsłabszy, ale też obecny.',
+      'Najniższy mod osiowy wyznacza najdłuższy wymiar pomieszczenia. Poniżej tej częstotliwości pomieszczenie nie wspiera już dźwięku rezonansowo — dlatego w małych pokojach bas poniżej ok. 30 Hz „znika”, mimo że głośnik go odtwarza.',
+      'Wraz z częstotliwością mody stają się coraz gęstsze. Powyżej pewnej granicy (tzw. częstotliwości granicznej) zlewają się i można opisywać pomieszczenie statystycznie: czasem pogłosu i rozkładem energii. Poniżej — trzeba myśleć pojedynczymi rezonansami.',
+      'Problemem nie jest sama obecność modów, tylko ich rozkład. Gdy kilka modów wypada dokładnie w tej samej częstotliwości, powstaje wyraźne wzmocnienie i zakolorowanie; gdy między modami jest duża luka, część pasma wypada. Dlatego proporcje pomieszczenia mają znaczenie.',
+      'Kryterium Bonella ocenia to liczbowo: w pasmach 1/3 oktawy poniżej 200 Hz liczba modów nie powinna maleć w stosunku do pasma poprzedniego, a kumulacje są akceptowalne dopiero wtedy, gdy w paśmie jest co najmniej pięć modów. To szybki test proporcji projektowanego pomieszczenia.',
+      'Ustrój niskotonowy pobiera energię z pola ciśnienia, więc musi stać w strzałce ciśnienia danego modu — w narożniku albo na środku ściany. Umieszczony w węźle, gdzie ciśnienie jest bliskie zeru, nie zrobi nic.',
+    ],
+  },
+  'odbicia-pom': {
+    goals: ['Czytać echogram pomieszczenia', 'Decydować, co zrobić z pierwszymi odbiciami'],
+    steps: [
+      'Średnia droga swobodna to średni dystans, jaki fala pokonuje między kolejnymi odbiciami: 4V/S, gdzie V to objętość, a S powierzchnia wszystkich przegród. Dzieląc ją przez prędkość dźwięku, dostajesz średni odstęp czasu między odbiciami.',
+      'W pomieszczeniu o wymiarach rzędu 7 × 6 × 3 m średnia droga swobodna to ok. 3 m, czyli odbicie mniej więcej co 9 ms i ponad sto odbić na sekundę. To pokazuje, dlaczego małe pomieszczenie tak mocno wpływa na brzmienie.',
+      'Echogram (ETC, krzywa energii w czasie) pokazuje te odbicia jako kolejne piki. Z ich czasu odczytasz różnicę dróg, a z poziomu — znaczenie. To podstawowe narzędzie diagnostyki pomieszczeń, o wiele bardziej wymowne niż sama charakterystyka częstotliwościowa.',
+      'Wczesne odbicia sumują się z dźwiękiem bezpośrednim: podnoszą poziom i poszerzają obraz, ale mogą też barwić dźwięk. Odbicia późne i silne przestają być zlewane z frontem i są słyszalne jako echo.',
+      'Punkty pierwszych odbić wyznaczasz metodą lustra: traktujesz powierzchnię jak lustro i szukasz miejsca, w którym „widać” głośnik z pozycji słuchacza. Masz trzy opcje działania — pochłonąć odbicie, rozproszyć je albo odchylić powierzchnię tak, żeby energia poszła gdzie indziej.',
+      'Krótkie różnice czasu dają zakolorowanie: opóźnienie rzędu pół milisekundy tworzy filtr grzebieniowy o grzbietach mieszczących się w jednym paśmie krytycznym ucha, co słyszymy jako zmianę barwy. Przy kilkudziesięciu ms mózg traktuje sygnał już jako osobne zdarzenie.',
+    ],
+  },
+  dyfuzory: {
+    goals: ['Wybierać między pochłanianiem a rozpraszaniem', 'Zaprojektować dyfuzor pod konkretne pasmo'],
+    steps: [
+      'Projektant pomieszczenia ma trzy narzędzia: pochłanianie zamienia energię na ciepło, odbicie kieruje ją w wybraną stronę, a rozpraszanie rozkłada ją w czasie i w wielu kierunkach. Klasyczny błąd to używanie wyłącznie pierwszego z nich.',
+      'Dyfuzor Schroedera to rząd studni o różnych głębokościach. Fala odbita od dna każdej studni wraca z inną fazą, więc zamiast jednego silnego odbicia powstaje rozmyta w czasie i przestrzeni odpowiedź.',
+      'Głębokości studni wynikają z sekwencji residuum kwadratowego: kolejne wartości to n² modulo p, gdzie p jest liczbą pierwszą. Ta sekwencja zapewnia równomierny rozkład faz, a więc równomierne rozpraszanie.',
+      'Najniższą rozpraszaną częstotliwość wyznacza maksymalna głębokość studni — im niżej chcesz zejść, tym głębszy musi być dyfuzor. To najczęstsze ograniczenie praktyczne w małych pomieszczeniach.',
+      'Górną granicę pasma wyznacza szerokość studni: powinna odpowiadać mniej więcej połowie najkrótszej długości fali, którą chcesz rozproszyć. Zbyt szerokie studnie oznaczają, że powyżej pewnej częstotliwości dyfuzor zachowuje się jak zwykła ściana.',
+      'Rozpraszanie zachowuje energię w pomieszczeniu, zamiast ją usuwać. Dla muzyków i realizatorów to różnica między pomieszczeniem martwym a żywym, ale pozbawionym zakolorowań. Pamiętaj jednak, że dyfuzor nie wyeliminuje modów ani nadmiaru pogłosu — to zadanie dla ustrojów pochłaniających.',
+    ],
+  },
+  dyfrakcja: {
+    goals: ['Przewidywać zachowanie fali przy przeszkodach', 'Rozumieć ograniczenia ekranów akustycznych'],
+    steps: [
+      'Dyfrakcja to uginanie fali na krawędziach i przeszkodach. Decyduje stosunek wymiaru przeszkody do długości fali: obiekt mały względem λ praktycznie nie istnieje dla fali, obiekt duży tworzy cień akustyczny.',
+      'Dlatego ekran akustyczny przy drodze czy scenie działa głównie na wysokie częstotliwości. Bas ugina się nad krawędzią i wchodzi w strefę cienia — to samo zjawisko, które sprawia, że zza budynku słychać głównie dudnienie basu z koncertu.',
+      'Przy przejściu przez szczelinę obowiązuje reguła odwrotna do intuicji: im węższa szczelina względem długości fali, tym szersza wiązka za nią. Wąskie otwory nie prowadzą dźwięku „strumieniem”, tylko go rozpraszają.',
+      'Dyfrakcja na krawędziach obudowy głośnika zmienia jego charakterystykę i wpływa na obraz stereofoniczny. Zaokrąglone krawędzie i odpowiednie proporcje frontu ograniczają ten efekt — dlatego dobre monitory mają fazowane obudowy.',
+      'Refrakcja to zakrzywienie toru fali w ośrodku o zmiennej prędkości dźwięku. W atmosferze wywołują ją gradienty temperatury i wiatru: przy inwersji fala zagina się ku ziemi i dźwięk niesie się daleko, w ciepły dzień ucieka w górę.',
+      'Kształt powierzchni decyduje o rozkładzie energii: powierzchnie wklęsłe skupiają dźwięk w ognisku, tworząc „gorące punkty” i echa, wypukłe rozpraszają go szeroko. Dlatego łuki i kopuły są akustycznie trudne, a elementy wypukłe chętnie stosowane w adaptacjach.',
+    ],
+  },
+
+  porowate: {
+    goals: ['Dobierać grubość i odstęp materiału do pasma', 'Czytać karty katalogowe ze zrozumieniem'],
+    steps: [
+      'Współczynnik pochłaniania α mówi, jaka część energii padającej nie wraca do pomieszczenia. Zależy od częstotliwości, dlatego jedna liczba nic nie znaczy — potrzebujesz wartości w pasmach oktawowych od 125 Hz do 4 kHz. Ten sam materiał potrafi mieć α = 0,1 w LF i 0,9 w HF.',
+      'Materiał porowaty nie „zatrzymuje” ciśnienia, tylko zamienia ruch cząsteczek powietrza na ciepło przez tarcie lepkie w porach. Dlatego musi znaleźć się tam, gdzie prędkość cząsteczek jest duża. Przy sztywnej ścianie prędkość jest bliska zeru, a ciśnienie maksymalne — cienka warstwa tuż przy ścianie prawie nie pracuje w niskich częstotliwościach.',
+      'Prędkość cząsteczek osiąga maksimum w odległości ćwierci długości fali od ściany. Stąd praktyczna reguła: materiał zaczyna skutecznie działać, gdy jego grubość jest rzędu λ/4 dla najniższej częstotliwości, którą chcesz kontrolować. Dla 1 kHz to ok. 8 cm, dla 100 Hz już ok. 85 cm — dlatego kontrola basu wełną wymaga albo wielkich grubości, albo innych rozwiązań.',
+      'Pustka powietrzna między materiałem a ścianą działa jak przedłużenie grubości: przesuwa warstwę w obszar większej prędkości cząsteczek. Panel 5 cm odsunięty o 10 cm od ściany pochłania znacznie niżej niż ten sam panel przyklejony na płasko — bez wzrostu kosztu materiału.',
+      'Gęstość i opór przepływu muszą być w rozsądnym zakresie. Materiał zbyt gęsty zaczyna odbijać falę zamiast ją wpuszczać, zbyt rzadki nie stawia oporu ruchowi cząsteczek. Dlatego producenci podają wełny o różnych gęstościach przeznaczone do różnych zastosowań akustycznych.',
+      'Dane katalogowe zawsze dotyczą konkretnego montażu — bezpośrednio na ścianie, na ruszcie z pustką, ze szczeliną. Wartości tego samego produktu w różnych montażach różnią się w LF nawet kilkukrotnie. Karta bez opisu montażu jest bezużyteczna do projektowania.',
+    ],
+  },
+  rezonansowe: {
+    goals: ['Policzyć częstotliwość pracy ustroju', 'Świadomie sterować szerokością pasma'],
+    steps: [
+      'Ustrój membranowy (przeponowy) to płyta zamykająca szczelną pustkę. Masa płyty i sprężystość powietrza tworzą układ rezonansowy, który pobiera energię z pola akustycznego w okolicy swojej częstotliwości drgań własnych. To narzędzie do niskich częstotliwości przy niewielkiej głębokości konstrukcji.',
+      'Częstotliwość pracy liczysz ze wzoru f₀ ≈ 60 / √(m · d), gdzie m to masa powierzchniowa płyty w kg/m², a d głębokość pustki w metrach. Masę powierzchniową łatwo wyznaczysz, ważąc kawałek płyty o znanej powierzchni.',
+      'Przykład: sklejka o masie 3,6 kg/m² na pustce 9,5 cm daje f₀ = 60/√(3,6 · 0,095) ≈ 100 Hz. Cięższa płyta albo głębsza pustka przesuwają pracę w dół; lżejsza i płytsza — w górę. Zmiana o oktawę wymaga czterokrotnej zmiany iloczynu m·d.',
+      'Płyta perforowana to zestaw połączonych rezonatorów Helmholtza: każdy otwór jest szyjką, a pustka za płytą wspólną objętością. Jej częstotliwość liczy się ze wzoru f₀ ≈ 508 · √(p / (t · d)), gdzie p to procentowy udział perforacji, t efektywna długość otworu w cm, d głębokość pustki w cm.',
+      'Efektywna długość otworu jest większa od grubości płyty, bo powietrze „wystaje” z otworu po obu stronach: t = grubość + 0,8 · średnica otworu. Im mniejszy udział perforacji, tym niżej pracuje ustrój — od kilku procent schodzisz w okolice 200–300 Hz, poniżej jednego procenta w okolice 100 Hz.',
+      'Pusta konstrukcja daje wąskie i ostre maksimum. Wypełnienie pustki wełną obniża dobroć Q: maksimum spada, ale pasmo pracy robi się szerokie i bardziej użyteczne. Wełna przesuwa też rzeczywistą częstotliwość względem wzoru, dlatego projekt kończy się pomiarem, a nie obliczeniem.',
+    ],
+  },
+  helmholtz: {
+    goals: ['Rozumieć działanie rezonatorów objętościowych', 'Umieszczać basotrapy tam, gdzie pracują'],
+    steps: [
+      'Rezonator Helmholtza to objętość powietrza połączona ze światem szyjką. Masa powietrza w szyjce drga na sprężynie, jaką jest sprężystość powietrza w objętości. Efekt znasz z dmuchania w butelkę — wysokość dźwięku zależy od objętości i wymiarów szyjki.',
+      'Zmiana dowolnego z trzech parametrów przesuwa częstotliwość: większa objętość obniża, krótsza lub szersza szyjka podnosi. To pozwala zaprojektować pochłanianie dokładnie tam, gdzie pomiar pokazał problem.',
+      'Sam rezonator ma bardzo małe straty, więc pochłania w wąskim paśmie. Umieszczenie gazy lub wełny w szyjce zwiększa tarcie: amplituda drgań spada, ale pasmo pracy się poszerza. To ten sam kompromis co w ustrojach perforowanych.',
+      'Ostrość dostrojenia opisuje dobroć Q = f₀/Δf, gdzie Δf to szerokość krzywej dla spadku o 3 dB. Typowe ustroje perforowane i listwowe mają Q rzędu 1–2, wyjątkowo do 5. Przy Q = 5 i 100 Hz czas zaniku drgań ustroju to ok. 0,1 s, więc obawy o „dzwonienie” są bezpodstawne — słyszalne byłoby dopiero Q rzędu 100.',
+      'Energia, która nie zostaje zamieniona na ciepło, jest wypromieniowana z wylotu szyjki półkoliście. Rezonator działa więc również jako element rozpraszający — pożądany efekt w pomieszczeniach odsłuchowych i studiach.',
+      'Ustrój listwowy to rząd listew ze szczelinami na wspólnej pustce — każda szczelina pełni rolę szyjki rezonatora. Szerokość szczelin, szerokość listew i głębokość pustki wyznaczają pasmo pracy, a wełna w środku decyduje o jego szerokości. To konstrukcja wdzięczna warsztatowo: wygląda jak okładzina, a pracuje jak zestaw rezonatorów.',
+      'Lokalizacja przesądza o skuteczności. Ustrój pobiera energię z pola ciśnienia, więc musi stać tam, gdzie mod ma strzałkę: w narożnikach, gdzie zbiegają się maksima wszystkich modów osiowych, albo na środku ściany dla konkretnego modu. Ten sam ustrój przeniesiony do węzła ciśnienia przestaje działać.',
+    ],
+  },
+  adaptacja: {
+    goals: ['Zrobić bilans chłonności w pasmach', 'Unikać typowych błędów adaptacji'],
+    steps: [
+      'Współczynniki pochłaniania wyznacza się dwiema metodami. W komorze pogłosowej mierzy się skrócenie czasu pogłosu po wniesieniu próbki — wynik odpowiada polu rozproszonemu. W rurze impedancyjnej (Kundta) mierzy się falę stojącą dla padania prostopadłego na małą próbkę. Wyniki obu metod różnią się, więc nie miesza się ich w jednym bilansie.',
+      'Bilans adaptacji to suma chłonności: A = Σ S·α, liczona osobno w każdym paśmie oktawowym. Z chłonności wyznaczasz czas pogłosu ze wzoru Sabine’a RT = 0,161·V/A. Dopiero porównanie RT w pasmach z celem projektowym mówi, czego i ile brakuje.',
+      'Wskaźniki jednoliczbowe (NRC, αw) upraszczają komunikację z inwestorem, ale gubią widmo. Dwa materiały o tym samym NRC mogą zachowywać się zupełnie inaczej w pasmie 125 Hz — a to zwykle tam leży problem.',
+      'W bilansie uwzględnij publiczność i fotele, które są dużą powierzchnią chłonną, oraz pochłanianie w powietrzu, istotne w dużych kubaturach powyżej 2 kHz. Sala pusta i pełna to dwa różne pomieszczenia.',
+      'Najczęstszy błąd adaptacji to pokrycie wszystkiego cienką pianką. Efekt: martwe wysokie częstotliwości przy niemal niezmienionym basie, czyli pogorszenie bilansu tonalnego. Kontrola basu wymaga grubych warstw z pustką albo ustrojów rezonansowych.',
+      'Projekt adaptacji zaczyna się od pomiaru (RT w pasmach, echa w ETC, mody) i od jasno postawionego celu, a nie od katalogu produktów. Po montażu mierzysz ponownie i dokumentujesz różnicę — to jedyny sposób, żeby nauczyć się przewidywać skutki.',
+    ],
+  },
+
   automatyzacja: {
     goals: ['Budować własne narzędzia', 'Ograniczać błędy powtarzalnych zadań'],
     steps: [

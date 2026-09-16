@@ -8,7 +8,7 @@ Działa na telefonie i komputerze, offline, bez kont i bez backendu.
 | Sekcja | Opis |
 |---|---|
 | **Pulpit** | Poziom i ranga, cel dzienny, seria dni, „kontynuuj naukę”, aktywność z 7 dni, Twoje luki (z samooceny). |
-| **Ścieżka** | Animowana mapa 11 modułów / 38 lekcji. Węzły z pierścieniem postępu, gwiazdkami i „płynącym sygnałem” na przebytych odcinkach. |
+| **Ścieżka** | Animowana mapa 15 modułów / 53 lekcji. Węzły z pierścieniem postępu, gwiazdkami i „płynącym sygnałem” na przebytych odcinkach. |
 | **Kursy** | Katalog modułów → program → odtwarzacz lekcji krok po kroku → egzamin modułu → certyfikat (do druku/PDF). |
 | **Lekcja** | Wprowadzenie i cele → zagadnienia z wyjaśnieniem i notatką → materiały → quiz → zadanie praktyczne → podsumowanie. |
 | **Biblioteka** | ~70 materiałów (książki, artykuły, narzędzia, szkolenia, normy), wyszukiwarka i filtry. Własne linki i pliki (PDF/EPUB) zapisywane lokalnie w IndexedDB — dostępne offline. |
@@ -23,11 +23,16 @@ Działa na telefonie i komputerze, offline, bez kont i bez backendu.
 - **Odblokowywanie**: kolejna lekcja po ★ w poprzedniej; kolejny moduł po teorii całego poprzedniego — albo od razu **testem kwalifikacyjnym** (≥ 80%). **Tryb swobodny** odblokowuje wszystko.
 - **Rangi**: Stagehand → PA Tech → System Tech → System Engineer → Senior System Engineer → Lead System Designer → Master of Coherence.
 
-## Program (11 modułów)
+## Program (15 modułów, 53 lekcje, 169 pytań)
 1. Fizyka dźwięku i sygnał · 2. Elektroakustyka i łańcuch sygnałowy · 3. Kierunkowość i konfiguracje źródeł ·
 4. Predykcja i projekt systemu · 5. Pomiar i analiza · 6. Optymalizacja i strojenie · 7. Systemy cyfrowe i sieci audio ·
 8. Zasilanie, uziemienie i bezpieczeństwo · 9. Akustyka sal i propagacja w plenerze · 10. Produkcja i warsztat system engineera ·
-11. Zaawansowane: immersja, sterowanie wiązką, automatyzacja
+11. Zaawansowane: immersja, sterowanie wiązką, automatyzacja · 12. Materiały i ustroje akustyczne ·
+13. Pomieszczenie: mody, odbicia i rozpraszanie · 14. Izolacja akustyczna i tło · 15. Projektowanie pomieszczeń odsłuchowych i studyjnych
+
+Moduły 12–15 oraz rozszerzenia lekcji o psychoakustyce i technikach pomiarowych (TDS, MLS, sweep) powstały
+na podstawie studium podręcznika akustyki F. A. Everesta — treść jest autorska, przeniesione zostały fakty,
+wzory i procedury, nie tekst źródłowy.
 
 ## Uruchomienie lokalne
 ```bash
