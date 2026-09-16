@@ -2,6 +2,144 @@
 // Opcjonalne pole `goals` — cele lekcji wyświetlane na ekranie startowym.
 
 export const LESSONS = {
+  ip: {
+    goals: ['Zbudować sieć audio, która nie zawiedzie w show', 'Diagnozować problemy zamiast zgadywać'],
+    steps: [
+      {
+        t: 'Sieć audio to ulica z adresami. Adres IP mówi, pod którym numerem mieszka urządzenie, a maska podsieci wyznacza granice osiedla — urządzenia z tego samego osiedla rozmawiają ze sobą bezpośrednio. Adresy można rozdawać automatycznie albo wpisywać ręcznie. Gdy urządzenie nie dostanie adresu z żadnego źródła, nadaje sobie awaryjny, zaczynający się od 169.254 — jeśli go widzisz, wiesz od razu, że rozdzielanie adresów nie zadziałało.',
+      },
+      {
+        t: 'Switch to skrzyżowanie. Prosty, niezarządzalny switch przepuszcza wszystko wszędzie, a zarządzalny pozwala ustawić reguły ruchu: podzielić sieć na osobne części, nadać priorytet danym audio i sygnałom zegara, wyłączyć oszczędzanie energii, podejrzeć obciążenie portów. W systemie, od którego zależy koncert, ta kontrola jest różnicą między „działa” a „wiem, że działa”.',
+      },
+      {
+        t: 'Rozróżnij dwa sposoby wysyłania danych. Transmisja pojedyncza to paczka adresowana do jednego odbiorcy — jak list. Transmisja grupowa to jedna paczka dla wielu odbiorców naraz — jak ogłoszenie na tablicy. Ogłoszenia są wydajne, ale nieprzefiltrowane zalewają wszystkie porty. Funkcja filtrowania w switchu sprawia, że ogłoszenie trafia tylko tam, gdzie ktoś je zaprenumerował.',
+      },
+      {
+        t: 'Oszczędzanie energii w portach to cichy zabójca sieci audio. Mechanizm usypia port przy małym ruchu i budzi go, gdy ruch wraca — a takie przerwy kolidują z protokołami, które muszą działać punktualnie co do mikrosekundy. W switchu przeznaczonym do audio wyłącza się tę funkcję zawsze, bez dyskusji.',
+      },
+      {
+        t: 'Miedziany odcinek ma limit stu metrów — dalej sygnał przestaje być wiarygodny. Na dużym plenerze, gdzie od sceny do stanowiska realizatora bywa dwieście metrów, prowadzi się światłowód i konwertuje go na miedź po obu stronach. Światłowód ma jeszcze jedną zaletę, którą docenisz przy scenie zasilanej z innego przyłącza: całkowicie oddziela elektrycznie oba końce.',
+      },
+      {
+        t: 'Plan adresacji to najtańsze narzędzie diagnostyczne, jakie masz. Tabela z listą urządzeń, ich adresami, rolami i portami w switchu zamienia panikę w procedurę: zamiast skanować sieć w ciemno, sprawdzasz po kolei to, co powinno odpowiadać. Zrób ją przed eventem, wydrukuj i powieś przy rozdzielni sieciowej.',
+      },
+    ],
+  },
+
+  dante: {
+    goals: ['Rozumieć różnice między protokołami', 'Projektować redundancję, która naprawdę działa'],
+    steps: [
+      {
+        t: 'Dante jest dziś najpopularniejszym sposobem przesyłania audio po sieci i działa na zwykłym sprzęcie sieciowym. Odbiornik ma ustawianą wartość opóźnienia — od ułamka milisekundy do kilku milisekund. Krótsze opóźnienie oznacza mniejszy zapas na nierówności w sieci, więc wymaga porządnych switchy i krótkiej ścieżki. Gdy słyszysz trzaski przy bardzo niskim ustawieniu, to zwykle nie awaria, tylko za mały margines.',
+      },
+      {
+        t: 'Redundancja polega na tym, że urządzenie wysyła te same dane dwiema zupełnie niezależnymi sieciami. Warunek jest jeden, ale bezwzględny: te sieci nie mogą mieć wspólnego punktu. Dwa kable wpięte do tego samego switcha to nie redundancja, tylko dwa kable — awaria tego switcha wyłącza obie drogi naraz.',
+      },
+      {
+        t: 'Istnieje też standard, który pozwala połączyć urządzenia różnych producentów: określa format strumieni i sposób synchronizacji, ale wymaga ręcznego ustawienia kilku parametrów, które w zamkniętym ekosystemie dzieją się same. W praktyce używasz go jako mostu między światami — na przykład między systemem na scenie a wozem transmisyjnym.',
+      },
+      {
+        t: 'Druga rodzina protokołów działa inaczej: rezerwuje pasmo w switchach, gwarantując dostarczenie danych na czas. Wymaga to jednak sprzętu, który tę rezerwację obsługuje — nie wystarczy dowolny switch. Certyfikowany profil tej rodziny zapewnia, że urządzenia różnych producentów faktycznie ze sobą zagrają, a nie tylko teoretycznie mogłyby.',
+      },
+      {
+        t: 'Niezależnie od protokołu obowiązuje kilka zasad porządkowych. Sieć produkcyjna ma być oddzielona od sieci gościnnej i internetu. Nazwy urządzeń mają odpowiadać ich funkcji, a nie numerowi seryjnemu. Konfiguracja powinna być zapisana i możliwa do przywrócenia. To wszystko brzmi biurokratycznie do momentu, w którym o dwudziestej drugiej trzeba wymienić uszkodzony procesor na zapasowy.',
+      },
+    ],
+  },
+
+  zegar: {
+    goals: ['Zaprojektować hierarchię zegara', 'Rozpoznawać objawy problemów z synchronizacją'],
+    steps: [
+      {
+        t: 'W systemie cyfrowym wszystkie urządzenia muszą mierzyć czas tak samo, inaczej próbki zaczynają się gubić. Dlatego jedno urządzenie jest dyrygentem, a reszta gra według niego. W sieciach IP dyrygent wybierany jest automatycznie na podstawie priorytetów, ale warto wiedzieć, kto nim jest — i co się stanie, gdy zniknie z sieci.',
+      },
+      {
+        t: 'Objawy problemów z zegarem są charakterystyczne: pojedyncze trzaski, krótkie przerwy, czasem cyklicznie powracające zakłócenie. Nie brzmią jak przester ani jak uszkodzony kabel. Jeśli słyszysz takie zjawiska w całym systemie naraz, zacznij od sprawdzenia synchronizacji, a nie od wymiany przewodów.',
+      },
+      {
+        t: 'W połączeniach punkt-punkt między urządzeniami spotkasz starszy standard cyfrowy przesyłany kablem o impedancji 110 omów w wersji zbalansowanej. Zwykły kabel mikrofonowy zadziała na krótkim odcinku, ale nie ma właściwej impedancji, więc na dłuższych trasach zaczyna gubić dane. To klasyczna pułapka: działa na próbie, sypie się na koncercie.',
+      },
+      {
+        t: 'Gdy trzeba połączyć urządzenia pracujące z różnymi zegarami albo częstotliwościami próbkowania, używa się konwersji. Kosztuje ona odrobinę opóźnienia i przetwarzania, ale jest jedynym poprawnym rozwiązaniem — próba „dogadania się” dwóch niezależnych zegarów bez konwersji zawsze kończy się zakłóceniami.',
+      },
+      {
+        t: 'Na koniec rzecz istotna przy wyrównywaniu systemu: opóźnienie własne toru cyfrowego sumuje się z czasem przelotu dźwięku. Jeśli sub idzie przez inny procesor niż tablica albo delay jest podpięty przez dodatkowy konwerter, powstaje różnica, której nie widać w geometrii. Zmierz całkowitą latencję każdej gałęzi, zanim zaczniesz ustawiać opóźnienia akustyczne.',
+      },
+    ],
+  },
+
+  zasilanie: {
+    goals: ['Zaplanować zasilanie systemu', 'Rozmawiać z elektrykiem obiektu konkretami'],
+    steps: [
+      {
+        t: 'W Polsce z gniazdka dostajesz 230 woltów, a między dwiema fazami jest 400 woltów. Duże przyłącza mają pięć przewodów: trzy fazy, przewód neutralny i ochronny. Wzmacniacze podłącza się zwykle jednofazowo, więc Twoim zadaniem jest rozłożyć je równo na trzy fazy — jak pakowanie bagażnika, żeby samochód nie przechylał się na jedną stronę.',
+      },
+      {
+        t: 'Po co ta równowaga? Przy równomiernym obciążeniu prądy z trzech faz wzajemnie się znoszą w przewodzie neutralnym. Gdy obciążenie jest nierówne, przez neutralny płynie prąd wyrównawczy, a napięcia na fazach zaczynają się rozjeżdżać — jedna grupa wzmacniaczy dostaje mniej, inna więcej. Zasilacze impulsowe dokładają do tego swoje harmoniczne, które sumują się w przewodzie neutralnym zamiast znosić.',
+      },
+      {
+        t: 'Wyłącznik różnicowoprądowy porównuje prąd wpływający z wypływającym. Jeśli część prądu ucieka inną drogą — na przykład przez człowieka — wyłącza obwód w ułamku sekundy. Standardowa czułość ochronna to 30 miliamperów. Problem w tym, że każdy zasilacz ma niewielki prąd upływu, więc kilkanaście urządzeń na jednym wyłączniku potrafi go wyzwolić bez żadnej awarii. Rozwiązaniem jest podział na kilka obwodów, a nie wyjmowanie zabezpieczenia.',
+      },
+      {
+        t: 'Długi kabel o małym przekroju zachowuje się jak wąska rurka: przy dużym poborze napięcie na końcu spada i wzmacniacze przestają oddawać pełną moc dokładnie w szczytach, gdy najbardziej jej potrzebują. Przekrój dobiera się więc do prądu i długości trasy, a nie do wartości bezpiecznika. Ta sama zasada co przy kablach głośnikowych, tylko konsekwencje są większe.',
+      },
+      {
+        t: 'Agregat to osobny temat. Różni się od sieci jakością napięcia i reakcją na nagłe skoki obciążenia — a system nagłośnieniowy to jedno wielkie pasmo skoków. Wzmacniacze z układem korekcji współczynnika mocy pobierają prąd równomierniej, ale przy jednoczesnym włączeniu potrafią wygenerować taki impuls rozruchowy, że wyzwolą zabezpieczenie. Dlatego system włącza się sekwencyjnie, grupami.',
+      },
+      {
+        t: 'Na koniec zasada porządkowa: audio i oświetlenie zasilaj z osobnych obwodów, najlepiej z osobnych rozdzielnic. Ściemniacze i zasilacze reflektorów generują zakłócenia i gwałtowne zmiany obciążenia. Rozdzielenie ogranicza przenoszenie tych zakłóceń do toru audio i sprawia, że awaria światła nie gasi dźwięku.',
+      },
+    ],
+  },
+
+  uziemienie: {
+    goals: ['Usuwać przydźwięk bezpiecznie', 'Zapobiegać problemom już na etapie planu'],
+    steps: [
+      {
+        t: 'Przydźwięk z pętli masy powstaje wtedy, gdy dwa połączone ze sobą urządzenia mają masę na trochę innym potencjale — bo są zasilane z różnych miejsc. Powstaje zamknięty obwód, przez który płynie prąd, i część tego prądu ląduje w ekranie kabla sygnałowego. Słychać to jako brum o częstotliwości sieci i jego wielokrotnościach.',
+      },
+      {
+        t: 'Teraz rzecz absolutnie kluczowa: przewodu ochronnego nie odłącza się nigdy. To on sprawia, że w razie uszkodzenia izolacji prąd popłynie do ziemi i zadziała zabezpieczenie, zamiast czekać, aż ktoś dotknie obudowy. Adaptery „podnoszące masę” i obcinanie bolca to praktyki, które zabijają ludzi — dosłownie. Objaw znika, ryzyko zostaje.',
+      },
+      {
+        t: 'Bezpieczne rozwiązania działają na sygnale, nie na zasilaniu. Transformator separujący przerywa połączenie galwaniczne i przepuszcza tylko sygnał. Skrzynka bezpośrednia z przełącznikiem odłączającym ekran robi to samo w wersji kieszonkowej. Najprostsza profilaktyka to zasilanie całego systemu audio z jednego punktu — wtedy nie ma różnicy potencjałów, z której miałaby powstać pętla.',
+      },
+      {
+        t: 'Bywa też, że problem tkwi w samym urządzeniu: ekran kabla jest w nim podłączony do masy sygnałowej zamiast do obudowy, więc prądy z ekranu przechodzą przez obwody sygnałowe. Poznasz to po tym, że jedno konkretne urządzenie brumi w każdej konfiguracji, a reszta systemu jest czysta. Rozwiązaniem jest izolacja tego urządzenia albo jego wymiana.',
+      },
+      {
+        t: 'Oświetlenie to najczęstsze źródło zakłóceń, które nie mają nic wspólnego z pętlą masy. Ściemniacze i zasilacze reflektorów szatkują prąd, a powstałe zakłócenia potrafią indukować się w kablach sygnałowych. Profilaktyka jest prosta i geometryczna: prowadź kable sygnałowe z dala od zasilania, a jeśli muszą się przeciąć, niech krzyżują się pod kątem prostym.',
+      },
+      {
+        t: 'Kolejność włączania ma znaczenie: źródła i procesory najpierw, wzmacniacze na końcu. Przy wyłączaniu odwrotnie. Włączane urządzenie potrafi wygenerować impuls, który przez włączony wzmacniacz trafi prosto w przetwornik wysokotonowy. To kilka sekund dyscypliny, które oszczędzają kosztowną naprawę.',
+      },
+    ],
+  },
+
+  halas: {
+    goals: ['Znać limity i wytyczne', 'Prowadzić monitoring, który obroni Cię przed zarzutami'],
+    steps: [
+      {
+        t: 'Twoja praca odbywa się na granicy tego, co słuch wytrzymuje — dlatego istnieją przepisy. W Polsce ekspozycja zawodowa liczona dla ośmiu godzin nie może przekraczać 85 decybeli w wadze A, a szczytowy poziom 135 decybeli w wadze C. To nie są wartości koncertowe, tylko dopuszczalna dawka dla pracownika: liczy się energia zsumowana przez cały dzień pracy.',
+      },
+      {
+        t: 'Dla publiczności punktem odniesienia są wytyczne Światowej Organizacji Zdrowia z 2022 roku: średni poziom nie wyższy niż 100 decybeli w wadze A, uśredniony w oknie piętnastu minut, mierzony tam, gdzie publiczność jest najbardziej narażona. Do tego dochodzą zalecenia dotyczące monitoringu, dostępu do ochronników i stref wyciszenia.',
+      },
+      {
+        t: 'Monitoring musi być ciągły i zapisywany, a w raporcie powinna znaleźć się pozycja pomiaru. To nie formalność: jeśli mierzysz na stanowisku realizatora, a publiczność stoi bliżej sceny, różnica potrafi wynosić kilka decybeli. Bez opisanej pozycji Twój raport jest nie do obrony w rozmowie z organizatorem albo urzędnikiem.',
+      },
+      {
+        t: 'Drugi front to hałas wychodzący poza teren. Mierzy się go zwykle przy najbliższej zabudowie i to właśnie tam decydują się skargi. Na odległość dociera głównie bas — powietrze i ściany tłumią go najsłabiej — więc sąsiad nie słyszy wokalu, tylko stopę. Ograniczanie poziomu całego systemu jest tu narzędziem najbardziej kosztownym i najmniej skutecznym.',
+      },
+      {
+        t: 'Skuteczniejsze są rozwiązania kierunkowe. Układ kardioidalny subwooferów ogranicza energię wychodzącą do tyłu o kilkanaście decybeli, nie zmieniając nic dla publiczności. Podobnie działa przemyślana orientacja sceny i wykorzystanie zabudowy jako ekranu. To decyzje projektowe, które zapadają na długo przed dniem koncertu.',
+      },
+      {
+        t: 'Na koniec to, co najłatwiej zaniedbać: własny słuch i słuch ekipy. Ochronniki filtrujące pozwalają pracować z zachowaniem barwy, a przerwy w ciszy realnie odbudowują wrażliwość. Zmęczony słuch podejmuje złe decyzje tonalne, więc dbanie o niego to nie tylko kwestia zdrowia, ale i jakości Twojej pracy przez kolejne dwadzieścia lat.',
+      },
+    ],
+  },
+
   gain: {
     goals: ['Ustawić poziomy w całym torze świadomie', 'Wiedzieć, gdzie system ma ograniczać'],
     steps: [
@@ -610,72 +748,6 @@ export const LESSONS = {
       'Ucho nie analizuje widma w sposób ciągły, tylko zestawem nakładających się filtrów — pasm krytycznych. Ich szerokość rośnie z częstotliwością; w okolicy 1 kHz to rząd 160 Hz. Wszystko, co dzieje się wewnątrz jednego pasma krytycznego, zlewa się w jedno wrażenie barwy — dlatego gęste wycięcia filtru grzebieniowego w HF słyszymy jako zmianę brzmienia, a nie jako oddzielne dziury.',
       'Ucho jest układem nieliniowym. Przy wysokich poziomach generuje własne harmoniczne oraz tony sumacyjne i różnicowe, których w sygnale nie ma. To zjawisko fizjologiczne, niemierzalne mikrofonem — dlatego dwie osoby mogą inaczej opisywać bardzo głośny materiał, a pomiar niczego takiego nie pokaże.',
       'Przewód słuchowy jest rurą zamkniętą błoną bębenkową i zachowuje się jak rezonator ćwierćfalowy, dając podbicie rzędu kilkunastu decybeli w okolicy 2–4 kHz. Mózg traktuje tę stałą charakterystykę jako neutralną, ale to jeden z powodów, dla których jesteśmy tak wrażliwi na korekcje w tym właśnie zakresie.',
-    ],
-  },
-
-  ip: {
-    goals: ['Budować stabilne sieci audio', 'Szybko diagnozować problemy sieciowe'],
-    steps: [
-      'Adres IP i maska określają, które urządzenia są w tej samej podsieci. DHCP ułatwia start, adresy statyczne dają przewidywalność. Gdy urządzenie nie dostanie adresu, przydziela sobie link-local 169.254.x.x — to częsty objaw braku serwera DHCP.',
-      'Switch zarządzalny pozwala dzielić sieć na VLAN (np. audio, sterowanie, internet), ustawiać QoS (priorytet ruchu zegara i audio przez DSCP) i monitorować porty. W systemach produkcyjnych switche niezarządzalne to ryzyko.',
-      'Unicast to strumień do jednego odbiorcy, multicast — do grupy. Bez IGMP snooping switch rozsyła multicast na wszystkie porty, co może przeciążyć urządzenia o słabszych interfejsach. Z IGMP ruch trafia tylko tam, gdzie jest subskrypcja.',
-      'Energy Efficient Ethernet usypia porty przy małym ruchu, wprowadzając zmienne opóźnienia. Dla protokołów czasu rzeczywistego i PTP to problem. W sieciach audio EEE powinno być wyłączone.',
-      'Skrętka ma limit 100 m na segment. Dłuższe trasy (np. FOH na dużym plenerze) prowadzi się światłowodem przez moduły SFP w switchach. Światłowód daje też izolację galwaniczną.',
-      'Plan adresacji (tabela: urządzenie, IP, VLAN, port switcha) to podstawa diagnozy. Kiedy coś przestaje działać, wiesz od razu, gdzie szukać, i nie tracisz czasu na skanowanie sieci.',
-    ],
-  },
-  dante: {
-    goals: ['Znać różnice protokołów AoIP', 'Projektować redundancję'],
-    steps: [
-      'Dante pozwala ustawić latencję odbiornika (od ułamka ms do kilku ms) — niższa wymaga lepszej sieci. Redundancja polega na drugim porcie urządzenia podłączonym do niezależnej sieci secondary; strumienie idą oboma torami jednocześnie.',
-      'AES67 to standard interoperacyjności: określa format strumieni, synchronizację PTPv2 i sposób transportu. Pozwala łączyć urządzenia różnych ekosystemów, ale wymaga ręcznej konfiguracji części parametrów (np. zegara, adresów multicast).',
-      'AVB to zestaw standardów IEEE 802.1 z rezerwacją pasma i synchronizacją gPTP, realizowany w switchach. Milan to profil AVB od Avnu Alliance z wymaganiami certyfikacji, gwarantujący interoperacyjność urządzeń. Wymaga switchy obsługujących AVB/Milan.',
-      'SMPTE ST 2110-30 to standard przesyłania audio w sieciach broadcastowych, bazujący na AES67. Spotkasz go przy współpracy z telewizją i realizacjami transmisji.',
-      'Dante Domain Manager dodaje uwierzytelnianie, role i podział na domeny — przydatne w dużych i współdzielonych systemach. Niezależnie od narzędzi: sieć audio produkcji powinna być odseparowana od sieci publicznej i gości.',
-    ],
-  },
-  zegar: {
-    goals: ['Projektować hierarchię zegara', 'Rozpoznawać objawy problemów z synchronizacją'],
-    steps: [
-      'W każdej domenie cyfrowej musi być jeden master zegara. W AES3/MADI często jest to word clock lub urządzenie wskazane jako master, w sieciach IP — PTP grandmaster wybierany automatycznie lub z priorytetów.',
-      'AES3 to cyfrowy interfejs dwukanałowy: wersja zbalansowana na kablu 110 Ω (XLR), wersja niezbalansowana AES-3id na koncentryku 75 Ω. Zwykły kabel mikrofonowy działa na krótkich odcinkach, ale nie ma właściwej impedancji.',
-      'Konwerter SRC pozwala połączyć urządzenia pracujące na różnych częstotliwościach próbkowania lub z różnych domen zegarowych. Kosztem jest dodatkowa latencja i przetwarzanie.',
-      'Jitter to wahania momentów próbkowania. Wpływa na jakość konwersji A/D i D/A oraz na stabilność łączy. Dobrej jakości zegar i poprawna synchronizacja minimalizują ten problem.',
-      'Latencja różnych torów (np. sub z innego procesora, delay przez inny switch) sumuje się z czasem przelotu. Pomiar końcowy zawsze uwzględnia całość — ale planując, trzeba znać składowe, żeby nie „wyrównywać” latencji sieci jako przelotu.',
-    ],
-  },
-
-  zasilanie: {
-    goals: ['Planować zasilanie systemu', 'Rozmawiać z elektrykiem obiektu na konkretach'],
-    steps: [
-      'W Polsce napięcie fazowe wynosi 230 V, międzyfazowe 400 V. Przyłącza CEE 16A/32A/63A/125A to 5 przewodów: L1, L2, L3, N, PE. Wzmacniacze zasila się zwykle jednofazowo, rozkładając je równomiernie na fazy.',
-      'Przy symetrycznym obciążeniu faz prądy w N się znoszą. Przy niesymetrycznym przez N płynie prąd wyrównawczy, a napięcia na fazach mogą się rozjeżdżać. Zasilacze impulsowe wprowadzają harmoniczne, które sumują się w N.',
-      'Wyłącznik różnicowoprądowy (RCD) 30 mA wyłącza obwód, gdy prąd upływu przekroczy próg — chroni ludzi. Wiele urządzeń na jednym RCD sumuje prądy upływu filtrów, co może powodować wyzwalanie bez awarii.',
-      'Długie kable zasilające o małym przekroju powodują spadki napięcia przy dużych prądach szczytowych, co ogranicza realną moc wzmacniaczy. Planuj przekroje w odniesieniu do długości i prądów, a nie tylko do zabezpieczenia.',
-      'Agregaty różnią się jakością napięcia i reakcją na dynamiczne obciążenie. Wzmacniacze z PFC pobierają prąd bardziej równomiernie, ale przy włączeniu wielu naraz prądy rozruchowe mogą wyzwolić zabezpieczenia — stosuj sekwencyjne włączanie.',
-      'Oświetlenie (ściemniacze, zasilacze LED) generuje zakłócenia i skoki obciążenia. Oddzielne rozdzielnie i obwody dla audio ograniczają przenoszenie zakłóceń i ryzyko, że awaria światła wyłączy dźwięk.',
-    ],
-  },
-  uziemienie: {
-    goals: ['Bezpiecznie usuwać przydźwięki', 'Zapobiegać problemom na etapie projektu'],
-    steps: [
-      'Pętla masy powstaje, gdy dwa urządzenia połączone sygnałowo mają różne potencjały masy (np. zasilane z różnych gniazd). Prąd płynie ekranem kabla i pojawia się w sygnale jako przydźwięk 50 Hz i harmoniczne.',
-      'Przewód ochronny PE chroni przed porażeniem w razie uszkodzenia izolacji. Odłączenie go (adaptery, obcięte bolce) usuwa objaw kosztem ryzyka śmierci. W profesjonalnej pracy nie ma na to miejsca.',
-      'Rozwiązania bezpieczne: transformator separujący sygnał, DI z ground liftem (odcina ekran sygnałowy, nie PE), izolatory sygnałowe, zasilanie całego systemu audio z jednego punktu dystrybucji.',
-      'W źle zaprojektowanych urządzeniach ekran kabla (pin 1 XLR) jest podłączony do masy sygnałowej wewnątrz, a nie do obudowy przy gnieździe. Wtedy prądy ekranu płyną przez obwody sygnałowe. Przy uporczywym przydźwięku sprawdź, czy problem nie wynika z konkretnego urządzenia.',
-      'Ściemniacze tyrystorowe i zasilacze LED emitują zakłócenia przewodzone i promieniowane. Prowadź kable sygnałowe z dala od zasilania oświetlenia, krzyżuj je pod kątem prostym i używaj zbalansowanych połączeń.',
-      'Włączaj od źródeł do wzmacniaczy, wyłączaj odwrotnie. Stuki przy włączaniu konsolety czy procesora przy włączonych wzmacniaczach mogą uszkodzić przetworniki HF.',
-    ],
-  },
-  halas: {
-    goals: ['Znać limity i wytyczne', 'Prowadzić monitoring SPL w sposób obronny'],
-    steps: [
-      'Polskie przepisy BHP dla hałasu w pracy określają najwyższe dopuszczalne natężenie: ekspozycja dzienna LEX,8h 85 dB (A) i szczytowy poziom LCpeak 135 dB (C). Przekroczenie progów działania wiąże się z obowiązkami pracodawcy (ocena ryzyka, ochronniki, pomiary).',
-      'WHO w 2022 opublikowało globalny standard bezpiecznego słuchania dla miejsc i wydarzeń: m.in. średni poziom nie wyższy niż 100 dB LAeq,15 min w miejscu najbardziej narażonej publiczności, monitoring SPL, dostęp do ochronników i strefy wypoczynku.',
-      'Monitoring powinien być ciągły, z zapisem i pozycją pomiaru opisaną w raporcie. Pomiar na FOH to typowy punkt odniesienia — jeśli publiczność stoi bliżej, trzeba znać różnicę poziomów między FOH a przodem.',
-      'Hałas środowiskowy mierzy się na granicy terenu lub przy najbliższej zabudowie, zgodnie z lokalnymi regulacjami i warunkami pozwolenia. W odległości dominuje LF, bo powietrze i przegrody słabo go tłumią.',
-      'Kierunkowe układy subów (kardioidy, end-fire) i mniejsza energia skierowana poza teren redukują LF u sąsiadów, nie obniżając wrażeń publiczności. To często skuteczniejsze niż ograniczanie poziomu.',
-      'Ochronniki dla ekipy i publiczności, strefy odpoczynku i komunikacja o ryzyku to część profesjonalnej produkcji. System engineer dostarcza dane — pomiar, raport, rekomendację.',
     ],
   },
 

@@ -49,7 +49,7 @@ export const addDays = (iso, n) => { const d = new Date(iso + 'T12:00:00'); d.se
 function fresh() {
   return {
     v: 1,
-    profile: { name: '', dailyGoal: 60, freeMode: false, self: {}, onboarded: false, created: today() },
+    profile: { name: '', dailyGoal: 60, freeMode: true, self: {}, onboarded: false, created: today() },
     xp: 0, xpLog: {}, awarded: {},
     topics: {}, exams: {}, unlocked: {}, certs: {},
     resources: {}, custom: [], attach: {},

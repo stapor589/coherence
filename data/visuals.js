@@ -323,19 +323,44 @@ export const VISUALS = {
   },
 
   'pokrycie-tablicy': {
-    title: 'Line array to schody, nie reflektor',
-    caption: 'Górne elementy tablicy są ustawione prawie płasko i celują w dalekie rzędy, dolne są mocno pochylone i obsługują bliskie. Każdy element dostaje swój kawałek widowni — dzięki temu ostatni rząd słyszy podobny poziom co dziesiąty.',
-    svg: `<svg viewBox="0 0 ${W} ${H}" class="v-svg" role="img" aria-label="Rozkład kątów w tablicy line array">
-      <line x1="40" y1="200" x2="600" y2="200" class="v-stroke-dim" stroke-width="2"/>
-      ${Array.from({ length: 6 }, (_, i) => {
-        const y = 40 + i * 18;
-        const ang = 4 + i * 6;
-        const len = 520 - i * 70;
-        return `<rect x="60" y="${y}" width="46" height="14" rx="3" class="v-fill-accent" opacity="${0.9 - i * 0.1}" transform="rotate(${ang} 83 ${y + 7})"/>
-        <path d="M106 ${y + 7} L ${106 + len} ${y + 7 + len * Math.tan((ang * Math.PI) / 180)}" class="v-stroke-accent v-ray" fill="none" stroke-width="1.5" opacity=".45" style="animation-delay:${i * 0.15}s"/>`;
-      }).join('')}
-      <text x="470" y="192" class="v-label" text-anchor="middle">daleko: mały kąt, dużo elementów</text>
-      <text x="150" y="228" class="v-label" text-anchor="middle">blisko: duży kąt, jeden element</text>
-    </svg>`,
+    title: 'Podwieszona tablica: góra rzuca daleko, dół blisko',
+    caption: 'Elementy u góry stoją niemal płasko i wspólnie obsługują najdalsze rzędy — dlatego jest ich więcej i mają małe kąty między sobą. Im niżej, tym kąty większe, bo publiczność jest coraz bliżej i jedna skrzynia w zupełności wystarcza. Dzięki tej narastającej krzywiźnie poziom na ostatnim rzędzie jest zbliżony do tego w środku widowni.',
+    svg: (() => {
+      const bw = 62, bh = 13, n = 11;
+      const splays = [0.8, 0.8, 1.2, 1.6, 2, 2.6, 3.2, 4, 4.8, 5.6];
+      let x = 96, y = 44, ang = 3;
+      const boxes = [];
+      const rays = [];
+      const floorY = 214, floorX0 = 150, floorX1 = 604;
+      for (let i = 0; i < n; i++) {
+        const rad = (ang * Math.PI) / 180;
+        boxes.push(`<rect x="${(x - bw / 2).toFixed(1)}" y="${y.toFixed(1)}" width="${bw}" height="${bh - 1.5}" rx="2.5"
+          class="v-fill-accent" opacity="${(0.95 - i * 0.045).toFixed(2)}"
+          transform="rotate(${ang.toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`);
+        const cx = x + (bw / 2) * Math.cos(rad), cy = y + (bw / 2) * Math.sin(rad);
+        const t = Math.min(1, (floorY - cy) / Math.max(0.2, Math.sin(rad)) / 620);
+        const len = 120 + (1 - i / n) * 420;
+        rays.push(`<path d="M${cx.toFixed(1)} ${cy.toFixed(1)} L${(cx + len * Math.cos(rad)).toFixed(1)} ${(cy + len * Math.sin(rad)).toFixed(1)}"
+          class="v-stroke-accent v-ray" fill="none" stroke-width="1.4" opacity="${(0.5 - i * 0.02).toFixed(2)}" style="animation-delay:${(i * 0.12).toFixed(2)}s"/>`);
+        void t;
+        const s = splays[i] || 8;
+        x += bh * Math.sin(rad);
+        y += bh * Math.cos(rad);
+        ang += s;
+      }
+      return `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Uproszczona tablica liniowa z narastającą krzywizną">
+        <rect x="60" y="24" width="76" height="9" rx="3" class="v-fill-dim"/>
+        <line x1="98" y1="10" x2="98" y2="24" class="v-stroke-dim" stroke-width="3"/>
+        <text x="98" y="18" class="v-label" text-anchor="end">rama</text>
+        ${rays.join('')}
+        ${boxes.join('')}
+        <line x1="${floorX0}" y1="${floorY}" x2="${floorX1}" y2="${floorY - 8}" class="v-stroke-dim" stroke-width="2"/>
+        <text x="200" y="236" class="v-label">pierwsze rzędy</text>
+        <text x="596" y="236" class="v-label" text-anchor="end">ostatni rząd</text>
+        <text x="300" y="56" class="v-label-gold">małe kąty u góry — wspólny rzut na daleko</text>
+        <text x="20" y="188" class="v-label-gold">duże kąty na dole</text>
+        <text x="20" y="206" class="v-label" >— bliskie rzędy</text>
+      </svg>`;
+    })(),
   },
 };

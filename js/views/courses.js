@@ -25,6 +25,9 @@ export function courses(el) {
     </div>
     <div class="chips" role="tablist">
       ${[['all', 'Wszystkie'], ['progress', 'W trakcie'], ['new', 'Do zrobienia'], ['cert', 'Z certyfikatem']].map(([k, l]) => `<button class="chip ${filter === k ? 'on' : ''}" data-filter="${k}">${l}</button>`).join('')}
+      <button class="chip free ${S.state.profile.freeMode ? 'on' : ''}" data-free title="Wszystkie moduły i lekcje dostępne od ręki">
+        ${icon(S.state.profile.freeMode ? 'check' : 'lock')} Tryb swobodny
+      </button>
     </div>
     <div class="course-grid">
       ${list.map(({ ch, ci }) => {
@@ -54,6 +57,11 @@ export function courses(el) {
     sessionStorage.setItem('courseFilter', b.dataset.filter);
     courses(el);
   }));
+  el.querySelector('[data-free]').addEventListener('click', () => {
+    S.state.profile.freeMode = !S.state.profile.freeMode;
+    S.save();
+    courses(el);
+  });
 }
 
 export function course(el, id) {
