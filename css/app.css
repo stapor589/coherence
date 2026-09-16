@@ -403,6 +403,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .v-dash-flow-slow { animation: vdash 2s linear infinite; }
 .v-ray { stroke-dasharray: 6 10; animation: vdash 2.4s linear infinite; }
 .v-breathe { animation: vbreathe 2.6s ease-in-out infinite alternate; }
+.v-mol { animation: vmol 2s ease-in-out infinite; }
+.v-membrane { animation: vmembrane 2s ease-in-out infinite; }
+.v-wavefront { animation: vwavefront 2s linear infinite; }
 @keyframes vmove { to { transform: translateX(-112px); } }
 @keyframes vpump { from { transform: scaleX(.75); } to { transform: scaleX(1.25); } }
 @keyframes vosc { from { transform: translateY(-14px); } to { transform: translateY(14px); } }
@@ -412,6 +415,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @keyframes vgrow { from { transform: scaleX(0); } }
 @keyframes vdash { to { stroke-dashoffset: -48; } }
 @keyframes vbreathe { from { transform: scaleY(.35); } to { transform: scaleY(1); } }
+@keyframes vmol { 0% { transform: translateX(-6px); } 50% { transform: translateX(6px); } 100% { transform: translateX(-6px); } }
+@keyframes vmembrane { 0% { transform: translateX(-5px); } 50% { transform: translateX(5px); } 100% { transform: translateX(-5px); } }
+@keyframes vwavefront { from { transform: translateX(0); } to { transform: translateX(92.8px); } }
 
 .eq { margin: 4px 0; padding: 18px 16px; border-radius: 14px; background: var(--bg2); border: 1px solid var(--line); display: grid; gap: 10px; }
 .eq-body { overflow-x: auto; text-align: center; padding: 2px 0; }

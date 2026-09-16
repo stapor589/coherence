@@ -2,6 +2,110 @@
 // Opcjonalne pole `goals` — cele lekcji wyświetlane na ekranie startowym.
 
 export const LESSONS = {
+  kierunkowosc: {
+    goals: ['Rozumieć, czym naprawdę jest „kąt pokrycia”', 'Przewidzieć, jak głośnik zachowa się w różnych pasmach'],
+    steps: [
+      {
+        t: 'Kiedy w katalogu widzisz „90° × 40°”, łatwo wyobrazić sobie ostry snop światła: w środku pełna moc, a tuż za krawędzią cisza. Rzeczywistość jest łagodniejsza. Kąt pokrycia to umowa: mierzymy, gdzie poziom spada o 6 dB względem osi, i to nazywamy krawędzią. Sześć decybeli to mniej więcej „o połowę ciszej w odczuciu ciśnienia” — czyli sporo, ale wciąż dobrze słyszalnie. Poza tą granicą dźwięk nie znika, tylko dalej maleje. Dlatego mówiąc, że kolumna „nie sięga” w któreś miejsce, tak naprawdę mówimy, że tam poziom spadł poniżej umownej granicy — a energia i tak tam trafia i, w pomieszczeniu, wraca do nas jako odbicie.',
+      },
+      {
+        t: 'Teraz rzecz, która zaskakuje najbardziej: ten sam głośnik ma zupełnie inny kąt pokrycia dla różnych częstotliwości. Wyobraź sobie latarkę, która świeci wąsko na niebiesko, szerzej na zielono i rozlewa się na czerwono we wszystkie strony. Tak działa każda skrzynia: wysokie częstotliwości wychodzą wąską wiązką, średnie szerzej, a bas rozchodzi się prawie dookoła. Potwierdzisz to w dwie sekundy — stań za działającą kolumną. Usłyszysz bas i trochę średnicy, ale nie usłyszysz blachy perkusji. Z tego jednego faktu wynika połowa problemów, które rozwiązujesz przy strojeniu: „wycelowanie” skrzyni działa tylko dla górnej części pasma.',
+        viz: 'kierunkowosc-pasma',
+      },
+      {
+        t: 'Skąd ta różnica? Żeby cokolwiek skierować falę, przeszkoda albo źródło muszą być duże w porównaniu z długością fali. Dłoń zasłoni strumień wody z kranu, ale nie zatrzyma fali na jeziorze. Tuba o wylocie pół metra jest ogromna dla fali 7-centymetrowej (5 kHz), więc świetnie ją prowadzi. Ta sama tuba jest praktycznie niewidzialna dla fali trzymetrowej (100 Hz), która po prostu ją opływa. To dlatego kierunkowość w basie wymaga wielkich rozmiarów — nie da się jej uzyskać jedną skrzynią, trzeba użyć wielu źródeł i gry czasem, o czym będzie w kolejnych lekcjach.',
+      },
+      {
+        t: 'Żeby nie opisywać tego za każdym razem słowami, używamy dwóch liczb. Współczynnik kierunkowości Q mówi, ile razy więcej energii leci na osi w porównaniu ze źródłem rozsiewającym dookoła. Indeks kierunkowości DI to ta sama informacja w decybelach. Źródło dookólne ma Q = 1 i DI = 0 dB. Głośnik grający w pół przestrzeni ma Q = 2, czyli DI = 3 dB. Typowa skrzynia koncertowa w środku pasma osiąga DI rzędu kilkunastu decybeli. Te liczby przydają się później do liczenia odległości krytycznej i stosunku dźwięku bezpośredniego do pogłosowego w hali.',
+        eq: '<math display="block"><mi>DI</mi><mo>=</mo><mn>10</mn><mo>&#8202;</mo><mi>log</mi><mo>&#8202;</mo><mi>Q</mi></math>',
+        where: 'DI — indeks kierunkowości [dB]; Q — współczynnik kierunkowości (bezwymiarowy)',
+      },
+      {
+        t: 'Falowód albo tuba to nic innego jak ścianki, które nadają fali kształt, zanim ta wyjdzie w świat. Konstrukcje „o stałej kierunkowości” starają się utrzymać podobny kąt w szerokim paśmie, bo inaczej brzmienie zmieniałoby się w zależności od tego, gdzie stoisz. Ale nawet najlepsza tuba przestaje działać poniżej częstotliwości, dla której jest za mała. Poniżej tej granicy kąt zaczyna się rozszerzać, aż w basie skrzynia gra dookoła. Znajomość tej granicy dla własnych skrzyń to praktyczna wiedza — mówi, od którego momentu w dół musisz kontrolować energię inaczej.',
+      },
+      {
+        t: 'Na koniec o danych. Producenci publikują pełne charakterystyki kierunkowości, tzw. dane balonowe, w formatach, które wczytuje oprogramowanie do predykcji. To setki pomiarów w różnych kierunkach i pasmach — dopiero one opisują skrzynię uczciwie. Jedna liczba z ulotki („90 na 40”) jest jak podanie średniej temperatury w kraju: technicznie prawdziwa, praktycznie bezużyteczna do planowania. Jeśli masz wybierać system do trudnego obiektu, sprawdź w predykcji wykres szerokości wiązki w funkcji częstotliwości. To jeden z niewielu wykresów, które mówią prawdę o tym, jak system zachowa się na widowni.',
+      },
+    ],
+  },
+
+  pointsource: {
+    goals: ['Policzyć, ile decybeli różnicy robi sam dystans', 'Dobierać kąty między skrzyniami świadomie'],
+    steps: [
+      {
+        t: 'Zacznijmy od najprostszej prawdy o dźwięku w otwartej przestrzeni: im dalej, tym ciszej — i to w bardzo konkretnym tempie. Pojedyncze źródło traci 6 decybeli za każdym podwojeniem odległości. Z 5 metrów na 10 metrów to −6 dB, z 10 na 20 kolejne −6 dB. Powód jest czysto geometryczny: ta sama energia rozkłada się na coraz większą kulę. Wyobraź sobie, że malujesz balon stałą ilością farby — im większy balon, tym cieńsza warstwa. Nic się nie „gubi”, po prostu rozkłada się szerzej.',
+        eq: '<math display="block"><mi>&#916;</mi><mi>L</mi><mo>=</mo><mn>20</mn><mo>&#8202;</mo><mi>log</mi><mfrac><msub><mi>d</mi><mn>2</mn></msub><msub><mi>d</mi><mn>1</mn></msub></mfrac></math>',
+        where: 'ΔL — zmiana poziomu [dB]; d₁, d₂ — odległości od źródła [m]; wynik ujemny oznacza spadek',
+      },
+      {
+        t: 'Ten wzór daje Ci najważniejszą liczbę na starcie każdego projektu: ile decybeli różnicy między pierwszym a ostatnim rzędem wynika z samej geometrii. Jeśli pierwszy rząd jest 5 metrów od systemu, a ostatni 50 metrów, to stosunek wynosi 1:10, czyli 20 dB. Oznacza to, że jeśli z tyłu jest komfortowo, z przodu jest niebezpiecznie głośno — albo odwrotnie. Cała sztuka projektowania polega na tym, żeby tę różnicę zredukować do wartości, którą sam wybierasz. I uwaga: celem nie jest zero. Ludzie kupujący bilety pod scenę chcą czegoś innego niż ci z tyłu, a lekki spadek poziomu w głąb widowni jest naturalny i pożądany. Typowo dąży się do kilku decybeli, nie do idealnej równości.',
+        viz: 'zakres-odleglosci',
+      },
+      {
+        t: 'Jak więc zmniejszyć tę różnicę? Nie poziomem — ten podnosi wszystko naraz. Zmniejsza się ją geometrią: dokładając źródła obsługujące dalsze rzędy, celując je precyzyjnie i dobierając kąty tak, żeby bliskie miejsca dostawały tylko krawędź wiązki, a dalekie jej środek. To fundament, na którym opierają się i tablice liniowe, i systemy delay, i wszystkie fille. Zapamiętaj zasadę: różnicę poziomów pokonuje się rozkładem energii, a nie mocą.',
+      },
+      {
+        t: 'Gdy ustawiasz obok siebie dwie skrzynie, pojawia się pytanie o kąt między nimi. Klasyczne rozwiązanie mówi: rozwarcie równe kątowi pokrycia. Wtedy krawędzie obu wiązek — miejsca o poziomie −6 dB — spotykają się w jednym punkcie i sumują z powrotem do poziomu zbliżonego do osi. Powstaje płynne przejście bez dziury i bez nadmiaru. Jeśli zrobisz kąt mniejszy, wiązki mocno na siebie nachodzą: w środku będzie głośniej, ale w szerokim obszarze pojawi się interferencja. Jeśli większy — między skrzyniami powstanie wyraźnie cichszy pas.',
+      },
+      {
+        t: 'Dlaczego nakładanie bywa groźne, skoro daje więcej decybeli? Bo suma dwóch źródeł zależy od różnicy czasu dotarcia, a ta zmienia się z każdym krokiem w bok. Dopóki różnica faz między źródłami mieści się mniej więcej w jednej trzeciej cyklu, sumowanie jest korzystne. Gdy przekroczy tę granicę, zaczyna się odejmowanie. Kłopot w tym, że ta sama różnica drogi oznacza zupełnie inną fazę dla basu i dla góry pasma. Pół metra różnicy to drobiazg dla 100 Hz, ale kilka pełnych cykli dla 4 kHz. Dlatego w górze pasma pilnujemy, żeby wiązki się nie nakładały, a w basie spokojnie pozwalamy im się sumować — tam i tak nie mamy wyboru.',
+      },
+    ],
+  },
+
+  linearray: {
+    goals: ['Zrozumieć, dlaczego tablica działa inaczej w basie i w górze pasma', 'Świadomie dobierać długość i kąty'],
+    steps: [
+      {
+        t: 'Tablica liniowa wygląda jak jedna wielka kolumna, ale w rzeczywistości pracuje na dwa zupełnie różne sposoby jednocześnie. W górze pasma każda skrzynia ma bardzo wąską wiązkę pionową i obsługuje swój kawałek widowni — tu kierujesz energię tak, jak kierowałbyś reflektorem: po prostu celując. W basie skrzynie nie mają żadnej kierunkowości, więc wszystkie grają wszędzie i o kształcie pokrycia decyduje coś innego: sumowanie i wzajemne opóźnienia. Jedno urządzenie, dwa mechanizmy — w górze rządzi poziom, w dole rządzi czas.',
+        viz: 'pokrycie-tablicy',
+      },
+      {
+        t: 'Przyjrzyjmy się dolnemu mechanizmowi, bo jest mniej oczywisty. Ustaw sześć subwooferów w szereg. Na wprost szeregu fale ze wszystkich skrzyń docierają do słuchacza niemal równocześnie, więc pięknie się sumują. Ale idąc w bok, zaczynasz być bliżej jednych skrzyń, a dalej od innych: dotarcia rozjeżdżają się w czasie i sumowanie przestaje działać. Efekt jest taki, że energia koncentruje się na wprost, a z boków ubywa. Powstała kierunkowość nie wzięła się z kształtu obudowy, tylko z gry czasem między wieloma źródłami.',
+      },
+      {
+        t: 'Teraz najważniejszy wniosek praktyczny, który wielu ludzi zaskakuje. O szerokości tej wiązki decyduje **długość szeregu**, a nie liczba skrzyń. Jeśli w ten sam odcinek wstawisz więcej, mniejszych skrzyń, dostaniesz więcej decybeli, ale dokładnie ten sam kąt. Jeśli tę samą liczbę skrzyń rozciągniesz na dłuższym odcinku, kąt się zwęzi. Długość działa zawsze w odniesieniu do długości fali: szereg o długości jednej fali danej częstotliwości daje określony kąt, a dla częstotliwości dwa razy wyższej ten sam szereg jest dwa razy dłuższy „w falach”, więc wiązka jest dwa razy węższa.',
+        viz: 'dlugosc-linii',
+      },
+      {
+        t: 'Stąd bierze się sposób, w jaki układa się kąty w tablicy. Górne skrzynie mają najdalej do pokonania, więc ustawia się je prawie płasko i pod małymi kątami względem siebie. Małe kąty oznaczają, że kilka skrzyń oświetla ten sam daleki obszar i ich energia się sumuje — dokładnie tego potrzebujemy, żeby ostatni rząd usłyszał tyle samo co dziesiąty. Im niżej w tablicy, tym bliżej jest publiczność i tym większe kąty: energia jednej skrzyni w zupełności wystarcza, a rozwarcie zapobiega nadmiarowi poziomu pod sceną. Krzywizna tablicy to więc nie estetyka, tylko rozkład mocy w przestrzeni.',
+      },
+      {
+        t: 'To prowadzi do bardzo praktycznej konsekwencji przy strojeniu. Siedząc na widowni, słuchasz w górze pasma kilku skrzyń — tych, których wiązki Cię obejmują — ale w basie słuchasz całej tablicy naraz. Dlatego nadmiar wysokich częstotliwości w pierwszych rzędach możesz spokojnie skorygować, ściszając górę pasma w dolnych skrzyniach: reszta widowni tego nie zauważy, bo obsługują ją inne elementy. Natomiast nadmiaru basu pod sceną nie naprawisz, ściszając bas w dolnych skrzyniach — bas dociera tam z całej tablicy, więc korekta w kilku skrzyniach zmieni niewiele, a popsuje bilans gdzie indziej.',
+      },
+      {
+        t: 'Zostaje pytanie, dlaczego tablica, w której skrzynie celowo na siebie nachodzą, nie brzmi jak jedno wielkie pasmo interferencji. Odpowiadają za to dwie rzeczy. Po pierwsze, falowody są zaprojektowane tak, by źródła dźwięku sąsiednich skrzyń leżały jak najbliżej siebie — im mniejsze przesunięcie, tym mniejsza różnica czasu. Po drugie, wiązka pionowa pojedynczej skrzyni jest bardzo wąska: zanim odejdziesz w pionie na tyle daleko, żeby zebrać groźną różnicę czasu, wypadasz już z zasięgu sąsiedniej skrzyni. To dlatego tablica z fabrycznych elementów działa, a „domowa tablica” ze zwykłych szerokopasmowych skrzyń ustawionych jedna na drugiej brzmi źle — tam wiązki są szerokie, więc słuchacz zbiera energię z wielu skrzyń o dużych różnicach czasu.',
+      },
+    ],
+  },
+
+  suby: {
+    goals: ['Zaprojektować układ subów pod konkretną scenę', 'Policzyć rozstaw i opóźnienie kardioidy'],
+    steps: [
+      {
+        t: 'Subwoofer to skrzynia, która gra praktycznie we wszystkie strony. Nie da się jej „wycelować”, bo przy falach długich na kilka metrów obudowa jest za mała, by cokolwiek osłonić. Konsekwencje znasz z pracy: bas na scenie potrafi być głośniejszy niż na widowni, mikrofony zbierają dudnienie, a sąsiedzi za płotem słyszą głównie stopę. Skoro pojedyncza skrzynia nie ma kierunkowości, trzeba ją zbudować — z kilku źródeł i z precyzyjnie dobranych opóźnień.',
+      },
+      {
+        t: 'Pierwszy sposób już znasz z tablicy: szereg. Ustawione w linii suby zawężają wiązkę w płaszczyźnie tej linii, a o kącie decyduje długość szeregu w stosunku do długości fali. Rząd subów rozciągnięty wzdłuż sceny zwęża pokrycie w poziomie i mocniej „strzela” na wprost. To samo zjawisko, gdy podwiesisz suby pionowo, zawęża wiązkę w pionie — mniej energii leci w sufit i w podłogę, więcej w publiczność. Ograniczeniem jest rozstaw: gdy odstępy między skrzyniami stają się porównywalne z połową długości fali, zamiast jednej wiązki pojawiają się dodatkowe listki boczne.',
+      },
+      {
+        t: 'Drugi sposób to układ end-fire, czyli szereg skierowany w stronę publiczności. Działa jak sztafeta: tylna skrzynia startuje pierwsza, a przednia odpala dokładnie w chwili, gdy fala z tylnej do niej dociera. Do przodu obie fale maszerują razem i się wzmacniają. Do tyłu jest odwrotnie: energia z przedniej skrzyni wraca spóźniona podwójnie — raz przez opóźnienie elektroniczne, raz przez drogę — więc spotyka falę z tylnej skrzyni w przeciwfazie i wygasza ją. Rozstaw dobiera się jako mniej więcej ćwierć długości fali częstotliwości, na której zależy nam najbardziej.',
+        eq: '<math display="block"><mi>&#916;</mi><mi>t</mi><mo>=</mo><mfrac><mi>s</mi><mi>c</mi></mfrac><mspace width="1.6em"/><mi>s</mi><mo>≈</mo><mfrac><mi>&#955;</mi><mn>4</mn></mfrac></math>',
+        where: 'Δt — opóźnienie skrzyni przedniej [s]; s — rozstaw środków akustycznych [m]; c — prędkość dźwięku [m/s]; λ — długość fali częstotliwości projektowej [m]',
+        viz: 'kardioida-subow',
+      },
+      {
+        t: 'Trzeci sposób to układ gradientowy, spotykany jako „stack kardioidalny”: dwie lub trzy skrzynie, z których jedna jest odwrócona tyłem do publiczności. Tutaj logika jest odwrotna niż w end-fire — układ stroi się „od tyłu”. Opóźniasz skrzynię tak, żeby za zestawem obie fale spotkały się w tej samej chwili, a następnie odwracasz jej polaryzację. Efekt: z tyłu fale się znoszą, a z przodu, dzięki sumie opóźnienia i różnicy drogi, i tak się dodają. Odwrócenie skrzyni samo w sobie niczego nie kieruje — chodzi o to, że przesuwa jej źródło dźwięku w głąb, tworząc potrzebną różnicę drogi.',
+      },
+      {
+        t: 'Pozostaje klasyczny problem dużych scen: suby ustawione w dwóch stosach po bokach tworzą wzór interferencji na widowni. Na osi symetrii fale spotykają się zgodnie i powstaje głośny korytarz — „power alley” — a obok niego pasma wyraźnie cichsze, w dodatku różne dla różnych częstotliwości. Rozwiązania są dwa. Fizyczne: rozłożyć suby w ciągły szereg wzdłuż sceny albo ustawić je centralnie. Elektroniczne: zbudować wirtualny łuk, opóźniając skrzynie w środku szeregu tak, jakby stały na okręgu, co rozszerza pokrycie i rozbija korytarz.',
+      },
+      {
+        t: 'Na koniec dwie rzeczy, które decydują o powodzeniu w terenie. Po pierwsze, w obliczeniach liczy się odległość między źródłami dźwięku, a nie między obudowami — mierzysz od membrany do membrany albo od frontu do frontu, konsekwentnie. Po drugie, rzeczywiste opóźnienie w układzie gradientowym bywa większe, niż wynika z geometrii, bo fala z przodu musi opłynąć obudowę, zanim pojawi się z tyłu. Dlatego układy kardioidalne zawsze weryfikuje się pomiarem, a fabryczne presety producenta — jeśli istnieją — są dobrym punktem startu, bo mają tę korektę już policzoną.',
+      },
+    ],
+  },
+
   fale: {
     goals: ['Rozumieć, czym fizycznie jest dźwięk', 'Liczyć długość fali, okres i fazę bez kalkulatora w głowie'],
     steps: [
@@ -151,50 +255,6 @@ export const LESSONS = {
       'Przy 48 kHz jedna próbka to ok. 20,8 µs, przy 96 kHz — 10,4 µs. Aliasing powstaje, gdy sygnał zawiera składowe powyżej połowy fs — zapobiegają mu filtry antyaliasingowe w konwerterach. Rozdzielczość opóźnienia w procesorach jest zwykle wystarczająca do wyrównania na poziomie ułamka ms.',
       'Procesory systemów liniowych oferują kompensację absorpcji powietrza (podbicie HF dla elementów grających daleko) i korekcje strefowe (array EQ). Ich ustawienia najczęściej przychodzą z software predykcji — trzeba wiedzieć, co zostało policzone, zanim zacznie się korygować „ręcznie”.',
       'Grupy pozwalają zmieniać parametry wielu kanałów jednocześnie, snapshoty — wrócić do znanego stanu. Zanim zaczniesz strojenie, zapisz stan wyjściowy. Po strojeniu zapisz stan końcowy i opisz zmiany — to Twoja dokumentacja i zabezpieczenie.',
-    ],
-  },
-
-  kierunkowosc: {
-    goals: ['Czytać dane kierunkowości', 'Przewidywać zachowanie źródła w funkcji częstotliwości'],
-    steps: [
-      'Kąt pokrycia to kąt między punktami, w których poziom spada o 6 dB względem osi. Producenci podają go zwykle dla środka pasma — w LF rzeczywisty kąt jest znacznie szerszy, w skrajnym HF bywa węższy.',
-      'Beamwidth w funkcji częstotliwości pokazuje prawdziwe zachowanie źródła. Idealne źródło o stałej kierunkowości ma płaski wykres beamwidth w szerokim zakresie; w praktyce każdy głośnik rozszerza się w LF poniżej częstotliwości, dla której jego wymiar jest porównywalny z λ.',
-      'Q to stosunek natężenia na osi do natężenia źródła dookólnego o tej samej mocy. DI = 10·log Q w dB. Źródło dookólne ma Q = 1 (DI = 0 dB), półprzestrzeń Q = 2 (3 dB). Q jest potrzebne m.in. do odległości krytycznej i stosunku D/R.',
-      'Tuba lub falowód kształtuje front fali i kontroluje kierunkowość w zakresie, w którym ich wymiary są wystarczające. Tuby CD (stałej kierunkowości) utrzymują zbliżony kąt w szerokim pasmie, kosztem pewnych kompromisów w odpowiedzi osiowej.',
-      'Kontrola kierunkowości wymaga źródła porównywalnego z długością fali: przy 100 Hz λ ≈ 3,4 m, więc skrzynka 60 cm nie ma szans być kierunkowa. Dlatego kierunkowość subów uzyskuje się układami wielu źródeł (kardioidy, end-fire), a nie pojedynczą obudową.',
-      'Dane balonowe (GLL w AFMG, CLF, dane w software producentów) zawierają amplitudę, a często i fazę, dla wielu kierunków i częstotliwości. Predykcja jest tak dobra jak te dane — do systemów pracujących w układach potrzebne są dane z fazą.',
-    ],
-  },
-  pointsource: {
-    goals: ['Dobierać kąty i rozstawy układów punktowych', 'Przewidywać spadek poziomu z odległością'],
-    steps: [
-      'Źródło punktowe w polu swobodnym traci 6 dB na każde podwojenie odległości, bo energia rozkłada się na powierzchni sfery rosnącej z kwadratem promienia. W salach, bliżej pola pogłosowego, spadek jest mniejszy — pogłos „podtrzymuje” poziom.',
-      'Jeśli dwie kolumny o kącie pokrycia 60° rozwarte są o 60°, ich krawędzie −6 dB spotykają się na linii styku, gdzie suma daje ok. 0 dB względem osi każdej z nich. To tzw. unity splay — minimalne nakładanie z płynnym przejściem.',
-      'Mniejszy kąt rozwarcia zwiększa nakładanie: więcej poziomu w centrum, ale szeroki obszar interferencji. Większy — dziura w pokryciu na linii styku. Wybór zależy od tego, czy priorytetem jest moc, czy jednorodność.',
-      'Aspect ratio opisuje stosunek długości do szerokości obszaru pokrywanego przez jedno źródło. Źródło punktowe nie „wyrówna” poziomu między bliskim a dalekim rzędem, jeśli różnica odległości jest duża — wtedy potrzebne są dodatkowe źródła lub tablica o zmiennej krzywiźnie.',
-      'L/R daje stereo tylko w wąskiej strefie, ale lepszą widoczność sceny i obrazu. Centralny klaster zapewnia spójny obraz dla wszystkich i mniej interferencji między stronami. LCR łączy zalety — kosztem złożoności i konieczności przemyślanego miksu.',
-    ],
-  },
-  linearray: {
-    goals: ['Rozumieć fizykę tablic liniowych', 'Świadomie dobierać długość i krzywiznę'],
-    steps: [
-      'Heil i Urban opisali warunki, przy których elementy tablicy sumują się w spójny front: odstęp środków akustycznych mniejszy niż ok. połowa długości fali (dla LF i MF) oraz dla HF — wypełnienie co najmniej ~80% wysokości tablicy płaskim, spójnym frontem (falowody). Poza tymi warunkami pojawiają się listki boczne.',
-      'Blisko długiej tablicy energia rozchodzi się jak fala cylindryczna: −3 dB na podwojenie odległości. Daleko tablica zachowuje się jak źródło punktowe: −6 dB. W rzeczywistości granica jest płynna i zależy od częstotliwości.',
-      'Granica pola bliskiego jest proporcjonalna do częstotliwości i kwadratu długości tablicy. Dla HF sięga daleko, dla LF — blisko. Konsekwencja: w dalekiej części publiczności HF spada wolniej niż LF, co zmienia bilans tonalny z odległością.',
-      'Krzywizna J (małe kąty u góry, większe na dole) koncentruje energię na dalekie rzędy i rozprasza na bliskie, wyrównując poziom front-back. Stały kąt (arc) daje równomierne pokrycie kątowe, ale bez „rzutu”. Software producenta pomaga znaleźć kąty spełniające cel jednorodności.',
-      'Kontrola pionowa w LF zależy od całkowitej długości tablicy. Krótka tablica jest w LF prawie dookólna w pionie — energia trafia na scenę i sufit. Wydłużenie tablicy poprawia kontrolę LF bardziej niż zmiana kątów.',
-      'Site angle (kąt całej tablicy), wysokość zawieszenia i punkty podwieszenia wpływają na pokrycie tak samo jak kąty między elementami. Wszystko to jest ograniczone rigiem: nośnością, dostępnymi punktami, ramą i przesunięciem środka ciężkości.',
-    ],
-  },
-  suby: {
-    goals: ['Projektować i liczyć układy subów', 'Kontrolować energię LF na scenie i poza terenem'],
-    steps: [
-      'Gdy suby grają ten sam sygnał w rzędzie, sumują się w fazie tylko wtedy, gdy różnice dróg są małe względem λ. Rozstaw środków poniżej λ/2 najwyższej częstotliwości pracy (np. ~1,7 m dla 100 Hz) utrzymuje sumowanie bez głębokich listków bocznych.',
-      'Suby L/R rozstawione o kilkanaście metrów tworzą wzór interferencyjny: na osi symetrii pełne sumowanie (power alley), obok — wycięcia i wzmocnienia zależne od częstotliwości. Rozwiązania: mono center, arc elektroniczny, rzędy L/R z odpowiednią strategią opóźnień.',
-      'Stack gradientowy/kardioidalny: jeden element skierowany do tyłu (lub przesunięty w głąb) dostaje opóźnienie równe różnicy dróg i odwróconą polaryzację. Z przodu fale się sumują (z niewielką stratą), z tyłu znoszą, dając 15–20 dB tłumienia w dobrze ustawionym układzie.',
-      'End-fire: rzędy subów ustawione jeden za drugim w kierunku publiczności. Przedni rząd jest opóźniony o czas przelotu od tylnego. Z przodu wszystkie sumują się w fazie, do tyłu wycinają się częściowo. Optymalny rozstaw to ok. λ/4 częstotliwości projektowej. Wymaga dużo miejsca w głąb.',
-      'Arc fizyczny (suby na łuku) lub elektroniczny (prosty rząd z opóźnieniami rosnącymi ku środkowi) poszerza pokrycie i łagodzi power alley. Opóźnienia liczy się z geometrii wirtualnego łuku. Świetna technika dla szerokich rzędów pod sceną.',
-      'Suby podwieszone dają lepszą jednorodność front-back i łatwiejsze wyrównanie z tablicą, ale mniej sprzężenia z podłogą. Naziemne mają zysk od gruntu i prostszą logistykę, ale mocno grają na pierwsze rzędy. Coraz częściej stosuje się połączenie obu z przemyślanym wyrównaniem.',
     ],
   },
 

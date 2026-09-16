@@ -12,21 +12,35 @@ const wavePath = (amp, period, y = 120, width = 1240) => {
 
 export const VISUALS = {
   'fala-w-powietrzu': {
-    title: 'Fala biegnie, powietrze zostaje w miejscu',
-    caption: 'Głośnik popycha powietrze. Zagęszczenia (ciemne paski) wędrują do słuchacza, ale pojedyncza cząsteczka powietrza — czerwona kropka — tylko drga w tę i z powrotem, jak korek na wodzie.',
-    svg: `<svg viewBox="0 0 ${W} ${H}" class="v-svg" role="img" aria-label="Fala dźwiękowa biegnąca od głośnika do ucha">
-      <rect x="18" y="80" width="54" height="80" rx="8" class="v-fill-dim"/>
-      <circle cx="45" cy="120" r="18" class="v-fill-accent v-pump"/>
-      <g class="v-move-right">
-        ${Array.from({ length: 22 }, (_, i) => `<rect x="${90 + i * 56}" y="70" width="${10 + (i % 2) * 6}" height="100" rx="4" class="v-fill-accent" opacity="${i % 2 ? 0.55 : 0.28}"/>`).join('')}
-      </g>
-      <circle cx="330" cy="120" r="9" class="v-fill-red v-oscillate"/>
-      <text x="330" y="196" class="v-label" text-anchor="middle">cząsteczka powietrza drga w miejscu</text>
-      <path d="M560 96c14 0 20 10 20 24s-6 24-20 24" class="v-stroke" fill="none" stroke-width="5"/>
-      <circle cx="556" cy="120" r="6" class="v-fill-dim"/>
-      <text x="45" y="196" class="v-label" text-anchor="middle">głośnik</text>
-      <text x="575" y="196" class="v-label" text-anchor="middle">ucho</text>
-    </svg>`,
+    title: 'Fala biegnie, cząsteczki zostają w miejscu',
+    caption: 'Każda kropka to cząsteczka powietrza. Membrana popycha te najbliższe, one napierają na sąsiednie i tak dalej — powstają pasma zagęszczenia i rozrzedzenia, które wędrują w stronę słuchacza. Przyjrzyj się czerwonej cząsteczce: ona tylko drga w tę i z powrotem wokół swojego miejsca, nigdzie nie wędruje. Wędruje wyłącznie wzór zagęszczeń, czyli informacja. Jeden pełny cykl membrany przesuwa ten wzór dokładnie o jedną długość fali.',
+    svg: (() => {
+      const cols = 44, rows = 9, x0 = 84, dx = 11.6, y0 = 52, dy = 17, perCycle = 8;
+      const dots = [];
+      for (let c = 0; c < cols; c++) {
+        const delay = (-(c % perCycle) * (2 / perCycle)).toFixed(3);
+        const inner = [];
+        for (let r = 0; r < rows; r++) {
+          const jitter = ((c * 7 + r * 13) % 5) - 2;
+          const red = c === 21 && r === 4;
+          inner.push(`<circle cx="${(x0 + c * dx).toFixed(1)}" cy="${y0 + r * dy + jitter}" r="${red ? 5 : 3.1}" class="${red ? 'v-fill-red' : 'v-fill-accent'}" opacity="${red ? 1 : 0.85}"/>`);
+        }
+        dots.push(`<g class="v-mol" style="animation-delay:${delay}s">${inner.join('')}</g>`);
+      }
+      return `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Cząsteczki powietrza zagęszczające się i rozrzedzające w fali dźwiękowej">
+        <rect x="18" y="62" width="46" height="120" rx="8" class="v-fill-dim"/>
+        <rect x="58" y="78" width="14" height="88" rx="4" class="v-fill-accent v-membrane"/>
+        <text x="42" y="204" class="v-label" text-anchor="middle">membrana</text>
+        ${dots.join('')}
+        <g class="v-wavefront">
+          <rect x="84" y="40" width="46" height="150" rx="10" class="v-stroke-gold" fill="none" stroke-width="2" stroke-dasharray="6 5"/>
+          <text x="107" y="32" class="v-label-gold" text-anchor="middle">zagęszczenie</text>
+        </g>
+        <text x="245" y="228" class="v-label-red">czerwona cząsteczka tylko drga w miejscu</text>
+        <path d="M556 96c16 0 22 10 22 24s-6 24-22 24" class="v-stroke" fill="none" stroke-width="4"/>
+        <text x="566" y="204" class="v-label" text-anchor="middle">ucho</text>
+      </svg>`;
+    })(),
   },
 
   'dlugosc-fali': {
@@ -155,6 +169,66 @@ export const VISUALS = {
       <text x="310" y="150" class="v-label-gold" text-anchor="middle">maksimum ciśnienia</text>
       <text x="150" y="215" class="v-label" text-anchor="middle">tu basu jest dużo</text>
       <text x="470" y="215" class="v-label" text-anchor="middle">tu basu brakuje</text>
+    </svg>`,
+  },
+
+  'kierunkowosc-pasma': {
+    title: 'Jeden głośnik, trzy różne „latarki”',
+    caption: 'Ta sama skrzynia świeci wąsko w górze pasma, szerzej w środku i prawie dookoła w basie. Dlatego stojąc za kolumną słyszysz bas, ale nie słyszysz blachy — i dlatego samo „wycelowanie” działa tylko dla wysokich częstotliwości.',
+    svg: `<svg viewBox="0 0 620 260" class="v-svg" role="img" aria-label="Kąt pokrycia głośnika w trzech pasmach">
+      <g transform="translate(120,130)">
+        <path d="M0 0 L470 -150 A492 492 0 0 1 470 150 Z" class="v-fill-accent" opacity=".10"/>
+        <path d="M0 0 L470 -80 A477 477 0 0 1 470 80 Z" class="v-fill-accent" opacity=".18"/>
+        <path d="M0 0 L470 -26 A470 470 0 0 1 470 26 Z" class="v-fill-accent" opacity=".38"/>
+        <rect x="-40" y="-30" width="40" height="60" rx="6" class="v-fill-dim"/>
+      </g>
+      <text x="600" y="34" class="v-label" text-anchor="end">100 Hz — prawie dookoła</text>
+      <text x="600" y="132" class="v-label-accent" text-anchor="end">1 kHz — szeroko</text>
+      <text x="600" y="240" class="v-label-white" text-anchor="end">8 kHz — wąska wiązka</text>
+    </svg>`,
+  },
+
+  'zakres-odleglosci': {
+    title: 'Zakres odległości: skąd bierze się różnica głośności',
+    caption: 'Jeśli pierwszy rząd jest 5 m od systemu, a ostatni 50 m, to sam dystans robi 20 dB różnicy. Zadaniem projektu jest wyrównanie większości tej różnicy — przez kąty, krzywiznę i dodatkowe subsystemy, a nie przez podkręcanie poziomu.',
+    svg: `<svg viewBox="0 0 620 220" class="v-svg" role="img" aria-label="Różnica poziomu między pierwszym a ostatnim rzędem">
+      <rect x="20" y="60" width="40" height="90" rx="6" class="v-fill-dim"/>
+      <text x="40" y="172" class="v-label" text-anchor="middle">system</text>
+      <line x1="64" y1="105" x2="590" y2="105" class="v-stroke-dim"/>
+      ${[[150, '5 m', '0 dB'], [300, '15 m', '−10 dB'], [450, '30 m', '−16 dB'], [575, '50 m', '−20 dB']]
+        .map(([x, d, l]) => `<g><circle cx="${x}" cy="105" r="6" class="v-fill-accent"/><text x="${x}" y="88" class="v-label" text-anchor="middle">${d}</text><text x="${x}" y="134" class="v-label-white" text-anchor="middle">${l}</text></g>`).join('')}
+      <text x="310" y="200" class="v-label" text-anchor="middle">każde podwojenie odległości to −6 dB</text>
+    </svg>`,
+  },
+
+  'dlugosc-linii': {
+    title: 'O kierunkowości w basie decyduje długość linii',
+    caption: 'Dołożenie skrzyń w tym samym odcinku daje więcej decybeli, ale ten sam kąt. Rozciągnięcie tej samej liczby skrzyń na dłuższym odcinku zwęża wiązkę. W basie kierunkowość robi długość szeregu, a nie liczba pudeł.',
+    svg: `<svg viewBox="0 0 620 240" class="v-svg" role="img" aria-label="Wpływ długości linii subwooferów na kąt pokrycia">
+      ${[[60, 3, 34, 92, 'krótka linia'], [250, 6, 34, 92, 'więcej skrzyń, ta sama długość'], [440, 3, 60, 42, 'ta sama liczba, dłuższa linia']]
+        .map(([x, n, gap, ang, label]) => `<g>
+          ${Array.from({ length: n }, (_, i) => `<rect x="${x - 16}" y="${40 + i * (gap * 3 / n)}" width="32" height="${(gap * 3 / n) - 6}" rx="3" class="v-fill-accent" opacity=".85"/>`).join('')}
+          <path d="M${x + 20} 100 L${x + 130} ${100 - ang} L${x + 130} ${100 + ang} Z" class="v-fill-accent" opacity=".16"/>
+          <text x="${x + 20}" y="${212}" class="v-label" text-anchor="middle">${label}</text>
+        </g>`).join('')}
+      <text x="310" y="234" class="v-label-gold" text-anchor="middle">ten sam kąt ⟵ ta sama długość ⟶ węższy kąt przy dłuższej linii</text>
+    </svg>`,
+  },
+
+  'kardioida-subow': {
+    title: 'Kardioida: głośno do przodu, cicho na scenę',
+    caption: 'Jedna skrzynia stoi bliżej publiczności, druga dalej (albo tyłem). Opóźnienie ustawia się tak, żeby z przodu fale się dodawały, a z tyłu spotykały w przeciwfazie i wygaszały. Efekt: perkusista i mikrofony na scenie dostają kilkanaście decybeli mniej basu.',
+    svg: `<svg viewBox="0 0 620 250" class="v-svg" role="img" aria-label="Zasada działania kardioidalnego układu subwooferów">
+      <text x="310" y="22" class="v-label" text-anchor="middle">widok z góry</text>
+      <path d="M310 120 m-95 0 a95 95 0 1 0 190 0 a95 95 0 1 0 -190 0" class="v-fill-accent" opacity=".07"/>
+      <path d="M310 120 C 430 30, 560 70, 560 120 C 560 170, 430 210, 310 120 Z" class="v-fill-accent" opacity=".3"/>
+      <rect x="250" y="96" width="34" height="48" rx="5" class="v-fill-dim"/>
+      <rect x="292" y="96" width="34" height="48" rx="5" class="v-fill-accent" opacity=".9"/>
+      <text x="420" y="120" class="v-label-white" text-anchor="middle">publiczność: fale się dodają</text>
+      <text x="170" y="120" class="v-label-red" text-anchor="middle">scena: wygaszenie</text>
+      <text x="267" y="176" class="v-label" text-anchor="middle">skrzynia tylna</text>
+      <text x="309" y="196" class="v-label-accent" text-anchor="middle">skrzynia przednia (opóźniona)</text>
+      <text x="310" y="238" class="v-label-gold" text-anchor="middle">rozstaw ok. ćwierci długości fali częstotliwości projektowej</text>
     </svg>`,
   },
 
